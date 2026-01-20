@@ -21,7 +21,7 @@ const Hero = () => {
                         opacity: 0.7
                     }}></div>
                     <img
-                        src="/profile.png"
+                        src={`${import.meta.env.BASE_URL}profile.png`}
                         alt={profileData.name}
                         style={{
                             width: '200px',
