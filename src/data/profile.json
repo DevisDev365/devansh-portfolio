@@ -1,0 +1,138 @@
+{
+  "name": "Devansh Khanna",
+  "tagline": "Associate Consultant | Business Analyst | Strategy & Ops",
+  "contact": {
+    "email": "devansh.khanna24@dsb.edu.in",
+    "phone": "+91 9870316839",
+    "linkedin": "https://www.linkedin.com/in/devansh-khanna-618606178/",
+    "location": "Gurugram (Open to Global Relocation)"
+  },
+  "summary": "Outcome-driven Business Analyst and Strategy Associate specializing in bridging the gap between data and decision-making. I thrive in high-ownership environments, helping AI-enabled product firms, SaaS, and FinTech companies convert complex processes into streamlined, automated workflows.",
+  "target_roles": [
+    "Associate Consultant",
+    "Business Analyst (Strategy/Analytics)",
+    "Strategy & Ops Analyst",
+    "Associate Product Analyst"
+  ],
+  "experience": [
+    {
+      "role": "Sales & marketing Intern",
+      "company": "Smaaash entertainment Pvt Ltd.",
+      "period": "May’25 - June’25",
+      "order": 1,
+      "description": [
+        "Generated ₹59K in sales via 200+ calls and 61 field visits; cleaned 1,200+ lead database improving quality scoring by 40%.",
+        "Orchestrated the end-to-end launch of a new Karaoke service, unlocking a new revenue stream and expanding market reach."
+      ]
+    },
+    {
+      "role": "Key Account Executive",
+      "company": "Imperial Auto Industries Ltd.",
+      "period": "August’22 - August’23",
+      "order": 3,
+      "description": [
+        "Managed ₹5+ crore revenue portfolio for OEM accounts (Hyzon, Kohler, Mitsubishi) through optimized pricing workflows",
+        "Built Power BI dashboards and Excel models for revenue forecasting, improving pricing accuracy by 12%",
+        "Automated ERP reporting using Excel macros, reducing processing time from 4 hours to 30 minutes weekly"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Neura-Q — AI Decision Framework",
+      "role": "Founder & Lead",
+      "link": "https://neuraq.netlify.app/",
+      "period": "2025 - Present",
+      "details": {
+        "problem": "Need for structured reasoning in complex business decisions.",
+        "approach": "Built decision tool using GoT, CoT, and ToT reasoning frameworks with Supabase backend for structured strategic analysis.",
+        "outcome": "Improved understanding of decision logic, trade-offs, and AI-assisted reasoning under uncertainty."
+      }
+    },
+    {
+      "name": "AI Resume Enhancer",
+      "role": "Product Developer",
+      "link": "https://resume-ai-dev.netlify.app/",
+      "period": "2025",
+      "details": {
+        "problem": "Manual resume screening is inconsistent and time-consuming.",
+        "approach": "Automated resume parsing and scoring using XGBoost (85% accuracy) + Gemini API, reducing screening time by 70%.",
+        "outcome": "Learned to translate business requirements into data pipelines and model-driven scoring systems."
+      }
+    },
+    {
+      "name": "Cryptocurrency Arbitrage Analysis",
+      "role": "Independent Analyst",
+      "link": "https://btc-arbitrage-analyst.bolt.host/",
+      "period": "FinTech Project",
+      "details": {
+        "problem": "Identifying exploitable cross-exchange Bitcoin price inefficiencies under real-world constraints.",
+        "approach": "Designed cross-exchange Bitcoin arbitrage framework identifying 15+ profitable opportunities across Indian exchanges.",
+        "outcome": "Gained exposure to market microstructure, latency risk, and operational constraints in financial decision-making."
+      }
+    }
+  ],
+  "achievements": [
+    "National Finalist (Top 20 nationwide) – AIMA Student Management Games (SMG): Led team strategy as CEO, securing Regional 1st Runner-Up.",
+    "2nd Runner-Up – Youth’s Voice (BCC&I x NTPC): Developed practical sustainability-driven business frameworks focused on social and environmental impact.",
+    "L’Oréal Sustainability Challenge 2024 – Participated in national case-based competition on sustainable innovation.",
+    "HP Power Lab by Hindustan Petroleum – Participated in national business simulation challenge."
+  ],
+  "positions_of_responsibility": [
+    {
+      "role": "Coordinator (formerly Joint Coordinator)",
+      "organization": "INVICTUS – Data Analysis Club, DSB",
+      "period": "Oct 2024 – Present",
+      "description": [
+        "Led a 50-member team and executed growth strategy that scaled the club’s reach by 66% and increased engagement 5x.",
+        "Conceptualized and executed high-impact events like ‘Sheets & Beats’, tripling student participation."
+      ]
+    }
+  ],
+  "extra_curricular": [
+    "Led technical operations for 6+ national and international conferences, ensuring seamless execution and enhancing institutional visibility."
+  ],
+  "skills": [
+    "Python",
+    "SQL",
+    "Excel (VBA)",
+    "Power BI",
+    "XGBoost",
+    "API Integration",
+    "Supabase",
+    "LLM Integration"
+  ],
+  "education": [
+    {
+      "course": "MBA",
+      "college": "Delhi School of Business, Delhi",
+      "year": "2026",
+      "order": 2,
+      "score": "5.48 CGPA"
+    },
+    {
+      "course": "College Degree",
+      "college": "Chandigarh University, Punjab",
+      "year": "2022",
+      "order": 4,
+      "score": "7 CGPA"
+    },
+    {
+      "course": "XII, CBSE",
+      "college": "DAV Public School, Faridabad",
+      "year": "2019",
+      "order": 5,
+      "score": "6.63 CGPA"
+    },
+    {
+      "course": "X, CBSE",
+      "college": "Carmel Convent School, Faridabad",
+      "year": "2017",
+      "order": 6,
+      "score": "6.7 CGPA"
+    }
+  ],
+  "certifications": [
+    "Data-Driven Decision-Making using Excel & SQL – NIT Trichy (Completed 3-week bootcamp on Excel automation and SQL fundamentals)"
+  ]
+}
