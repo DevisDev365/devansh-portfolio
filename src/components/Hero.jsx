@@ -40,7 +40,7 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                 >
-                    <h1 className="section-title" style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', marginBottom: '0.5rem', background: 'linear-gradient(to right, #fff, var(--accent-blue))', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    <h1 className="section-title" style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', marginBottom: '0.5rem', background: 'linear-gradient(to right, #fff, var(--accent-blue))', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', left: 'auto', transform: 'none' }}>
                         {profileData.name}
                     </h1>
                     <h2 style={{ fontSize: 'clamp(1.2rem, 4vw, 2rem)', color: 'var(--accent-gold)', marginBottom: '1rem', fontWeight: 600 }}>
