@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -11,12 +13,27 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [mobileMenuOpen]);
+
     const navLinks = [
         { name: 'Experience', href: '#experience' },
         { name: 'Projects', href: '#projects' },
         { name: 'Skills', href: '#skills' },
         { name: 'Contact', href: '#contact' }
     ];
+
+    const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
+    const handleLinkClick = () => {
+        setMobileMenuOpen(false);
+    };
 
     return (
         <nav style={{
@@ -33,7 +50,8 @@ const Navbar = () => {
             backdropFilter: scrolled ? 'blur(10px)' : 'none',
             borderBottom: scrolled ? '1px solid var(--glass-border)' : 'none'
         }}>
-            <div style={{
+            {/* Desktop Menu */}
+            <div className="desktop-menu" style={{
                 display: 'flex',
                 gap: '2rem',
                 background: scrolled ? 'transparent' : 'rgba(255, 255, 255, 0.03)',
@@ -60,6 +78,76 @@ const Navbar = () => {
                     </a>
                 ))}
             </div>
+
+            {/* Mobile Menu Toggle */}
+            <button
+                className="mobile-toggle"
+                onClick={toggleMobileMenu}
+                style={{
+                    display: 'none', // Hidden by default, shown via CSS media query
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'var(--text-primary)',
+                    fontSize: '1.5rem',
+                    cursor: 'pointer',
+                    zIndex: 1001,
+                    position: 'absolute',
+                    right: '1.5rem',
+                    top: '1.5rem'
+                }}
+            >
+                {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+
+            {/* Mobile Menu Overlay */}
+            <div style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'rgba(5, 10, 20, 0.98)',
+                backdropFilter: 'blur(20px)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '2rem',
+                transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(-100%)',
+                transition: 'transform 0.3s ease-in-out',
+                zIndex: 1000
+            }}>
+                {navLinks.map((link) => (
+                    <a
+                        key={link.name}
+                        href={link.href}
+                        onClick={handleLinkClick}
+                        style={{
+                            color: 'var(--text-primary)',
+                            fontSize: '1.5rem',
+                            fontWeight: 600,
+                            textDecoration: 'none'
+                        }}
+                    >
+                        {link.name}
+                    </a>
+                ))}
+            </div>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    .desktop-menu {
+                        display: none !important;
+                    }
+                    .mobile-toggle {
+                        display: block !important;
+                    }
+                    nav {
+                        justify-content: space-between;
+                        padding: 1rem 1.5rem;
+                    }
+                }
+            `}</style>
         </nav>
     );
 };

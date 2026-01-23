@@ -8,14 +8,14 @@ const TimelineItem = ({ data, isLeft, index }) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
+            className={`timeline-item-wrapper ${isLeft ? 'timeline-left' : 'timeline-right'}`}
             style={{
                 display: 'flex',
                 justifyContent: isLeft ? 'flex-end' : 'flex-start',
                 paddingBottom: '3rem',
                 position: 'relative',
-                width: '50%'
+                // width is handled by class
             }}
-            className={isLeft ? 'timeline-left' : 'timeline-right'}
         >
             <div className="glass-panel" style={{ width: '80%', position: 'relative' }}>
                 <h3 style={{ color: 'var(--accent-gold)' }}>{data.role || data.course}</h3>
@@ -48,17 +48,41 @@ const Timeline = () => {
     return (
         <section id="experience" className="container" style={{ padding: '5rem 20px' }}>
             <h2 className="section-title">Timeline</h2>
-            <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="timeline-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {/* Central Line */}
-                <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '2px', background: 'var(--glass-border)', transform: 'translateX(-50%)' }}></div>
+                <div className="timeline-line" style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '2px', background: 'var(--glass-border)', transform: 'translateX(-50%)' }}></div>
 
                 {combinedData.map((item, index) => (
-                    <div key={`item-${index}`} style={{ width: '100%', display: 'flex', justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end' }}>
+                    <div key={`item-${index}`} className={`timeline-row ${index % 2 === 0 ? 'left' : 'right'}`} style={{ width: '100%', display: 'flex', justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end' }}>
                         <TimelineItem data={item} isLeft={index % 2 === 0} index={index} />
                     </div>
                 ))}
 
             </div>
+            <style>{`
+                .timeline-item-wrapper {
+                    width: 50%;
+                }
+                
+                @media (max-width: 768px) {
+                    .timeline-line {
+                        left: 20px !important;
+                        transform: none !important;
+                    }
+                    .timeline-row {
+                        justify-content: flex-start !important;
+                        margin-left: 40px;
+                        width: calc(100% - 40px) !important;
+                    }
+                    .timeline-item-wrapper {
+                        width: 100% !important;
+                        justify-content: flex-start !important;
+                    }
+                    .timeline-item-wrapper .glass-panel {
+                        width: 100% !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

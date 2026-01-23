@@ -6,7 +6,7 @@ const Projects = () => {
     return (
         <section id="projects" className="container" style={{ padding: '5rem 20px' }}>
             <h2 className="section-title">Featured Projects</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
                 {profileData.projects.map((project, index) => (
                     <motion.div
                         key={index}

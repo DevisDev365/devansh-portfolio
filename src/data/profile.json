@@ -17,7 +17,7 @@
   "experience": [
     {
       "role": "Sales & marketing Intern",
-      "company": "Smaaash entertainment Pvt Ltd.",
+      "company": "SMAAASH Entertainment Pvt. Ltd.",
       "period": "May’25 - June’25",
       "order": 1,
       "description": [
@@ -69,6 +69,17 @@
         "problem": "Identifying exploitable cross-exchange Bitcoin price inefficiencies under real-world constraints.",
         "approach": "Designed cross-exchange Bitcoin arbitrage framework identifying 15+ profitable opportunities across Indian exchanges.",
         "outcome": "Gained exposure to market microstructure, latency risk, and operational constraints in financial decision-making."
+      }
+    },
+    {
+      "name": "Social Media Brand Performance Analysis (QSR)",
+      "role": "Data Analyst",
+      "link": "https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing",
+      "period": "Independent Project",
+      "details": {
+        "problem": "Lack of data-driven insights into the social media engagement strategies of major QSR brands in India.",
+        "approach": "Scraped Instagram data using ParseHub and performed comparative analysis using Python (Pandas, Seaborn) to evaluate engagement metrics.",
+        "outcome": "Identified key content drivers and performance trends for McDonald's, Domino's, and KFC to optimize brand strategy."
       }
     }
   ],

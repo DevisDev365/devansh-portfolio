@@ -7,7 +7,7 @@ export const Skills = () => {
         <section id="skills" className="container" style={{ padding: '5rem 20px' }}>
             <h2 className="section-title">Skills & Achievements</h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '4rem' }}>
 
                 {/* Core Competencies Section */}
                 <div>

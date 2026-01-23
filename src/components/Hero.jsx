@@ -40,13 +40,13 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                 >
-                    <h1 className="section-title" style={{ fontSize: '4rem', marginBottom: '0.5rem', background: 'linear-gradient(to right, #fff, var(--accent-blue))', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    <h1 className="section-title" style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', marginBottom: '0.5rem', background: 'linear-gradient(to right, #fff, var(--accent-blue))', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                         {profileData.name}
                     </h1>
-                    <h2 style={{ fontSize: '2rem', color: 'var(--accent-gold)', marginBottom: '1rem', fontWeight: 600 }}>
+                    <h2 style={{ fontSize: 'clamp(1.2rem, 4vw, 2rem)', color: 'var(--accent-gold)', marginBottom: '1rem', fontWeight: 600 }}>
                         {profileData.tagline}
                     </h2>
-                    <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', fontWeight: 300, maxWidth: '800px', margin: '0 auto' }}>
+                    <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', color: 'var(--text-secondary)', fontWeight: 300, maxWidth: '800px', margin: '0 auto', padding: '0 1rem' }}>
                         {profileData.summary}
                     </p>
 
