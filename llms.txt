@@ -2,7 +2,6 @@
 > MBA Student | Data Analytics Enthusiast | AI/ML Developer
 
 ## Projects
-- [Autonomous Browser Agent](https://github.com/devisdev365/browser-agent): Self-correcting autonomous web agent using Playwright and Generative AI.
 - [Neura-Q](https://neuraq.netlify.app/): AI Decision Framework using Graph of Thought reasoning.
 - [AI Resume Enhancer](https://resume-ai-dev.netlify.app/): ML-powered recruitment screening system with automated resume parsing.
 - [Cryptocurrency Arbitrage Analysis](https://btc-arbitrage-analyst.bolt.host/): Real-time cross-exchange Bitcoin arbitrage detection system.
