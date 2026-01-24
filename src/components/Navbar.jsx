@@ -25,8 +25,7 @@ const Navbar = () => {
     const navLinks = [
         { name: 'Experience', href: '#experience' },
         { name: 'Projects', href: '#projects' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Contact', href: '#contact' }
+        { name: 'Skills', href: '#skills' }
     ];
 
     const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
@@ -100,7 +99,7 @@ const Navbar = () => {
             </button>
 
             {/* Mobile Menu Overlay */}
-            <div style={{
+            <div className="mobile-menu-overlay" style={{
                 position: 'fixed',
                 top: 0,
                 left: 0,
@@ -132,9 +131,33 @@ const Navbar = () => {
                         {link.name}
                     </a>
                 ))}
+                <a
+                    href="https://drive.google.com/file/d/1bo2yL6wUK3Hvedk8J6ANZwSLo-7sBxpm/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleLinkClick}
+                    style={{
+                        padding: '0.8rem 1.5rem',
+                        background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-cyan))',
+                        color: '#fff',
+                        borderRadius: '30px',
+                        fontSize: '1.2rem',
+                        fontWeight: 600,
+                        border: 'none',
+                        marginTop: '1rem',
+                        textAlign: 'center'
+                    }}
+                >
+                    Download Resume
+                </a>
             </div>
 
             <style>{`
+                @media (min-width: 769px) {
+                    .mobile-menu-overlay {
+                        display: none !important;
+                    }
+                }
                 @media (max-width: 768px) {
                     .desktop-menu {
                         display: none !important;

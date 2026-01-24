@@ -1,149 +1,501 @@
 {
   "name": "Devansh Khanna",
-  "tagline": "Associate Consultant | Business Analyst | Strategy & Ops",
+  "tagline": "MBA Student | Data Analytics Enthusiast | AI/ML Developer",
+  "introduction": "MBA at Delhi School of Business, experience in sales & account management, passion for AI-driven decision-making.",
+  "about": {
+    "background": "Transitioned from BBA to MBA, combining business acumen with technical skills.",
+    "focus": "Data-driven decision making, AI/ML applications in business, strategic account management.",
+    "role": "Coordinator at INVICTUS Data Analysis Club, leading 50+ members.",
+    "value_proposition": "Bridge between business strategy and technical execution."
+  },
   "contact": {
     "email": "devansh.khanna24@dsb.edu.in",
     "phone": "+91 9870316839",
     "linkedin": "https://www.linkedin.com/in/devansh-khanna-618606178/",
-    "location": "Gurugram (Open to Global Relocation)"
+    "github": "https://github.com/devisdev365",
+    "location": "Faridabad, Haryana, India"
   },
-  "summary": "Outcome-driven Business Analyst and Strategy Associate specializing in bridging the gap between data and decision-making. I thrive in high-ownership environments, helping AI-enabled product firms, SaaS, and FinTech companies convert complex processes into streamlined, automated workflows.",
-  "target_roles": [
-    "Associate Consultant",
-    "Business Analyst (Strategy/Analytics)",
-    "Strategy & Ops Analyst",
-    "Associate Product Analyst"
-  ],
+  "summary": "MBA student at Delhi School of Business specializing in data analytics, AI/ML, and strategic account management. I bridge the gap between business strategy and technical execution, with a strong focus on data-driven decision making and AI applications in business.",
   "experience": [
     {
-      "role": "Sales & marketing Intern",
-      "company": "SMAAASH Entertainment Pvt. Ltd.",
-      "period": "May’25 - June’25",
-      "order": 1,
+      "role": "Sales & Marketing Intern",
+      "company": "SMAAASH Entertainment Pvt Ltd",
+      "period": "May 2025 - June 2025",
       "description": [
-        "Generated ₹59K in sales via 200+ calls and 61 field visits; cleaned 1,200+ lead database improving quality scoring by 40%.",
-        "Orchestrated the end-to-end launch of a new Karaoke service, unlocking a new revenue stream and expanding market reach."
+        "Generated ₹59K revenue through 200+ calls and 61 field visits",
+        "Optimized 1,200+ lead database, improving quality scores by 40%",
+        "Launched new Karaoke service line from concept to execution"
       ]
     },
     {
       "role": "Key Account Executive",
       "company": "Imperial Auto Industries Ltd.",
-      "period": "August’22 - August’23",
-      "order": 3,
+      "period": "Aug 2022 - Aug 2023",
       "description": [
-        "Managed ₹5+ crore revenue portfolio for OEM accounts (Hyzon, Kohler, Mitsubishi) through optimized pricing workflows",
-        "Built Power BI dashboards and Excel models for revenue forecasting, improving pricing accuracy by 12%",
-        "Automated ERP reporting using Excel macros, reducing processing time from 4 hours to 30 minutes weekly"
+        "Managed ₹5+ crore revenue portfolio & business planning for OEM accounts (Hyzon, Kohler, Mitsubishi), including RFQ handling and pricing strategy",
+        "Orchestrated end-to-end supply chain: demand forecasting, EDI monitoring, and export logistics (CHA/Forwarder coordination) for on-time delivery",
+        "Automated ERP reporting with Excel VBA (87% time reduction) and developed Power BI dashboards to improve pricing accuracy by 12%",
+        "Led new program launches from sales proposals to commercial execution"
       ]
     }
   ],
   "projects": [
     {
-      "name": "Neura-Q — AI Decision Framework",
-      "role": "Founder & Lead",
-      "link": "https://neuraq.netlify.app/",
-      "period": "2025 - Present",
+      "name": "Autonomous Browser Agent",
+      "subtitle": "Self-Correcting Web Automation",
+      "techStack": [
+        {
+          "name": "Python",
+          "url": "https://www.python.org/"
+        },
+        {
+          "name": "Playwright",
+          "url": "https://playwright.dev/"
+        },
+        {
+          "name": "LangChain",
+          "url": "https://www.langchain.com/"
+        },
+        {
+          "name": "Generative AI API",
+          "url": "https://en.wikipedia.org/wiki/Generative_artificial_intelligence"
+        }
+      ],
+      "description": "Next-generation autonomous web agent capable of executing complex multi-step tasks by understanding DOM structures and self-correcting navigation errors using Generative AI.",
+      "keyFeatures": [
+        "Semantic DOM Understanding",
+        "Self-healing Selectors",
+        "Dynamic Goal Planning"
+      ],
+      "impact": "Eliminated script fragility by 90% using AI-driven selector generation and error recovery.",
+      "link": "https://github.com/devisdev365/browser-agent",
+      "github": "https://github.com/devisdev365/browser-agent",
       "details": {
-        "problem": "Need for structured reasoning in complex business decisions.",
-        "approach": "Built decision tool using GoT, CoT, and ToT reasoning frameworks with Supabase backend for structured strategic analysis.",
-        "outcome": "Improved understanding of decision logic, trade-offs, and AI-assisted reasoning under uncertainty."
+        "technicalImplementation": {
+          "agentCore": [
+            "LangChain-based reasoning engine",
+            "Action-Observation loop for reliable execution",
+            "Short-term memory for context retention"
+          ],
+          "perceptionLayer": [
+            "Playwright accessibility tree parsing",
+            "Visual viewport analysis",
+            "Dynamic injection of observation scripts"
+          ],
+          "resilienceMechanisms": [
+            "Self-healing selector strategies",
+            "Automatic error classification and retry logic",
+            "Anti-detection headers and fingerprinting"
+          ]
+        },
+        "automationCapabilities": [
+          {
+            "name": "Semantic Navigation",
+            "description": "Navigates websites based on natural language descriptions rather than hardcoded selectors"
+          },
+          {
+            "name": "Self-Correction",
+            "description": "Automatically detects execution failures and attempts alternative strategies to achieve the goal"
+          },
+          {
+            "name": "Complex Workflow Execution",
+            "description": "Handles multi-step processes like authentication, data extraction, and form submission autonomously"
+          }
+        ],
+        "stack": "Python • Playwright • LangChain • Generative AI API • Docker"
+      }
+    },
+    {
+      "name": "Neura-Q",
+      "subtitle": "AI Decision Framework",
+      "techStack": [
+        {
+          "name": "Python",
+          "url": "https://www.python.org/"
+        },
+        {
+          "name": "Supabase",
+          "url": "https://supabase.com/"
+        },
+        {
+          "name": "LLM APIs",
+          "url": "https://platform.openai.com/docs/introduction"
+        }
+      ],
+      "description": "Built enterprise decision-support tool using Graph of Thought, Chain of Thought, and Tree of Thought reasoning frameworks—a replication of quantum thinking principles for strategic analysis.",
+      "keyFeatures": [
+        "Structured strategic analysis",
+        "Supabase backend for data persistence",
+        "Multi-model AI integration"
+      ],
+      "impact": "Reduced strategic planning time for complex decisions by automating reasoning workflows and providing explainable AI-driven insights.",
+      "link": "https://neuraq.netlify.app/",
+      "github": "https://github.com/devisdev365/neura-q",
+      "details": {
+        "technicalImplementation": {
+          "frontendArchitecture": [
+            "React with Shadow CDN for optimized delivery",
+            "Custom animated UI components",
+            "Interactive decision-tree visualizations"
+          ],
+          "backendInfrastructure": [
+            "Supabase server for real-time data persistence",
+            "Google OAuth authentication",
+            "Secure user session management"
+          ],
+          "aiIntegration": [
+            "Multi-model LLM APIs",
+            "Structured reasoning frameworks",
+            "Context-aware decision analysis"
+          ]
+        },
+        "automationCapabilities": [
+          {
+            "name": "Automated Strategic Analysis",
+            "description": "Eliminates manual reasoning processes by automatically structuring complex decisions through multiple AI frameworks"
+          },
+          {
+            "name": "Real-time Data Synchronization",
+            "description": "Supabase automation ensures decisions are persisted and accessible across sessions without manual data management"
+          },
+          {
+            "name": "Authentication Automation",
+            "description": "Google OAuth integration removes manual user verification and session handling"
+          },
+          {
+            "name": "Multi-model AI Orchestration",
+            "description": "Automatically routes queries to appropriate LLM models based on complexity"
+          }
+        ],
+        "stack": "React • Shadow CDN • Supabase • Google OAuth • LLM APIs"
       }
     },
     {
       "name": "AI Resume Enhancer",
-      "role": "Product Developer",
+      "subtitle": "ML-powered Recommendation",
+      "techStack": [
+        {
+          "name": "Python",
+          "url": "https://www.python.org/"
+        },
+        {
+          "name": "XGBoost",
+          "url": "https://xgboost.readthedocs.io/"
+        },
+        {
+          "name": "Generative AI API",
+          "url": "https://ai.google.dev/"
+        },
+        {
+          "name": "Pandas",
+          "url": "https://pandas.pydata.org/"
+        }
+      ],
+      "description": "Comprehensive ML-powered recruitment automation system with three integrated modules for end-to-end candidate evaluation.",
+      "keyFeatures": [
+        "85% prediction accuracy",
+        "Automated ATS scoring",
+        "Keyword extraction"
+      ],
+      "impact": "70% reduction in recruitment screening time; 85% accuracy in placement prediction.",
       "link": "https://resume-ai-dev.netlify.app/",
-      "period": "2025",
+      "github": "https://github.com/devisdev365/resume-ai",
       "details": {
-        "problem": "Manual resume screening is inconsistent and time-consuming.",
-        "approach": "Automated resume parsing and scoring using XGBoost (85% accuracy) + Gemini API, reducing screening time by 70%.",
-        "outcome": "Learned to translate business requirements into data pipelines and model-driven scoring systems."
+        "modules": [
+          {
+            "title": "MODULE 1: Resume Parser & Scoring Engine",
+            "implementation": [
+              "Resume parsing libraries for data extraction",
+              "Generative AI integration for intelligent analysis",
+              "Automated structured data conversion"
+            ],
+            "automationFeatures": [
+              "Automated Data Extraction: Parsing libraries eliminate manual resume reading and data entry",
+              "AI-Powered Analysis: Generative AI model automatically evaluates resume content without human review",
+              "Instant Scoring: Automated ATS scoring system removes manual evaluation time",
+              "Intelligent Recommendations: AI-generated feedback without recruiter intervention"
+            ]
+          },
+          {
+            "title": "MODULE 2: Placement Prediction Model",
+            "implementation": [
+              "Trained ML model on historical placement datasets",
+              "Deployed on Render for real-time inference",
+              "RESTful API for model predictions"
+            ],
+            "automationFeatures": [
+              "Automated Prediction Pipeline: ML model on Render provides instant predictions without manual analysis",
+              "Real-time API Inference: RESTful endpoints automate prediction requests and responses",
+              "Dataset-Driven Learning: Model automatically learns patterns from historical placement data",
+              "Continuous Availability: Render deployment ensures 24/7 automated prediction service"
+            ]
+          },
+          {
+            "title": "MODULE 3: AI-Powered Recommendation Engine",
+            "implementation": [
+              "Integrated system combining parsed data and ML predictions",
+              "Generative AI for contextual recommendations",
+              "Automated report generation"
+            ],
+            "automationFeatures": [
+              "End-to-End Workflow Automation: Complete pipeline from resume upload to recommendation without manual steps",
+              "Cross-Module Integration: Automated data flow between parsing, prediction, and recommendation systems",
+              "Intelligent Synthesis: AI automatically combines multiple data sources for comprehensive insights"
+            ]
+          }
+        ],
+        "stack": "Python • XGBoost • Generative AI API • Pandas • Parsing Libraries • Render • ML Automation"
       }
     },
     {
       "name": "Cryptocurrency Arbitrage Analysis",
-      "role": "Independent Analyst",
+      "subtitle": "Financial Analysis Tool",
+      "techStack": [
+        {
+          "name": "Python",
+          "url": "https://www.python.org/"
+        },
+        {
+          "name": "Pandas",
+          "url": "https://pandas.pydata.org/"
+        },
+        {
+          "name": "Financial Modeling",
+          "url": "https://en.wikipedia.org/wiki/Financial_modeling"
+        },
+        {
+          "name": "API Integration",
+          "url": "https://en.wikipedia.org/wiki/API"
+        }
+      ],
+      "description": "Real-time cross-exchange arbitrage detection system combining API orchestration, AI reasoning, and financial modeling for Indian crypto markets.",
+      "keyFeatures": [
+        "Multi-exchange price monitoring",
+        "Spread calculation",
+        "Opportunity alerting"
+      ],
+      "impact": "Identified 15+ profitable arbitrage opportunities through automated market analysis and real-time monitoring.",
       "link": "https://btc-arbitrage-analyst.bolt.host/",
-      "period": "FinTech Project",
+      "github": "https://github.com/devisdev365/crypto-arbitrage",
       "details": {
-        "problem": "Identifying exploitable cross-exchange Bitcoin price inefficiencies under real-world constraints.",
-        "approach": "Designed cross-exchange Bitcoin arbitrage framework identifying 15+ profitable opportunities across Indian exchanges.",
-        "outcome": "Gained exposure to market microstructure, latency risk, and operational constraints in financial decision-making."
+        "systemArchitecture": {
+          "pipelineDesign": [
+            "VectorShift for workflow automation",
+            "Integrated APIs from two crypto exchanges",
+            "Real-time price data synchronization"
+          ],
+          "aiProcessing": [
+            "Generative AI API integration through Cloudflare",
+            "Mathematical arbitrage calculations",
+            "Fee and slippage adjustments",
+            "Natural language query system"
+          ],
+          "analysisEngine": [
+            "Cross-exchange price monitoring",
+            "Spread calculation with transaction fees",
+            "Net profit computation after all costs",
+            "Opportunity alerting system"
+          ]
+        },
+        "automationCapabilities": [
+          {
+            "name": "VectorShift Pipeline Automation",
+            "description": "Orchestrates entire workflow from data fetching to analysis without manual intervention"
+          },
+          {
+            "name": "Dual API Integration",
+            "description": "Automatically pulls real-time prices from two exchanges simultaneously"
+          },
+          {
+            "name": "AI-Powered Calculations",
+            "description": "Generative AI API automatically performs complex mathematical arbitrage analysis including fees and slippage"
+          },
+          {
+            "name": "Automated Profit Analysis",
+            "description": "System automatically calculates net profit after all transaction costs"
+          },
+          {
+            "name": "Real-time Monitoring",
+            "description": "Continuous automated price tracking and opportunity detection"
+          },
+          {
+            "name": "Intelligent Structuring",
+            "description": "AI automatically formats and structures arbitrage opportunities for easy interpretation"
+          },
+          {
+            "name": "Interactive Q&A Automation",
+            "description": "Cloudflare-AI integration enables automated responses to queries about opportunities"
+          },
+          {
+            "name": "Alert System",
+            "description": "Automatically notifies when profitable arbitrage conditions are detected"
+          }
+        ],
+        "stack": "Python • VectorShift • Exchange APIs • Generative AI API • Cloudflare • Pandas • Financial Modeling • API Automation"
       }
     },
     {
       "name": "Social Media Brand Performance Analysis (QSR)",
-      "role": "Data Analyst",
-      "link": "https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing",
-      "period": "Independent Project",
-      "details": {
-        "problem": "Lack of data-driven insights into the social media engagement strategies of major QSR brands in India.",
-        "approach": "Scraped Instagram data using ParseHub and performed comparative analysis using Python (Pandas, Seaborn) to evaluate engagement metrics.",
-        "outcome": "Identified key content drivers and performance trends for McDonald's, Domino's, and KFC to optimize brand strategy."
-      }
+      "subtitle": "Data Analyst | Independent Project",
+      "techStack": [
+        {
+          "name": "Python",
+          "url": "https://www.python.org/"
+        },
+        {
+          "name": "Pandas",
+          "url": "https://pandas.pydata.org/"
+        },
+        {
+          "name": "Seaborn",
+          "url": "https://seaborn.pydata.org/"
+        },
+        {
+          "name": "ParseHub",
+          "url": "https://www.parsehub.com/"
+        }
+      ],
+      "description": "Lack of data-driven insights into the social media engagement strategies of major QSR brands in India. Scraped Instagram data using ParseHub and performed comparative analysis using Python (Pandas, Seaborn) to evaluate engagement metrics.",
+      "keyFeatures": [
+        "Instagram data scraping",
+        "Comparative engagement analysis",
+        "Brand strategy optimization"
+      ],
+      "impact": "Identified key content drivers and performance trends for McDonald's, Domino's, and KFC to optimize brand strategy.",
+      "link": "https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing"
     }
   ],
   "achievements": [
-    "National Finalist (Top 20 nationwide) – AIMA Student Management Games (SMG): Led team strategy as CEO, securing Regional 1st Runner-Up.",
-    "2nd Runner-Up – Youth’s Voice (BCC&I x NTPC): Developed practical sustainability-driven business frameworks focused on social and environmental impact.",
-    "L’Oréal Sustainability Challenge 2024 – Participated in national case-based competition on sustainable innovation.",
-    "HP Power Lab by Hindustan Petroleum – Participated in national business simulation challenge."
-  ],
-  "positions_of_responsibility": [
     {
-      "role": "Coordinator (formerly Joint Coordinator)",
-      "organization": "INVICTUS – Data Analysis Club, DSB",
-      "period": "Oct 2024 – Present",
-      "description": [
-        "Led a 50-member team and executed growth strategy that scaled the club’s reach by 66% and increased engagement 5x.",
-        "Conceptualized and executed high-impact events like ‘Sheets & Beats’, tripling student participation."
-      ]
+      "title": "National Finalist (Top 20)",
+      "organization": "AIMA Student Management Games 2024",
+      "description": "Regional 1st Runner-Up - Led team as CEO across 1,200+ B-school teams"
+    },
+    {
+      "title": "2nd Runner-Up",
+      "organization": "Youth's Voice (BCC&I x NTPC) Sustainability Challenge",
+      "description": "Developed practical sustainability-driven business frameworks."
+    },
+    {
+      "title": "Participant",
+      "organization": "L'Oréal Sustainability Challenge 2024",
+      "description": "National case-based competition on sustainable innovation."
+    },
+    {
+      "title": "Participant",
+      "organization": "HP Power Lab (HPCL) Business Simulation",
+      "description": "National business simulation challenge."
     }
   ],
-  "extra_curricular": [
-    "Led technical operations for 6+ national and international conferences, ensuring seamless execution and enhancing institutional visibility."
-  ],
-  "skills": [
-    "Python",
-    "SQL",
-    "Excel (VBA)",
-    "Power BI",
-    "XGBoost",
-    "API Integration",
-    "Supabase",
-    "LLM Integration"
-  ],
+  "skills": {
+    "Technical Skills": [
+      {
+        "name": "Python",
+        "url": "https://www.python.org/"
+      },
+      {
+        "name": "SQL",
+        "url": "https://en.wikipedia.org/wiki/SQL"
+      },
+      {
+        "name": "Excel VBA",
+        "url": "https://learn.microsoft.com/en-us/office/vba/api/overview/excel"
+      },
+      {
+        "name": "Power BI",
+        "url": "https://powerbi.microsoft.com/"
+      },
+      {
+        "name": "Pandas",
+        "url": "https://pandas.pydata.org/"
+      },
+      {
+        "name": "XGBoost",
+        "url": "https://xgboost.readthedocs.io/"
+      },
+      {
+        "name": "Statistical Analysis",
+        "url": "https://en.wikipedia.org/wiki/Statistics"
+      }
+    ],
+    "AI/ML": [
+      {
+        "name": "LLM Integration",
+        "url": "https://platform.openai.com/docs/introduction"
+      },
+      {
+        "name": "API Development",
+        "url": "https://en.wikipedia.org/wiki/API"
+      }
+    ],
+    "Tools & Platforms": [
+      {
+        "name": "Supabase",
+        "url": "https://supabase.com/"
+      },
+      {
+        "name": "SQL Databases",
+        "url": "https://en.wikipedia.org/wiki/SQL"
+      },
+      {
+        "name": "Git",
+        "url": "https://git-scm.com/"
+      },
+      {
+        "name": "VS Code",
+        "url": "https://code.visualstudio.com/"
+      },
+      {
+        "name": "Jupyter",
+        "url": "https://jupyter.org/"
+      },
+      {
+        "name": "ERP Systems",
+        "url": "https://en.wikipedia.org/wiki/Enterprise_resource_planning"
+      },
+      {
+        "name": "CRM Tools",
+        "url": "https://en.wikipedia.org/wiki/Customer_relationship_management"
+      }
+    ],
+    "Business Skills": [
+      {
+        "name": "Revenue Management",
+        "url": "https://en.wikipedia.org/wiki/Revenue_management"
+      },
+      {
+        "name": "Pricing Strategy",
+        "url": "https://en.wikipedia.org/wiki/Pricing_strategies"
+      },
+      {
+        "name": "Account Management",
+        "url": "https://en.wikipedia.org/wiki/Account_manager"
+      },
+      {
+        "name": "Strategic Planning",
+        "url": "https://en.wikipedia.org/wiki/Strategic_planning"
+      },
+      {
+        "name": "Team Leadership",
+        "url": "https://en.wikipedia.org/wiki/Leadership"
+      }
+    ]
+  },
   "education": [
     {
       "course": "MBA",
       "college": "Delhi School of Business, Delhi",
       "year": "2026",
-      "order": 2,
       "score": "5.48 CGPA"
     },
     {
-      "course": "College Degree",
+      "course": "BBA",
       "college": "Chandigarh University, Punjab",
       "year": "2022",
-      "order": 4,
       "score": "7 CGPA"
-    },
-    {
-      "course": "XII, CBSE",
-      "college": "DAV Public School, Faridabad",
-      "year": "2019",
-      "order": 5,
-      "score": "6.63 CGPA"
-    },
-    {
-      "course": "X, CBSE",
-      "college": "Carmel Convent School, Faridabad",
-      "year": "2017",
-      "order": 6,
-      "score": "6.7 CGPA"
     }
   ],
   "certifications": [
-    "Data-Driven Decision-Making using Excel & SQL – NIT Trichy (Completed 3-week bootcamp on Excel automation and SQL fundamentals)"
+    "Data-Driven Decision-Making using Excel & SQL – NIT Trichy"
   ]
 }

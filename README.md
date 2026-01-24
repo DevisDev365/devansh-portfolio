@@ -1,16 +1,68 @@
-# React + Vite
+Devansh Khanna | AI/ML Developer & MBA Candidate
+Bridging Strategic Business Management with Agentic AI Architecture.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🎯 Profile & Core Competencies
+I am a technical MBA candidate specializing in Data Analytics and Autonomous Agentic Workflows. My work focuses on building systems that don't just process information but act on it.
 
-Currently, two official plugins are available:
+Primary AI Stack: Python, LlamaIndex, browser-use, Playwright, LangChain.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Web Stack: React, Next.js, FastAPI, Go.
 
-## React Compiler
+Business Focus: Revenue Management, Strategic Planning, Account Management.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🚀 Portfolio Features
+Machine-Readable Metadata: Integrated JSON-LD (Person Schema) and llms.txt for AI discovery.
 
-## Expanding the ESLint configuration
+Agentic Project Showcase: Detailed architecture for Autonomous Browser Agents and RAG systems.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Experience Timeline: Quantified impact in Sales and Analytics.
+
+Modern UI/UX: Built with Framer Motion and React for smooth performance.
+
+🛠 Tech Stack
+Frontend: React, Vite, Framer Motion, CSS Modules.
+
+Backend/AI: Python (Pandas, XGBoost), Generative AI APIs, Vector DBs.
+
+Infrastructure: Supabase, SQL, Git, Vite.
+
+🏃‍♂️ Getting Started
+Prerequisites
+Node.js (v18 or later)
+
+npm or yarn
+
+Installation
+Clone the repository:
+
+Bash
+git clone https://github.com/devisdev365/devansh-portfolio.git
+cd devansh-portfolio
+Install dependencies:
+
+Bash
+npm install
+Start the development server:
+
+Bash
+npm run dev
+The site will be available at http://localhost:5173.
+
+📦 Building for Production
+To create a production build:
+
+Bash
+npm run build
+The output will be in the dist folder.
+
+📝 AI Handshake Customization
+To maintain your Organic Authority, ensure the following files are updated:
+
+public/llms.txt: Your high-level summary for AI bots.
+
+src/data/profile.json: The source of truth for your skill-entity mapping.
+
+SEO Head: Ensure the JSON-LD script in your index.html matches your current expertise.
+
+📄 License
+This project is licensed under the MIT License.

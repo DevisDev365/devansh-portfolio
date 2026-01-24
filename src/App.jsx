@@ -1,7 +1,10 @@
 import Hero from './components/Hero';
-import Timeline from './components/Timeline';
+import About from './components/About';
+import Experience from './components/Experience';
 import Projects from './components/Projects';
-import { Skills, Contact } from './components/Contact';
+import Achievements from './components/Achievements';
+import Skills from './components/Skills';
+import Contact from './components/Contact';
 
 import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
@@ -11,10 +14,11 @@ function App() {
     <div className="app-container">
       <CustomCursor />
       <Navbar />
-      {/* Background/Overlay elements could go here */}
       <Hero />
-      <Timeline />
+      <About />
+      <Experience />
       <Projects />
+      <Achievements />
       <Skills />
       <Contact />
     </div>
