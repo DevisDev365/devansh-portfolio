@@ -4,7 +4,7 @@ Bridging Strategic Business Management with Agentic AI Architecture.
 🎯 Profile & Core Competencies
 I am a technical MBA candidate specializing in Data Analytics and Autonomous Agentic Workflows. My work focuses on building systems that don't just process information but act on it.
 
-Primary AI Stack: Python, LlamaIndex, browser-use, Playwright, LangChain.
+Primary AI Stack: Python, LlamaIndex, browser-use, LangChain.
 
 Web Stack: React, Next.js, FastAPI, Go.
 
@@ -55,14 +55,6 @@ Bash
 npm run build
 The output will be in the dist folder.
 
-📝 AI Handshake Customization
-To maintain your Organic Authority, ensure the following files are updated:
-
-public/llms.txt: Your high-level summary for AI bots.
-
-src/data/profile.json: The source of truth for your skill-entity mapping.
-
-SEO Head: Ensure the JSON-LD script in your index.html matches your current expertise.
 
 📄 License
 This project is licensed under the MIT License.
