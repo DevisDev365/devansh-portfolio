@@ -13,12 +13,6 @@ Business Focus: Revenue Management, Strategic Planning, Account Management.
 🚀 Portfolio Features
 Machine-Readable Metadata: Integrated JSON-LD (Person Schema) and llms.txt for AI discovery.
 
-Agentic Project Showcase: Detailed architecture for Autonomous Browser Agents and RAG systems.
-
-Experience Timeline: Quantified impact in Sales and Analytics.
-
-Modern UI/UX: Built with Framer Motion and React for smooth performance.
-
 🛠 Tech Stack
 Frontend: React, Vite, Framer Motion, CSS Modules.
 
