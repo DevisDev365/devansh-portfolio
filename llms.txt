@@ -1,0 +1,15 @@
+# Devansh Khanna
+> MBA Student | Data Analytics Enthusiast | AI/ML Developer
+
+## Projects
+- [Autonomous Browser Agent](https://github.com/devisdev365/browser-agent): Self-correcting autonomous web agent using Playwright and Generative AI.
+- [Neura-Q](https://neuraq.netlify.app/): AI Decision Framework using Graph of Thought reasoning.
+- [AI Resume Enhancer](https://resume-ai-dev.netlify.app/): ML-powered recruitment screening system with automated resume parsing.
+- [Cryptocurrency Arbitrage Analysis](https://btc-arbitrage-analyst.bolt.host/): Real-time cross-exchange Bitcoin arbitrage detection system.
+- [Social Media Brand Performance Analysis](https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing): Data-driven insights into social media strategies of QSR brands.
+
+## Skills
+- Technical: Python, SQL, Excel VBA, Power BI, Pandas, XGBoost, Statistical Analysis
+- AI/ML: LLM Integration, Generative AI APIs, API Development
+- Tools: Supabase, SQL Databases, Git, VS Code, Jupyter, ERP Systems, CRM Tools
+- Business: Revenue Management, Pricing Strategy, Account Management, Strategic Planning, Team Leadership
