@@ -4,9 +4,9 @@ Bridging Strategic Business Management with Agentic AI Architecture.
 🎯 Profile & Core Competencies
 I am a technical MBA candidate specializing in Data Analytics and Autonomous Agentic Workflows. My work focuses on building systems that don't just process information but act on it.
 
-Primary AI Stack: Python, LlamaIndex, browser-use, LangChain.
+Primary AI Stack: Python, LlamaIndex, LangChain.
 
-Web Stack: React, Next.js, FastAPI, Go.
+Web Stack: React, Next.js, FastAPI.
 
 Business Focus: Revenue Management, Strategic Planning, Account Management.
 
