@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devisdev365.github.io/devansh-portfolio/sitemap.xml
