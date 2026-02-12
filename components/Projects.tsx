@@ -1,3 +1,5 @@
+import React from 'react';
+import { Reveal } from './ui/Reveal';
 import { PROJECTS, SKILL_LINKS } from '../constants';
 import { Github, ArrowUpRight, Target, BrainCircuit, CheckCircle2 } from 'lucide-react';
 
