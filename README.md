@@ -1,20 +1,22 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Devansh Khanna - Portfolio
 
-# Run and deploy your AI Studio app
+> **Business Solutions Architect | MBA in Data Analytics & Operations**  
+> *"Turning Business Problems into Executable Prototypes"*
 
-This contains everything you need to run your app locally.
+## 🚀 About Me
+I bridge the gap between business strategy and technical execution. With ₹5Cr+ in managed revenue and experience in automotive manufacturing operations, I build rapid AI-powered prototypes that solve real business problems without waiting for perfect software.
 
-View your app in AI Studio: https://ai.studio/apps/drive/12Eqmf3-MNt_Me_r87o-YqnEk9CroNcHT
+## 🛠️ Built With
+- **Frontend**: React, TypeScript, Vite, Tailwind CSS
+- **Design**: Framer Motion (Animations), Lucide React (Icons)
+- **Deployment**: GitHub Pages
 
-## Run Locally
+## 📂 Features
+- **3D Background**: Interactive particle effect.
+- **Project Showcase**: Detailed case studies with problem/solution breakdown.
+- **Achievements**: Highlighted career milestones.
+- **AI-Ready**: Optimized with `llms.txt` for AI agents.
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🔗 Connect
+- [LinkedIn](https://www.linkedin.com/in/devansh-khanna-618606178/)
+- [Email](mailto:devanshkhanna75@gmail.com)
