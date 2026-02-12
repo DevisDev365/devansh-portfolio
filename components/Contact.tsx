@@ -50,14 +50,14 @@ export const Contact: React.FC = () => {
             In-office first / Hybrid OK. Open for Consulting, Strategy, Business Analytics, or Revenue Operations roles.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <a 
+            <a
               href="mailto:devanshkhanna75@gmail.com"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-primary text-primary hover:bg-primary/10 transition-all rounded font-mono text-sm group"
             >
               <Mail size={16} className="group-hover:animate-bounce" />
               Say Hello
             </a>
-            <a 
+            <a
               href="tel:+919870316839"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-slate-700 text-slate-300 hover:border-accent hover:text-accent hover:bg-accent/10 transition-all rounded font-mono text-sm"
             >
@@ -81,14 +81,14 @@ export const Contact: React.FC = () => {
         </p>
         <p className="opacity-50">Vibe Coding & Management</p>
       </footer>
-      
+
       {/* Waving Footer Graphic */}
       <div className="w-full mt-[-50px] md:mt-[-100px] opacity-20 pointer-events-none">
-         <img 
-            src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=footer&text=&fontSize=0" 
-            className="w-full h-auto object-cover"
-            alt="Footer Wave" 
-         />
+        <img
+          src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer&text=&fontSize=0"
+          className="w-full h-auto object-cover"
+          alt="Footer Wave"
+        />
       </div>
     </section>
   );
