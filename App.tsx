@@ -52,7 +52,7 @@ const App: React.FC = () => {
             </a>
           ))}
         </div>
-        <div className="w-px h-24 bg-gradient-to-b from-slate-500 to-transparent"></div>
+        <div className="w-px h-12 bg-gradient-to-b from-slate-500 to-transparent"></div>
       </div>
 
       <div className="hidden md:flex fixed bottom-12 right-12 flex-col items-center gap-6 z-50">
@@ -63,7 +63,7 @@ const App: React.FC = () => {
         >
           devanshkhanna75@gmail.com
         </a>
-        <div className="w-px h-24 bg-gradient-to-b from-slate-500 to-transparent"></div>
+        <div className="w-px h-12 bg-gradient-to-b from-slate-500 to-transparent"></div>
       </div>
     </div>
   );
