@@ -1,0 +1,18 @@
+# Devansh Khanna
+> Business Solutions Architect | MBA in Data Analytics & Operations
+> "Turning Business Problems into Executable Prototypes"
+
+## About Me
+I bridge the gap between business strategy and technical execution. With ₹5Cr+ in managed revenue and experience in automotive manufacturing operations, I build rapid AI-powered prototypes that solve real business problems without waiting for perfect software.
+
+## Signature Projects
+- **[Neura-Q](https://neuraq.netlify.app/)**: AI-powered strategic decision framework using Graph-of-Thought reasoning to reduce planning cycles from weeks to days.
+- **[AI Resume Enhancer](https://resume-ai-dev.netlify.app/)**: Student resume optimization platform with ML-driven placement prediction (85% accuracy) and weakness analysis.
+- **[Crypto Market Intelligence](https://btc-arbitrage-analyst.bolt.host/)**: Real-time arbitrage scanner for 2 Indian exchanges with automated profitability calculation pipeline via VectorShift.
+- **[QSR Brand Intelligence](https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing)**: Social media analytics engine tracking 650+ posts across Domino's, KFC, and McDonald's to identify engagement drivers.
+
+## Core Competencies
+- **Business Strategy:** Revenue Management, Pricing Strategy, Supply Chain Analytics, Go-to-Market Strategy, Process Optimization.
+- **Data Analytics:** Operational Analytics, Predictive Modeling, KPI Design, Financial Modeling, Statistical Analysis.
+- **Prototyping:** Rapid Proof-of-Concept, Business Process Automation, Low-Code Solutions, AI/ML Integration.
+- **Technical Toolkit:** Python, Power BI, SQL, Pandas, Excel VBA, Generative AI APIs (Gemini/OpenAI), Supabase.
