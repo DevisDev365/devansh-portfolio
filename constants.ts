@@ -49,6 +49,7 @@ export const EDUCATION: Education[] = [
 export const EXPERIENCE: Experience[] = [
   {
     company: "Imperial Auto Industries Ltd.",
+    companyUrl: "https://imperialauto.in/",
     role: "Key Account Executive → Business Solutions Lead",
     period: "Aug 2022 - Aug 2023",
     businessChallenge: "Managing ₹5+ crore OEM portfolio in automotive manufacturing with manual processes causing pricing delays and operational inefficiencies.",
@@ -67,6 +68,7 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     company: "SMAAASH Entertainment Pvt Ltd",
+    companyUrl: "https://smaaash-entertainment.in/",
     role: "Sales & Marketing Intern → Market Expansion Lead",
     period: "May 2025 - June 2025",
     businessChallenge: "Expanding customer base and launching new revenue streams in a competitive entertainment market.",
@@ -183,7 +185,7 @@ export const SKILL_LINKS: Record<string, string> = {
   "LLM APIs": "https://platform.openai.com/docs/introduction",
   "Data Analysis": "https://en.wikipedia.org/wiki/Data_analysis",
   "Business Strategy": "https://en.wikipedia.org/wiki/Strategic_management",
-  "Project Management": "https://www.pmi.org/",
+  "Project Management": "https://en.wikipedia.org/wiki/Project_management",
   "Automotive Ops": "https://en.wikipedia.org/wiki/Operations_management",
   "Sales Optimization": "https://en.wikipedia.org/wiki/Sales_operations",
   "JavaScript": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",

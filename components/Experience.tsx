@@ -26,8 +26,8 @@ export const Experience: React.FC = () => {
                 key={idx}
                 onClick={() => setActiveTab(idx)}
                 className={`px-6 py-4 text-left font-mono text-sm transition-all duration-300 border-l-2 md:border-l-2 md:border-b-0 -mb-[2px] md:mb-0 md:-ml-[2px] whitespace-nowrap ${activeTab === idx
-                    ? 'border-primary text-primary bg-primary/10'
-                    : 'border-transparent text-slate-500 hover:text-slate-300 hover:bg-white/5'
+                  ? 'border-primary text-primary bg-primary/10'
+                  : 'border-transparent text-slate-500 hover:text-slate-300 hover:bg-white/5'
                   }`}
               >
                 {exp.company}
@@ -49,7 +49,20 @@ export const Experience: React.FC = () => {
                       <h3 className="text-2xl font-bold text-white">
                         {exp.role}
                       </h3>
-                      <p className="text-primary text-lg">@ {exp.company}</p>
+                      <p className="text-primary text-lg">
+                        @ {exp.companyUrl ? (
+                          <a
+                            href={exp.companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline hover:text-primary/80 transition-colors"
+                          >
+                            {exp.company}
+                          </a>
+                        ) : (
+                          exp.company
+                        )}
+                      </p>
                     </div>
                     <span className="font-mono text-xs text-slate-400 bg-slate-800/50 px-3 py-1 rounded-full border border-white/5">{exp.period}</span>
                   </div>
