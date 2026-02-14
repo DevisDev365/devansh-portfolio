@@ -1,18 +1,130 @@
 # Devansh Khanna
 > Business Solutions Architect | MBA in Data Analytics & Operations
 > "Turning Business Problems into Executable Prototypes"
+> Website: https://devisdev365.github.io/devansh-portfolio/
+> LinkedIn: https://www.linkedin.com/in/devansh-khanna-618606178/
+> GitHub: https://github.com/devisdev365
+> Phone: +91 9870316839
 
 ## About Me
-I bridge the gap between business strategy and technical execution. With ₹5Cr+ in managed revenue and experience in automotive manufacturing operations, I build rapid AI-powered prototypes that solve real business problems without waiting for perfect software.
+I solve business problems by building working prototypes—fast. With ₹5+ crore in managed revenue and experience across automotive manufacturing, entertainment, and AI-driven decision tools, I don't just analyze data—I turn business challenges into executable solutions that leaders can see, touch, and use.
 
-## Signature Projects
-- **[Neura-Q](https://neuraq.netlify.app/)**: AI-powered strategic decision framework using Graph-of-Thought reasoning to reduce planning cycles from weeks to days.
-- **[AI Resume Enhancer](https://resume-ai-dev.netlify.app/)**: Student resume optimization platform with ML-driven placement prediction (85% accuracy) and weakness analysis.
-- **[Crypto Market Intelligence](https://btc-arbitrage-analyst.bolt.host/)**: Real-time arbitrage scanner for 2 Indian exchanges with automated profitability calculation pipeline via VectorShift.
-- **[QSR Brand Intelligence](https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing)**: Social media analytics engine tracking 650+ posts across Domino's, KFC, and McDonald's to identify engagement drivers.
+My foundation lies in a blend of Business Administration and Data Analytics. I bridge the gap between 'What if we could...' strategy sessions and 'Here's how it works' technical execution.
 
-## Core Competencies
-- **Business Strategy:** Revenue Management, Pricing Strategy, Supply Chain Analytics, Go-to-Market Strategy, Process Optimization.
-- **Data Analytics:** Operational Analytics, Predictive Modeling, KPI Design, Financial Modeling, Statistical Analysis.
-- **Prototyping:** Rapid Proof-of-Concept, Business Process Automation, Low-Code Solutions, AI/ML Integration.
-- **Technical Toolkit:** Python, Power BI, SQL, Pandas, Excel VBA, Generative AI APIs (Gemini/OpenAI), Supabase.
+### Ideal Collaborators
+- Consulting firms needing rapid solution prototyping
+- Operations teams wanting data-driven optimization
+- Strategy groups bridging business vision and technical execution
+- Startups in SaaS, FinTech, or Analytics spaces
+
+## Education
+### Master of Business Administration (MBA) — Delhi School of Business, Delhi (Expected 2026)
+- CGPA: 5.48
+- Specialization: Data Analytics & Operations (Primary), Marketing (Secondary)
+- Focus Areas: Operational Analytics, Process Optimization, Demand Forecasting, KPI Design
+- Leadership: Coordinator, INVICTUS Data Analysis Club (Scaled reach 66%, boosted engagement 5x)
+
+### Bachelor of Business Administration (BBA) — Chandigarh University, Punjab (2022)
+- CGPA: 7.0
+- Foundation in Business Fundamentals
+- Transitioned into revenue management and analytics roles
+
+## Work Experience
+
+### Imperial Auto Industries Ltd. — Key Account Executive → Business Solutions Lead (Aug 2022 - Aug 2023)
+- Company Website: https://imperialauto.in/
+- **Business Challenge:** Managing ₹5+ crore OEM portfolio in automotive manufacturing with manual processes causing pricing delays and operational inefficiencies.
+- **Solutions:**
+  - Revenue Optimization: Managed pricing workflows and production planning for 3 OEM accounts (Hyzon Motors, Kohler, Mitsubishi).
+  - Analytics Infrastructure: Developed Power BI dashboards and Excel forecasting models for manufacturing KPIs.
+  - Process Automation: Built Excel VBA macros + SQL queries for ERP reporting, achieving 87% time reduction (4hrs → 30min).
+- **Impact:**
+  - ₹5+ Crore portfolio managed with data-driven decision-making
+  - 12% pricing accuracy improvement = direct margin gains
+  - 87% time saved on reporting = 3.5 hours/week freed for strategic work
+  - Enhanced operational visibility across manufacturing workflow
+- **Skills:** Revenue Management, Demand Forecasting, Business Process Automation, Manufacturing Analytics, Strategic Account Management
+
+### SMAAASH Entertainment Pvt Ltd — Sales & Marketing Intern → Market Expansion Lead (May 2025 - June 2025)
+- Company Website: https://smaaash-entertainment.in/
+- **Business Challenge:** Expanding customer base and launching new revenue streams in a competitive entertainment market.
+- **Solutions:**
+  - Revenue Generation: Drove ₹59K revenue through 200+ outbound calls and 61 field visits using data-driven lead prioritization.
+  - Database Optimization: Analyzed and segmented 1,200+ lead database using analytics, improving quality scores by 40%.
+  - New Service Launch: Orchestrated end-to-end launch of Karaoke service—from market analysis to go-to-market strategy.
+- **Impact:**
+  - ₹59K revenue generated in 2-month internship
+  - 40% improvement in lead quality = higher conversion rates
+  - Successfully launched new service line from concept to market
+- **Skills:** Go-to-Market Strategy, Data-Driven Sales, Market Analysis, Revenue Optimization, Stakeholder Management
+
+## Projects
+
+### Neura-Q — AI Decision Framework
+- Role: Business Solutions Architect
+- Live: https://neuraq.netlify.app/
+- GitHub: https://github.com/devisdev365/neura-q
+- **Problem:** Users often treat ChatGPT like a 'magic wand,' providing zero context yet expecting expert-level results. Without defining Personality, Context, and Constraints, LLMs produce generic, shallow, or hallucinated answers.
+- **Solution:**
+  - PCT Architecture: Forces users to define Personality (Who), Context (Why), and Task (What) before submission.
+  - JSON-First Optimization: Feeds user inputs to the LLM as structured JSON objects for deeper analytical capabilities.
+  - Tree-of-Thought Engine: Maps out multiple logical branches and evaluates risk-weighted outcomes before synthesizing a solution.
+  - Structured Deliverables: Transforms chaotic brainstorming into clean, executive-ready decision memos.
+- **Impact:** Transforms 1-line prompts into deep strategic analysis; reduced strategic planning cycles from weeks to days.
+- **Tech Stack:** Python, Supabase, LLM APIs, JSON Engineering
+
+### AI Resume Enhancer — EdTech / Career Services
+- Role: Product Prototyping
+- Live: https://resume-ai-dev.netlify.app/
+- GitHub: https://github.com/devisdev365/resume-ai
+- **Problem:** Students struggle to optimize resumes for placement success, lacking insights into CV quality and job description alignment.
+- **Solution:**
+  - CV Analyzer: Identifies weaknesses and improvement areas
+  - Placement Predictor: XGBoost ML model predicting placement success bracket with 85% accuracy
+  - Resume Parser & Maker: Generates JD-aligned resume versions
+- **Tech Stack:** Python, XGBoost, Generative AI API, Pandas
+
+### Crypto Market Intelligence — FinTech / Trading
+- Role: Financial Analytics Prototyping
+- Live: https://btc-arbitrage-analyst.bolt.host/
+- GitHub: https://github.com/devisdev365/crypto-arbitrage
+- **Problem:** Can retail investors compete with institutional algorithms in identifying price inefficiencies across Indian crypto exchanges?
+- **Solution:** Real-time market monitoring system tracking Bitcoin price spreads across 2 Indian crypto exchanges, with automated profit calculation after fees, taxes, and slippage. Backend pipeline built with VectorShift.
+- **Impact:** Identified 15+ profitable opportunities; proved ₹10,000 investment could yield ₹500-1,500 per trade.
+- **Tech Stack:** Python, Pandas, Financial Modeling, VectorShift
+
+### QSR Brand Intelligence — Quick Service Restaurant Industry
+- Role: Marketing Analytics
+- Live: https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing
+- **Problem:** QSR brands (McDonald's, Domino's, KFC) lack competitive intelligence on social media engagement strategies.
+- **Solution:** Scraped 650+ Instagram posts across 3 QSR brands over 6-7 months using ParseHub. Comparative analysis with Python (Pandas, Seaborn) to evaluate engagement metrics.
+- **Impact:** Identified top-performing content types, engagement rate benchmarks, optimal posting times, and competitive gaps.
+- **Tech Stack:** Python, Pandas, Seaborn, ParseHub
+
+## Skills
+
+### Technical Skills
+- Python (https://www.python.org/)
+- SQL (https://en.wikipedia.org/wiki/SQL)
+- Power BI (https://powerbi.microsoft.com/)
+- Excel VBA (https://learn.microsoft.com/en-us/office/vba/api/overview/excel)
+- LLM APIs (https://platform.openai.com/docs/introduction)
+- JavaScript (https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- XGBoost (https://xgboost.readthedocs.io/)
+- Supabase (https://supabase.com/)
+- Pandas (https://pandas.pydata.org/)
+- Seaborn (https://seaborn.pydata.org/)
+- ParseHub (https://www.parsehub.com/)
+- VectorShift (https://www.vectorshift.ai/)
+
+### Business & Domain Skills
+- Data Analysis, Business Strategy, Project Management, Sales Optimization, Automotive Ops
+- Revenue Management, Demand Forecasting, Business Process Automation, Manufacturing Analytics
+- Strategic Account Management, Go-to-Market Strategy, Data-Driven Sales, Market Analysis
+- Stakeholder Management, Financial Modeling
+
+## Achievements
+- **₹5Cr+ Revenue Portfolio Management** — Imperial Auto Industries Ltd. (2022-2023): Managed strategic OEM accounts (Hyzon Motors, Kohler, Mitsubishi), pricing strategy, and supply chain.
+- **National Finalist (Top 20)** — AIMA Student Management Games 2024: Regional 1st Runner-Up across 1,200+ B-School Teams. Led team as CEO.
+- **Data Analytics Leadership** — Coordinator, INVICTUS Data Analysis Club, Delhi School of Business: Leading 50+ members, scaled club reach by 66%, boosted engagement 5x.
+- **Business Competition Recognition** — 2nd Runner-Up: Youth's Voice Sustainability Challenge | National Participant: L'Oréal Sustainability Challenge & HP Power Lab Business Simulation.
