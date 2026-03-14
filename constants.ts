@@ -167,6 +167,26 @@ export const PROJECTS: Project[] = [
     ],
     techStack: ["Python", "Pandas", "Seaborn", "ParseHub"],
     link: "https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing"
+  },
+  {
+    title: "Red Tape [X] Anime Collection",
+    role: "Marketing Campaign Strategist",
+    category: "Marketing & Product Design",
+    businessProblem: "A conceptual marketing and product design campaign proposing Red Tape's entry into the explosive anime streetwear market in India. Global titans dominate the anime shoe space at a premium price point (₹8k-15k), alienating Indian Gen Z. Red Tape is perfectly positioned to capture this massive whitespace.",
+    solutionPrototype: [
+      "Analyzed 5-year Google Trends data to identify a 12.5x growth in anime footwear demand in India.",
+      "Spearheaded the conceptualization of a 7-piece character-themed sneaker line, directing AI-generated product designs.",
+      "Produced cinematic promotional video assets for product reveals.",
+      "Developed a comprehensive 4-phase, digital-first Go-to-Market (GTM) strategy focusing on Instagram and YouTube.",
+      "Created detailed campaign briefs encompassing budget allocation, influencer seeding, and community UGC strategies."
+    ],
+    impact: [
+      "Identified critical market gap for affordable, Gen-Z targeted streetwear (₹1.5k-3.5k).",
+      "Positioned Red Tape as the first major Indian brand in the anime footwear space."
+    ],
+    techStack: ["Google Trends", "AI Design Generation", "Go-to-Market Strategy", "Data Analytics"],
+    link: "https://devisdev365.github.io/Marketing-Project/",
+    disclaimer: "Conceptual marketing campaign and product design leveraging Google Trends data."
   }
 ];
 
@@ -210,7 +230,9 @@ export const SKILL_LINKS: Record<string, string> = {
   "VectorShift": "https://www.vectorshift.ai/",
   "Seaborn": "https://seaborn.pydata.org/",
   "ParseHub": "https://www.parsehub.com/",
-  "Generative AI API": "https://en.wikipedia.org/wiki/Generative_artificial_intelligence"
+  "Generative AI API": "https://en.wikipedia.org/wiki/Generative_artificial_intelligence",
+  "Google Trends": "https://trends.google.com/",
+  "AI Design Generation": "https://en.wikipedia.org/wiki/Artificial_intelligence_art"
 };
 
 export const TECHNICAL_SKILLS = [
@@ -226,7 +248,9 @@ export const TECHNICAL_SKILLS = [
   { name: "Sales Optimization", url: SKILL_LINKS["Sales Optimization"], badge: "https://img.shields.io/badge/Sales-Optimization-green?style=for-the-badge" },
   { name: "JavaScript", url: SKILL_LINKS["JavaScript"], badge: "https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" },
   { name: "XGBoost", url: SKILL_LINKS["XGBoost"], badge: "https://img.shields.io/badge/XGBoost-FF6600?style=for-the-badge&logo=xgboost&logoColor=white" },
-  { name: "Supabase", url: SKILL_LINKS["Supabase"], badge: "https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" }
+  { name: "Supabase", url: SKILL_LINKS["Supabase"], badge: "https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" },
+  { name: "Google Trends", url: SKILL_LINKS["Google Trends"], badge: "https://img.shields.io/badge/Google_Trends-4285F4?style=for-the-badge&logo=google&logoColor=white" },
+  { name: "AI Design Gen", url: SKILL_LINKS["AI Design Generation"], badge: "https://img.shields.io/badge/AI_Design-purple?style=for-the-badge&logo=openai&logoColor=white" }
 ];
 
 export const ACHIEVEMENTS: Achievement[] = [
