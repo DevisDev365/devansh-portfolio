@@ -106,7 +106,6 @@ export const PROJECTS: Project[] = [
     ],
     techStack: ["Python", "Supabase", "LLM APIs", "JSON Engineering"],
     link: "https://neuraq.netlify.app/",
-    github: "https://github.com/devisdev365/neura-q",
     disclaimer: "Proof-of-concept demonstrating how structured prompt engineering architectures outperform raw chat interfaces."
   },
   {
@@ -125,8 +124,7 @@ export const PROJECTS: Project[] = [
       "Core Value: Automated feedback loop for students to improve CV quality before applying"
     ],
     techStack: ["Python", "XGBoost", "Generative AI API", "Pandas"],
-    link: "https://resume-ai-dev.netlify.app/",
-    github: "https://github.com/devisdev365/resume-ai"
+    link: "https://resume-ai-dev.netlify.app/"
   },
   {
     title: "Crypto Market Intelligence",
@@ -146,7 +144,6 @@ export const PROJECTS: Project[] = [
     ],
     techStack: ["Python", "Pandas", "Financial Modeling", "VectorShift"],
     link: "https://btc-arbitrage-analyst.bolt.host/",
-    github: "https://github.com/devisdev365/crypto-arbitrage",
     disclaimer: "Built to understand market microstructure and financial modeling—not as production trading system."
   },
   {
