@@ -20,3 +20,10 @@ Allow: /
 
 User-agent: Twitterbot
 Allow: /
+
+# AI Crawlers
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /

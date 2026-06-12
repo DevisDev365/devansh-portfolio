@@ -10,7 +10,7 @@
 
 | Channel | Link |
 |---------|------|
-| Portfolio | [devisdev365.github.io/devansh-portfolio](https://devisdev365.github.io/devansh-portfolio/) |
+| Portfolio | [devisdev365.github.io/devansh-portfolio/](https://devisdev365.github.io/devansh-portfolio/) |
 | LinkedIn | [linkedin.com/in/devansh-khanna-618606178](https://www.linkedin.com/in/devansh-khanna-618606178/) |
 | GitHub | [github.com/devisdev365](https://github.com/devisdev365) |
 | Phone | +91 9870316839 |
@@ -21,7 +21,7 @@
 
 I solve business problems by building working prototypes—fast. With ₹5+ crore in managed revenue and experience across automotive manufacturing, entertainment, and AI-driven decision tools, I don't just analyze data—I turn business challenges into executable solutions that leaders can see, touch, and use.
 
-My foundation lies in a blend of Business Administration and Data Analytics. I bridge the gap between "What if we could..." strategy sessions and "Here's how it works" technical execution.
+Not pure tech, not pure management — deliberately both. I can sit in a client meeting, understand the business problem, and build a working prototype the same day. I bridge what engineers build and what clients actually need.
 
 **Ideal for:**
 - Consulting firms needing rapid solution prototyping
@@ -33,14 +33,14 @@ My foundation lies in a blend of Business Administration and Data Analytics. I b
 
 ## Education
 
-### MBA — Delhi School of Business, Delhi (Expected 2026)
-- **CGPA:** 5.48
-- **Specialization:** Data Analytics & Operations (Primary), Marketing (Secondary)
-- **Focus Areas:** Operational Analytics, Process Optimization, Demand Forecasting, KPI Design
-- **Leadership:** Coordinator, INVICTUS Data Analysis Club — Scaled reach 66%, boosted engagement 5x
+### Master of Business Administration (MBA) — Delhi School of Business, Delhi (Expected 2026)
+- Pursuing
+- Specialization: Data Analytics & Operations (Primary), Marketing (Secondary)
+- Focus Areas: Operational Analytics, Process Optimization, Demand Forecasting, KPI Design
+- Leadership: Coordinator, INVICTUS Data Analysis Club (Scaled reach 66%, boosted engagement 5x)
 
-### BBA — Chandigarh University, Punjab (2022)
-- **CGPA:** 7.0
+### Bachelor of Business Administration (BBA) — Chandigarh University, Punjab (2022)
+- CGPA: 7.0
 - Foundation in Business Fundamentals
 - Transitioned into revenue management and analytics roles
 
@@ -48,15 +48,15 @@ My foundation lies in a blend of Business Administration and Data Analytics. I b
 
 ## Work Experience
 
-### Imperial Auto Industries Ltd. — Key Account Executive → Business Solutions Lead
-**Aug 2022 – Aug 2023** | [imperialauto.in](https://imperialauto.in/)
+### Imperial Auto Industries Ltd. — Key Account Executive
+**Aug 2022 - Aug 2023** | [imperialauto.in/](https://imperialauto.in/)
 
 **Business Challenge:** Managing ₹5+ crore OEM portfolio in automotive manufacturing with manual processes causing pricing delays and operational inefficiencies.
 
 **Solutions Delivered:**
-- **Revenue Optimization:** Managed pricing workflows and production planning for 3 OEM accounts (Hyzon Motors, Kohler, Mitsubishi)
-- **Analytics Infrastructure:** Developed Power BI dashboards and Excel forecasting models for manufacturing KPIs
-- **Process Automation:** Built Excel VBA macros + SQL queries for ERP reporting — 87% time reduction (4hrs → 30min)
+- Revenue Optimization: Managed pricing workflows and production planning for 3 OEM accounts (Hyzon Motors, Kohler, Mitsubishi).
+- Analytics Infrastructure: Developed Power BI dashboards and Excel forecasting models for manufacturing KPIs.
+- Process Automation: Built Excel VBA macros + SQL queries for ERP reporting, achieving 87% time reduction (4hrs → 30min).
 
 **Impact:**
 - ₹5+ Crore portfolio managed with data-driven decision-making
@@ -68,91 +68,135 @@ My foundation lies in a blend of Business Administration and Data Analytics. I b
 
 ---
 
-### SMAAASH Entertainment Pvt Ltd — Sales & Marketing Intern → Market Expansion Lead
-**May 2025 – June 2025** | [smaaash-entertainment.in](https://smaaash-entertainment.in/)
+### SMAAASH Entertainment Pvt Ltd — Intern
+**May 2025 - June 2025** | [smaaash-entertainment.in/](https://smaaash-entertainment.in/)
 
-**Business Challenge:** Expanding customer base and launching new revenue streams in a competitive entertainment market.
+**Business Challenge:** Expanding customer base and launching new revenue streams in a competitive entertainment market — while uncovering why brand awareness was critically low despite active marketing spend.
 
 **Solutions Delivered:**
-- **Revenue Generation:** Drove ₹59K revenue through 200+ outbound calls and 61 field visits using data-driven lead prioritization
-- **Database Optimization:** Analyzed and segmented 1,200+ lead database, improving quality scores by 40%
-- **New Service Launch:** Orchestrated end-to-end launch of Karaoke service — from market analysis to go-to-market strategy
+- Karaoke Service Launch (Phase 1): Led end-to-end launch from market analysis to first paying customer in 10–20 days — built offers, coordinated stakeholders, set up screens & projectors personally.
+- On-Ground Sales (Phase 2): Chose field sales deliberately to plug a blind spot — 61 field visits + 200+ outbound calls; optimized 1,200+ lead database using data segmentation, improving quality scores by 40%.
+- Root Cause Discovery: Identified that SMAAASH ran only hyper-targeted Meta/Instagram ads — invisible outside a narrow funnel. Many prospects simply didn't know SMAAASH existed. No dashboard would've surfaced this. Only being on the ground did.
 
 **Impact:**
 - ₹59K revenue generated in 2-month internship
 - 40% improvement in lead quality = higher conversion rates
-- Successfully launched new service line from concept to market
+- Successfully launched new Karaoke service line from concept to market
+- Uncovered critical brand visibility gap invisible to digital analytics
 
 **Key Skills:** Go-to-Market Strategy · Data-Driven Sales · Market Analysis · Revenue Optimization · Stakeholder Management
+
+---
+
+### INVICTUS @ DSB — Joint Coordinator → Coordinator
+**Oct 2024 - April 2026** | [dsb.edu.in/invictus/](https://dsb.edu.in/invictus/)
+
+**Business Challenge:** Started as Joint Coordinator and promoted to lead the data analysis club at Delhi School of Business, managing speakers, operations, and communications across a nearly two-year tenure.
+
+**Solutions Delivered:**
+- Coordinated events and workshops; managed speakers, operations, and communications.
+- Tracked registrations, attendance, and feedback to improve planning.
+
+**Impact:**
+- Scaled club reach and managed end-to-end event operations.
+- Improved event planning through data-driven attendance tracking.
+
+**Key Skills:** Project Management · Data Analysis · Stakeholder Management
 
 ---
 
 ## Projects
 
 ### 1. Neura-Q — AI Decision Framework
-> **Role:** Business Solutions Architect | [Live Demo](https://neuraq.netlify.app/) | [GitHub](https://github.com/devisdev365/neura-q)
+> **Role:** Business Solutions Architect | [Live Demo](https://neuraq.netlify.app/)
 
-**Problem:** Users treat ChatGPT like a "magic wand," providing zero context yet expecting expert-level results. Without defining Personality, Context, and Constraints, LLMs produce generic, shallow, or hallucinated answers.
+**Problem:** People give vague prompts to AI, AI hallucinates, and people accept wrong answers. Without structured context — Background, Dilemma, and a defined Personality — LLMs produce generic, shallow responses that fail in real strategic scenarios.
 
 **Solution:**
-- **PCT Architecture:** Forces users to define Personality (Who), Context (Why), and Task (What) before submission
-- **JSON-First Optimization:** Feeds inputs as structured JSON objects for deeper AI reasoning
-- **Tree-of-Thought Engine:** Maps multiple logical branches, evaluates risk-weighted outcomes before synthesizing
-- **Structured Deliverables:** Transforms brainstorming into executive-ready decision memos
+- Structured Input Engine: User enters Background + Dilemma + chooses a Persona (any — even fictional characters). An 'Enhance Prompt' button structures the input into clean JSON before hitting the API — AI models parse JSON far more effectively than raw text.
+- Three Reasoning Personas (same API, different thinking styles): AEON for career path analysis using Tree-of-Thought (ToT), NOVA for life decisions using Graph-of-Thought (GoT), TESS for scenario exploration using Chain-of-Thought (CoT).
+- Collapsible Visual Nodes: Responses returned as structured reasoning trees — not a wall of text. Each branch is a logical option with risk-weighted outcomes.
+- Result: Better inputs + structured reasoning = less hallucination, more reliable answers.
 
-**Impact:** Transforms 1-line prompts into deep strategic analysis; reduced planning cycles from weeks to days.
+**Impact:** Transforms 1-line prompts into deep strategic analysis automatically; Eliminates hallucination risk by enforcing structured context before API call; Three distinct reasoning modes for different decision types; Reduced strategic planning cycles from weeks to days
 
 **Tech:** Python · Supabase · LLM APIs · JSON Engineering
+
+**Note:** Proof-of-concept demonstrating how structured prompt engineering architectures outperform raw chat interfaces.
 
 ---
 
 ### 2. AI Resume Enhancer — EdTech / Career Services
-> **Role:** Product Prototyping | [Live Demo](https://resume-ai-dev.netlify.app/) | [GitHub](https://github.com/devisdev365/resume-ai)
+> **Role:** Product Prototyping | [Live Demo](https://resume-ai-dev.netlify.app/)
 
-**Problem:** Students struggle to optimize resumes for placement success and job description alignment.
+**Problem:** Students struggle to optimize their resumes for placement success, lacking insights into what makes their CV stand out or how well it aligns with job descriptions.
 
 **Solution:**
-- **CV Analyzer:** Identifies weaknesses and improvement areas in student resumes
-- **Placement Predictor:** XGBoost ML model predicting placement success with 85% accuracy
-- **Resume Parser & Maker:** Generates JD-aligned resume versions
+- Built ML-powered resume optimization platform for students with three integrated modules:
+- CV Analyzer: Identifies weaknesses and improvement areas in student resumes
+- Placement Predictor: XGBoost ML model predicting placement success bracket with 85% accuracy
+- Resume Parser & Maker: Parses resume content and generates JD-aligned versions tailored to specific job descriptions
 
-**Tech:** Python · XGBoost · Generative AI API · Pandas
+**Impact:** Built For: Student self-improvement and placement preparation; Core Value: Automated feedback loop for students to improve CV quality before applying
+
+**Tech:** Python · XGBoost · Gemini API · Pandas
+
 
 ---
 
 ### 3. Crypto Market Intelligence — FinTech / Trading
-> **Role:** Financial Analytics Prototyping | [Live Demo](https://btc-arbitrage-analyst.bolt.host/) | [GitHub](https://github.com/devisdev365/crypto-arbitrage)
+> **Role:** Financial Analytics Prototyping | [Live Demo](https://btc-arbitrage-analyst.bolt.host/)
 
 **Problem:** Can retail investors compete with institutional algorithms in identifying price inefficiencies across Indian crypto exchanges?
 
-**Solution:** Real-time monitoring system tracking Bitcoin price spreads across 2 Indian exchanges, flagging arbitrage opportunities with profit calculations after fees, taxes, and slippage. Backend automation via VectorShift.
+**Solution:**
+- Built real-time market monitoring system that tracks Bitcoin price spreads across 2 Indian crypto exchanges
+- Flags arbitrage opportunities (buy low on Exchange A, sell high on Exchange B)
+- Calculates profit after fees, taxes, and slippage
+- Backend automation pipeline built with VectorShift
 
-**Impact:** Identified 15+ profitable opportunities; proved ₹10,000 investment could yield ₹500–1,500 per trade.
+**Impact:** Identified 15+ profitable opportunities during testing period; Proved concept: ₹10,000 investment could yield ₹500-1,500 per trade; Demonstrated ability to integrate multiple financial APIs in real-time and build decision tools for financial services
 
 **Tech:** Python · Pandas · Financial Modeling · VectorShift
 
+**Note:** Built to understand market microstructure and financial modeling—not as production trading system.
+
 ---
 
-### 4. QSR Brand Intelligence — QSR Industry
-> **Role:** Marketing Analytics | [View Analysis](https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing)
+### 4. Brand Sentiment Analysis — Quick Service Restaurant (QSR) Industry
+> **Role:** Marketing Analytics | [Live Demo](https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing)
 
-**Problem:** QSR brands (McDonald's, Domino's, KFC) lack competitive intelligence on social media engagement strategies.
+**Problem:** QSR brands (McDonald's, Domino's, KFC) lack competitive intelligence on social media engagement strategies. Need: Data-driven insights into what content drives customer engagement.
 
-**Solution:** Scraped 650+ Instagram posts across 3 brands over 6–7 months using ParseHub. Comparative analysis with Python (Pandas, Seaborn).
+**Solution:**
+- Data Collection: Scraped 650+ Instagram posts across 3 QSR brands over 6-7 months using ParseHub (Domino's: 154, KFC: 251, McDonald's: 251)
+- Comparative Analysis: Python (Pandas, Seaborn) to evaluate engagement metrics across brands
+- Insight Generation: Identified content patterns, posting frequency, and engagement drivers
 
-**Impact:** Identified top-performing content types, engagement benchmarks, optimal posting times, and competitive gaps.
+**Impact:** Identified top-performing content types for each brand; Revealed engagement rate benchmarks (Likes/Comments/Shares per 1000 followers); Mapped optimal posting times and frequency; Highlighted competitive gaps and opportunities
 
 **Tech:** Python · Pandas · Seaborn · ParseHub
 
+
 ---
 
-## Skills
+### 5. Red Tape [X] Anime Collection — Marketing & Product Design
+> **Role:** Marketing Campaign Strategist | [Live Demo](https://devisdev365.github.io/Marketing-Project/)
 
-### Technical
-Python · SQL · Power BI · Excel VBA · LLM APIs · JavaScript · XGBoost · Supabase · Pandas · Seaborn · ParseHub · VectorShift · JSON Engineering · Generative AI API
+**Problem:** A conceptual marketing and product design campaign proposing Red Tape's entry into the explosive anime streetwear market in India. Global titans dominate the anime shoe space at a premium price point (₹8k-15k), alienating Indian Gen Z. Red Tape is perfectly positioned to capture this massive whitespace.
 
-### Business & Domain
-Data Analysis · Business Strategy · Project Management · Sales Optimization · Automotive Ops · Revenue Management · Demand Forecasting · Business Process Automation · Manufacturing Analytics · Strategic Account Management · Go-to-Market Strategy · Data-Driven Sales · Market Analysis · Stakeholder Management · Financial Modeling
+**Solution:**
+- Analyzed 5-year Google Trends data to identify a 12.5x growth in anime footwear demand in India.
+- Spearheaded the conceptualization of a 7-piece character-themed sneaker line, directing AI-generated product designs.
+- Produced cinematic promotional video assets for product reveals.
+- Developed a comprehensive 4-phase, digital-first Go-to-Market (GTM) strategy focusing on Instagram and YouTube.
+- Created detailed campaign briefs encompassing budget allocation, influencer seeding, and community UGC strategies.
+
+**Impact:** Identified critical market gap for affordable, Gen-Z targeted streetwear (₹1.5k-3.5k).; Positioned Red Tape as the first major Indian brand in the anime footwear space.
+
+**Tech:** Google Trends · AI Design Generation · Go-to-Market Strategy · Data Analytics
+
+**Note:** Conceptual marketing campaign and product design leveraging Google Trends data.
 
 ---
 
@@ -160,7 +204,8 @@ Data Analysis · Business Strategy · Project Management · Sales Optimization �
 
 | Achievement | Organization | Details |
 |---|---|---|
-| ₹5Cr+ Revenue Portfolio Management | Imperial Auto Industries Ltd. (2022–2023) | Managed strategic OEM accounts (Hyzon Motors, Kohler, Mitsubishi), pricing strategy, and supply chain |
-| National Finalist (Top 20) | AIMA Student Management Games 2024 | Regional 1st Runner-Up across 1,200+ B-School Teams. Led team as CEO |
-| Data Analytics Leadership | INVICTUS Club, Delhi School of Business | Leading 50+ members, scaled reach 66%, boosted engagement 5x |
-| Business Competition Recognition | Various National Challenges | 2nd Runner-Up: Youth's Voice Sustainability Challenge · National Participant: L'Oréal & HP Power Lab |
+| National Finalist (Top 20) | AIMA Student Management Games 2024 | Regional 1st Runner-Up across 1,200+ B-School Teams. Led team as CEO through finance, operations, and marketing simulations. |
+| Sheets & Beats — Data Analysis Competition | Coordinator, INVICTUS Data Analysis Club \| Delhi School of Business | Created and ran a data analysis competition at DSB — Round 1: Excel/data quiz via Mentimeter (top 5 teams advance), Final Round: live data problem under time pressure. 60–80 teams participated, tripling participation vs previous events. |
+| Business Competition Recognition | Various National Challenges | 2nd Runner-Up: Youth's Voice Sustainability Challenge (BCC&I x NTPC) \| National Participant: L'Oréal Sustainability Challenge 2024 & HP Power Lab Business Simulation. |
+| Technical Operations Lead | National & International Conferences | Led technical operations for 6+ national/international conferences ensuring flawless execution through project planning and vendor management. |
+
