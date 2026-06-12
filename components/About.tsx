@@ -1,7 +1,9 @@
 import React from 'react';
-import { Reveal } from './ui/Reveal';
-import { BIO, EDUCATION, TECHNICAL_SKILLS } from '../constants';
-import { Code2, Users, GraduationCap, Trophy, TrendingUp, Clock, Target, Award } from 'lucide-react';
+import { Reveal } from './ui/RevealMotion';
+import { AnimatedStat } from './ui/AnimatedStat';
+import { TerminalLabel } from './ui/TerminalLabel';
+import { BIO, EDUCATION, TECHNICAL_SKILLS, CERTIFICATIONS } from '../constants';
+import { Code2, Users, GraduationCap, Trophy, TrendingUp, Clock, Target, Award, BadgeCheck } from 'lucide-react';
 
 export const About: React.FC = () => {
   return (
@@ -9,11 +11,11 @@ export const About: React.FC = () => {
       <div className="max-w-7xl mx-auto space-y-24">
 
         {/* Header */}
-        <Reveal>
+        <Reveal sweep>
           <div className="flex items-center gap-4 mb-8">
             <span className="text-primary font-mono text-6xl opacity-20 font-bold -ml-4">01</span>
             <div>
-              <span className="text-accent font-mono text-sm tracking-wider uppercase block mb-1">The Origin</span>
+              <TerminalLabel text="The Origin" className="mb-1" />
               <h2 className="text-4xl font-bold text-white">About Me</h2>
             </div>
           </div>
@@ -28,12 +30,7 @@ export const About: React.FC = () => {
               { label: "Pricing Accuracy", val: "12% Up", icon: <Target className="text-red-500" />, desc: "Improvement" },
               { label: "Competition Rank", val: "Top 20", icon: <Trophy className="text-yellow-500" />, desc: "Nationally (1200+)" }
             ].map((stat, i) => (
-              <div key={i} className="bg-[#0F0F0F] border border-white/5 p-6 rounded-xl flex flex-col items-center text-center hover:border-primary/30 transition-colors group">
-                <div className="mb-3 p-3 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors">{stat.icon}</div>
-                <h4 className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.val}</h4>
-                <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">{stat.label}</p>
-                <p className="text-slate-600 font-mono text-[10px]">{stat.desc}</p>
-              </div>
+              <AnimatedStat key={i} {...stat} />
             ))}
           </div>
         </Reveal>
@@ -181,19 +178,30 @@ export const About: React.FC = () => {
           </div>
         </Reveal>
 
-        {/* GitHub Snake Animation */}
-        <Reveal delay={200}>
-          <div className="mt-16 border-t border-white/5 pt-16">
-            <h3 className="text-center text-slate-500 font-mono text-sm mb-8">MY CONTRIBUTION GRAPH</h3>
-            <div className="flex justify-center grayscale hover:grayscale-0 transition-all duration-500">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcSet="https://raw.githubusercontent.com/DevisDev365/DevisDev365/output/github-snake-dark.svg" />
-                <source media="(prefers-color-scheme: light)" srcSet="https://raw.githubusercontent.com/DevisDev365/DevisDev365/output/github-snake.svg" />
-                <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/DevisDev365/DevisDev365/output/github-snake.svg" className="w-full max-w-4xl opacity-80 hover:opacity-100" />
-              </picture>
+        {/* Certifications */}
+        <Reveal delay={100}>
+          <div className="border-t border-white/5 pt-16">
+            <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+              <BadgeCheck className="text-primary" /> Certifications
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {CERTIFICATIONS.map((cert, idx) => (
+                <div key={idx} className="bg-[#0F0F0F] border border-white/5 hover:border-primary/30 transition-colors p-5 rounded-xl flex items-start gap-4">
+                  <div className="p-2 bg-primary/10 rounded-lg text-primary shrink-0">
+                    <BadgeCheck size={20} />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-bold text-sm mb-1">{cert.title}</h4>
+                    <p className="text-xs text-slate-500 font-mono mb-2">{cert.issuer} · {cert.year}</p>
+                    {cert.description && <p className="text-slate-400 text-xs leading-relaxed">{cert.description}</p>}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </Reveal>
+
+
 
       </div>
     </section>

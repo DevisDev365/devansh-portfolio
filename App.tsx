@@ -7,6 +7,7 @@ import { Projects } from './components/Projects';
 import { Achievements } from './components/Achievements';
 import { Contact } from './components/Contact';
 import { Background3D } from './components/Background3D';
+import { CursorGlow } from './components/ui/CursorGlow';
 import { SOCIALS } from './constants';
 import { Github, Linkedin, Phone } from 'lucide-react';
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
     // Removed overflow-x-hidden from here to ensure sticky positioning works correctly in children.
     // Overflow is handled by body class in index.html
     <div className="text-slate-300 min-h-screen font-sans selection:bg-primary/30 relative">
+      <CursorGlow />
       <Background3D />
       <Navigation />
 

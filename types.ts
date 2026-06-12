@@ -47,3 +47,10 @@ export interface Achievement {
   organization: string;
   description: string;
 }
+
+export interface Certification {
+  title: string;
+  issuer: string;
+  year: string;
+  description?: string;
+}

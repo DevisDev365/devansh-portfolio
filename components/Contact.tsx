@@ -1,5 +1,5 @@
 import React from 'react';
-import { Reveal } from './ui/Reveal';
+import { Reveal } from './ui/RevealMotion';
 import { SOCIALS } from '../constants';
 import { Github, Linkedin, Phone, Mail, ExternalLink, Check } from 'lucide-react';
 
@@ -44,10 +44,10 @@ export const Contact: React.FC = () => {
 
       <div className="max-w-2xl mx-auto text-center flex flex-col items-center px-6 relative z-10">
         <Reveal delay={200}>
-          <span className="text-primary font-mono mb-4 block">04. What's Next?</span>
+          <span className="text-primary font-mono mb-4 block">05. What's Next?</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Let's Connect</h2>
           <p className="text-slate-400 text-lg leading-relaxed mb-12">
-            In-office first / Hybrid OK. Open for Consulting, Strategy, Business Analytics, or Revenue Operations roles.
+            Built by a business guy 💼 who codes (or is it a coder who does business? 🤔)
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <a
@@ -79,7 +79,6 @@ export const Contact: React.FC = () => {
         <p className="hover:text-primary transition-colors cursor-default mb-2">
           © 2026 Devansh Khanna. All Rights Reserved.
         </p>
-        <p className="opacity-50">Vibe Coding & Management</p>
       </footer>
 
       {/* Waving Footer Graphic */}

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Reveal } from './ui/Reveal';
+import { Reveal } from './ui/RevealMotion';
+import { TerminalLabel } from './ui/TerminalLabel';
 import { ACHIEVEMENTS } from '../constants';
 import { Trophy, Building2 } from 'lucide-react';
 
@@ -33,11 +34,11 @@ export const Achievements: React.FC = () => {
     return (
         <section id="achievements" className="py-24 px-6 relative">
             <div className="max-w-7xl mx-auto">
-                <Reveal>
+                <Reveal sweep>
                     <div className="flex items-center gap-4 mb-16">
                         <span className="text-primary font-mono text-6xl opacity-20 font-bold -ml-4">04</span>
                         <div>
-                            <span className="text-accent font-mono text-sm tracking-wider uppercase block mb-1">Recognition</span>
+                            <TerminalLabel text="Recognition" className="mb-1" />
                             <h2 className="text-4xl font-bold text-white">Achievements</h2>
                         </div>
                     </div>

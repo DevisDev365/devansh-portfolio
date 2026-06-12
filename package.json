@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "sync:content": "node scripts/sync-portfolio-content.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"

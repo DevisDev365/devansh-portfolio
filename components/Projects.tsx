@@ -1,13 +1,15 @@
 import React from 'react';
-import { Reveal } from './ui/Reveal';
+import { Reveal } from './ui/RevealMotion';
+import { Card3D } from './ui/Card3D';
+import { TerminalLabel } from './ui/TerminalLabel';
 import { PROJECTS, SKILL_LINKS } from '../constants';
-import { Github, ArrowUpRight, Target, BrainCircuit, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, Target, BrainCircuit } from 'lucide-react';
 
 const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: number }) => {
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-[#0F0F0F] border border-white/5 hover:border-primary/20 transition-all duration-300 shadow-2xl hover:shadow-primary/5">
+    <div className="group relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-primary/40 transition-all duration-500 shadow-2xl hover:shadow-primary/20 hover:-translate-y-1">
       {/* Content Layout */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-black/60 z-0 pointer-events-none" />
 
       <div className="relative z-10 flex flex-col md:flex-row gap-8 p-6 md:p-10">
 
@@ -24,11 +26,6 @@ const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: n
               {project.link && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold text-white hover:text-primary transition-colors">
                   <ArrowUpRight size={16} /> View Prototype
-                </a>
-              )}
-              {project.github && project.github !== '#' && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors">
-                  <Github size={16} /> View Code
                 </a>
               )}
             </div>
@@ -101,11 +98,6 @@ const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: n
                 <ArrowUpRight size={16} />
               </a>
             )}
-            {project.github && project.github !== '#' && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 border border-white/20 text-white rounded hover:bg-white/10 transition-colors">
-                <Github size={16} />
-              </a>
-            )}
           </div>
         </div>
 
@@ -118,11 +110,11 @@ export const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-24 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
-        <Reveal>
+        <Reveal sweep>
           <div className="flex items-center gap-4 mb-16">
             <span className="text-primary font-mono text-6xl opacity-20 font-bold -ml-4">03</span>
             <div>
-              <span className="text-accent font-mono text-sm tracking-wider uppercase block mb-1">Selected Works</span>
+              <TerminalLabel text="Selected Works" className="mb-1" />
               <h2 className="text-4xl font-bold text-white">Business Prototypes</h2>
             </div>
           </div>
@@ -131,7 +123,9 @@ export const Projects: React.FC = () => {
         <div className="grid grid-cols-1 gap-12">
           {PROJECTS.map((project, idx) => (
             <Reveal key={idx} delay={idx * 100}>
-              <ProjectCard project={project} index={idx} />
+              <Card3D>
+                <ProjectCard project={project} index={idx} />
+              </Card3D>
             </Reveal>
           ))}
         </div>

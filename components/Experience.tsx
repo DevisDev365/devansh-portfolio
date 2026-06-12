@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Reveal } from './ui/Reveal';
+import { motion } from 'framer-motion';
+import { Reveal } from './ui/RevealMotion';
+import { TerminalLabel } from './ui/TerminalLabel';
 import { EXPERIENCE, SKILL_LINKS } from '../constants';
 
 export const Experience: React.FC = () => {
@@ -8,11 +10,11 @@ export const Experience: React.FC = () => {
   return (
     <section id="experience" className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
-        <Reveal>
+        <Reveal sweep>
           <div className="flex items-center gap-4 mb-16">
             <span className="text-primary font-mono text-6xl opacity-20 font-bold -ml-4">02</span>
             <div>
-              <span className="text-accent font-mono text-sm tracking-wider uppercase block mb-1">The Journey</span>
+              <TerminalLabel text="The Journey" className="mb-1" />
               <h2 className="text-4xl font-bold text-white">Work Experience</h2>
             </div>
           </div>
@@ -26,8 +28,8 @@ export const Experience: React.FC = () => {
                 key={idx}
                 onClick={() => setActiveTab(idx)}
                 className={`px-6 py-4 text-left font-mono text-sm transition-all duration-300 border-l-2 md:border-l-2 md:border-b-0 -mb-[2px] md:mb-0 md:-ml-[2px] whitespace-nowrap ${activeTab === idx
-                  ? 'border-primary text-primary bg-primary/10'
-                  : 'border-transparent text-slate-500 hover:text-slate-300 hover:bg-white/5'
+                  ? 'border-primary text-primary bg-primary/10 backdrop-blur-md shadow-[inset_4px_0_0_0_rgba(59,130,246,0.2)]'
+                  : 'border-transparent text-slate-500 hover:text-slate-300 hover:bg-white/5 hover:backdrop-blur-sm'
                   }`}
               >
                 {exp.company}
@@ -38,10 +40,12 @@ export const Experience: React.FC = () => {
           {/* Content */}
           <div className="flex-1 min-h-[400px] relative">
             {EXPERIENCE.map((exp, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className={`transition-all duration-500 absolute top-0 left-0 w-full ${activeTab === idx ? 'opacity-100 translate-y-0 relative' : 'opacity-0 translate-y-4 absolute pointer-events-none'
-                  }`}
+                initial={false}
+                animate={activeTab === idx ? { opacity: 1, y: 0, position: 'relative' } : { opacity: 0, y: 16, position: 'absolute' }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className={`top-0 left-0 w-full ${activeTab !== idx ? 'pointer-events-none' : ''}`}
               >
                 <Reveal width="100%">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
@@ -127,7 +131,7 @@ export const Experience: React.FC = () => {
 
                   </div>
                 </Reveal>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
