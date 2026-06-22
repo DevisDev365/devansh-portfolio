@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, FileText } from 'lucide-react';
 
@@ -11,6 +11,131 @@ const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
 };
+
+// Decode scramble animation hook (ported from GLM 5.2 code)
+function useDecodeText(text: string, trigger: boolean) {
+  const [displayText, setDisplayText] = useState('');
+  const chars = "!<>-_\\/[]{}—=+*^?#________";
+
+  useEffect(() => {
+    if (!trigger) return;
+
+    interface QueueItem {
+      from: string;
+      to: string;
+      start: number;
+      end: number;
+      char?: string;
+    }
+
+    const queue: QueueItem[] = [];
+    for (let i = 0; i < text.length; i++) {
+      const start = Math.floor(Math.random() * 30);
+      const end = start + Math.floor(Math.random() * 30);
+      queue.push({ from: '', to: text[i], start, end });
+    }
+
+    let frame = 0;
+    let animId: number;
+
+    function update() {
+      let output = '';
+      let complete = 0;
+      for (let i = 0; i < queue.length; i++) {
+        const { to, start, end } = queue[i];
+        if (frame >= end) {
+          complete++;
+          output += to;
+        } else if (frame >= start) {
+          if (!queue[i].char || Math.random() < 0.28) {
+            queue[i].char = chars[Math.floor(Math.random() * chars.length)];
+          }
+          output += queue[i].char;
+        } else {
+          output += queue[i].from;
+        }
+      }
+      setDisplayText(output);
+      if (complete === queue.length) return;
+      frame++;
+      animId = requestAnimationFrame(update);
+    }
+    update();
+
+    return () => { if (animId) cancelAnimationFrame(animId); };
+  }, [trigger, text]);
+
+  return displayText;
+}
+
+// Component to render decode text with colored scramble chars
+function DecodeText({ text, className }: { text: string; className?: string }) {
+  const [trigger, setTrigger] = useState(false);
+  const [displayChars, setDisplayChars] = useState<{ char: string; isScramble: boolean }[]>([]);
+  const chars = "!<>-_\\/[]{}—=+*^?#________";
+
+  useEffect(() => {
+    setTrigger(true);
+  }, []);
+
+  useEffect(() => {
+    if (!trigger) return;
+
+    interface QueueItem {
+      from: string;
+      to: string;
+      start: number;
+      end: number;
+      char?: string;
+    }
+
+    const queue: QueueItem[] = [];
+    for (let i = 0; i < text.length; i++) {
+      const start = Math.floor(Math.random() * 30);
+      const end = start + Math.floor(Math.random() * 30);
+      queue.push({ from: '', to: text[i], start, end });
+    }
+
+    let frame = 0;
+    let animId: number;
+
+    function update() {
+      const output: { char: string; isScramble: boolean }[] = [];
+      let complete = 0;
+      for (let i = 0; i < queue.length; i++) {
+        const { to, start, end } = queue[i];
+        if (frame >= end) {
+          complete++;
+          output.push({ char: to, isScramble: false });
+        } else if (frame >= start) {
+          if (!queue[i].char || Math.random() < 0.28) {
+            queue[i].char = chars[Math.floor(Math.random() * chars.length)];
+          }
+          output.push({ char: queue[i].char!, isScramble: true });
+        } else {
+          output.push({ char: ' ', isScramble: false });
+        }
+      }
+      setDisplayChars(output);
+      if (complete === queue.length) return;
+      frame++;
+      animId = requestAnimationFrame(update);
+    }
+    update();
+
+    return () => { if (animId) cancelAnimationFrame(animId); };
+  }, [trigger, text]);
+
+  return (
+    <span className={className}>
+      {displayChars.map((c, i) => (
+        c.isScramble
+          ? <span key={i} style={{ color: '#00E47C' }}>{c.char}</span>
+          : <span key={i}>{c.char}</span>
+      ))}
+    </span>
+  );
+}
 
 export const Hero: React.FC = () => {
   return (
@@ -30,12 +155,12 @@ export const Hero: React.FC = () => {
 
           <motion.div variants={fadeUp}>
             <h1 className="text-7xl md:text-9xl font-bold tracking-tighter text-white mix-blend-screen mb-4">
-              Devansh
-              <span className="block text-slate-600">Khanna.</span>
+              <DecodeText text="Devansh" />
+              <span className="block text-slate-600"><DecodeText text="Khanna." /></span>
             </h1>
             <div className="h-8 md:h-12 overflow-hidden mb-4">
               <img
-                src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&pause=1000&color=3B82F6&center=false&vCenter=true&width=600&lines=MBA+%2B+Python+%3D+Business+Solutions;Where+Boardrooms+Meet+Backends;Turning+Data+into+Decisions;Building+Solutions+That+Actually+Ship"
+                src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&pause=1000&color=00E47C&center=false&vCenter=true&width=600&lines=MBA+%2B+Python+%3D+Business+Solutions;Where+Boardrooms+Meet+Backends;Turning+Data+into+Decisions;Building+Solutions+That+Actually+Ship"
                 alt="Typing Animation"
                 className="h-full w-auto"
               />

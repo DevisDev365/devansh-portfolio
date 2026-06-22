@@ -36,7 +36,7 @@ export const Navigation: React.FC = () => {
                 key={item.label}
                 href={item.href}
                 className="text-sm font-medium transition-colors relative group"
-                style={{ color: isActive ? '#3b82f6' : '' }}
+                style={{ color: isActive ? '#00E47C' : '' }}
               >
                 <span className={isActive ? 'text-primary' : 'text-slate-400 hover:text-white'}>
                   {item.label}
