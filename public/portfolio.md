@@ -107,7 +107,24 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 
 ## Projects
 
-### 1. Neura-Q — AI Decision Framework
+### 1. SaaS Market Pulse — Market Intelligence Engine
+> **Role:** Autonomous Systems Architect
+
+**Problem:** Customer Success Managers, Product Managers, and Founders often struggle to keep up with industry news, open-source trends, and competitor feature releases. Manually checking blogs, GitHub, Google Trends, and competitor websites daily is tedious and unsustainable.
+
+**Solution:**
+- Data Aggregation: Programmatically scrapes RSS feeds for SaaS news, parses GitHub for trending repositories, fetches regional Google Trends via proxy, and uses Firecrawl to monitor 7 major competitors.
+- AI Synthesis: Raw data is fed into a specialized LLM (Google Gemini, with automatic failover to Groq's Llama 3) configured with a strict system prompt to identify market gaps and extract high-value insights.
+- Delivery: Structured JSON output is injected into a custom, responsive HTML email template featuring a premium "neon tech" aesthetic and delivered via the Resend API.
+- Automation: The entire pipeline runs completely serverless via a scheduled GitHub Actions cron job, complete with retry logic, exponential backoff, and IP proxying to guarantee reliability.
+
+**Impact:** Eliminates hours of manual research required to stay updated in the hyper-competitive SaaS landscape; Distills raw data into actionable insights that can be used in a client call today; Runs entirely on autopilot every day
+
+**Tech:** Python · Google Gemini API · Groq API · Firecrawl API · Resend API · GitHub Actions
+
+---
+
+### 2. Neura-Q — AI Decision Framework
 > **Role:** Business Solutions Architect | [Live Demo](https://neuraq.netlify.app/)
 
 **Problem:** People give vague prompts to AI, AI hallucinates, and people accept wrong answers. Without structured context — Background, Dilemma, and a defined Personality — LLMs produce generic, shallow responses that fail in real strategic scenarios.

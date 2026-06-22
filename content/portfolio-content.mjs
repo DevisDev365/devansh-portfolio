@@ -129,6 +129,25 @@ export const experience = [
 
 export const projects = [
   {
+    title: 'SaaS Market Pulse',
+    role: 'Autonomous Systems Architect',
+    category: 'Market Intelligence Engine',
+    businessProblem:
+      'Customer Success Managers, Product Managers, and Founders often struggle to keep up with industry news, open-source trends, and competitor feature releases. Manually checking blogs, GitHub, Google Trends, and competitor websites daily is tedious and unsustainable.',
+    solutionPrototype: [
+      'Data Aggregation: Programmatically scrapes RSS feeds for SaaS news, parses GitHub for trending repositories, fetches regional Google Trends via proxy, and uses Firecrawl to monitor 7 major competitors.',
+      'AI Synthesis: Raw data is fed into a specialized LLM (Google Gemini, with automatic failover to Groq\'s Llama 3) configured with a strict system prompt to identify market gaps and extract high-value insights.',
+      'Delivery: Structured JSON output is injected into a custom, responsive HTML email template featuring a premium "neon tech" aesthetic and delivered via the Resend API.',
+      'Automation: The entire pipeline runs completely serverless via a scheduled GitHub Actions cron job, complete with retry logic, exponential backoff, and IP proxying to guarantee reliability.'
+    ],
+    impact: [
+      'Eliminates hours of manual research required to stay updated in the hyper-competitive SaaS landscape',
+      'Distills raw data into actionable insights that can be used in a client call today',
+      'Runs entirely on autopilot every day'
+    ],
+    techStack: ['Python', 'Google Gemini API', 'Groq API', 'Firecrawl API', 'Resend API', 'GitHub Actions'],
+  },
+  {
     title: 'Neura-Q',
     role: 'Business Solutions Architect',
     category: 'AI Decision Framework',
