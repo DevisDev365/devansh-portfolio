@@ -133,19 +133,21 @@ export const projects = [
     role: 'Autonomous Systems Architect',
     category: 'Market Intelligence Engine',
     businessProblem:
-      'Customer Success Managers, Product Managers, and Founders often struggle to keep up with industry news, open-source trends, and competitor feature releases. Manually checking blogs, GitHub, Google Trends, and competitor websites daily is tedious and unsustainable.',
+      'Customer Success and GTM teams spend 45+ minutes every morning manually tracking industry news, open-source trends, and competitor feature releases. This tedious, tab-heavy manual research process is unsustainable and leads to falling behind.',
     solutionPrototype: [
-      'Data Aggregation: Programmatically scrapes RSS feeds for SaaS news, parses GitHub for trending repositories, fetches regional Google Trends via proxy, and uses Firecrawl to monitor 7 major competitors.',
-      'AI Synthesis: Raw data is fed into a specialized LLM (Google Gemini, with automatic failover to Groq\'s Llama 3) configured with a strict system prompt to identify market gaps and extract high-value insights.',
+      'Data Aggregation: An autonomous AI agent programmatically scrapes RSS feeds, parses GitHub for trending repositories, fetches regional Google Trends, and uses Firecrawl to monitor 7 major competitors.',
+      'AI Synthesis: Raw data is fed into a specialized LLM (Google Gemini, with automatic failover to Groq\'s Llama 3) to filter noise, extract high-value insights, and tailor updates specifically for Customer Success contexts.',
       'Delivery: Structured JSON output is injected into a custom, responsive HTML email template featuring a premium "neon tech" aesthetic and delivered via the Resend API.',
-      'Automation: The entire pipeline runs completely serverless via a scheduled GitHub Actions cron job, complete with retry logic, exponential backoff, and IP proxying to guarantee reliability.'
+      'Automation: The entire pipeline runs completely serverless overnight via a scheduled GitHub Actions cron job, complete with retry logic and IP proxying—requiring zero manual effort.'
     ],
     impact: [
-      'Eliminates hours of manual research required to stay updated in the hyper-competitive SaaS landscape',
-      'Distills raw data into actionable insights that can be used in a client call today',
-      'Runs entirely on autopilot every day'
+      'Saves 45 minutes of manual research every single morning.',
+      'Fully automated workflow replacing 7+ tabs of daily browsing.',
+      'Delivers a single, highly-curated email digest before waking up, ensuring zero duplicate content.'
     ],
-    techStack: ['Python', 'Google Gemini API', 'Groq API', 'Firecrawl API', 'Resend API', 'GitHub Actions'],
+    techStack: ['Python', 'Google Gemini AI', 'Firecrawl API', 'Resend API', 'GitHub Actions', 'Web Scraping'],
+    link: 'https://www.linkedin.com/posts/devansh-khanna-618606178_customersuccess-gtm-saas-ugcPost-7475791963921977345-GBFn/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACoXs_QBF9YI6gI7W3_AUm-VLLhBymWlNyQ',
+    linkText: 'Watch Prototype Video',
   },
   {
     title: 'Neura-Q',
