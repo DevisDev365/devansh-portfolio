@@ -33,8 +33,7 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 
 ## Education
 
-### Master of Business Administration (MBA) — Delhi School of Business, Delhi (Expected 2026)
-- Pursuing
+### Master of Business Administration (MBA) — Delhi School of Business, Delhi (2026) | CGPA: 5.64
 - Specialization: Data Analytics & Operations (Primary), Marketing (Secondary)
 - Focus Areas: Operational Analytics, Process Optimization, Demand Forecasting, KPI Design
 - Leadership: Coordinator, INVICTUS Data Analysis Club (Scaled reach 66%, boosted engagement 5x)
