@@ -78,7 +78,7 @@ export const About: React.FC = () => {
                 <div className="mt-8 space-y-3 font-mono text-xs text-slate-500">
                   <div className="flex justify-between"><span>Business Strategy</span> <span className="text-green-500">██████████ 100%</span></div>
                   <div className="flex justify-between"><span>Data Analytics</span> <span className="text-blue-500">█████████░ 95%</span></div>
-                  <div className="flex justify-between"><span>Python Auto</span> <span className="text-blue-400">████████░░ 80%</span></div>
+                  <div className="flex justify-between"><span>AI Automation</span> <span className="text-purple-400">██████████ 100%</span></div>
                 </div>
               </div>
             </Reveal>

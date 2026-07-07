@@ -1,6 +1,6 @@
 export const portfolioIdentity = {
   name: 'Devansh Khanna',
-  title: 'Business Solutions Architect',
+  title: 'Business Automation Specialist',
   subtitle: 'Turning Business Problems into Executable Prototypes.',
   portfolioUrl: 'https://devisdev365.github.io/devansh-portfolio/',
   linkedinUrl: 'https://www.linkedin.com/in/devansh-khanna-618606178/',
@@ -254,6 +254,12 @@ export const projects = [
     link: 'https://devisdev365.github.io/Marketing-Project/',
     disclaimer: 'Conceptual marketing campaign and product design leveraging Google Trends data.',
   },
+];
+
+export const technicalSkills = [
+    { name: 'AI Automation', badge: 'https://img.shields.io/badge/AI%20Automation-000000?style=for-the-badge&logo=openai&logoColor=white', url: 'https://openai.com/' },
+    { name: 'Supabase', badge: 'https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white', url: 'https://supabase.com/' },
+    { name: 'Power BI', badge: 'https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black', url: 'https://powerbi.microsoft.com/' },
 ];
 
 export const socials = [

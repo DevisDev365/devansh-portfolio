@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, FileText } from 'lucide-react';
+import { ArrowDown, FileText, Linkedin, Mail } from 'lucide-react';
 
 const stagger = {
   hidden: {},
@@ -11,62 +11,6 @@ const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
 };
-
-// Decode scramble animation hook (ported from GLM 5.2 code)
-function useDecodeText(text: string, trigger: boolean) {
-  const [displayText, setDisplayText] = useState('');
-  const chars = "!<>-_\\/[]{}—=+*^?#________";
-
-  useEffect(() => {
-    if (!trigger) return;
-
-    interface QueueItem {
-      from: string;
-      to: string;
-      start: number;
-      end: number;
-      char?: string;
-    }
-
-    const queue: QueueItem[] = [];
-    for (let i = 0; i < text.length; i++) {
-      const start = Math.floor(Math.random() * 30);
-      const end = start + Math.floor(Math.random() * 30);
-      queue.push({ from: '', to: text[i], start, end });
-    }
-
-    let frame = 0;
-    let animId: number;
-
-    function update() {
-      let output = '';
-      let complete = 0;
-      for (let i = 0; i < queue.length; i++) {
-        const { to, start, end } = queue[i];
-        if (frame >= end) {
-          complete++;
-          output += to;
-        } else if (frame >= start) {
-          if (!queue[i].char || Math.random() < 0.28) {
-            queue[i].char = chars[Math.floor(Math.random() * chars.length)];
-          }
-          output += queue[i].char;
-        } else {
-          output += queue[i].from;
-        }
-      }
-      setDisplayText(output);
-      if (complete === queue.length) return;
-      frame++;
-      animId = requestAnimationFrame(update);
-    }
-    update();
-
-    return () => { if (animId) cancelAnimationFrame(animId); };
-  }, [trigger, text]);
-
-  return displayText;
-}
 
 // Component to render decode text with colored scramble chars
 function DecodeText({ text, className }: { text: string; className?: string }) {
@@ -137,10 +81,46 @@ function DecodeText({ text, className }: { text: string; className?: string }) {
   );
 }
 
+const typeSentence = {
+  hidden: { opacity: 1 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 1.2,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const typeWord = {
+  hidden: { opacity: 0, y: 10, filter: 'blur(4px)' },
+  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.4, ease: 'easeOut' } },
+};
+
+function RevealText({ text, className }: { text: string; className?: string }) {
+  const words = text.split(" ");
+  
+  return (
+    <motion.span
+      className={className}
+      variants={typeSentence}
+      initial="hidden"
+      animate="show"
+      style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.3em' }}
+    >
+      {words.map((word, index) => (
+        <motion.span key={index} variants={typeWord}>
+          {word}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
+
 export const Hero: React.FC = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center px-6 relative">
-      <div className="max-w-7xl mx-auto w-full z-10 pt-20">
+      <div className="max-w-7xl mx-auto w-full z-10 pt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <motion.div className="space-y-6" variants={stagger} initial="hidden" animate="show">
 
           <motion.div variants={fadeUp}>
@@ -156,27 +136,23 @@ export const Hero: React.FC = () => {
           <motion.div variants={fadeUp}>
             <h1 className="text-7xl md:text-9xl font-bold tracking-tighter text-white mix-blend-screen mb-4">
               <DecodeText text="Devansh" />
-              <span className="block text-slate-600"><DecodeText text="Khanna." /></span>
+              <span className="block text-slate-600"><DecodeText text="Khanna" /></span>
             </h1>
-            <div className="h-8 md:h-12 overflow-hidden mb-4">
-              <img
-                src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&pause=1000&color=00E47C&center=false&vCenter=true&width=600&lines=MBA+%2B+Python+%3D+Business+Solutions;Where+Boardrooms+Meet+Backends;Turning+Data+into+Decisions;Building+Solutions+That+Actually+Ship"
-                alt="Typing Animation"
-                className="h-full w-auto"
+            <div className="h-8 md:h-12 flex items-center mb-4">
+              <RevealText 
+                text="Turning manual workflows into automated systems."
+                className="font-mono text-xl md:text-2xl text-primary font-medium tracking-tight"
               />
             </div>
           </motion.div>
 
           <motion.div variants={fadeUp}>
-            <h2 className="text-2xl md:text-4xl font-light text-slate-400 max-w-2xl leading-relaxed mb-6">
-              Business Solutions Architect.
-            </h2>
-            <div className="flex flex-wrap gap-3 mb-8 opacity-80 hover:opacity-100 transition-opacity">
-              <a href="https://www.linkedin.com/in/devansh-khanna-618606178/" target="_blank" rel="noreferrer">
-                <img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" className="h-7" />
+            <div className="flex flex-wrap gap-4 mb-8">
+              <a href="https://www.linkedin.com/in/devansh-khanna-618606178/" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/50 transition-all text-sm font-mono text-slate-300 hover:text-white group">
+                <Linkedin size={16} className="text-[#0A66C2] group-hover:scale-110 transition-transform" /> Connect
               </a>
-              <a href="mailto:devanshkhanna75@gmail.com">
-                <img src="https://img.shields.io/badge/Email-Reach_Out-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" className="h-7" />
+              <a href="mailto:devanshkhanna75@gmail.com" className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/50 transition-all text-sm font-mono text-slate-300 hover:text-white group">
+                <Mail size={16} className="text-[#EA4335] group-hover:scale-110 transition-transform" /> Reach Out
               </a>
             </div>
           </motion.div>
@@ -195,6 +171,86 @@ export const Hero: React.FC = () => {
             </a>
           </motion.div>
 
+        </motion.div>
+
+        {/* Right Side - Automation Feed */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="hidden lg:flex justify-end w-full"
+        >
+          <div className="relative w-full max-w-md aspect-square">
+            {/* Decorative background blurs */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-purple-500/10 rounded-full blur-3xl"></div>
+            
+            {/* Floating Card */}
+            <div className="relative h-full w-full border border-white/5 bg-[#0a0a0a]/60 backdrop-blur-xl rounded-2xl p-6 flex flex-col shadow-2xl">
+              <div className="flex items-center justify-between mb-6 border-b border-white/5 pb-4">
+                <span className="text-xs font-mono text-primary tracking-widest uppercase">Live Automation Feed</span>
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-red-500/50"></div>
+                  <div className="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+                  <div className="w-2 h-2 rounded-full bg-green-500/50"></div>
+                </div>
+              </div>
+              
+              <div className="font-mono text-xs md:text-sm text-slate-400 flex-1 flex flex-col gap-4">
+                
+                <div className="flex flex-col gap-2 p-3 rounded-lg bg-white/5 border border-white/5">
+                  <div className="flex justify-between items-center">
+                    <span className="text-slate-300">Data Extraction</span>
+                    <span className="text-green-400 text-[10px] px-2 py-0.5 bg-green-400/10 rounded-full">COMPLETED</span>
+                  </div>
+                  <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-full bg-green-400 w-full"></div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 p-3 rounded-lg bg-white/5 border border-white/5">
+                  <div className="flex justify-between items-center">
+                    <span className="text-slate-300">AI Analysis</span>
+                    <span className="text-primary text-[10px] px-2 py-0.5 bg-primary/10 rounded-full animate-pulse">PROCESSING</span>
+                  </div>
+                  <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden relative">
+                    <motion.div 
+                      className="absolute top-0 left-0 h-full bg-primary"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "60%" }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex flex-col gap-2 p-3 rounded-lg bg-white/5 border border-white/5 opacity-50">
+                  <div className="flex justify-between items-center">
+                    <span className="text-slate-500">Client Reporting</span>
+                    <span className="text-slate-500 text-[10px] px-2 py-0.5 bg-white/5 rounded-full">QUEUED</span>
+                  </div>
+                  <div className="h-1 w-full bg-white/5 rounded-full"></div>
+                </div>
+
+              </div>
+              
+              <div className="mt-auto pt-4 border-t border-white/5">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-slate-500">System Status</span>
+                  <span className="text-green-400 font-medium flex items-center gap-1">
+                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> OPTIMIZED
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Floating accent elements */}
+            <motion.div 
+              animate={{ y: [0, -8, 0] }} 
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -right-4 -bottom-4 bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-3 text-xs font-mono text-slate-300 shadow-xl"
+            >
+              + 400hrs saved
+            </motion.div>
+          </div>
         </motion.div>
       </div>
 
