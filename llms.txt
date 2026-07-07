@@ -1,5 +1,5 @@
 # Devansh Khanna
-> Business Solutions Architect | MBA in Data Analytics & Operations
+> Business Automation Specialist | MBA in Data Analytics & Operations
 > "Turning Business Problems into Executable Prototypes."
 > Website: https://devisdev365.github.io/devansh-portfolio/
 > LinkedIn: https://www.linkedin.com/in/devansh-khanna-618606178/
@@ -18,7 +18,8 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 - Startups in SaaS, FinTech, or Analytics spaces
 
 ## Education
-### Master of Business Administration (MBA) — Delhi School of Business, Delhi (2026) | CGPA: 5.77
+### Master of Business Administration (MBA) — Delhi School of Business, Delhi (2026)
+- 5.77 CGPA
 - Specialization: Data Analytics & Operations (Primary), Marketing (Secondary)
 - Focus Areas: Operational Analytics, Process Optimization, Demand Forecasting, KPI Design
 - Leadership: Coordinator, INVICTUS Data Analysis Club (Scaled reach 66%, boosted engagement 5x)
@@ -73,14 +74,14 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 
 ### SaaS Market Pulse — Market Intelligence Engine
 - Role: Autonomous Systems Architect
-- Link: https://www.linkedin.com/posts/devansh-khanna-618606178_customersuccess-gtm-saas-ugcPost-7475791963921977345-GBFn/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACoXs_QBF9YI6gI7W3_AUm-VLLhBymWlNyQ
+- Live: https://www.linkedin.com/posts/devansh-khanna-618606178_customersuccess-gtm-saas-ugcPost-7475791963921977345-GBFn/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACoXs_QBF9YI6gI7W3_AUm-VLLhBymWlNyQ
 - **Problem:** Customer Success and GTM teams spend 45+ minutes every morning manually tracking industry news, open-source trends, and competitor feature releases. This tedious, tab-heavy manual research process is unsustainable and leads to falling behind.
 - **Solution:**
   - Data Aggregation: An autonomous AI agent programmatically scrapes RSS feeds, parses GitHub for trending repositories, fetches regional Google Trends, and uses Firecrawl to monitor 7 major competitors.
   - AI Synthesis: Raw data is fed into a specialized LLM (Google Gemini, with automatic failover to Groq's Llama 3) to filter noise, extract high-value insights, and tailor updates specifically for Customer Success contexts.
   - Delivery: Structured JSON output is injected into a custom, responsive HTML email template featuring a premium "neon tech" aesthetic and delivered via the Resend API.
   - Automation: The entire pipeline runs completely serverless overnight via a scheduled GitHub Actions cron job, complete with retry logic and IP proxying—requiring zero manual effort.
-- **Impact:** Saves 45 minutes of manual research every single morning; Fully automated workflow replacing 7+ tabs of daily browsing; Delivers a single, highly-curated email digest before waking up, ensuring zero duplicate content.
+- **Impact:** Saves 45 minutes of manual research every single morning.; Fully automated workflow replacing 7+ tabs of daily browsing.; Delivers a single, highly-curated email digest before waking up, ensuring zero duplicate content.
 - **Tech Stack:** Python, Google Gemini AI, Firecrawl API, Resend API, GitHub Actions, Web Scraping
 
 ### Neura-Q — AI Decision Framework

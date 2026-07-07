@@ -1,6 +1,6 @@
 # Devansh Khanna — Full Portfolio
 
-> **Business Solutions Architect** | MBA in Data Analytics & Operations (Delhi School of Business)
+> **Business Automation Specialist** | MBA in Data Analytics & Operations (Delhi School of Business)
 >
 > *"Turning Business Problems into Executable Prototypes."*
 
@@ -33,7 +33,8 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 
 ## Education
 
-### Master of Business Administration (MBA) — Delhi School of Business, Delhi (2026) | CGPA: 5.77
+### Master of Business Administration (MBA) — Delhi School of Business, Delhi (2026)
+- 5.77 CGPA
 - Specialization: Data Analytics & Operations (Primary), Marketing (Secondary)
 - Focus Areas: Operational Analytics, Process Optimization, Demand Forecasting, KPI Design
 - Leadership: Coordinator, INVICTUS Data Analysis Club (Scaled reach 66%, boosted engagement 5x)
@@ -107,7 +108,7 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 ## Projects
 
 ### 1. SaaS Market Pulse — Market Intelligence Engine
-> **Role:** Autonomous Systems Architect | [Watch Prototype Video](https://www.linkedin.com/posts/devansh-khanna-618606178_customersuccess-gtm-saas-ugcPost-7475791963921977345-GBFn/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACoXs_QBF9YI6gI7W3_AUm-VLLhBymWlNyQ)
+> **Role:** Autonomous Systems Architect | [Live Demo](https://www.linkedin.com/posts/devansh-khanna-618606178_customersuccess-gtm-saas-ugcPost-7475791963921977345-GBFn/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACoXs_QBF9YI6gI7W3_AUm-VLLhBymWlNyQ)
 
 **Problem:** Customer Success and GTM teams spend 45+ minutes every morning manually tracking industry news, open-source trends, and competitor feature releases. This tedious, tab-heavy manual research process is unsustainable and leads to falling behind.
 
@@ -117,9 +118,10 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 - Delivery: Structured JSON output is injected into a custom, responsive HTML email template featuring a premium "neon tech" aesthetic and delivered via the Resend API.
 - Automation: The entire pipeline runs completely serverless overnight via a scheduled GitHub Actions cron job, complete with retry logic and IP proxying—requiring zero manual effort.
 
-**Impact:** Saves 45 minutes of manual research every single morning; Fully automated workflow replacing 7+ tabs of daily browsing; Delivers a single, highly-curated email digest before waking up, ensuring zero duplicate content.
+**Impact:** Saves 45 minutes of manual research every single morning.; Fully automated workflow replacing 7+ tabs of daily browsing.; Delivers a single, highly-curated email digest before waking up, ensuring zero duplicate content.
 
 **Tech:** Python · Google Gemini AI · Firecrawl API · Resend API · GitHub Actions · Web Scraping
+
 
 ---
 
@@ -142,7 +144,7 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 
 ---
 
-### 2. AI Resume Enhancer — EdTech / Career Services
+### 3. AI Resume Enhancer — EdTech / Career Services
 > **Role:** Product Prototyping | [Live Demo](https://resume-ai-dev.netlify.app/)
 
 **Problem:** Students struggle to optimize their resumes for placement success, lacking insights into what makes their CV stand out or how well it aligns with job descriptions.
@@ -160,7 +162,7 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 
 ---
 
-### 3. Crypto Market Intelligence — FinTech / Trading
+### 4. Crypto Market Intelligence — FinTech / Trading
 > **Role:** Financial Analytics Prototyping | [Live Demo](https://btc-arbitrage-analyst.bolt.host/)
 
 **Problem:** Can retail investors compete with institutional algorithms in identifying price inefficiencies across Indian crypto exchanges?
@@ -179,7 +181,7 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 
 ---
 
-### 4. Brand Sentiment Analysis — Quick Service Restaurant (QSR) Industry
+### 5. Brand Sentiment Analysis — Quick Service Restaurant (QSR) Industry
 > **Role:** Marketing Analytics | [Live Demo](https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing)
 
 **Problem:** QSR brands (McDonald's, Domino's, KFC) lack competitive intelligence on social media engagement strategies. Need: Data-driven insights into what content drives customer engagement.
@@ -196,7 +198,7 @@ Not pure tech, not pure management — deliberately both. I can sit in a client 
 
 ---
 
-### 5. Red Tape [X] Anime Collection — Marketing & Product Design
+### 6. Red Tape [X] Anime Collection — Marketing & Product Design
 > **Role:** Marketing Campaign Strategist | [Live Demo](https://devisdev365.github.io/Marketing-Project/)
 
 **Problem:** A conceptual marketing and product design campaign proposing Red Tape's entry into the explosive anime streetwear market in India. Global titans dominate the anime shoe space at a premium price point (₹8k-15k), alienating Indian Gen Z. Red Tape is perfectly positioned to capture this massive whitespace.
