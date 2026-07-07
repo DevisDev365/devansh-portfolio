@@ -32,7 +32,7 @@ export const education = [
     degree: 'Master of Business Administration (MBA)',
     institution: 'Delhi School of Business, Delhi',
     year: '2026',
-    gpa: '5.64 CGPA',
+    gpa: '5.77 CGPA',
     details: [
       'Specialization: Data Analytics & Operations (Primary), Marketing (Secondary)',
       'Focus Areas: Operational Analytics, Process Optimization, Demand Forecasting, KPI Design',
