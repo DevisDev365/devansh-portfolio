@@ -11,6 +11,9 @@ Sitemap: https://devisdev365.github.io/devansh-portfolio/sitemap.xml
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
 User-agent: Bingbot
 Allow: /
 
