@@ -159,7 +159,7 @@ export const Hero: React.FC = () => {
 
           <motion.div variants={fadeUp} className="pt-4 flex gap-4">
             <a
-              href="https://drive.google.com/file/d/1SMNtQ3_G9JwO0-VmzdGXndOEXV7K_TyQ/view?usp=sharing"
+              href="https://drive.google.com/file/d/1MF3BBKMvM04cpVVf1md3y4dTLe2WsS9q/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative px-8 py-4 bg-transparent overflow-hidden rounded-none border border-slate-700 hover:border-primary/50 transition-colors"

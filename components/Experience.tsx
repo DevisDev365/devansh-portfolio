@@ -1,121 +1,170 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Reveal } from './ui/RevealMotion';
 import { TerminalLabel } from './ui/TerminalLabel';
 import { EXPERIENCE, SKILL_LINKS } from '../constants';
+import { Briefcase, Building2, MapPin, Calendar, ArrowUpRight, TrendingUp, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
 
 export const Experience: React.FC = () => {
-  const [activeTab, setActiveTab] = useState(0);
-
   return (
-    <section id="experience" className="py-32 px-6">
+    <section id="experience" className="py-24 md:py-32 px-6 relative">
       <div className="max-w-6xl mx-auto">
+        
+        {/* Section Header */}
         <Reveal sweep>
-          <div className="flex items-center gap-4 mb-16">
+          <div className="flex items-center gap-4 mb-16 md:mb-20">
             <span className="text-primary font-mono text-6xl opacity-20 font-bold -ml-4">02</span>
             <div>
-              <TerminalLabel text="The Journey" className="mb-1" />
-              <h2 className="text-4xl font-bold text-white">Work Experience</h2>
+              <TerminalLabel text="Career Milestones" className="mb-1" />
+              <h2 className="text-3xl md:text-4xl font-bold text-white">Work Experience</h2>
+              <p className="text-slate-400 text-sm md:text-base mt-1">
+                Enterprise SaaS consulting, RevOps execution, and ₹5Cr+ client lifecycle ownership.
+              </p>
             </div>
           </div>
         </Reveal>
 
-        <div className="flex flex-col md:flex-row gap-12">
-          {/* Tabs */}
-          <div className="flex md:flex-col overflow-x-auto md:overflow-visible border-b md:border-b-0 md:border-l border-slate-800 min-w-max h-fit sticky top-24">
-            {EXPERIENCE.map((exp, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveTab(idx)}
-                className={`px-6 py-4 text-left font-mono text-sm transition-all duration-300 border-l-2 md:border-l-2 md:border-b-0 -mb-[2px] md:mb-0 md:-ml-[2px] whitespace-nowrap ${activeTab === idx
-                  ? 'border-primary text-primary bg-primary/10 backdrop-blur-md shadow-[inset_4px_0_0_0_rgba(59,130,246,0.2)]'
-                  : 'border-transparent text-slate-500 hover:text-slate-300 hover:bg-white/5 hover:backdrop-blur-sm'
-                  }`}
-              >
-                {exp.company}
-              </button>
-            ))}
-          </div>
+        {/* Continuous Vertical Timeline Stream (Zero Clicks Required) */}
+        <div className="relative">
+          
+          {/* Vertical Timeline Spine Line */}
+          <div className="absolute left-4 md:left-8 top-4 bottom-8 w-px bg-gradient-to-b from-primary via-primary/30 to-slate-800 hidden sm:block"></div>
 
-          {/* Content */}
-          <div className="flex-1 min-h-[400px] relative">
-            {EXPERIENCE.map((exp, idx) => (
-              <motion.div
-                key={idx}
-                initial={false}
-                animate={activeTab === idx ? { opacity: 1, y: 0, position: 'relative' } : { opacity: 0, y: 16, position: 'absolute' }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className={`top-0 left-0 w-full ${activeTab !== idx ? 'pointer-events-none' : ''}`}
-              >
-                <Reveal width="100%">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white">
-                        {exp.role}
-                      </h3>
-                      <p className="text-primary text-lg">
-                        @ {exp.companyUrl ? (
-                          <a
-                            href={exp.companyUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:underline hover:text-primary/80 transition-colors"
-                          >
-                            {exp.company}
-                          </a>
-                        ) : (
-                          exp.company
-                        )}
-                      </p>
+          <div className="space-y-12 md:space-y-16">
+            {EXPERIENCE.map((exp, idx) => {
+              const isCurrent = exp.period.includes('Present');
+
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative sm:pl-16 md:pl-20"
+                >
+                  {/* Timeline Milestone Node */}
+                  <div className="absolute left-0 top-6 hidden sm:flex items-center justify-center">
+                    <div className={`w-8 md:w-10 h-8 md:h-10 rounded-full border-2 flex items-center justify-center backdrop-blur-md transition-all duration-300 ${
+                      isCurrent
+                        ? 'border-primary bg-primary/20 shadow-[0_0_20px_rgba(0,228,124,0.4)] text-primary'
+                        : 'border-slate-700 bg-black/80 text-slate-400 hover:border-primary/50'
+                    }`}>
+                      {isCurrent ? <Sparkles size={16} className="animate-pulse" /> : <Briefcase size={14} />}
                     </div>
-                    <span className="font-mono text-xs text-slate-400 bg-slate-800/50 px-3 py-1 rounded-full border border-white/5">{exp.period}</span>
                   </div>
 
-                  <div className="space-y-8 mt-8">
-                    {/* Business Challenge */}
-                    <div className="bg-red-500/5 p-6 rounded-lg border-l-2 border-red-500 backdrop-blur-sm">
-                      <h4 className="text-red-400 font-bold mb-2 text-xs uppercase tracking-wider">Business Challenge</h4>
-                      <p className="text-slate-300 text-sm leading-relaxed">{exp.businessChallenge}</p>
+                  {/* Experience Card */}
+                  <div className={`group rounded-2xl border bg-white/[0.03] backdrop-blur-xl p-6 md:p-8 transition-all duration-300 shadow-xl hover:shadow-2xl ${
+                    isCurrent
+                      ? 'border-primary/40 hover:border-primary bg-gradient-to-b from-primary/[0.04] to-transparent shadow-primary/5'
+                      : 'border-white/10 hover:border-white/20'
+                  }`}>
+                    
+                    {/* Header: Role, Company & Status */}
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/5">
+                      <div>
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                          <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-primary transition-colors">
+                            {exp.role}
+                          </h3>
+                          {isCurrent && (
+                            <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-mono font-medium bg-primary/10 text-primary border border-primary/30 animate-pulse">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                              CURRENT ROLE
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+                          <div className="flex items-center gap-1.5 text-primary font-medium">
+                            <Building2 size={16} />
+                            {exp.companyUrl ? (
+                              <a
+                                href={exp.companyUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:underline flex items-center gap-1 text-primary hover:text-white transition-colors"
+                              >
+                                {exp.company}
+                                <ArrowUpRight size={14} />
+                              </a>
+                            ) : (
+                              <span>{exp.company}</span>
+                            )}
+                          </div>
+
+                          {(exp as any).location && (
+                            <div className="flex items-center gap-1 text-slate-500 font-mono text-xs">
+                              <MapPin size={13} />
+                              <span>{(exp as any).location}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Date Chip */}
+                      <div className="flex items-center gap-2 self-start md:self-auto px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 text-xs font-mono text-slate-300 shrink-0">
+                        <Calendar size={13} className="text-primary" />
+                        <span>{exp.period}</span>
+                      </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Solutions */}
-                      <div>
-                        <h4 className="text-white font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-wide">
-                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span> Solutions
+                    {/* Business Challenge Box */}
+                    <div className="mt-6 p-4 md:p-5 rounded-xl bg-red-500/[0.04] border-l-2 border-red-400/60 border border-red-500/10">
+                      <div className="flex items-center gap-2 text-red-400 font-mono text-xs font-bold uppercase tracking-wider mb-2">
+                        <AlertCircle size={14} />
+                        <span>Business Challenge & Scope</span>
+                      </div>
+                      <p className="text-slate-300 text-sm md:text-[15px] leading-relaxed">
+                        {exp.businessChallenge}
+                      </p>
+                    </div>
+
+                    {/* 2-Column: Solutions & Impact */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+                      
+                      {/* Solutions Delivered */}
+                      <div className="space-y-3">
+                        <h4 className="text-xs font-mono uppercase tracking-widest text-slate-400 flex items-center gap-2 font-bold mb-4">
+                          <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+                          Solutions & Responsibilities
                         </h4>
-                        <ul className="space-y-4">
-                          {exp.solutions.map((item, i) => (
-                            <li key={i} className="flex items-start gap-3 text-slate-400 text-sm">
-                              <span className="text-primary mt-1.5 text-[10px]">▹</span>
-                              <span>{item}</span>
+                        <ul className="space-y-3.5">
+                          {exp.solutions.map((sol, sIndex) => (
+                            <li key={sIndex} className="flex items-start gap-3 text-slate-300 text-sm leading-relaxed">
+                              <CheckCircle2 size={16} className="text-blue-400 mt-0.5 shrink-0" />
+                              <span>{sol}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      {/* Impact */}
-                      <div>
-                        <h4 className="text-white font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-wide">
-                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Impact
+                      {/* Quantifiable Impact */}
+                      <div className="space-y-3">
+                        <h4 className="text-xs font-mono uppercase tracking-widest text-green-400 flex items-center gap-2 font-bold mb-4">
+                          <span className="w-2 h-2 rounded-full bg-green-400"></span>
+                          Key Business Impact
                         </h4>
-                        <ul className="space-y-4">
-                          {exp.impact.map((item, i) => (
-                            <li key={i} className="flex items-start gap-3 text-slate-300 font-medium text-sm">
-                              <span className="text-green-500 mt-1.5 text-[10px]">▲</span>
-                              <span>{item}</span>
+                        <ul className="space-y-3.5">
+                          {exp.impact.map((imp, iIndex) => (
+                            <li key={iIndex} className="flex items-start gap-3 text-slate-200 text-sm font-medium leading-relaxed bg-green-500/[0.03] p-3 rounded-lg border border-green-500/10 hover:border-green-500/20 transition-colors">
+                              <TrendingUp size={16} className="text-green-400 mt-0.5 shrink-0" />
+                              <span>{imp}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
+
                     </div>
 
-                    {/* Skills */}
-                    <div className="pt-6 border-t border-slate-800/50 flex flex-wrap gap-2">
+                    {/* Skill Tags */}
+                    <div className="mt-8 pt-6 border-t border-white/5 flex flex-wrap items-center gap-2">
+                      <span className="text-[11px] font-mono text-slate-500 mr-2 uppercase tracking-wider">Competencies:</span>
                       {exp.skills.map((skill, sIdx) => {
                         const url = SKILL_LINKS[skill];
                         const content = (
-                          <span className="px-3 py-1 bg-slate-800/50 hover:bg-slate-700/50 transition-colors text-slate-400 rounded text-xs font-mono border border-white/5 hover:text-primary hover:border-primary/30">
+                          <span className="px-3 py-1 bg-white/5 hover:bg-primary/10 transition-colors text-slate-300 hover:text-primary rounded-lg text-xs font-mono border border-white/5 hover:border-primary/30">
                             {skill}
                           </span>
                         );
@@ -130,11 +179,13 @@ export const Experience: React.FC = () => {
                     </div>
 
                   </div>
-                </Reveal>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
+
         </div>
+
       </div>
     </section>
   );

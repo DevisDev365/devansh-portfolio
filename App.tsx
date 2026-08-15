@@ -56,17 +56,6 @@ const App: React.FC = () => {
         </div>
         <div className="w-px h-12 bg-gradient-to-b from-slate-500 to-transparent"></div>
       </div>
-
-      <div className="hidden md:flex fixed bottom-12 right-12 flex-col items-center gap-6 z-50">
-        <a
-          href="mailto:devanshkhanna75@gmail.com"
-          className="text-slate-500 hover:text-primary font-mono text-sm tracking-widest hover:-translate-y-1 transition-all duration-300 vertical-text"
-          style={{ writingMode: 'vertical-rl' }}
-        >
-          devanshkhanna75@gmail.com
-        </a>
-        <div className="w-px h-12 bg-gradient-to-b from-slate-500 to-transparent"></div>
-      </div>
     </div>
   );
 };

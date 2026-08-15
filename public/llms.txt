@@ -1,155 +1,118 @@
 # Devansh Khanna
-> Business Automation Specialist | MBA in Data Analytics & Operations
-> "Turning Business Problems into Executable Prototypes."
+> Business Development Executive – SAP Consulting | MBA in Data Analytics & Operations
+> "Turning Business Problems into Automated Systems & Scalable Revenue."
 > Website: https://devisdev365.github.io/devansh-portfolio/
 > LinkedIn: https://www.linkedin.com/in/devansh-khanna-618606178/
 > GitHub: https://github.com/devisdev365
 > Phone: +91 9870316839
 
 ## About Me
-I solve business problems by building working prototypes—fast. With ₹5+ crore in managed revenue and experience across automotive manufacturing, entertainment, and AI-driven decision tools, I don't just analyze data—I turn business challenges into executable solutions that leaders can see, touch, and use.
+Business Development Executive experienced in enterprise SAP solution consulting (SAP Business One & SAP S/4HANA), client lifecycle management, and AI-driven workflow automation. Proven expertise in driving client engagement, navigating commercial negotiations, and expanding account value through consultative solution mapping and custom AI automations.
 
-Not pure tech, not pure management — deliberately both. I can sit in a client meeting, understand the business problem, and build a working prototype the same day. I bridge what engineers build and what clients actually need.
+With ₹5+ crore in managed revenue across automotive manufacturing, entertainment GTM, and enterprise ERP ecosystems (SAP Business One & SAP S/4HANA), I bridge the gap between complex software implementations and real business outcomes.
 
 ### Ideal Collaborators
-- Consulting firms needing rapid solution prototyping
-- Operations teams wanting data-driven optimization
-- Strategy groups bridging business vision and technical execution
-- Startups in SaaS, FinTech, or Analytics spaces
+- Enterprise ERP & SaaS consulting teams (SAP B1 / S/4HANA)
+- Business Development & RevOps leaders focused on revenue expansion & pipeline conversion
+- Operations teams seeking AI-driven workflow and reporting automation
+- High-growth B2B companies scaling enterprise client acquisition and account management
 
 ## Education
-### Master of Business Administration (MBA) — Delhi School of Business, Delhi (2026)
-- 5.77 CGPA
+### Master of Business Administration (MBA) — Delhi School of Business, Delhi NCR (2026)
+- Completed
 - Specialization: Data Analytics & Operations (Primary), Marketing (Secondary)
-- Focus Areas: Operational Analytics, Process Optimization, Demand Forecasting, KPI Design
-- Leadership: Coordinator, INVICTUS Data Analysis Club (Scaled reach 66%, boosted engagement 5x)
+- Key Modules: Operational Analytics, Process Optimization, Demand Forecasting, KPI Architecture
+- Leadership: Coordinator, INVICTUS Data Analysis Club (Scaled reach by 66%, boosted engagement 5x leading 50-member team)
 
 ### Bachelor of Business Administration (BBA) — Chandigarh University, Punjab (2022)
-- CGPA: 7.0
-- Foundation in Business Fundamentals
-- Transitioned into revenue management and analytics roles
+- Core foundation in business administration, financial analysis, and commercial management
+- Transitioned into enterprise key account management and revenue operations
 
 ## Work Experience
 
-### Imperial Auto Industries Ltd. — Key Account Executive (Aug 2022 - Aug 2023)
-- Company Website: https://imperialauto.in/
-- **Business Challenge:** Managing ₹5+ crore OEM portfolio in automotive manufacturing with manual processes causing pricing delays and operational inefficiencies.
+### Elevra Tech — Business Development Executive – SAP Consulting (July 2026 – Present)
+- Company Website: https://www.elevratech.in/
+- **Business Challenge:** Guiding enterprise clients through SAP Business One (SAP B1) and SAP S/4HANA consulting, mapping business requirements, minimizing time-to-value, and expanding account lifetime value.
 - **Solutions:**
-  - Revenue Optimization: Managed pricing workflows and production planning for 3 OEM accounts (Hyzon Motors, Kohler, Mitsubishi).
-  - Analytics Infrastructure: Developed Power BI dashboards and Excel forecasting models for manufacturing KPIs.
-  - Process Automation: Built Excel VBA macros + SQL queries for ERP reporting, achieving 87% time reduction (4hrs → 30min).
+  - Enterprise SAP Solution Consulting: Consult enterprise clients on SAP Business One (SAP B1) and SAP S/4HANA implementations, conducting requirement mapping and presenting proprietary add-ons to align product fit with client business objectives.
+  - Client Relationship & Account Management: Manage client engagements across enterprise accounts, conducting regular business reviews and ensuring long-term client retention and satisfaction.
+  - Consultative Value Alignment: Lead client discovery sessions and product demonstrations, advising C-suite stakeholders on custom module configurations to drive product adoption and operational efficiency.
+  - Revenue Expansion & Solution Mapping: Identify expansion opportunities during ongoing client touchpoints, positioning specialized add-ons to expand product footprint and increase Account Lifetime Value (LTV).
 - **Impact:**
-  - ₹5+ Crore portfolio managed with data-driven decision-making
-  - 12% pricing accuracy improvement = direct margin gains
-  - 87% time saved on reporting = 3.5 hours/week freed for strategic work
-  - Enhanced operational visibility across manufacturing workflow
-- **Skills:** Revenue Management, Demand Forecasting, Business Process Automation, Manufacturing Analytics, Strategic Account Management
+  - 95%+ Client Retention maintained across enterprise account portfolio
+  - Accelerated client Time-to-Value (TTV) via structured requirement mapping
+  - Facilitated executive buy-in across C-suite stakeholders for custom SAP module adoption
+  - Drove recurring revenue expansion through consultative SAP add-on solution mapping
+- **Skills:** SAP Solution Consulting, SAP Business One, SAP S/4HANA, Business Development, Client Requirement Mapping, Account Expansion, C-Suite Advisory, Commercial Negotiations
 
-### SMAAASH Entertainment Pvt Ltd — Intern (May 2025 - June 2025)
+### SMAAASH Entertainment Pvt. Ltd. — Sales & Marketing Intern (May 2025 – June 2025)
 - Company Website: https://smaaash-entertainment.in/
-- **Business Challenge:** Expanding customer base and launching new revenue streams in a competitive entertainment market — while uncovering why brand awareness was critically low despite active marketing spend.
+- **Business Challenge:** Launching a new entertainment revenue stream in a high-density, competitive market while unblocking sales pipeline conversion bottlenecks.
 - **Solutions:**
-  - Karaoke Service Launch (Phase 1): Led end-to-end launch from market analysis to first paying customer in 10–20 days — built offers, coordinated stakeholders, set up screens & projectors personally.
-  - On-Ground Sales (Phase 2): Chose field sales deliberately to plug a blind spot — 61 field visits + 200+ outbound calls; optimized 1,200+ lead database using data segmentation, improving quality scores by 40%.
-  - Root Cause Discovery: Identified that SMAAASH ran only hyper-targeted Meta/Instagram ads — invisible outside a narrow funnel. Many prospects simply didn't know SMAAASH existed. No dashboard would've surfaced this. Only being on the ground did.
+  - GTM Execution & Revenue: Executed GTM strategy for New Karaoke service via 200+ cold calls and 61 field visits, unlocking a new revenue stream generating ₹59K direct revenue.
+  - Pipeline Optimization: Segmented and cleansed 1,200+ prospective leads using data analytics, boosting lead quality scores by 40% and accelerating sales pipeline conversion rates.
+  - On-Ground Market Diagnostics: Identified high-converting customer personas and visibility gaps to adjust pricing and outreach strategies dynamically.
 - **Impact:**
-  - ₹59K revenue generated in 2-month internship
-  - 40% improvement in lead quality = higher conversion rates
-  - Successfully launched new Karaoke service line from concept to market
-  - Uncovered critical brand visibility gap invisible to digital analytics
-- **Skills:** Go-to-Market Strategy, Data-Driven Sales, Market Analysis, Revenue Optimization, Stakeholder Management
+  - ₹59K direct revenue generated in intensive 2-month launch window
+  - 40% improvement in sales lead quality score via analytical database segmentation
+  - Successfully brought new Karaoke service line from concept to initial paying customers
+  - Established replicable outbound GTM playbook for regional entertainment sales
+- **Skills:** Go-to-Market (GTM) Strategy, Lead Pipeline Optimization, Outbound Sales, Data Analytics, Market Penetration, Revenue Generation
 
-### INVICTUS @ DSB — Joint Coordinator → Coordinator (Oct 2024 - April 2026)
-- Company Website: https://dsb.edu.in/invictus/
-- **Business Challenge:** Started as Joint Coordinator and promoted to lead the data analysis club at Delhi School of Business, managing speakers, operations, and communications across a nearly two-year tenure.
+### Imperial Auto Industries Ltd. — Key Account Executive (Aug 2022 – Aug 2023)
+- Company Website: https://imperialauto.in/
+- **Business Challenge:** Managing high-value OEM export/domestic client accounts under manual pricing workflows, pricing turnaround bottlenecks, and strict SLA requirements.
 - **Solutions:**
-  - Coordinated events and workshops; managed speakers, operations, and communications.
-  - Tracked registrations, attendance, and feedback to improve planning.
+  - End-to-End Key Account Ownership: Managed complete relationship and commercial lifecycle for 3 strategic OEM accounts: Hyzon Motors US (Export), Mitsubishi Logisnext US (Export), and Kohler Power India (Domestic).
+  - Full Customer Lifecycle Management: Directed client journey from VP/GM handover, company introduction, and plant audit representation (Export Marketing) to RFQ evaluation, Incoterm/pricing negotiations, PO issuance, and production handover.
+  - Account Expansion & ARR Growth: Drove strategic account expansion and upselling for key enterprise accounts, generating ₹5 Cr in expansion ARR through consultative solution mapping and multi-stakeholder alignment.
+  - SLA Advocacy & Operations: Served as primary escalation handler to ensure 100% SLA compliance and client retention; built automated Power BI/Excel models cutting reporting cycle times by 87% and improving pricing margin accuracy by 12%.
 - **Impact:**
-  - Scaled club reach and managed end-to-end event operations.
-  - Improved event planning through data-driven attendance tracking.
-- **Skills:** Project Management, Data Analysis, Stakeholder Management
+  - ₹5+ Crore in expansion ARR generated across key enterprise accounts
+  - 87% time reduction in ERP reporting (4 hrs → 30 mins, freeing 3.5 hrs/week)
+  - 12% pricing margin accuracy improvement through data-driven forecasting models
+  - 100% SLA compliance and zero churn across strategic global OEM clients
+- **Skills:** Key Account Management, RFQ & Incoterms Negotiations, OEM Lifecycle Management, Power BI Dashboards, Excel VBA & SQL, Pricing Accuracy & Margin Optimization, SLA Compliance
 
 ## Projects
 
-### SaaS Market Pulse — Market Intelligence Engine
-- Role: Autonomous Systems Architect
+### SaaS Market Pulse — AI & RevOps Market Intelligence
+- Role: Creator & Autonomous Systems Architect
 - Live: https://www.linkedin.com/posts/devansh-khanna-618606178_customersuccess-gtm-saas-ugcPost-7475791963921977345-GBFn/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACoXs_QBF9YI6gI7W3_AUm-VLLhBymWlNyQ
-- **Problem:** Customer Success and GTM teams spend 45+ minutes every morning manually tracking industry news, open-source trends, and competitor feature releases. This tedious, tab-heavy manual research process is unsustainable and leads to falling behind.
+- **Problem:** Customer Success, RevOps, and GTM teams waste 45+ minutes every morning manually tracking fragmented SaaS blogs, GitHub trending repositories, and competitor feature releases—leading to slow market response and missed revenue signals.
 - **Solution:**
-  - Data Aggregation: An autonomous AI agent programmatically scrapes RSS feeds, parses GitHub for trending repositories, fetches regional Google Trends, and uses Firecrawl to monitor 7 major competitors.
-  - AI Synthesis: Raw data is fed into a specialized LLM (Google Gemini, with automatic failover to Groq's Llama 3) to filter noise, extract high-value insights, and tailor updates specifically for Customer Success contexts.
-  - Delivery: Structured JSON output is injected into a custom, responsive HTML email template featuring a premium "neon tech" aesthetic and delivered via the Resend API.
-  - Automation: The entire pipeline runs completely serverless overnight via a scheduled GitHub Actions cron job, complete with retry logic and IP proxying—requiring zero manual effort.
-- **Impact:** Saves 45 minutes of manual research every single morning.; Fully automated workflow replacing 7+ tabs of daily browsing.; Delivers a single, highly-curated email digest before waking up, ensuring zero duplicate content.
-- **Tech Stack:** Python, Google Gemini AI, Firecrawl API, Resend API, GitHub Actions, Web Scraping
+  - Data Aggregation & Diffing Engine: Architected an automated market intelligence pipeline using Python, Firecrawl, and RSS feeds to aggregate daily SaaS industry blogs, trending GitHub repos, and Google Trends (India, US, Europe), with built-in content diffing to filter duplicate news.
+  - AI Briefing & Delivery Automation: Integrated Gemini API to synthesize raw web data into interactive HTML executive briefs, automated via Apple Shortcuts (6:00 AM daily) and Resend API, cutting daily research time by ~80% (from 50 to 10 minutes).
+  - Failover & Zero-Touch Cron: Runs completely serverless via scheduled GitHub Actions cron jobs with automatic error handling, delivering a clean, tailored digest before the workday begins.
+- **Impact:** ~80% reduction in daily industry research time (from 50 to 10 minutes); Eliminated 7+ manual browser tabs with a single automated, intelligence-rich daily briefing; Zero duplicate content delivered via automated semantic diffing algorithms; Directly empowers CS & GTM teams with actionable market and competitor insights
+- **Tech Stack:** Python, Gemini API, Firecrawl API, Apple Shortcuts, Resend API, GitHub Actions, RSS Feeds
 
-### Neura-Q — AI Decision Framework
-- Role: Business Solutions Architect
-- Live: https://neuraq.netlify.app/
-- **Problem:** People give vague prompts to AI, AI hallucinates, and people accept wrong answers. Without structured context — Background, Dilemma, and a defined Personality — LLMs produce generic, shallow responses that fail in real strategic scenarios.
-- **Solution:**
-  - Structured Input Engine: User enters Background + Dilemma + chooses a Persona (any — even fictional characters). An 'Enhance Prompt' button structures the input into clean JSON before hitting the API — AI models parse JSON far more effectively than raw text.
-  - Three Reasoning Personas (same API, different thinking styles): AEON for career path analysis using Tree-of-Thought (ToT), NOVA for life decisions using Graph-of-Thought (GoT), TESS for scenario exploration using Chain-of-Thought (CoT).
-  - Collapsible Visual Nodes: Responses returned as structured reasoning trees — not a wall of text. Each branch is a logical option with risk-weighted outcomes.
-  - Result: Better inputs + structured reasoning = less hallucination, more reliable answers.
-- **Impact:** Transforms 1-line prompts into deep strategic analysis automatically; Eliminates hallucination risk by enforcing structured context before API call; Three distinct reasoning modes for different decision types; Reduced strategic planning cycles from weeks to days
-- **Tech Stack:** Python, Supabase, LLM APIs, JSON Engineering
-- **Note:** Proof-of-concept demonstrating how structured prompt engineering architectures outperform raw chat interfaces.
-
-### AI Resume Enhancer — EdTech / Career Services
-- Role: Product Prototyping
-- Live: https://resume-ai-dev.netlify.app/
-- **Problem:** Students struggle to optimize their resumes for placement success, lacking insights into what makes their CV stand out or how well it aligns with job descriptions.
-- **Solution:**
-  - Built ML-powered resume optimization platform for students with three integrated modules:
-  - CV Analyzer: Identifies weaknesses and improvement areas in student resumes
-  - Placement Predictor: XGBoost ML model predicting placement success bracket with 85% accuracy
-  - Resume Parser & Maker: Parses resume content and generates JD-aligned versions tailored to specific job descriptions
-- **Impact:** Built For: Student self-improvement and placement preparation; Core Value: Automated feedback loop for students to improve CV quality before applying
-- **Tech Stack:** Python, XGBoost, Gemini API, Pandas
-
-### Crypto Market Intelligence — FinTech / Trading
-- Role: Financial Analytics Prototyping
-- Live: https://btc-arbitrage-analyst.bolt.host/
-- **Problem:** Can retail investors compete with institutional algorithms in identifying price inefficiencies across Indian crypto exchanges?
-- **Solution:**
-  - Built real-time market monitoring system that tracks Bitcoin price spreads across 2 Indian crypto exchanges
-  - Flags arbitrage opportunities (buy low on Exchange A, sell high on Exchange B)
-  - Calculates profit after fees, taxes, and slippage
-  - Backend automation pipeline built with VectorShift
-- **Impact:** Identified 15+ profitable opportunities during testing period; Proved concept: ₹10,000 investment could yield ₹500-1,500 per trade; Demonstrated ability to integrate multiple financial APIs in real-time and build decision tools for financial services
-- **Tech Stack:** Python, Pandas, Financial Modeling, VectorShift
-- **Note:** Built to understand market microstructure and financial modeling—not as production trading system.
-
-### Brand Sentiment Analysis — Quick Service Restaurant (QSR) Industry
-- Role: Marketing Analytics
+### Brand Sentiment Analysis — Competitive Intelligence & Data Analytics
+- Role: Marketing Analytics Lead
 - Live: https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing
-- **Problem:** QSR brands (McDonald's, Domino's, KFC) lack competitive intelligence on social media engagement strategies. Need: Data-driven insights into what content drives customer engagement.
+- **Problem:** Quick Service Restaurant (QSR) leaders lack unified, empirical visibility into competitor social engagement dynamics and content strategy performance across major market players.
 - **Solution:**
-  - Data Collection: Scraped 650+ Instagram posts across 3 QSR brands over 6-7 months using ParseHub (Domino's: 154, KFC: 251, McDonald's: 251)
-  - Comparative Analysis: Python (Pandas, Seaborn) to evaluate engagement metrics across brands
-  - Insight Generation: Identified content patterns, posting frequency, and engagement drivers
-- **Impact:** Identified top-performing content types for each brand; Revealed engagement rate benchmarks (Likes/Comments/Shares per 1000 followers); Mapped optimal posting times and frequency; Highlighted competitive gaps and opportunities
-- **Tech Stack:** Python, Pandas, Seaborn, ParseHub
+  - Data Ingestion: Harvested 650+ Instagram posts across Domino's (154), KFC (251), and McDonald's (251) over a 7-month evaluation horizon using automated extraction pipelines.
+  - Statistical Analysis: Built Python processing scripts (Pandas, Seaborn) to evaluate engagement distributions, posting schedules, and sentiment velocity.
+  - Actionable Benchmarking: Synthesized clear operational benchmarks for engagement rate per 1,000 followers and peak engagement posting windows.
+- **Impact:** Identified highest-performing content themes and engagement benchmarks per brand; Mapped optimal engagement windows across peak social media traffic periods; Surfaced actionable competitive opportunities in digital customer acquisition
+- **Tech Stack:** Python, Pandas, Seaborn, ParseHub, Data Visualization
 
-### Red Tape [X] Anime Collection — Marketing & Product Design
-- Role: Marketing Campaign Strategist
+### Red Tape [X] Anime Collection — Product Strategy & Market Whitespace
+- Role: GTM Campaign Strategist
 - Live: https://devisdev365.github.io/Marketing-Project/
-- **Problem:** A conceptual marketing and product design campaign proposing Red Tape's entry into the explosive anime streetwear market in India. Global titans dominate the anime shoe space at a premium price point (₹8k-15k), alienating Indian Gen Z. Red Tape is perfectly positioned to capture this massive whitespace.
+- **Problem:** Global athletic brands monopolize the Indian anime streetwear market at ₹8k–₹15k price points, alienating Gen-Z consumers. Red Tape had a distinct opportunity to capture this high-growth whitespace at accessible pricing.
 - **Solution:**
-  - Analyzed 5-year Google Trends data to identify a 12.5x growth in anime footwear demand in India.
-  - Spearheaded the conceptualization of a 7-piece character-themed sneaker line, directing AI-generated product designs.
-  - Produced cinematic promotional video assets for product reveals.
-  - Developed a comprehensive 4-phase, digital-first Go-to-Market (GTM) strategy focusing on Instagram and YouTube.
-  - Created detailed campaign briefs encompassing budget allocation, influencer seeding, and community UGC strategies.
-- **Impact:** Identified critical market gap for affordable, Gen-Z targeted streetwear (₹1.5k-3.5k).; Positioned Red Tape as the first major Indian brand in the anime footwear space.
-- **Tech Stack:** Google Trends, AI Design Generation, Go-to-Market Strategy, Data Analytics
-- **Note:** Conceptual marketing campaign and product design leveraging Google Trends data.
+  - Market Demand Validation: Analyzed 5-year Google Trends trajectory revealing a 12.5x surge in anime-themed streetwear demand across Indian metropolitan hubs.
+  - AI-Directed Product Concepts: Directed generative AI design pipelines to conceptualize a 7-piece character sneaker collection tailored for commercial manufacturing feasibility.
+  - Omnichannel GTM Roadmap: Formulated a 4-phase digital launch framework encompassing influencer seeding, community UGC, and target pricing at ₹1.5k–₹3.5k.
+- **Impact:** Validated multi-crore market whitespace for affordable Gen-Z footwear in India; Architected end-to-end GTM framework from trend analytics to campaign distribution
+- **Tech Stack:** Google Trends, AI Design Pipelines, GTM Strategy, Market Whitespace Analysis
+- **Note:** Conceptual product design and GTM strategy model driven by empirical Google Trends analytics.
 
 ## Achievements
-- **National Finalist (Top 20)** — AIMA Student Management Games 2024: Regional 1st Runner-Up across 1,200+ B-School Teams. Led team as CEO through finance, operations, and marketing simulations.
-- **Sheets & Beats — Data Analysis Competition** — Coordinator, INVICTUS Data Analysis Club | Delhi School of Business: Created and ran a data analysis competition at DSB — Round 1: Excel/data quiz via Mentimeter (top 5 teams advance), Final Round: live data problem under time pressure. 60–80 teams participated, tripling participation vs previous events.
-- **Business Competition Recognition** — Various National Challenges: 2nd Runner-Up: Youth's Voice Sustainability Challenge (BCC&I x NTPC) | National Participant: L'Oréal Sustainability Challenge 2024 & HP Power Lab Business Simulation.
-- **Technical Operations Lead** — National & International Conferences: Led technical operations for 6+ national/international conferences ensuring flawless execution through project planning and vendor management.
+- **National Finalist (Top 20 Nationally)** — AIMA Student Management Games 2024: Regional 1st Runner-Up across 1,200+ B-school teams. Led team as CEO across corporate finance, operations, and marketing decision-making simulations.
+- **Club Coordinator — INVICTUS Data Analysis Club** — Delhi School of Business, Delhi NCR: Scaled membership reach by 66% and boosted event engagement 5x leading a 50-member team. Organized university-wide data analytics competitions and industry workshops.
+- **2nd Runner-Up — Youth’s Voice Sustainability Challenge** — BCC&I x NTPC: Recognized for developing comprehensive sustainable strategy models. Also participated nationally in L’Oréal Sustainability Challenge & HP Power Lab Business Simulation.
+- **Technical Operations Lead** — National & International Conferences: Managed technical operations and multi-stakeholder coordination for 6+ national and international academic conferences.
 

@@ -17,7 +17,9 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Contact", href: "#contact" },
 ];
 
-export const PERSONAL_EMAIL = "devanshkhanna75@gmail.com";
+export const PERSONAL_EMAIL = "devansh.khanna24@dsb.edu.in";
+export const SECONDARY_EMAIL = "devanshkhanna75@gmail.com";
+export const RESUME_URL = "https://drive.google.com/file/d/1MF3BBKMvM04cpVVf1md3y4dTLe2WsS9q/view?usp=sharing";
 
 export const BIO = bio;
 
@@ -30,68 +32,64 @@ export const PROJECTS: Project[] = projects;
 export const SOCIALS: SocialLink[] = socials;
 
 export const SKILL_LINKS: Record<string, string> = {
-  // Technical
+  // Enterprise & SaaS CS
+  "SaaS Solution Consulting": "https://www.sap.com/products/erp/business-one.html",
+  "SAP Business One": "https://www.sap.com/products/erp/business-one.html",
+  "SAP S/4HANA": "https://www.sap.com/products/erp/s4hana.html",
+  "Customer Health Scoring": "https://en.wikipedia.org/wiki/Customer_success",
+  "Quarterly Business Reviews (QBRs)": "https://en.wikipedia.org/wiki/Customer_success",
+  "Net Revenue Retention (NRR)": "https://en.wikipedia.org/wiki/Net_revenue_retention",
+  "Account Expansion": "https://en.wikipedia.org/wiki/Key_account_management",
+  "C-Suite Advisory": "https://en.wikipedia.org/wiki/Management_consulting",
+
+  // Commercial & Operations
+  "Key Account Management": "https://en.wikipedia.org/wiki/Key_account_management",
+  "RFQ & Incoterms Negotiations": "https://en.wikipedia.org/wiki/Incoterms",
+  "OEM Lifecycle Management": "https://en.wikipedia.org/wiki/Original_equipment_manufacturer",
+  "Go-to-Market (GTM) Strategy": "https://en.wikipedia.org/wiki/Go-to-market_strategy",
+  "Lead Pipeline Optimization": "https://en.wikipedia.org/wiki/Sales_operations",
+  "Outbound Sales": "https://en.wikipedia.org/wiki/Sales_operations",
+  "Pricing Accuracy & Margin Optimization": "https://en.wikipedia.org/wiki/Revenue_management",
+  "SLA Compliance": "https://en.wikipedia.org/wiki/Service-level_agreement",
+
+  // AI & Technical
+  "AI Workflow Automation": "https://openai.com/",
   "Python": "https://www.python.org/",
-  "SQL": "https://en.wikipedia.org/wiki/SQL",
+  "Gemini API": "https://ai.google.dev/",
+  "Google Gemini AI": "https://ai.google.dev/",
+  "Firecrawl API": "https://www.firecrawl.dev/",
+  "Apple Shortcuts": "https://support.apple.com/guide/shortcuts/welcome/ios",
+  "Resend API": "https://resend.com/",
+  "GitHub Actions": "https://github.com/features/actions",
+  "RSS Feeds": "https://en.wikipedia.org/wiki/RSS",
+  "SQL & Advanced Excel": "https://learn.microsoft.com/en-us/office/vba/api/overview/excel",
   "Power BI": "https://powerbi.microsoft.com/",
-  "Excel VBA": "https://learn.microsoft.com/en-us/office/vba/api/overview/excel",
-  "LLM APIs": "https://platform.openai.com/docs/introduction",
-  "Prompt Engineering": "https://en.wikipedia.org/wiki/Prompt_engineering",
-  "Product Management": "https://en.wikipedia.org/wiki/Product_management",
-  "LeadSquared CRM": "https://www.leadsquared.com/",
-  "Data Analysis": "https://en.wikipedia.org/wiki/Data_analysis",
-  "Business Strategy": "https://en.wikipedia.org/wiki/Strategic_management",
-  "Project Management": "https://en.wikipedia.org/wiki/Project_management",
-  "Automotive Ops": "https://en.wikipedia.org/wiki/Operations_management",
-  "Sales Optimization": "https://en.wikipedia.org/wiki/Sales_operations",
-  "JavaScript": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-  "XGBoost": "https://xgboost.readthedocs.io/",
-  "Supabase": "https://supabase.com/",
-
-  // Business / Domain
-  "Revenue Management": "https://en.wikipedia.org/wiki/Revenue_management",
-  "Demand Forecasting": "https://en.wikipedia.org/wiki/Demand_forecasting",
-  "Business Process Automation": "https://en.wikipedia.org/wiki/Business_process_automation",
-  "Manufacturing Analytics": "https://en.wikipedia.org/wiki/Manufacturing_operations_management",
-  "Strategic Account Management": "https://en.wikipedia.org/wiki/Key_account_management",
-  "Go-to-Market Strategy": "https://en.wikipedia.org/wiki/Go-to-market_strategy",
-  "Data-Driven Sales": "https://en.wikipedia.org/wiki/Sales_operations",
-  "Market Analysis": "https://en.wikipedia.org/wiki/Market_analysis",
-  "Stakeholder Management": "https://en.wikipedia.org/wiki/Stakeholder_management",
-
-  // Tech Stack from Projects
-  "JSON Engineering": "https://www.json.org/",
+  "Power BI Dashboards": "https://powerbi.microsoft.com/",
+  "Excel VBA & SQL": "https://learn.microsoft.com/en-us/office/vba/api/overview/excel",
   "Pandas": "https://pandas.pydata.org/",
-  "Financial Modeling": "https://en.wikipedia.org/wiki/Financial_modeling",
-  "VectorShift": "https://www.vectorshift.ai/",
   "Seaborn": "https://seaborn.pydata.org/",
   "ParseHub": "https://www.parsehub.com/",
-  "Generative AI API": "https://en.wikipedia.org/wiki/Generative_artificial_intelligence",
   "Google Trends": "https://trends.google.com/",
-  "AI Design Generation": "https://en.wikipedia.org/wiki/Artificial_intelligence_art"
+  "AI Design Pipelines": "https://en.wikipedia.org/wiki/Generative_artificial_intelligence",
+  "GTM Strategy": "https://en.wikipedia.org/wiki/Go-to-market_strategy",
+  "Market Whitespace Analysis": "https://en.wikipedia.org/wiki/Market_analysis",
+  "Data Analytics": "https://en.wikipedia.org/wiki/Data_analysis",
+  "Market Penetration": "https://en.wikipedia.org/wiki/Market_penetration",
+  "Revenue Generation": "https://en.wikipedia.org/wiki/Revenue_management",
 };
 
 export const TECHNICAL_SKILLS = [
-  { name: "Python", url: SKILL_LINKS["Python"], badge: "https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" },
-  { name: "SQL", url: SKILL_LINKS["SQL"], badge: "https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" },
-  { name: "Prompt Engineering", url: SKILL_LINKS["Prompt Engineering"], badge: "https://img.shields.io/badge/Prompt_Engineering-FF9900?style=for-the-badge&logo=openai&logoColor=white" },
-  { name: "Product Management", url: SKILL_LINKS["Product Management"], badge: "https://img.shields.io/badge/Product_Management-0052CC?style=for-the-badge&logo=jira&logoColor=white" },
-  { name: "LeadSquared CRM", url: SKILL_LINKS["LeadSquared CRM"], badge: "https://img.shields.io/badge/LeadSquared_CRM-FF5722?style=for-the-badge&logo=salesforce&logoColor=white" },
+  { name: "SAP Business One", url: SKILL_LINKS["SAP Business One"], badge: "https://img.shields.io/badge/SAP%20Business%20One-008FD3?style=for-the-badge&logo=sap&logoColor=white" },
+  { name: "SAP S/4HANA", url: SKILL_LINKS["SAP S/4HANA"], badge: "https://img.shields.io/badge/SAP%20S%2F4HANA-0A2540?style=for-the-badge&logo=sap&logoColor=white" },
+  { name: "AI Workflow Automation", url: SKILL_LINKS["AI Workflow Automation"], badge: "https://img.shields.io/badge/AI%20Automation-000000?style=for-the-badge&logo=openai&logoColor=white" },
+  { name: "Google Gemini API", url: SKILL_LINKS["Gemini API"], badge: "https://img.shields.io/badge/Gemini%20API-8E75B2?style=for-the-badge&logo=google-gemini&logoColor=white" },
+  { name: "Firecrawl API", url: SKILL_LINKS["Firecrawl API"], badge: "https://img.shields.io/badge/Firecrawl-FF5722?style=for-the-badge&logoColor=white" },
   { name: "Power BI", url: SKILL_LINKS["Power BI"], badge: "https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" },
-  { name: "Excel VBA", url: SKILL_LINKS["Excel VBA"], badge: "https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white" },
-  { name: "LLM APIs", url: SKILL_LINKS["LLM APIs"], badge: "https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white" },
-  { name: "Data Analysis", url: SKILL_LINKS["Data Analysis"], badge: "https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" },
-  { name: "Business Strategy", url: SKILL_LINKS["Business Strategy"], badge: "https://img.shields.io/badge/Strategy-Business-blue?style=for-the-badge" },
-  { name: "Project Management", url: SKILL_LINKS["Project Management"], badge: "https://img.shields.io/badge/Management-Project-orange?style=for-the-badge" },
-  { name: "Automotive Ops", url: SKILL_LINKS["Automotive Ops"], badge: "https://img.shields.io/badge/Ops-Automotive-red?style=for-the-badge" },
-  { name: "Sales Optimization", url: SKILL_LINKS["Sales Optimization"], badge: "https://img.shields.io/badge/Sales-Optimization-green?style=for-the-badge" },
-  { name: "JavaScript", url: SKILL_LINKS["JavaScript"], badge: "https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" },
-  { name: "XGBoost", url: SKILL_LINKS["XGBoost"], badge: "https://img.shields.io/badge/XGBoost-FF6600?style=for-the-badge&logo=xgboost&logoColor=white" },
-  { name: "Supabase", url: SKILL_LINKS["Supabase"], badge: "https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" },
-  { name: "Google Trends", url: SKILL_LINKS["Google Trends"], badge: "https://img.shields.io/badge/Google_Trends-4285F4?style=for-the-badge&logo=google&logoColor=white" },
-  { name: "Gemini API", url: SKILL_LINKS["LLM APIs"], badge: "https://img.shields.io/badge/Gemini_API-8E75B2?style=for-the-badge&logo=google-gemini&logoColor=white" }
+  { name: "SQL & Advanced Excel", url: SKILL_LINKS["SQL & Advanced Excel"], badge: "https://img.shields.io/badge/SQL%20%26%20Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white" },
+  { name: "Resend API", url: SKILL_LINKS["Resend API"], badge: "https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=resend&logoColor=white" },
 ];
 
 export const ACHIEVEMENTS: Achievement[] = achievements;
 
 export const CERTIFICATIONS: Certification[] = certifications;
+
