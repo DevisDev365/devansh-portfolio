@@ -13,30 +13,34 @@ export const portfolioIdentity = {
 };
 
 export const bio = {
-  heading: 'Business Development & Solutions Specialist bridging business strategy, SAP enterprise consulting, and AI workflow automation.',
-  subHeading: 'Experienced in SAP Business One & S/4HANA solution consulting, client relationship management, and consultative revenue expansion.',
+  heading: 'Business Development & Solutions Specialist bridging business strategy, enterprise SAP consulting, and AI workflow automation.',
+  subHeading: 'Experienced in enterprise SaaS & SAP Business One (SAP B1) solution consulting, client lifecycle management, and consultative revenue expansion.',
   introduction: [
-    'Business Development Executive experienced in enterprise SAP solution consulting (SAP Business One & SAP S/4HANA), client lifecycle management, and AI-driven workflow automation. Proven expertise in driving client engagement, navigating commercial negotiations, and expanding account value through consultative solution mapping and custom AI automations.',
-    'With ₹5+ crore in managed revenue across automotive manufacturing, entertainment GTM, and enterprise ERP ecosystems (SAP Business One & SAP S/4HANA), I bridge the gap between complex software implementations and real business outcomes.',
+    'Cross-functional professional experienced in enterprise SaaS solutions, AI workflow architecture, and client lifecycle management. Proven track record in translating business requirements into scalable AI automations, optimizing client operations, and driving measurable growth through consultative problem-solving, rapid prototyping, and end-to-end execution.',
+    'With ₹5+ crore in managed revenue across automotive manufacturing, entertainment GTM, and enterprise ERP ecosystems (SAP Business One), I bridge the gap between complex business requirements, rapid solution prototypes, and scalable commercial outcomes.',
   ],
   idealCollaborators: [
-    'Enterprise ERP & SaaS consulting teams (SAP B1 / S/4HANA)',
+    'Enterprise ERP & SaaS consulting teams (SAP Business One / SAP B1)',
     'Business Development & RevOps leaders focused on revenue expansion & pipeline conversion',
-    'Operations teams seeking AI-driven workflow and reporting automation',
+    'Operations teams seeking AI-driven workflow, voice intelligence, and reporting automation',
     'High-growth B2B companies scaling enterprise client acquisition and account management',
   ],
   coreCompetencies: [
     {
-      category: 'SAP Consulting & Account Management',
-      skills: ['Requirement Mapping', 'SAP Business One (SAP B1)', 'SAP S/4HANA', 'Client Solution Alignment', 'Account Relationship Management', 'Revenue Expansion'],
+      category: 'AI & Workflow Automation',
+      skills: ['Antigravity (Custom Automation Architecture)', 'Prompt Engineering & Logic Design', 'Gemini Multimodal Live API', 'Claude', 'GPT', 'Hugging Face Models', 'Vector Databases & RAG Concepts', 'n8n', 'Make.com'],
     },
     {
-      category: 'RevOps & AI Automation',
-      skills: ['Workflow Automation (Python, Gemini API, Firecrawl)', 'Apple Shortcuts', 'Resend API', 'ERPs (SAP B1, SAP S/4HANA)'],
+      category: 'AI-Assisted App Prototyping',
+      skills: ['AI-Driven Web Application Architecture (UI & Logic Workflows)', 'Google Cloud Platform (Cloud Run, Auto-Scaling Deployment)', 'Git/GitHub'],
     },
     {
-      category: 'Analytics & Commercial Tools',
-      skills: ['Power BI', 'Advanced Excel & SQL', 'RFQ / Incoterms Commercial Negotiations', 'Lead Database Optimization'],
+      category: 'Enterprise Systems & Analytics',
+      skills: ['SAP Business One (SAP B1)', 'Power BI', 'Advanced Excel & VBA/Macros', 'SQL', 'Process Automation', 'RFQ Commercial Evaluation'],
+    },
+    {
+      category: 'Client & Commercial Operations',
+      skills: ['Enterprise SaaS Consulting', 'Client Onboarding & Lifecycle Management', 'Account Health Scoring', 'QBRs', 'SLA Management', 'Rapid Prototyping'],
     },
   ],
 };
@@ -72,27 +76,26 @@ export const experience = [
     location: 'Delhi NCR',
     period: 'July 2026 – Present',
     businessChallenge:
-      'Guiding enterprise clients through SAP Business One (SAP B1) and SAP S/4HANA consulting, mapping business requirements, minimizing time-to-value, and expanding account lifetime value.',
+      'Consulting enterprise clients on SAP Business One (SAP B1) implementations, aligning business objectives with scalable product configurations, and driving long-term account expansion.',
     solutions: [
-      'Enterprise SAP Solution Consulting: Consult enterprise clients on SAP Business One (SAP B1) and SAP S/4HANA implementations, conducting requirement mapping and presenting proprietary add-ons to align product fit with client business objectives.',
-      'Client Relationship & Account Management: Manage client engagements across enterprise accounts, conducting regular business reviews and ensuring long-term client retention and satisfaction.',
-      'Consultative Value Alignment: Lead client discovery sessions and product demonstrations, advising C-suite stakeholders on custom module configurations to drive product adoption and operational efficiency.',
-      'Revenue Expansion & Solution Mapping: Identify expansion opportunities during ongoing client touchpoints, positioning specialized add-ons to expand product footprint and increase Account Lifetime Value (LTV).',
+      'Enterprise SaaS Consulting: Consult enterprise clients on SAP Business One (SAP B1) implementations, conducting requirement mapping and presenting proprietary add-ons to align product fit with client business objectives.',
+      'Client Retention & Account CS: Manage end-to-end customer lifecycle for enterprise SaaS accounts, monitoring Account Health Scores, conducting Quarterly Business Reviews (QBRs), and driving long-term client retention.',
+      'Revenue Expansion & Upselling: Identify expansion opportunities during ongoing client touchpoints, cross-selling specialized SaaS add-ons to expand product footprint and increase account Lifetime Value (LTV).',
     ],
     impact: [
       '95%+ Client Retention maintained across enterprise account portfolio',
       'Accelerated client Time-to-Value (TTV) via structured requirement mapping',
-      'Facilitated executive buy-in across C-suite stakeholders for custom SAP module adoption',
-      'Drove recurring revenue expansion through consultative SAP add-on solution mapping',
+      'Facilitated executive buy-in across C-suite stakeholders for custom SAP B1 module adoption',
+      'Drove recurring revenue expansion through consultative add-on solution mapping',
     ],
     skills: [
       'SAP Solution Consulting',
-      'SAP Business One',
-      'SAP S/4HANA',
+      'SAP Business One (SAP B1)',
       'Business Development',
-      'Client Requirement Mapping',
-      'Account Expansion',
-      'C-Suite Advisory',
+      'Requirement Mapping',
+      'Account Health Scoring',
+      'QBRs',
+      'Revenue Expansion',
       'Commercial Negotiations',
     ],
   },
@@ -105,7 +108,7 @@ export const experience = [
     businessChallenge:
       'Launching a new entertainment revenue stream in a high-density, competitive market while unblocking sales pipeline conversion bottlenecks.',
     solutions: [
-      'GTM Execution & Revenue: Executed GTM strategy for New Karaoke service via 200+ cold calls and 61 field visits, unlocking a new revenue stream generating ₹59K direct revenue.',
+      'GTM Execution & Revenue: Executed GTM strategy for new Karaoke service via 200+ cold calls and 61 field visits, unlocking a new revenue stream generating ₹59K direct revenue.',
       'Pipeline Optimization: Segmented and cleansed 1,200+ prospective leads using data analytics, boosting lead quality scores by 40% and accelerating sales pipeline conversion rates.',
       'On-Ground Market Diagnostics: Identified high-converting customer personas and visibility gaps to adjust pricing and outreach strategies dynamically.',
     ],
@@ -134,9 +137,9 @@ export const experience = [
       'Managing high-value OEM export/domestic client accounts under manual pricing workflows, pricing turnaround bottlenecks, and strict SLA requirements.',
     solutions: [
       'End-to-End Key Account Ownership: Managed complete relationship and commercial lifecycle for 3 strategic OEM accounts: Hyzon Motors US (Export), Mitsubishi Logisnext US (Export), and Kohler Power India (Domestic).',
-      'Full Customer Lifecycle Management: Directed client journey from VP/GM handover, company introduction, and plant audit representation (Export Marketing) to RFQ evaluation, Incoterm/pricing negotiations, PO issuance, and production handover.',
-      'Account Expansion & ARR Growth: Drove strategic account expansion and upselling for key enterprise accounts, generating ₹5 Cr in expansion ARR through consultative solution mapping and multi-stakeholder alignment.',
-      'SLA Advocacy & Operations: Served as primary escalation handler to ensure 100% SLA compliance and client retention; built automated Power BI/Excel models cutting reporting cycle times by 87% and improving pricing margin accuracy by 12%.',
+      'Full Customer Lifecycle Management: Directed client journey from VP/GM handover, company introduction, and plant audit representation (Export Marketing) to RFQ evaluation, Incoterm/pricing negotiations, order confirmation, and production handover.',
+      'Account Expansion & Revenue Growth: Drove strategic account expansion and upselling for key enterprise accounts, generating ₹5 Cr in expansion ARR through consultative solution mapping and multi-stakeholder alignment.',
+      'Process & Reporting Automation: Automated repetitive OEM reporting by engineering custom VBA & Excel macros to generate standardized client workbooks, reducing reporting cycle times by 87%.',
     ],
     impact: [
       '₹5+ Crore in expansion ARR generated across key enterprise accounts',
@@ -157,6 +160,27 @@ export const experience = [
 ];
 
 export const projects = [
+  {
+    title: 'Interactive Dual-Accent Voice AI Platform',
+    role: 'Freelance AI Consultant & Solutions Architect',
+    category: 'Voice AI & Rapid Prototyping (Freelance Paid Project)',
+    isFreelancePaid: true,
+    businessProblem:
+      'An academic researcher required an interactive, low-latency conversational web application within a strict 48-hour turnaround to conduct an experimental accent perception study across diverse geographic cohorts without audio latency or concurrency bottlenecks.',
+    solutionPrototype: [
+      'Client Engagement & Rapid Prototyping: Commissioned as a freelance consultant by an academic researcher to develop an interactive dual-voice AI web application; architected real-time conversational agents (British and Indian accents) using Gemini Multimodal Live API and Antigravity workflow logic within 48 hours.',
+      'Cloud Deployment & Auto-Scaling: Deployed full production application on Google Cloud Platform with auto-scaling configuration (min 0, max 5 instances) to seamlessly manage concurrent user traffic and low-latency audio streaming.',
+      'Research Data Collection & Delivery: Successfully delivered the contracted solution, enabling live conversational testing and structured data collection across ~250+ research participants for an academic accent study.',
+    ],
+    impact: [
+      'Delivered contracted production solution within a strict 48-hour client SLA',
+      'Auto-scaling GCP architecture (0–5 instances) ensuring zero-downtime, low-latency audio streaming',
+      'Enabled real-time conversational testing and structured data collection across ~250+ academic research participants',
+      'Validated commercial freelance consulting model for rapid AI web application prototyping',
+    ],
+    techStack: ['Antigravity', 'Gemini Multimodal Live API', 'Google Cloud Platform', 'Cloud Run', 'Python', 'WebSockets'],
+    disclaimer: 'Contracted freelance paid project architected and deployed to production on Google Cloud Platform.',
+  },
   {
     title: 'SaaS Market Pulse',
     role: 'Creator & Autonomous Systems Architect',
@@ -222,11 +246,12 @@ export const projects = [
 
 export const technicalSkills = [
   { name: 'SAP Business One', badge: 'https://img.shields.io/badge/SAP%20Business%20One-008FD3?style=for-the-badge&logo=sap&logoColor=white', url: 'https://www.sap.com/products/erp/business-one.html' },
-  { name: 'SAP S/4HANA', badge: 'https://img.shields.io/badge/SAP%20S%2F4HANA-0A2540?style=for-the-badge&logo=sap&logoColor=white', url: 'https://www.sap.com/products/erp/s4hana.html' },
+  { name: 'Antigravity', badge: 'https://img.shields.io/badge/Antigravity-00E47C?style=for-the-badge&logo=google&logoColor=black', url: 'https://github.com/devisdev365' },
+  { name: 'Gemini Multimodal Live API', badge: 'https://img.shields.io/badge/Gemini%20Live%20API-8E75B2?style=for-the-badge&logo=google-gemini&logoColor=white', url: 'https://ai.google.dev/' },
+  { name: 'Google Cloud Platform', badge: 'https://img.shields.io/badge/Google%20Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white', url: 'https://cloud.google.com/' },
   { name: 'AI Workflow Automation', badge: 'https://img.shields.io/badge/AI%20Automation-000000?style=for-the-badge&logo=openai&logoColor=white', url: 'https://openai.com/' },
-  { name: 'Google Gemini API', badge: 'https://img.shields.io/badge/Gemini%20API-8E75B2?style=for-the-badge&logo=google-gemini&logoColor=white', url: 'https://ai.google.dev/' },
-  { name: 'Firecrawl API', badge: 'https://img.shields.io/badge/Firecrawl-FF5722?style=for-the-badge&logoColor=white', url: 'https://www.firecrawl.dev/' },
   { name: 'Power BI', badge: 'https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black', url: 'https://powerbi.microsoft.com/' },
+  { name: 'Firecrawl API', badge: 'https://img.shields.io/badge/Firecrawl-FF5722?style=for-the-badge&logoColor=white', url: 'https://www.firecrawl.dev/' },
   { name: 'SQL & Advanced Excel', badge: 'https://img.shields.io/badge/SQL%20%26%20Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white', url: 'https://learn.microsoft.com/en-us/office/vba/api/overview/excel' },
   { name: 'Resend API', badge: 'https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=resend&logoColor=white', url: 'https://resend.com/' },
 ];

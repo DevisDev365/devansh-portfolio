@@ -26,13 +26,13 @@ export const Contact: React.FC = () => {
               </h4>
               <ul className="space-y-4">
                 <li className="flex gap-3 text-slate-300 text-sm">
-                  <span className="text-primary font-bold">✓</span> Enterprise ERP & SAP consulting teams (SAP B1 / SAP S/4HANA)
+                  <span className="text-primary font-bold">✓</span> Enterprise ERP & SAP consulting teams (SAP Business One / SAP B1)
                 </li>
                 <li className="flex gap-3 text-slate-300 text-sm">
                   <span className="text-primary font-bold">✓</span> Business Development & Sales leaders seeking pipeline expansion
                 </li>
                 <li className="flex gap-3 text-slate-300 text-sm">
-                  <span className="text-primary font-bold">✓</span> RevOps & Operations teams wanting automated AI intelligence pipelines
+                  <span className="text-primary font-bold">✓</span> RevOps & Operations teams wanting automated AI intelligence pipelines & rapid prototypes
                 </li>
                 <li className="flex gap-3 text-slate-300 text-sm">
                   <span className="text-primary font-bold">✓</span> Growth-stage B2B enterprises scaling strategic client acquisition
