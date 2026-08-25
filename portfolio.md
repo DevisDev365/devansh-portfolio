@@ -19,14 +19,14 @@
 
 ## Summary
 
-Business Development Executive experienced in enterprise SAP solution consulting (SAP Business One & SAP S/4HANA), client lifecycle management, and AI-driven workflow automation. Proven expertise in driving client engagement, navigating commercial negotiations, and expanding account value through consultative solution mapping and custom AI automations.
+Cross-functional professional experienced in enterprise SaaS solutions, AI workflow architecture, and client lifecycle management. Proven track record in translating business requirements into scalable AI automations, optimizing client operations, and driving measurable growth through consultative problem-solving, rapid prototyping, and end-to-end execution.
 
-With ₹5+ crore in managed revenue across automotive manufacturing, entertainment GTM, and enterprise ERP ecosystems (SAP Business One & SAP S/4HANA), I bridge the gap between complex software implementations and real business outcomes.
+With ₹5+ crore in managed revenue across automotive manufacturing, entertainment GTM, and enterprise ERP ecosystems (SAP Business One), I bridge the gap between complex business requirements, rapid solution prototypes, and scalable commercial outcomes.
 
 **Ideal for:**
-- Enterprise ERP & SaaS consulting teams (SAP B1 / S/4HANA)
+- Enterprise ERP & SaaS consulting teams (SAP Business One / SAP B1)
 - Business Development & RevOps leaders focused on revenue expansion & pipeline conversion
-- Operations teams seeking AI-driven workflow and reporting automation
+- Operations teams seeking AI-driven workflow, voice intelligence, and reporting automation
 - High-growth B2B companies scaling enterprise client acquisition and account management
 
 ---
@@ -50,21 +50,20 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 ### Elevra Tech — Business Development Executive – SAP Consulting
 **July 2026 – Present** | [www.elevratech.in/](https://www.elevratech.in/)
 
-**Business Challenge:** Guiding enterprise clients through SAP Business One (SAP B1) and SAP S/4HANA consulting, mapping business requirements, minimizing time-to-value, and expanding account lifetime value.
+**Business Challenge:** Consulting enterprise clients on SAP Business One (SAP B1) implementations, aligning business objectives with scalable product configurations, and driving long-term account expansion.
 
 **Solutions Delivered:**
-- Enterprise SAP Solution Consulting: Consult enterprise clients on SAP Business One (SAP B1) and SAP S/4HANA implementations, conducting requirement mapping and presenting proprietary add-ons to align product fit with client business objectives.
-- Client Relationship & Account Management: Manage client engagements across enterprise accounts, conducting regular business reviews and ensuring long-term client retention and satisfaction.
-- Consultative Value Alignment: Lead client discovery sessions and product demonstrations, advising C-suite stakeholders on custom module configurations to drive product adoption and operational efficiency.
-- Revenue Expansion & Solution Mapping: Identify expansion opportunities during ongoing client touchpoints, positioning specialized add-ons to expand product footprint and increase Account Lifetime Value (LTV).
+- Enterprise SaaS Consulting: Consult enterprise clients on SAP Business One (SAP B1) implementations, conducting requirement mapping and presenting proprietary add-ons to align product fit with client business objectives.
+- Client Retention & Account CS: Manage end-to-end customer lifecycle for enterprise SaaS accounts, monitoring Account Health Scores, conducting Quarterly Business Reviews (QBRs), and driving long-term client retention.
+- Revenue Expansion & Upselling: Identify expansion opportunities during ongoing client touchpoints, cross-selling specialized SaaS add-ons to expand product footprint and increase account Lifetime Value (LTV).
 
 **Impact:**
 - 95%+ Client Retention maintained across enterprise account portfolio
 - Accelerated client Time-to-Value (TTV) via structured requirement mapping
-- Facilitated executive buy-in across C-suite stakeholders for custom SAP module adoption
-- Drove recurring revenue expansion through consultative SAP add-on solution mapping
+- Facilitated executive buy-in across C-suite stakeholders for custom SAP B1 module adoption
+- Drove recurring revenue expansion through consultative add-on solution mapping
 
-**Key Skills:** SAP Solution Consulting · SAP Business One · SAP S/4HANA · Business Development · Client Requirement Mapping · Account Expansion · C-Suite Advisory · Commercial Negotiations
+**Key Skills:** SAP Solution Consulting · SAP Business One (SAP B1) · Business Development · Requirement Mapping · Account Health Scoring · QBRs · Revenue Expansion · Commercial Negotiations
 
 ---
 
@@ -74,7 +73,7 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 **Business Challenge:** Launching a new entertainment revenue stream in a high-density, competitive market while unblocking sales pipeline conversion bottlenecks.
 
 **Solutions Delivered:**
-- GTM Execution & Revenue: Executed GTM strategy for New Karaoke service via 200+ cold calls and 61 field visits, unlocking a new revenue stream generating ₹59K direct revenue.
+- GTM Execution & Revenue: Executed GTM strategy for new Karaoke service via 200+ cold calls and 61 field visits, unlocking a new revenue stream generating ₹59K direct revenue.
 - Pipeline Optimization: Segmented and cleansed 1,200+ prospective leads using data analytics, boosting lead quality scores by 40% and accelerating sales pipeline conversion rates.
 - On-Ground Market Diagnostics: Identified high-converting customer personas and visibility gaps to adjust pricing and outreach strategies dynamically.
 
@@ -96,8 +95,8 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 **Solutions Delivered:**
 - End-to-End Key Account Ownership: Managed complete relationship and commercial lifecycle for 3 strategic OEM accounts: Hyzon Motors US (Export), Mitsubishi Logisnext US (Export), and Kohler Power India (Domestic).
 - Full Customer Lifecycle Management: Directed client journey from VP/GM handover, company introduction, and plant audit representation (Export Marketing) to RFQ evaluation, Incoterm/pricing negotiations, PO issuance, and production handover.
-- Account Expansion & ARR Growth: Drove strategic account expansion and upselling for key enterprise accounts, generating ₹5 Cr in expansion ARR through consultative solution mapping and multi-stakeholder alignment.
-- SLA Advocacy & Operations: Served as primary escalation handler to ensure 100% SLA compliance and client retention; built automated Power BI/Excel models cutting reporting cycle times by 87% and improving pricing margin accuracy by 12%.
+- Account Expansion & Revenue Growth: Drove strategic account expansion and upselling for key enterprise accounts, generating ₹5 Cr in expansion ARR through consultative solution mapping and multi-stakeholder alignment.
+- Process & Reporting Automation: Automated repetitive OEM reporting by engineering custom VBA & Excel macros to generate standardized client workbooks, reducing reporting cycle times by 87%.
 
 **Impact:**
 - ₹5+ Crore in expansion ARR generated across key enterprise accounts
@@ -111,7 +110,23 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 ## Projects
 
-### 1. SaaS Market Pulse — AI & RevOps Market Intelligence
+### 1. Interactive Dual-Accent Voice AI Platform — Voice AI & Rapid Prototyping (Freelance Paid Project)
+> **Role:** Freelance AI Consultant & Solutions Architect
+
+**Problem:** An academic researcher required an interactive, low-latency conversational web application within a strict 48-hour turnaround to conduct an experimental accent perception study across diverse geographic cohorts without audio latency or concurrency bottlenecks.
+
+**Solution:**
+- Client Engagement & Rapid Prototyping: Commissioned as a freelance consultant by an academic researcher to develop an interactive dual-voice AI web application; architected real-time conversational agents (British and Indian accents) using Gemini Multimodal Live API and Antigravity workflow logic within 48 hours.
+- Cloud Deployment & Auto-Scaling: Deployed full production application on Google Cloud Platform with auto-scaling configuration (min 0, max 5 instances) to seamlessly manage concurrent user traffic and low-latency audio streaming.
+- Research Data Collection & Delivery: Successfully delivered the contracted solution, enabling live conversational testing and structured data collection across ~250+ research participants for an academic accent study.
+
+**Impact:** Delivered contracted production solution within a strict 48-hour client SLA; Auto-scaling GCP architecture (0–5 instances) ensuring zero-downtime, low-latency audio streaming; Enabled real-time conversational testing and structured data collection across ~250+ academic research participants; Validated commercial freelance consulting model for rapid AI web application prototyping
+
+**Tech:** Antigravity · Gemini Multimodal Live API · Google Cloud Platform · Cloud Run · Python · WebSockets
+
+---
+
+### 2. SaaS Market Pulse — AI & RevOps Market Intelligence
 > **Role:** Creator & Autonomous Systems Architect | [Live Demo](https://www.linkedin.com/posts/devansh-khanna-618606178_customersuccess-gtm-saas-ugcPost-7475791963921977345-GBFn/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACoXs_QBF9YI6gI7W3_AUm-VLLhBymWlNyQ)
 
 **Problem:** Customer Success, RevOps, and GTM teams waste 45+ minutes every morning manually tracking fragmented SaaS blogs, GitHub trending repositories, and competitor feature releases—leading to slow market response and missed revenue signals.
@@ -125,10 +140,9 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 **Tech:** Python · Gemini API · Firecrawl API · Apple Shortcuts · Resend API · GitHub Actions · RSS Feeds
 
-
 ---
 
-### 2. Brand Sentiment Analysis — Competitive Intelligence & Data Analytics
+### 3. Brand Sentiment Analysis — Competitive Intelligence & Data Analytics
 > **Role:** Marketing Analytics Lead | [Live Demo](https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing)
 
 **Problem:** Quick Service Restaurant (QSR) leaders lack unified, empirical visibility into competitor social engagement dynamics and content strategy performance across major market players.
@@ -142,10 +156,9 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 **Tech:** Python · Pandas · Seaborn · ParseHub · Data Visualization
 
-
 ---
 
-### 3. Red Tape [X] Anime Collection — Product Strategy & Market Whitespace
+### 4. Red Tape [X] Anime Collection — Product Strategy & Market Whitespace
 > **Role:** GTM Campaign Strategist | [Live Demo](https://devisdev365.github.io/Marketing-Project/)
 
 **Problem:** Global athletic brands monopolize the Indian anime streetwear market at ₹8k–₹15k price points, alienating Gen-Z consumers. Red Tape had a distinct opportunity to capture this high-growth whitespace at accessible pricing.
@@ -163,6 +176,15 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 ---
 
+## Core Competencies
+
+- **AI & Workflow Automation:** Antigravity (Custom Automation Architecture), Prompt Engineering & Logic Design, Gemini Multimodal Live API, Claude, GPT, Hugging Face Models, Vector Databases & RAG Concepts, n8n, Make.com
+- **AI-Assisted App Prototyping:** AI-Driven Web Application Architecture (UI & Logic Workflows), Google Cloud Platform (Cloud Run, Auto-Scaling Deployment), Git/GitHub
+- **Enterprise Systems & Analytics:** SAP Business One (SAP B1), Power BI, Advanced Excel & VBA/Macros, SQL, Process Automation, RFQ Commercial Evaluation
+- **Client & Commercial Operations:** Enterprise SaaS Consulting, Client Onboarding & Lifecycle Management, Account Health Scoring, QBRs, SLA Management, Rapid Prototyping
+
+---
+
 ## Achievements
 
 | Achievement | Organization | Details |
@@ -171,4 +193,6 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 | Club Coordinator — INVICTUS Data Analysis Club | Delhi School of Business, Delhi NCR | Scaled membership reach by 66% and boosted event engagement 5x leading a 50-member team. Organized university-wide data analytics competitions and industry workshops. |
 | 2nd Runner-Up — Youth’s Voice Sustainability Challenge | BCC&I x NTPC | Recognized for developing comprehensive sustainable strategy models. Also participated nationally in L’Oréal Sustainability Challenge & HP Power Lab Business Simulation. |
 | Technical Operations Lead | National & International Conferences | Managed technical operations and multi-stakeholder coordination for 6+ national and international academic conferences. |
+| Certification | NIT Trichy | Data-Driven Decision-Making using Excel & SQL (3-Week Intensive Bootcamp). |
+
 
