@@ -9,7 +9,7 @@ export const portfolioIdentity = {
   phoneUrl: 'tel:+919870316839',
   email: 'devansh.khanna24@dsb.edu.in',
   secondaryEmail: 'devanshkhanna75@gmail.com',
-  resumeUrl: 'https://drive.google.com/file/d/1MF3BBKMvM04cpVVf1md3y4dTLe2WsS9q/view?usp=sharing',
+  resumeUrl: 'https://drive.google.com/file/d/1tFAvx2Up5kJqWHUxsLuNGSrZeC6-op9l/view?usp=sharing',
 };
 
 export const bio = {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, FileText, Linkedin, Mail } from 'lucide-react';
+import { RESUME_URL } from '../constants';
 
 const stagger = {
   hidden: {},
@@ -159,7 +160,7 @@ export const Hero: React.FC = () => {
 
           <motion.div variants={fadeUp} className="pt-4 flex gap-4">
             <a
-              href="https://drive.google.com/file/d/1MF3BBKMvM04cpVVf1md3y4dTLe2WsS9q/view?usp=sharing"
+              href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative px-8 py-4 bg-transparent overflow-hidden rounded-none border border-slate-700 hover:border-primary/50 transition-colors"
