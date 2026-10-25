@@ -7,6 +7,7 @@ import {
   experience,
   projects,
   achievements,
+  certifications,
 } from '../content/portfolio-content.mjs';
 
 const root = process.cwd();
@@ -26,10 +27,11 @@ const projectMarkdown = projects
       : project.solutionPrototype;
     const impactLine = project.impact.length ? `\n**Impact:** ${project.impact.join('; ')}\n` : '\n';
     const disclaimer = project.disclaimer ? `\n**Note:** ${project.disclaimer}\n` : '\n';
+    const liveLink = project.link ? ` | [Live Demo](${project.link})` : '';
 
     return [
       `### ${index + 1}. ${project.title} — ${project.category}`,
-      `> **Role:** ${project.role} | [Live Demo](${project.link})`,
+      `> **Role:** ${project.role}${liveLink}`,
       '',
       `**Problem:** ${project.businessProblem}`,
       '',
@@ -42,6 +44,33 @@ const projectMarkdown = projects
     ].join('\n');
   })
   .join('\n\n---\n\n');
+
+const coreCompetenciesMd = bio.coreCompetencies
+  ? [
+      '## Core Competencies',
+      '',
+      ...bio.coreCompetencies.map(
+        (comp) => `- **${comp.category}:** ${comp.skills.join(', ')}`,
+      ),
+      '',
+      '---',
+      '',
+    ]
+  : [];
+
+const certificationsMd = certifications
+  ? [
+      '## Certifications',
+      '',
+      ...certifications.map(
+        (cert) =>
+          `- **${cert.title}** — ${cert.issuer} (${cert.year}): ${cert.description}`,
+      ),
+      '',
+      '---',
+      '',
+    ]
+  : [];
 
 const portfolioMarkdown = [
   heading,
@@ -105,6 +134,7 @@ const portfolioMarkdown = [
   '',
   '---',
   '',
+  ...coreCompetenciesMd,
   '## Achievements',
   '',
   '| Achievement | Organization | Details |',
@@ -114,6 +144,9 @@ const portfolioMarkdown = [
       `| ${escapePipes(item.title)} | ${escapePipes(item.organization)} | ${escapePipes(item.description)} |`,
   ),
   '',
+  '---',
+  '',
+  ...certificationsMd,
 ].join('\n');
 
 const llmsText = [
@@ -156,7 +189,7 @@ const llmsText = [
   ...projects.flatMap((project) => [
     `### ${project.title} — ${project.category}`,
     `- Role: ${project.role}`,
-    `- Live: ${project.link}`,
+    ...(project.link ? [`- Live: ${project.link}`] : []),
     `- **Problem:** ${project.businessProblem}`,
     '- **Solution:**',
     ...(Array.isArray(project.solutionPrototype)
@@ -167,11 +200,30 @@ const llmsText = [
     ...(project.disclaimer ? [`- **Note:** ${project.disclaimer}`] : []),
     '',
   ]),
+  ...(bio.coreCompetencies
+    ? [
+        '## Core Competencies',
+        ...bio.coreCompetencies.map(
+          (comp) => `- **${comp.category}:** ${comp.skills.join(', ')}`,
+        ),
+        '',
+      ]
+    : []),
   '## Achievements',
   ...achievements.map(
     (item) => `- **${item.title}** — ${item.organization}: ${item.description}`,
   ),
   '',
+  ...(certifications
+    ? [
+        '## Certifications',
+        ...certifications.map(
+          (cert) =>
+            `- **${cert.title}** — ${cert.issuer} (${cert.year}): ${cert.description}`,
+        ),
+        '',
+      ]
+    : []),
 ].join('\n');
 
 const workflowDoc = [

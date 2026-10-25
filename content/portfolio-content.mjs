@@ -2,7 +2,7 @@ export const portfolioIdentity = {
   name: 'Devansh Khanna',
   title: 'Business Development Executive – SAP Consulting',
   subtitle: 'Turning Business Problems into Automated Systems & Scalable Revenue.',
-  portfolioUrl: 'https://devisdev365.github.io/devansh-portfolio/',
+  portfolioUrl: 'https://portfolio.devanshkhanna.online/',
   linkedinUrl: 'https://www.linkedin.com/in/devansh-khanna-618606178/',
   githubUrl: 'https://github.com/devisdev365',
   phone: '+91 9870316839',

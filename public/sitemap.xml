@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://devisdev365.github.io/devansh-portfolio/</loc>
-    <lastmod>2026-08-15</lastmod>
+    <loc>https://portfolio.devanshkhanna.online/</loc>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://devisdev365.github.io/devansh-portfolio/llms.txt</loc>
-    <lastmod>2026-08-15</lastmod>
+    <loc>https://portfolio.devanshkhanna.online/llms.txt</loc>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devisdev365.github.io/devansh-portfolio/portfolio.md</loc>
-    <lastmod>2026-08-15</lastmod>
+    <loc>https://portfolio.devanshkhanna.online/portfolio.md</loc>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devisdev365.github.io/devansh-portfolio/robots.txt</loc>
-    <lastmod>2026-08-15</lastmod>
+    <loc>https://portfolio.devanshkhanna.online/robots.txt</loc>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
