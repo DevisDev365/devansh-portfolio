@@ -10,7 +10,7 @@
 
 | Channel | Link |
 |---------|------|
-| Portfolio | [devisdev365.github.io/devansh-portfolio/](https://devisdev365.github.io/devansh-portfolio/) |
+| Portfolio | [portfolio.devanshkhanna.online/](https://portfolio.devanshkhanna.online/) |
 | LinkedIn | [linkedin.com/in/devansh-khanna-618606178](https://www.linkedin.com/in/devansh-khanna-618606178/) |
 | GitHub | [github.com/devisdev365](https://github.com/devisdev365) |
 | Phone | +91 9870316839 |
@@ -94,7 +94,7 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 **Solutions Delivered:**
 - End-to-End Key Account Ownership: Managed complete relationship and commercial lifecycle for 3 strategic OEM accounts: Hyzon Motors US (Export), Mitsubishi Logisnext US (Export), and Kohler Power India (Domestic).
-- Full Customer Lifecycle Management: Directed client journey from VP/GM handover, company introduction, and plant audit representation (Export Marketing) to RFQ evaluation, Incoterm/pricing negotiations, PO issuance, and production handover.
+- Full Customer Lifecycle Management: Directed client journey from VP/GM handover, company introduction, and plant audit representation (Export Marketing) to RFQ evaluation, Incoterm/pricing negotiations, order confirmation, and production handover.
 - Account Expansion & Revenue Growth: Drove strategic account expansion and upselling for key enterprise accounts, generating ₹5 Cr in expansion ARR through consultative solution mapping and multi-stakeholder alignment.
 - Process & Reporting Automation: Automated repetitive OEM reporting by engineering custom VBA & Excel macros to generate standardized client workbooks, reducing reporting cycle times by 87%.
 
@@ -124,6 +124,8 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 **Tech:** Antigravity · Gemini Multimodal Live API · Google Cloud Platform · Cloud Run · Python · WebSockets
 
+**Note:** Contracted freelance paid project architected and deployed to production on Google Cloud Platform.
+
 ---
 
 ### 2. SaaS Market Pulse — AI & RevOps Market Intelligence
@@ -140,6 +142,7 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 **Tech:** Python · Gemini API · Firecrawl API · Apple Shortcuts · Resend API · GitHub Actions · RSS Feeds
 
+
 ---
 
 ### 3. Brand Sentiment Analysis — Competitive Intelligence & Data Analytics
@@ -155,6 +158,7 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 **Impact:** Identified highest-performing content themes and engagement benchmarks per brand; Mapped optimal engagement windows across peak social media traffic periods; Surfaced actionable competitive opportunities in digital customer acquisition
 
 **Tech:** Python · Pandas · Seaborn · ParseHub · Data Visualization
+
 
 ---
 
@@ -193,6 +197,12 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 | Club Coordinator — INVICTUS Data Analysis Club | Delhi School of Business, Delhi NCR | Scaled membership reach by 66% and boosted event engagement 5x leading a 50-member team. Organized university-wide data analytics competitions and industry workshops. |
 | 2nd Runner-Up — Youth’s Voice Sustainability Challenge | BCC&I x NTPC | Recognized for developing comprehensive sustainable strategy models. Also participated nationally in L’Oréal Sustainability Challenge & HP Power Lab Business Simulation. |
 | Technical Operations Lead | National & International Conferences | Managed technical operations and multi-stakeholder coordination for 6+ national and international academic conferences. |
-| Certification | NIT Trichy | Data-Driven Decision-Making using Excel & SQL (3-Week Intensive Bootcamp). |
 
+---
+
+## Certifications
+
+- **Data-Driven Decision-Making using Excel & SQL** — NIT Trichy (2024): 3-week intensive bootcamp covering advanced business modeling, relational SQL queries, data manipulation, and structured decision frameworks.
+
+---
 
