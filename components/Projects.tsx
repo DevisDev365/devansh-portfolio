@@ -5,12 +5,10 @@ import { Project } from '../types';
 import { SKILL_LINKS } from '../constants';
 import {
   ExternalLink,
-  Sparkles,
   AlertCircle,
   Cpu,
   TrendingUp,
   CheckCircle2,
-  Layers,
   ArrowUpRight,
 } from 'lucide-react';
 
@@ -49,10 +47,6 @@ export const Projects: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-mono uppercase tracking-wider mb-3">
-              <Layers className="w-3.5 h-3.5 text-emerald-400" />
-              Solution Workbench
-            </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
               Technical Prototypes &amp; Consulting Work
             </h2>
@@ -62,15 +56,15 @@ export const Projects: React.FC = () => {
             </p>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap gap-1.5 p-1 rounded-xl bg-white/[0.03] border border-white/10 self-start md:self-auto">
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap gap-1.5 p-1 rounded-xl bg-[#0e121d] border border-white/10 self-start md:self-auto">
             {filterTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                   activeFilter === tab.id
-                    ? 'bg-emerald-500 text-black font-semibold shadow-sm'
+                    ? 'bg-emerald-500 text-black'
                     : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
                 }`}
               >
@@ -89,29 +83,26 @@ export const Projects: React.FC = () => {
               <motion.article
                 key={project.title}
                 layout
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.35 }}
-                className={`group relative rounded-2xl border transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md ${
+                exit={{ opacity: 0, y: 15 }}
+                transition={{ duration: 0.25 }}
+                className={`group relative rounded-2xl border transition-colors flex flex-col justify-between overflow-hidden ${
                   project.isFreelancePaid
-                    ? 'border-emerald-500/40 bg-gradient-to-b from-emerald-950/20 via-black/60 to-black/80 ring-1 ring-emerald-500/20 shadow-xl shadow-emerald-950/30'
-                    : 'border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 hover:border-white/20'
+                    ? 'border-emerald-500/50 bg-[#0d1616] ring-1 ring-emerald-500/20'
+                    : 'border-white/10 bg-[#0e121d] hover:border-white/20'
                 }`}
               >
                 {/* Top Banner for Freelance Paid Project */}
                 {project.isFreelancePaid && (
-                  <div className="px-5 py-2.5 bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-emerald-500/20 border-b border-emerald-500/30 flex items-center justify-between">
+                  <div className="px-5 py-2.5 bg-emerald-950/40 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="flex h-2 w-2 relative">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-                      </span>
-                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-300">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                      <span className="text-xs font-bold text-emerald-300">
                         Contracted Freelance Paid Project
                       </span>
                     </div>
-                    <span className="text-xs font-mono text-emerald-400 font-semibold">
+                    <span className="text-xs text-emerald-400 font-semibold">
                       Production GCP Deploy
                     </span>
                   </div>
@@ -120,10 +111,10 @@ export const Projects: React.FC = () => {
                 <div className="p-6 sm:p-7 flex-1">
                   {/* Category & Role */}
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                    <span className="text-xs font-semibold text-slate-400">
                       {project.category}
                     </span>
-                    <span className="text-xs font-medium text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                    <span className="text-xs font-semibold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
                       {project.role}
                     </span>
                   </div>
@@ -134,10 +125,10 @@ export const Projects: React.FC = () => {
                   </h3>
 
                   {/* Interactive Mode Toggle Bar */}
-                  <div className="flex items-center gap-1 p-1 rounded-xl bg-black/60 border border-white/10 mb-5">
+                  <div className="flex items-center gap-1 p-1 rounded-xl bg-[#08090D] border border-white/10 mb-5">
                     <button
                       onClick={() => setCardMode(project.title, 'problem')}
-                      className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                      className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                         mode === 'problem'
                           ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold'
                           : 'text-slate-400 hover:text-white'
@@ -149,7 +140,7 @@ export const Projects: React.FC = () => {
 
                     <button
                       onClick={() => setCardMode(project.title, 'prototype')}
-                      className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                      className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                         mode === 'prototype'
                           ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-semibold'
                           : 'text-slate-400 hover:text-white'
@@ -161,7 +152,7 @@ export const Projects: React.FC = () => {
 
                     <button
                       onClick={() => setCardMode(project.title, 'impact')}
-                      className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                      className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                         mode === 'impact'
                           ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold'
                           : 'text-slate-400 hover:text-white'
@@ -172,21 +163,21 @@ export const Projects: React.FC = () => {
                     </button>
                   </div>
 
-                  {/* Dynamic Content Panel based on active mode */}
-                  <div className="min-h-[170px]">
+                  {/* Dynamic Content Panel */}
+                  <div className="min-h-[160px]">
                     <AnimatePresence mode="wait">
                       {mode === 'problem' && (
                         <motion.div
                           key="problem"
-                          initial={{ opacity: 0, y: 6 }}
+                          initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -6 }}
-                          transition={{ duration: 0.2 }}
-                          className="rounded-xl bg-amber-950/10 border border-amber-500/20 p-4 text-xs sm:text-sm text-amber-200/90 leading-relaxed"
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.15 }}
+                          className="rounded-xl bg-amber-950/20 border border-amber-500/20 p-4 text-xs sm:text-sm text-amber-200/90 leading-relaxed"
                         >
-                          <div className="text-[11px] font-mono uppercase tracking-wider text-amber-400 font-bold mb-1.5 flex items-center gap-1.5">
+                          <div className="text-xs uppercase font-bold text-amber-400 mb-1.5 flex items-center gap-1.5">
                             <AlertCircle className="w-3.5 h-3.5" />
-                            Business Bottleneck Identified
+                            Business Bottleneck
                           </div>
                           {project.businessProblem}
                         </motion.div>
@@ -195,16 +186,16 @@ export const Projects: React.FC = () => {
                       {mode === 'prototype' && (
                         <motion.div
                           key="prototype"
-                          initial={{ opacity: 0, y: 6 }}
+                          initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -6 }}
-                          transition={{ duration: 0.2 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.15 }}
                           className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed"
                         >
                           {project.solutionPrototype.map((step, idx) => (
                             <div key={idx} className="flex items-start gap-2">
-                              <span className="font-mono text-emerald-400 text-xs shrink-0 mt-0.5">
-                                [0{idx + 1}]
+                              <span className="text-emerald-400 font-semibold text-xs shrink-0 mt-0.5">
+                                •
                               </span>
                               <span className="text-slate-300">{step}</span>
                             </div>
@@ -215,16 +206,16 @@ export const Projects: React.FC = () => {
                       {mode === 'impact' && (
                         <motion.div
                           key="impact"
-                          initial={{ opacity: 0, y: 6 }}
+                          initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -6 }}
-                          transition={{ duration: 0.2 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.15 }}
                           className="space-y-2 text-xs sm:text-sm leading-relaxed"
                         >
                           {project.impact.map((point, idx) => (
                             <div
                               key={idx}
-                              className="flex items-start gap-2 p-2 rounded-lg bg-emerald-500/[0.04] border border-emerald-500/10 text-slate-200"
+                              className="flex items-start gap-2 p-2 rounded-lg bg-[#08090D] border border-emerald-500/20 text-slate-200"
                             >
                               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                               <span>{point}</span>
@@ -235,8 +226,8 @@ export const Projects: React.FC = () => {
                     </AnimatePresence>
                   </div>
 
-                  {/* Tech Stack Pills */}
-                  <div className="mt-6 pt-5 border-t border-white/10 flex flex-wrap gap-1.5">
+                  {/* Tech Stack Badges */}
+                  <div className="mt-6 pt-4 flex flex-wrap gap-1.5">
                     {project.techStack.map((tech) => {
                       const link = SKILL_LINKS[tech];
                       return (
@@ -245,7 +236,7 @@ export const Projects: React.FC = () => {
                           href={link || '#'}
                           target={link ? '_blank' : undefined}
                           rel={link ? 'noopener noreferrer' : undefined}
-                          className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/10 text-slate-300 hover:text-emerald-300 hover:border-emerald-500/30 transition-colors"
+                          className="text-xs px-2.5 py-1 rounded-md bg-[#08090D] border border-white/10 text-slate-300 hover:text-emerald-300 hover:border-emerald-500/30 transition-colors"
                         >
                           {tech}
                         </a>
@@ -254,10 +245,10 @@ export const Projects: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Footer Link / Trigger */}
+                {/* Footer Link */}
                 {project.link && (
-                  <div className="px-6 py-4 bg-black/40 border-t border-white/10 flex items-center justify-between">
-                    <span className="text-xs text-slate-400">Live External Resource</span>
+                  <div className="px-6 py-4 bg-[#08090D] flex items-center justify-between">
+                    <span className="text-xs text-slate-400 font-medium">Live External Resource</span>
                     <a
                       href={project.link}
                       target="_blank"
@@ -271,8 +262,8 @@ export const Projects: React.FC = () => {
                 )}
 
                 {project.disclaimer && !project.link && (
-                  <div className="px-6 py-3 bg-black/40 border-t border-white/10 text-[11px] font-mono text-slate-400">
-                    ℹ️ {project.disclaimer}
+                  <div className="px-6 py-3 bg-[#08090D] text-xs text-slate-400">
+                    {project.disclaimer}
                   </div>
                 )}
               </motion.article>

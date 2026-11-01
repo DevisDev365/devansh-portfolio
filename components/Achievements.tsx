@@ -1,18 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { achievements, certifications } from '../content/portfolio-content.mjs';
-import { Trophy, Award, CheckCircle2, Star } from 'lucide-react';
+import { Award, Star } from 'lucide-react';
 
 export const Achievements: React.FC = () => {
   return (
-    <section id="achievements" className="relative z-10 py-20 px-4 sm:px-6 bg-black/40">
+    <section id="achievements" className="relative z-10 py-20 px-4 sm:px-6 bg-[#0a0d14]">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-mono uppercase tracking-wider mb-3">
-            <Trophy className="w-3.5 h-3.5 text-emerald-400" />
-            Accreditations &amp; Leadership
-          </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
             Honors, Simulations &amp; Executive Credentials
           </h2>
@@ -26,13 +22,13 @@ export const Achievements: React.FC = () => {
           {achievements.map((item: any, idx: number) => (
             <motion.div
               key={idx}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="p-6 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 backdrop-blur-md flex flex-col justify-between hover:border-emerald-500/40 transition-colors group"
+              whileHover={{ y: -3, transition: { duration: 0.2 } }}
+              className="p-6 rounded-2xl border border-white/10 bg-[#0e121d] flex flex-col justify-between hover:border-emerald-500/40 transition-colors group"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
-                    HONOR 0{idx + 1}
+                  <span className="text-xs font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                    HONOR {idx + 1}
                   </span>
                   <Award className="w-5 h-5 text-slate-500 group-hover:text-emerald-400 transition-colors" />
                 </div>
@@ -47,7 +43,7 @@ export const Achievements: React.FC = () => {
         </div>
 
         {/* Certifications Card */}
-        <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-emerald-950/20 via-black/40 to-cyan-950/20 p-6 sm:p-8 backdrop-blur-md">
+        <div className="rounded-2xl border border-white/10 bg-[#0e121d] p-6 sm:p-8">
           <div className="flex items-center gap-3 mb-4">
             <Star className="w-5 h-5 text-emerald-400" />
             <h3 className="text-xl font-bold text-white">Professional Certifications</h3>
@@ -57,14 +53,14 @@ export const Achievements: React.FC = () => {
             {certifications.map((cert: any, idx: number) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-black/60 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                className="p-4 rounded-xl bg-[#08090D] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
               >
                 <div>
                   <h4 className="text-base font-bold text-white">{cert.title}</h4>
                   <p className="text-xs text-emerald-400 mt-0.5">{cert.issuer} • {cert.year}</p>
                   <p className="text-xs text-slate-400 mt-1">{cert.description}</p>
                 </div>
-                <span className="text-xs font-mono px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 self-start sm:self-auto shrink-0">
+                <span className="text-xs font-semibold px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 self-start sm:self-auto shrink-0">
                   Verified Credential
                 </span>
               </div>

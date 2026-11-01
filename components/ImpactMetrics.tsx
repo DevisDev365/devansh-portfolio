@@ -1,6 +1,5 @@
 import React from 'react';
 import { StatCounter } from './ui/StatCounter';
-import { motion } from 'framer-motion';
 
 export const ImpactMetrics: React.FC = () => {
   return (
@@ -8,12 +7,12 @@ export const ImpactMetrics: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <h2 className="text-xs font-mono tracking-widest uppercase text-slate-400">
-              Empirical ROI & Verified Impact
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-400" />
+            <h2 className="text-sm font-semibold tracking-wide text-slate-300">
+              Empirical ROI and Verified Impact
             </h2>
           </div>
-          <span className="text-xs font-mono text-slate-500">Live Operating Metrics</span>
+          <span className="text-xs text-slate-500 font-medium">Operating Metrics</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

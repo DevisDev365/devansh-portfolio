@@ -12,7 +12,7 @@ import { Contact } from './components/Contact';
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#08090D] text-slate-200 selection:bg-emerald-500 selection:text-black font-sans relative">
+    <div className="min-h-dvh bg-[#08090D] text-slate-200 selection:bg-emerald-500 selection:text-black font-sans relative">
       {/* Interactive Cursor-Reactive Particle Canvas */}
       <InteractiveCanvas />
 

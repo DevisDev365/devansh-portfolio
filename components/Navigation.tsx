@@ -26,22 +26,22 @@ export const Navigation: React.FC = () => {
   return (
     <header className="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 py-4 pointer-events-none">
       <nav
-        className={`max-w-5xl mx-auto flex items-center justify-between px-5 py-3 rounded-2xl border transition-all duration-300 pointer-events-auto ${
+        className={`max-w-5xl mx-auto flex items-center justify-between px-5 py-3 rounded-2xl border transition-colors pointer-events-auto ${
           scrolled
-            ? 'bg-black/75 border-white/15 backdrop-blur-xl shadow-2xl shadow-black/80'
-            : 'bg-black/40 border-white/10 backdrop-blur-md'
+            ? 'bg-[#08090D]/90 border-white/15 backdrop-blur-md'
+            : 'bg-[#08090D]/60 border-white/10 backdrop-blur-sm'
         }`}
       >
         {/* Brand */}
         <a href="#" className="flex items-center gap-2 group">
-          <span className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-bold font-mono text-sm flex items-center justify-center group-hover:scale-105 group-hover:bg-emerald-500 group-hover:text-black transition-all">
+          <span className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-bold text-sm flex items-center justify-center group-hover:scale-105 group-hover:bg-emerald-500 group-hover:text-black transition-colors">
             DK
           </span>
           <div className="flex flex-col text-left">
             <span className="text-sm font-bold text-white tracking-tight group-hover:text-emerald-300 transition-colors">
               {portfolioIdentity.name}
             </span>
-            <span className="text-[10px] font-mono text-slate-400 leading-none">
+            <span className="text-[10px] text-slate-400 leading-none">
               Elevra Tech • SAP Consulting
             </span>
           </div>
@@ -53,7 +53,7 @@ export const Navigation: React.FC = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-xs font-medium text-slate-300 hover:text-white transition-colors"
+              className="text-xs font-semibold text-slate-300 hover:text-white transition-colors"
             >
               {link.label}
             </a>
@@ -66,7 +66,7 @@ export const Navigation: React.FC = () => {
             href={RESUME_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-300 hover:text-black text-xs font-semibold font-mono transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-300 hover:text-black text-xs font-bold transition-colors"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Resume (CV)</span>
@@ -85,7 +85,7 @@ export const Navigation: React.FC = () => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden max-w-5xl mx-auto mt-2 p-4 rounded-2xl bg-black/95 border border-white/15 backdrop-blur-2xl shadow-2xl pointer-events-auto space-y-3">
+        <div data-ui="true" className="md:hidden max-w-5xl mx-auto mt-2 p-4 rounded-2xl bg-[#08090D] border border-white/15 pointer-events-auto space-y-3">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -96,7 +96,7 @@ export const Navigation: React.FC = () => {
               {link.label}
             </a>
           ))}
-          <div className="pt-2 border-t border-white/10">
+          <div className="pt-2">
             <a
               href={RESUME_URL}
               target="_blank"

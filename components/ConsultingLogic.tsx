@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Cpu, TrendingUp, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Search, Cpu, TrendingUp, CheckCircle2 } from 'lucide-react';
 
 export const ConsultingLogic: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
 
   const pillars = [
     {
-      step: '01',
+      label: 'Phase 1',
       title: 'Diagnose Systemic Friction',
       subtitle: 'Uncover Hidden Operational Waste',
       icon: Search,
-      color: 'emerald',
       description:
         'Consulting begins with pure analytical logic. Before writing code or proposing software, I audit manual workflows, pricing discrepancies, and operational bottlenecks across ERP, OEM, and sales pipelines.',
       bullets: [
@@ -22,11 +21,10 @@ export const ConsultingLogic: React.FC = () => {
       proofPoint: 'Every technical project starts with an audited commercial bottleneck.',
     },
     {
-      step: '02',
+      label: 'Phase 2',
       title: 'Rapid Prototype Architecture',
       subtitle: 'Build Working 0-to-1 Prototypes in Days',
       icon: Cpu,
-      color: 'cyan',
       description:
         'Instead of delivering static slide decks, I build functional, cloud-deployed prototypes that prove technical viability and demonstrate immediate business value.',
       bullets: [
@@ -37,11 +35,10 @@ export const ConsultingLogic: React.FC = () => {
       proofPoint: 'Proving solutions with working software accelerates stakeholder conviction 10x.',
     },
     {
-      step: '03',
+      label: 'Phase 3',
       title: 'Commercial Execution & Scale',
       subtitle: 'Translate Prototypes into Recurring ARR',
       icon: TrendingUp,
-      color: 'emerald',
       description:
         'A prototype only matters if it impacts the P&L. I consult C-suite stakeholders, align product fit with SAP Business One configurations, and drive structured revenue expansion.',
       bullets: [
@@ -54,20 +51,16 @@ export const ConsultingLogic: React.FC = () => {
   ];
 
   return (
-    <section className="relative z-10 py-16 sm:py-24 border-y border-white/5 bg-black/40">
+    <section className="relative z-10 py-16 sm:py-24 bg-[#0a0d14]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-mono uppercase tracking-wider mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-            The Consulting Differentiator
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
             Consulting is Pure Logic.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+            <span className="text-emerald-400">
               Prototypes Prove It.
             </span>
           </h2>
-          <p className="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="mt-3 text-slate-400 text-sm sm:text-base leading-relaxed">
             I don’t just advise from slides. I diagnose the core business friction, engineer the
             functional prototype to validate the solution, and execute the enterprise expansion strategy.
           </p>
@@ -80,21 +73,21 @@ export const ConsultingLogic: React.FC = () => {
             const isActive = activeStep === idx;
             return (
               <button
-                key={pillar.step}
+                key={pillar.label}
                 onClick={() => setActiveStep(idx)}
-                className={`relative text-left p-5 rounded-xl border transition-all duration-300 ${
+                className={`relative text-left p-5 rounded-xl border transition-colors ${
                   isActive
-                    ? 'border-emerald-500/60 bg-emerald-950/20 shadow-lg shadow-emerald-950/30 ring-1 ring-emerald-500/40'
-                    : 'border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]'
+                    ? 'border-emerald-500/60 bg-[#121824]'
+                    : 'border-white/10 bg-[#0e121d] hover:border-white/20'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <span
-                    className={`text-xs font-mono font-bold tracking-wider ${
-                      isActive ? 'text-emerald-400' : 'text-slate-500'
+                    className={`text-xs font-semibold ${
+                      isActive ? 'text-emerald-400' : 'text-slate-400'
                     }`}
                   >
-                    PHASE {pillar.step}
+                    {pillar.label}
                   </span>
                   <Icon
                     className={`w-5 h-5 ${
@@ -106,10 +99,7 @@ export const ConsultingLogic: React.FC = () => {
                 <p className="text-xs text-slate-400">{pillar.subtitle}</p>
 
                 {isActive && (
-                  <motion.div
-                    layoutId="activePillarTab"
-                    className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-b-xl"
-                  />
+                  <div className="absolute inset-x-0 bottom-0 h-0.5 bg-emerald-500 rounded-b-xl" />
                 )}
               </button>
             );
@@ -120,17 +110,17 @@ export const ConsultingLogic: React.FC = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeStep}
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.3 }}
-            className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 sm:p-8 backdrop-blur-xl"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="rounded-2xl border border-white/10 bg-[#0e121d] p-6 sm:p-8"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    STEP {pillars[activeStep].step}
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    {pillars[activeStep].label}
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-white">
                     {pillars[activeStep].title}
@@ -151,17 +141,17 @@ export const ConsultingLogic: React.FC = () => {
                 </div>
               </div>
 
-              <div className="lg:col-span-5 rounded-xl border border-white/10 bg-black/60 p-5 space-y-4">
-                <div className="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center justify-between">
+              <div className="lg:col-span-5 rounded-xl border border-white/10 bg-[#08090D] p-5 space-y-4">
+                <div className="text-xs font-semibold text-slate-400 flex items-center justify-between">
                   <span>Logic Proof Point</span>
                   <span className="text-emerald-400">Validated</span>
                 </div>
                 <blockquote className="text-sm font-medium text-slate-200 italic border-l-2 border-emerald-400 pl-3">
                   "{pillars[activeStep].proofPoint}"
                 </blockquote>
-                <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                <div className="pt-2 flex items-center justify-between text-xs text-slate-400">
                   <span>Methodology</span>
-                  <span className="font-mono text-emerald-400">0-to-1 Prototyping</span>
+                  <span className="text-emerald-400 font-semibold">0-to-1 Prototyping</span>
                 </div>
               </div>
             </div>
