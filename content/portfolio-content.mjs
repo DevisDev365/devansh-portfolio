@@ -168,10 +168,10 @@ export const projects = [
     businessProblem:
       'Standard B2B prospecting platforms (Apollo, ZoomInfo) charge $10,000+/year in restrictive enterprise seats and block automated REST API access on free plans, while manual prospecting wastes hours cross-referencing fragmented LinkedIn profiles and unverified emails.',
     solutionPrototype: [
-      'Autonomous SERP X-Ray Reconnaissance: Engineered a zero-cost-per-seat B2B intelligence pipeline in self-hosted n8n orchestrating Google SERP X-Ray scraping (Serper.dev), Hunter.io API enrichment, and Gemini 2.5 Flash targeting logic.',
-      'Smart ICP & Strategy Formulation: Developed a structured multi-parameter intake system (categorizing industries, revenue tiers from ₹10 Cr to ₹200+ Cr, and executive buyer personas) paired with Gemini 2.5 Flash to automatically formulate Boolean search queries and pain point diagnostics.',
+      'Autonomous SERP X-Ray Reconnaissance: Engineered a zero-cost-per-seat B2B intelligence pipeline in self-hosted n8n orchestrating Google SERP X-Ray scraping (Serper.dev), Hunter.io API enrichment, and Gemini Flash Lite targeting logic.',
+      'Smart ICP & Strategy Formulation: Developed a structured multi-parameter intake system (categorizing industries, revenue tiers from ₹10 Cr to ₹200+ Cr, and executive buyer personas) paired with Gemini Flash Lite to automatically formulate Boolean search queries and pain point diagnostics.',
       'Credit-Protected Waterfall Enrichment: Integrated Hunter.io domain search and corporate pattern derivation to extract verified work emails, confidence scores, and direct phone numbers, backed by fallback mechanisms to ensure 100% demo uptime.',
-      'Multi-Channel Real-Time Delivery: Automated executive HTML dossier generation and transactional delivery via custom domain SMTP (work@devanshkhanna.online) alongside instant Telegram alert receipts with lead details to the creator\'s phone.',
+      'Automated Executive Delivery: Automated executive HTML dossier generation and transactional delivery via custom domain SMTP (work@devanshkhanna.online) with enriched lead insights.',
       'Hardened Cloud Infrastructure: Deployed on a self-managed Oracle Cloud Ubuntu VPS within Docker, secured behind Cloudflare Zero Trust Tunnels (n8n.devanshkhanna.online) with custom Linux iptables routing.',
     ],
     impact: [
@@ -180,15 +180,15 @@ export const projects = [
       'Credit-protected waterfall enrichment & pattern derivation ensuring 100% demo uptime',
       'Production self-hosted cloud deploy on Oracle Cloud VPS via Docker & Cloudflare Zero Trust',
     ],
-    techStack: ['n8n', 'Google Gemini 2.5 Flash', 'Oracle Cloud', 'Cloudflare Zero Trust', 'Docker', 'Serper.dev', 'Hunter.io', 'Telegram Bot API'],
+    techStack: ['n8n', 'Google Gemini Flash Lite', 'Oracle Cloud', 'Cloudflare Zero Trust', 'Docker', 'Serper.dev', 'Hunter.io', 'Custom SMTP'],
     link: 'https://n8n.devanshkhanna.online/form/trial-leads',
     linkText: 'Test Live Interactive Engine',
     architectureSteps: [
       { step: '01', title: 'Smart ICP Intake', detail: 'Structured form collecting target industry, revenue tier (₹10Cr–₹200+Cr), and buyer persona.', tech: '/form/trial-leads' },
-      { step: '02', title: 'Gemini 2.5 Flash', detail: 'Orchestrates Boolean SERP queries, diagnoses pain points, and structures JSON criteria.', tech: 'Gemini 2.5 Flash' },
+      { step: '02', title: 'Gemini Flash Lite', detail: 'Orchestrates Boolean SERP queries, diagnoses pain points, and structures JSON criteria.', tech: 'Gemini Flash Lite' },
       { step: '03', title: 'SERP X-Ray', detail: 'Executes Google X-Ray scraping to identify verified executive LinkedIn profiles.', tech: 'Serper.dev' },
       { step: '04', title: 'Waterfall Enrichment', detail: 'Extracts corporate email patterns, verified work emails, phone numbers, and confidence scores.', tech: 'Hunter.io API' },
-      { step: '05', title: 'Executive Delivery', detail: 'Compiles custom HTML dossier delivered via SMTP plus real-time Telegram mobile alert.', tech: 'SMTP & Telegram' },
+      { step: '05', title: 'Executive Delivery', detail: 'Compiles custom HTML dossier delivered directly via custom domain SMTP.', tech: 'Custom SMTP' },
     ],
   },
   {

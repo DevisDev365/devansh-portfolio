@@ -58,12 +58,15 @@ export const SKILL_LINKS: Record<string, string> = {
 
   // AI & Technical
   "n8n": "https://n8n.io/",
+  "Google Gemini Flash Lite": "https://ai.google.dev/",
+  "Gemini Flash Lite": "https://ai.google.dev/",
   "Google Gemini 2.5 Flash": "https://ai.google.dev/",
   "Oracle Cloud": "https://www.oracle.com/cloud/",
   "Cloudflare Zero Trust": "https://www.cloudflare.com/products/zero-trust/",
   "Docker": "https://www.docker.com/",
   "Serper.dev": "https://serper.dev/",
   "Hunter.io": "https://hunter.io/",
+  "Custom SMTP": "https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol",
   "Telegram Bot API": "https://core.telegram.org/bots/api",
   "Antigravity": "https://github.com/devisdev365",
   "Gemini Multimodal Live API": "https://ai.google.dev/",

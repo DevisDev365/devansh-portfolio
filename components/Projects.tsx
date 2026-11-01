@@ -103,16 +103,28 @@ export const Projects: React.FC = () => {
               >
                 {/* Top Banner for Star Project */}
                 {project.isStarProject && (
-                  <div className="px-5 py-2.5 bg-emerald-950/50 flex items-center justify-between">
+                  <div className="px-5 py-2.5 bg-emerald-950/60 flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-emerald-400" />
                       <span className="text-xs font-bold text-emerald-300">
                         ⭐ Featured Star Project — Live Cloud System
                       </span>
                     </div>
-                    <span className="text-xs text-emerald-400 font-semibold">
-                      Oracle Cloud • Cloudflare Zero Trust
-                    </span>
+                    {project.link ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-bold transition-colors"
+                      >
+                        <span>Test Live Engine</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    ) : (
+                      <span className="text-xs text-emerald-400 font-semibold">
+                        Oracle Cloud • Cloudflare Zero Trust
+                      </span>
+                    )}
                   </div>
                 )}
 
@@ -142,10 +154,23 @@ export const Projects: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-emerald-300 transition-colors">
-                    {project.title}
-                  </h3>
+                  {/* Title & Prominent Top CTA Button */}
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors flex-1">
+                      {project.title}
+                    </h3>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs shrink-0 transition-colors group/btn"
+                      >
+                        <span>{project.linkText || 'Open Project'}</span>
+                        <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                      </a>
+                    )}
+                  </div>
 
                   {/* Interactive Mode Toggle Bar */}
                   <div className="flex items-center gap-1 p-1 rounded-xl bg-[#08090D] border border-white/10 mb-5">
