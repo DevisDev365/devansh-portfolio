@@ -110,7 +110,26 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 ## Projects
 
-### 1. Interactive Dual-Accent Voice AI Platform — Voice AI & Rapid Prototyping (Freelance Paid Project)
+### 1. Autonomous B2B GTM Lead Engine & Live Pipeline — Autonomous GTM Intelligence & n8n Engine (Featured Star Project)
+> **Role:** GTM Engineer / Full-Stack Automation Architect | [Live Demo](https://n8n.devanshkhanna.online/form/trial-leads)
+
+**Problem:** Standard B2B prospecting platforms (Apollo, ZoomInfo) charge $10,000+/year in restrictive enterprise seats and block automated REST API access on free plans, while manual prospecting wastes hours cross-referencing fragmented LinkedIn profiles and unverified emails.
+
+**Solution:**
+- Autonomous SERP X-Ray Reconnaissance: Engineered a zero-cost-per-seat B2B intelligence pipeline in self-hosted n8n orchestrating Google SERP X-Ray scraping (Serper.dev), Hunter.io API enrichment, and Gemini 2.5 Flash targeting logic.
+- Smart ICP & Strategy Formulation: Developed a structured multi-parameter intake system (categorizing industries, revenue tiers from ₹10 Cr to ₹200+ Cr, and executive buyer personas) paired with Gemini 2.5 Flash to automatically formulate Boolean search queries and pain point diagnostics.
+- Credit-Protected Waterfall Enrichment: Integrated Hunter.io domain search and corporate pattern derivation to extract verified work emails, confidence scores, and direct phone numbers, backed by fallback mechanisms to ensure 100% demo uptime.
+- Multi-Channel Real-Time Delivery: Automated executive HTML dossier generation and transactional delivery via custom domain SMTP (work@devanshkhanna.online) alongside instant Telegram alert receipts with lead details to the creator's phone.
+- Hardened Cloud Infrastructure: Deployed on a self-managed Oracle Cloud Ubuntu VPS within Docker, secured behind Cloudflare Zero Trust Tunnels (n8n.devanshkhanna.online) with custom Linux iptables routing.
+
+**Impact:** Eliminated reliance on $10k+/yr enterprise data platforms via a zero-cost-per-seat autonomous pipeline; Under 30-second automated turnaround from ICP intake to custom HTML executive dossier delivery; Credit-protected waterfall enrichment & pattern derivation ensuring 100% demo uptime; Production self-hosted cloud deploy on Oracle Cloud VPS via Docker & Cloudflare Zero Trust
+
+**Tech:** n8n · Google Gemini 2.5 Flash · Oracle Cloud · Cloudflare Zero Trust · Docker · Serper.dev · Hunter.io · Telegram Bot API
+
+
+---
+
+### 2. Interactive Dual-Accent Voice AI Platform — Voice AI & Rapid Prototyping (Freelance Paid Project)
 > **Role:** Freelance AI Consultant & Solutions Architect
 
 **Problem:** An academic researcher required an interactive, low-latency conversational web application within a strict 48-hour turnaround to conduct an experimental accent perception study across diverse geographic cohorts without audio latency or concurrency bottlenecks.
@@ -128,7 +147,7 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 ---
 
-### 2. SaaS Market Pulse — AI & RevOps Market Intelligence
+### 3. SaaS Market Pulse — AI & RevOps Market Intelligence
 > **Role:** Creator & Autonomous Systems Architect | [Live Demo](https://www.linkedin.com/posts/devansh-khanna-618606178_customersuccess-gtm-saas-ugcPost-7475791963921977345-GBFn/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACoXs_QBF9YI6gI7W3_AUm-VLLhBymWlNyQ)
 
 **Problem:** Customer Success, RevOps, and GTM teams waste 45+ minutes every morning manually tracking fragmented SaaS blogs, GitHub trending repositories, and competitor feature releases—leading to slow market response and missed revenue signals.
@@ -145,7 +164,7 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 ---
 
-### 3. Brand Sentiment Analysis — Competitive Intelligence & Data Analytics
+### 4. Brand Sentiment Analysis — Competitive Intelligence & Data Analytics
 > **Role:** Marketing Analytics Lead | [Live Demo](https://colab.research.google.com/drive/1tvOLnaMfJI8w-UVfwO6NWKvkH9vgj98B?usp=sharing)
 
 **Problem:** Quick Service Restaurant (QSR) leaders lack unified, empirical visibility into competitor social engagement dynamics and content strategy performance across major market players.
@@ -162,7 +181,7 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 ---
 
-### 4. Red Tape [X] Anime Collection — Product Strategy & Market Whitespace
+### 5. Red Tape [X] Anime Collection — Product Strategy & Market Whitespace
 > **Role:** GTM Campaign Strategist | [Live Demo](https://devisdev365.github.io/Marketing-Project/)
 
 **Problem:** Global athletic brands monopolize the Indian anime streetwear market at ₹8k–₹15k price points, alienating Gen-Z consumers. Red Tape had a distinct opportunity to capture this high-growth whitespace at accessible pricing.
