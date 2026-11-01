@@ -8,36 +8,41 @@ import {
   AlertCircle,
   Cpu,
   TrendingUp,
+  Workflow,
   CheckCircle2,
   ArrowUpRight,
 } from 'lucide-react';
 
 export const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [activeCardView, setActiveCardView] = useState<Record<string, 'problem' | 'prototype' | 'impact'>>({});
+  const [activeCardView, setActiveCardView] = useState<Record<string, 'problem' | 'prototype' | 'architecture' | 'impact'>>({});
 
   const filterTabs = [
-    { id: 'all', label: 'All Projects (4)' },
-    { id: 'freelance', label: '⭐ Freelance Paid Project' },
+    { id: 'all', label: 'All Projects (5)' },
+    { id: 'star', label: '⭐ Star Project' },
+    { id: 'freelance', label: 'Freelance Paid' },
     { id: 'ai', label: 'AI & RevOps' },
     { id: 'analytics', label: 'Data Analytics' },
     { id: 'gtm', label: 'GTM Strategy' },
   ];
 
-  const filteredProjects = projects.filter((project) => {
+  const filteredProjects = projects.filter((project: Project) => {
     if (activeFilter === 'all') return true;
+    if (activeFilter === 'star') return project.isStarProject;
     if (activeFilter === 'freelance') return project.isFreelancePaid;
-    if (activeFilter === 'ai') return project.category.includes('AI') || project.category.includes('RevOps');
-    if (activeFilter === 'analytics') return project.category.includes('Analytics');
-    if (activeFilter === 'gtm') return project.category.includes('Whitespace') || project.category.includes('GTM');
+    if (activeFilter === 'ai') return project.category?.includes('AI') || project.category?.includes('RevOps') || project.category?.includes('GTM Intelligence');
+    if (activeFilter === 'analytics') return project.category?.includes('Analytics');
+    if (activeFilter === 'gtm') return project.category?.includes('Whitespace') || project.category?.includes('GTM');
     return true;
   });
 
-  const getCardMode = (title: string): 'problem' | 'prototype' | 'impact' => {
-    return activeCardView[title] || 'prototype';
+  const getCardMode = (title: string, hasArchitecture: boolean): 'problem' | 'prototype' | 'architecture' | 'impact' => {
+    const current = activeCardView[title];
+    if (current) return current;
+    return hasArchitecture ? 'architecture' : 'prototype';
   };
 
-  const setCardMode = (title: string, mode: 'problem' | 'prototype' | 'impact') => {
+  const setCardMode = (title: string, mode: 'problem' | 'prototype' | 'architecture' | 'impact') => {
     setActiveCardView((prev) => ({ ...prev, [title]: mode }));
   };
 
@@ -77,7 +82,8 @@ export const Projects: React.FC = () => {
         {/* Project Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {filteredProjects.map((project: Project) => {
-            const mode = getCardMode(project.title);
+            const hasArchitecture = Boolean(project.architectureSteps && project.architectureSteps.length > 0);
+            const mode = getCardMode(project.title, hasArchitecture);
 
             return (
               <motion.article
@@ -88,13 +94,30 @@ export const Projects: React.FC = () => {
                 exit={{ opacity: 0, y: 15 }}
                 transition={{ duration: 0.25 }}
                 className={`group relative rounded-2xl border transition-colors flex flex-col justify-between overflow-hidden ${
-                  project.isFreelancePaid
+                  project.isStarProject
+                    ? 'border-emerald-500/60 bg-[#0d1616] ring-1 ring-emerald-500/30'
+                    : project.isFreelancePaid
                     ? 'border-emerald-500/50 bg-[#0d1616] ring-1 ring-emerald-500/20'
                     : 'border-white/10 bg-[#0e121d] hover:border-white/20'
                 }`}
               >
+                {/* Top Banner for Star Project */}
+                {project.isStarProject && (
+                  <div className="px-5 py-2.5 bg-emerald-950/50 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                      <span className="text-xs font-bold text-emerald-300">
+                        ⭐ Featured Star Project — Live Cloud System
+                      </span>
+                    </div>
+                    <span className="text-xs text-emerald-400 font-semibold">
+                      Oracle Cloud • Cloudflare Zero Trust
+                    </span>
+                  </div>
+                )}
+
                 {/* Top Banner for Freelance Paid Project */}
-                {project.isFreelancePaid && (
+                {project.isFreelancePaid && !project.isStarProject && (
                   <div className="px-5 py-2.5 bg-emerald-950/40 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-emerald-400" />
@@ -150,6 +173,20 @@ export const Projects: React.FC = () => {
                       <span>The Prototype</span>
                     </button>
 
+                    {hasArchitecture && (
+                      <button
+                        onClick={() => setCardMode(project.title, 'architecture')}
+                        className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                          mode === 'architecture'
+                            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold'
+                            : 'text-slate-400 hover:text-white'
+                        }`}
+                      >
+                        <Workflow className="w-3.5 h-3.5" />
+                        <span>Architecture</span>
+                      </button>
+                    )}
+
                     <button
                       onClick={() => setCardMode(project.title, 'impact')}
                       className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
@@ -192,14 +229,59 @@ export const Projects: React.FC = () => {
                           transition={{ duration: 0.15 }}
                           className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed"
                         >
-                          {project.solutionPrototype.map((step, idx) => (
-                            <div key={idx} className="flex items-start gap-2">
-                              <span className="text-emerald-400 font-semibold text-xs shrink-0 mt-0.5">
-                                •
-                              </span>
-                              <span className="text-slate-300">{step}</span>
-                            </div>
-                          ))}
+                          {Array.isArray(project.solutionPrototype) ? (
+                            project.solutionPrototype.map((step, idx) => (
+                              <div key={idx} className="flex items-start gap-2">
+                                <span className="text-emerald-400 font-semibold text-xs shrink-0 mt-0.5">
+                                  •
+                                </span>
+                                <span className="text-slate-300">{step}</span>
+                              </div>
+                            ))
+                          ) : (
+                            <p>{project.solutionPrototype}</p>
+                          )}
+                        </motion.div>
+                      )}
+
+                      {mode === 'architecture' && project.architectureSteps && (
+                        <motion.div
+                          key="architecture"
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.15 }}
+                          className="space-y-3"
+                        >
+                          <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
+                            <span className="font-semibold text-emerald-400">System Architecture Flow</span>
+                            <span className="text-[11px] text-slate-500">n8n • Oracle Cloud VPS</span>
+                          </div>
+
+                          {/* Interactive Flow Pipeline */}
+                          <div className="space-y-2">
+                            {project.architectureSteps.map((s, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-center justify-between p-2.5 rounded-xl bg-[#08090D] border border-white/10 hover:border-emerald-500/30 transition-colors"
+                              >
+                                <div className="flex items-center gap-2.5">
+                                  <span className="text-xs font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                                    {s.step}
+                                  </span>
+                                  <div>
+                                    <div className="text-xs font-bold text-white">{s.title}</div>
+                                    <div className="text-[11px] text-slate-400 leading-tight">{s.detail}</div>
+                                  </div>
+                                </div>
+                                {s.tech && (
+                                  <span className="text-[10px] font-semibold text-slate-300 bg-white/[0.04] px-2 py-0.5 rounded border border-white/5 shrink-0 ml-2">
+                                    {s.tech}
+                                  </span>
+                                )}
+                              </div>
+                            ))}
+                          </div>
                         </motion.div>
                       )}
 

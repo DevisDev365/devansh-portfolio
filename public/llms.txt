@@ -75,6 +75,19 @@ With ₹5+ crore in managed revenue across automotive manufacturing, entertainme
 
 ## Projects
 
+### Autonomous B2B GTM Lead Engine & Live Pipeline — Autonomous GTM Intelligence & n8n Engine (Featured Star Project)
+- Role: GTM Engineer / Full-Stack Automation Architect
+- Live: https://n8n.devanshkhanna.online/form/trial-leads
+- **Problem:** Standard B2B prospecting platforms (Apollo, ZoomInfo) charge $10,000+/year in restrictive enterprise seats and block automated REST API access on free plans, while manual prospecting wastes hours cross-referencing fragmented LinkedIn profiles and unverified emails.
+- **Solution:**
+  - Autonomous SERP X-Ray Reconnaissance: Engineered a zero-cost-per-seat B2B intelligence pipeline in self-hosted n8n orchestrating Google SERP X-Ray scraping (Serper.dev), Hunter.io API enrichment, and Gemini 2.5 Flash targeting logic.
+  - Smart ICP & Strategy Formulation: Developed a structured multi-parameter intake system (categorizing industries, revenue tiers from ₹10 Cr to ₹200+ Cr, and executive buyer personas) paired with Gemini 2.5 Flash to automatically formulate Boolean search queries and pain point diagnostics.
+  - Credit-Protected Waterfall Enrichment: Integrated Hunter.io domain search and corporate pattern derivation to extract verified work emails, confidence scores, and direct phone numbers, backed by fallback mechanisms to ensure 100% demo uptime.
+  - Multi-Channel Real-Time Delivery: Automated executive HTML dossier generation and transactional delivery via custom domain SMTP (work@devanshkhanna.online) alongside instant Telegram alert receipts with lead details to the creator's phone.
+  - Hardened Cloud Infrastructure: Deployed on a self-managed Oracle Cloud Ubuntu VPS within Docker, secured behind Cloudflare Zero Trust Tunnels (n8n.devanshkhanna.online) with custom Linux iptables routing.
+- **Impact:** Eliminated reliance on $10k+/yr enterprise data platforms via a zero-cost-per-seat autonomous pipeline; Under 30-second automated turnaround from ICP intake to custom HTML executive dossier delivery; Credit-protected waterfall enrichment & pattern derivation ensuring 100% demo uptime; Production self-hosted cloud deploy on Oracle Cloud VPS via Docker & Cloudflare Zero Trust
+- **Tech Stack:** n8n, Google Gemini 2.5 Flash, Oracle Cloud, Cloudflare Zero Trust, Docker, Serper.dev, Hunter.io, Telegram Bot API
+
 ### Interactive Dual-Accent Voice AI Platform — Voice AI & Rapid Prototyping (Freelance Paid Project)
 - Role: Freelance AI Consultant & Solutions Architect
 - **Problem:** An academic researcher required an interactive, low-latency conversational web application within a strict 48-hour turnaround to conduct an experimental accent perception study across diverse geographic cohorts without audio latency or concurrency bottlenecks.

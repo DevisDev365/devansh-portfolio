@@ -161,6 +161,37 @@ export const experience = [
 
 export const projects = [
   {
+    title: 'Autonomous B2B GTM Lead Engine & Live Pipeline',
+    role: 'GTM Engineer / Full-Stack Automation Architect',
+    category: 'Autonomous GTM Intelligence & n8n Engine (Featured Star Project)',
+    isStarProject: true,
+    businessProblem:
+      'Standard B2B prospecting platforms (Apollo, ZoomInfo) charge $10,000+/year in restrictive enterprise seats and block automated REST API access on free plans, while manual prospecting wastes hours cross-referencing fragmented LinkedIn profiles and unverified emails.',
+    solutionPrototype: [
+      'Autonomous SERP X-Ray Reconnaissance: Engineered a zero-cost-per-seat B2B intelligence pipeline in self-hosted n8n orchestrating Google SERP X-Ray scraping (Serper.dev), Hunter.io API enrichment, and Gemini 2.5 Flash targeting logic.',
+      'Smart ICP & Strategy Formulation: Developed a structured multi-parameter intake system (categorizing industries, revenue tiers from ₹10 Cr to ₹200+ Cr, and executive buyer personas) paired with Gemini 2.5 Flash to automatically formulate Boolean search queries and pain point diagnostics.',
+      'Credit-Protected Waterfall Enrichment: Integrated Hunter.io domain search and corporate pattern derivation to extract verified work emails, confidence scores, and direct phone numbers, backed by fallback mechanisms to ensure 100% demo uptime.',
+      'Multi-Channel Real-Time Delivery: Automated executive HTML dossier generation and transactional delivery via custom domain SMTP (work@devanshkhanna.online) alongside instant Telegram alert receipts with lead details to the creator\'s phone.',
+      'Hardened Cloud Infrastructure: Deployed on a self-managed Oracle Cloud Ubuntu VPS within Docker, secured behind Cloudflare Zero Trust Tunnels (n8n.devanshkhanna.online) with custom Linux iptables routing.',
+    ],
+    impact: [
+      'Eliminated reliance on $10k+/yr enterprise data platforms via a zero-cost-per-seat autonomous pipeline',
+      'Under 30-second automated turnaround from ICP intake to custom HTML executive dossier delivery',
+      'Credit-protected waterfall enrichment & pattern derivation ensuring 100% demo uptime',
+      'Production self-hosted cloud deploy on Oracle Cloud VPS via Docker & Cloudflare Zero Trust',
+    ],
+    techStack: ['n8n', 'Google Gemini 2.5 Flash', 'Oracle Cloud', 'Cloudflare Zero Trust', 'Docker', 'Serper.dev', 'Hunter.io', 'Telegram Bot API'],
+    link: 'https://n8n.devanshkhanna.online/form/trial-leads',
+    linkText: 'Test Live Interactive Engine',
+    architectureSteps: [
+      { step: '01', title: 'Smart ICP Intake', detail: 'Structured form collecting target industry, revenue tier (₹10Cr–₹200+Cr), and buyer persona.', tech: '/form/trial-leads' },
+      { step: '02', title: 'Gemini 2.5 Flash', detail: 'Orchestrates Boolean SERP queries, diagnoses pain points, and structures JSON criteria.', tech: 'Gemini 2.5 Flash' },
+      { step: '03', title: 'SERP X-Ray', detail: 'Executes Google X-Ray scraping to identify verified executive LinkedIn profiles.', tech: 'Serper.dev' },
+      { step: '04', title: 'Waterfall Enrichment', detail: 'Extracts corporate email patterns, verified work emails, phone numbers, and confidence scores.', tech: 'Hunter.io API' },
+      { step: '05', title: 'Executive Delivery', detail: 'Compiles custom HTML dossier delivered via SMTP plus real-time Telegram mobile alert.', tech: 'SMTP & Telegram' },
+    ],
+  },
+  {
     title: 'Interactive Dual-Accent Voice AI Platform',
     role: 'Freelance AI Consultant & Solutions Architect',
     category: 'Voice AI & Rapid Prototyping (Freelance Paid Project)',
@@ -245,6 +276,7 @@ export const projects = [
 ];
 
 export const technicalSkills = [
+  { name: 'n8n', badge: 'https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white', url: 'https://n8n.io/' },
   { name: 'SAP Business One', badge: 'https://img.shields.io/badge/SAP%20Business%20One-008FD3?style=for-the-badge&logo=sap&logoColor=white', url: 'https://www.sap.com/products/erp/business-one.html' },
   { name: 'Antigravity', badge: 'https://img.shields.io/badge/Antigravity-00E47C?style=for-the-badge&logo=google&logoColor=black', url: 'https://github.com/devisdev365' },
   { name: 'Gemini Multimodal Live API', badge: 'https://img.shields.io/badge/Gemini%20Live%20API-8E75B2?style=for-the-badge&logo=google-gemini&logoColor=white', url: 'https://ai.google.dev/' },

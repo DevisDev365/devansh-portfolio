@@ -7,9 +7,18 @@ export interface Project {
   impact: string[];
   techStack: string[];
   link?: string;
+  linkText?: string;
   github?: string;
   image?: string;
   disclaimer?: string;
+  isFreelancePaid?: boolean;
+  isStarProject?: boolean;
+  architectureSteps?: {
+    step: string;
+    title: string;
+    detail: string;
+    tech?: string;
+  }[];
 }
 
 export interface Experience {

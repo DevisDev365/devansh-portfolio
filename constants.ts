@@ -57,6 +57,14 @@ export const SKILL_LINKS: Record<string, string> = {
   "Commercial Negotiations": "https://en.wikipedia.org/wiki/Negotiation",
 
   // AI & Technical
+  "n8n": "https://n8n.io/",
+  "Google Gemini 2.5 Flash": "https://ai.google.dev/",
+  "Oracle Cloud": "https://www.oracle.com/cloud/",
+  "Cloudflare Zero Trust": "https://www.cloudflare.com/products/zero-trust/",
+  "Docker": "https://www.docker.com/",
+  "Serper.dev": "https://serper.dev/",
+  "Hunter.io": "https://hunter.io/",
+  "Telegram Bot API": "https://core.telegram.org/bots/api",
   "Antigravity": "https://github.com/devisdev365",
   "Gemini Multimodal Live API": "https://ai.google.dev/",
   "Google Cloud Platform": "https://cloud.google.com/",
