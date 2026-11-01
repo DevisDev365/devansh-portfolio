@@ -1,197 +1,285 @@
-import React from 'react';
-import { Reveal } from './ui/RevealMotion';
-import { Card3D } from './ui/Card3D';
-import { TerminalLabel } from './ui/TerminalLabel';
-import { PROJECTS, SKILL_LINKS } from '../constants';
-import { ArrowUpRight, Target, BrainCircuit, Sparkles, ExternalLink, Zap, CheckCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { projects } from '../content/portfolio-content.mjs';
+import { Project } from '../types';
+import { SKILL_LINKS } from '../constants';
+import {
+  ExternalLink,
+  Sparkles,
+  AlertCircle,
+  Cpu,
+  TrendingUp,
+  CheckCircle2,
+  Layers,
+  ArrowUpRight,
+} from 'lucide-react';
 
-const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: number }) => {
-  const isFreelance = (project as any).isFreelancePaid;
+export const Projects: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [activeCardView, setActiveCardView] = useState<Record<string, 'problem' | 'prototype' | 'impact'>>({});
+
+  const filterTabs = [
+    { id: 'all', label: 'All Projects (4)' },
+    { id: 'freelance', label: '⭐ Freelance Paid Project' },
+    { id: 'ai', label: 'AI & RevOps' },
+    { id: 'analytics', label: 'Data Analytics' },
+    { id: 'gtm', label: 'GTM Strategy' },
+  ];
+
+  const filteredProjects = projects.filter((project) => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'freelance') return project.isFreelancePaid;
+    if (activeFilter === 'ai') return project.category.includes('AI') || project.category.includes('RevOps');
+    if (activeFilter === 'analytics') return project.category.includes('Analytics');
+    if (activeFilter === 'gtm') return project.category.includes('Whitespace') || project.category.includes('GTM');
+    return true;
+  });
+
+  const getCardMode = (title: string): 'problem' | 'prototype' | 'impact' => {
+    return activeCardView[title] || 'prototype';
+  };
+
+  const setCardMode = (title: string, mode: 'problem' | 'prototype' | 'impact') => {
+    setActiveCardView((prev) => ({ ...prev, [title]: mode }));
+  };
 
   return (
-    <div className={`group relative overflow-hidden rounded-2xl bg-white/[0.03] backdrop-blur-xl border transition-all duration-500 shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 ${
-      isFreelance 
-        ? 'border-primary/40 hover:border-primary bg-gradient-to-b from-primary/[0.04] to-black/60 shadow-primary/5' 
-        : 'border-white/10 hover:border-primary/40'
-    }`}>
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] via-transparent to-black/60 z-0 pointer-events-none" />
-
-      <div className="relative z-10 flex flex-col md:flex-row gap-8 p-6 md:p-10">
-
-        {/* Left Column: Header & Context */}
-        <div className="md:w-1/3 flex flex-col justify-between shrink-0">
+    <section id="projects" className="relative z-10 py-20 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="inline-block px-3 py-1 text-[10px] font-mono tracking-widest text-primary border border-primary/30 rounded-full bg-primary/10 uppercase">
-                {project.category}
-              </span>
-              {isFreelance && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 text-[10px] font-mono font-bold tracking-widest text-black bg-primary rounded-full uppercase shadow-md shadow-primary/30">
-                  <Zap size={11} className="fill-current" /> Paid Client Project
-                </span>
-              )}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-mono uppercase tracking-wider mb-3">
+              <Layers className="w-3.5 h-3.5 text-emerald-400" />
+              Solution Workbench
             </div>
-
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight group-hover:text-primary transition-colors">
-              {project.title}
-            </h3>
-            <p className="text-slate-400 font-mono text-xs md:text-sm mb-6">{project.role}</p>
-
-            <div className="hidden md:flex flex-col gap-4 mt-8">
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-white bg-primary/10 hover:bg-primary/20 border border-primary/30 px-4 py-2.5 rounded-lg transition-all w-fit"
-                >
-                  <ArrowUpRight size={16} /> {(project as any).linkText || 'View Live Project'}
-                </a>
-              )}
-            </div>
-          </div>
-          <span className="text-6xl font-bold text-white/5 font-mono select-none hidden md:block">0{index + 1}</span>
-        </div>
-
-        {/* Right Column: Details */}
-        <div className="md:w-2/3 space-y-6 border-l-0 md:border-l border-white/5 md:pl-8">
-          
-          {/* Problem */}
-          <div className="bg-red-500/[0.04] p-4 rounded-xl border-l-2 border-red-500/40">
-            <h4 className="flex items-center gap-2 text-red-400 text-[11px] font-mono font-bold uppercase tracking-wider mb-2">
-              <Target size={14} /> The Business Bottleneck
-            </h4>
-            <p className="text-slate-300 text-sm leading-relaxed">
-              {project.businessProblem}
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              Technical Prototypes &amp; Consulting Work
+            </h2>
+            <p className="mt-2 text-slate-400 text-sm sm:text-base max-w-xl">
+              Every project diagnoses a real systemic friction, architects a working 0-to-1 prototype,
+              and evaluates quantifiable commercial ROI.
             </p>
           </div>
 
-          {/* Solution */}
-          <div>
-            <h4 className="flex items-center gap-2 text-blue-400 text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
-              <BrainCircuit size={14} /> Consultative Solution & Architecture
-            </h4>
-            <ul className="space-y-3">
-              {Array.isArray(project.solutionPrototype) ? project.solutionPrototype.map((sol: string, i: number) => (
-                <li key={i} className="flex gap-3 text-slate-300 text-sm leading-relaxed">
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 shrink-0"></span>
-                  <span>{sol}</span>
-                </li>
-              )) : (
-                <li className="text-slate-300 text-sm leading-relaxed">{project.solutionPrototype}</li>
-              )}
-            </ul>
-          </div>
-
-          {/* Impact */}
-          <div className="pt-2">
-            <h4 className="flex items-center gap-2 text-green-400 text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
-              <Sparkles size={14} /> Measurable Business Impact
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
-              {project.impact.map((imp: string, i: number) => (
-                <div key={i} className="flex items-start gap-2 text-xs text-green-300 bg-green-500/[0.04] p-2.5 rounded-lg border border-green-500/10">
-                  <span className="text-green-400 font-bold mt-0.5">▲</span>
-                  <span className="leading-snug">{imp}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Tech Stack */}
-            <div className="flex flex-wrap gap-2">
-              {project.techStack.map((tech: string) => {
-                const url = SKILL_LINKS[tech];
-                const content = (
-                  <span className="px-2.5 py-1 bg-white/5 border border-white/5 rounded-md text-[11px] font-mono text-slate-400 hover:text-primary hover:border-primary/30 transition-colors">
-                    {tech}
-                  </span>
-                );
-                return url ? (
-                  <a key={tech} href={url} target="_blank" rel="noopener noreferrer">
-                    {content}
-                  </a>
-                ) : (
-                  <React.Fragment key={tech}>{content}</React.Fragment>
-                );
-              })}
-            </div>
-
-            {project.disclaimer && (
-              <p className="mt-4 text-[11px] font-mono text-slate-500 italic">
-                * {project.disclaimer}
-              </p>
-            )}
-          </div>
-
-          {/* Mobile Actions */}
-          <div className="flex md:hidden pt-4 border-t border-white/5">
-            {project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-black font-bold text-xs rounded-lg hover:bg-primary/90 transition-colors"
+          {/* Filter Pills */}
+          <div className="flex flex-wrap gap-1.5 p-1 rounded-xl bg-white/[0.03] border border-white/10 self-start md:self-auto">
+            {filterTabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveFilter(tab.id)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  activeFilter === tab.id
+                    ? 'bg-emerald-500 text-black font-semibold shadow-sm'
+                    : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
+                }`}
               >
-                <ExternalLink size={14} /> {(project as any).linkText || 'View Live Project'}
-              </a>
-            )}
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
 
-      </div>
-    </div>
-  );
-};
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {filteredProjects.map((project: Project) => {
+            const mode = getCardMode(project.title);
 
-export const Projects: React.FC = () => {
-  return (
-    <section id="projects" className="py-24 md:py-32 px-6">
-      <div className="max-w-7xl mx-auto">
-        <Reveal sweep>
-          <div className="flex items-center gap-4 mb-8">
-            <span className="text-primary font-mono text-6xl opacity-20 font-bold -ml-4">03</span>
-            <div>
-              <TerminalLabel text="Consultative Prototyping & AI Systems" className="mb-1" />
-              <h2 className="text-3xl md:text-4xl font-bold text-white">Technical Projects & Client Solutions</h2>
-              <p className="text-slate-400 text-sm md:text-base mt-1">
-                From diagnosing commercial bottlenecks to architecting rapid AI prototypes and contracted freelance deliverables.
-              </p>
-            </div>
-          </div>
-        </Reveal>
+            return (
+              <motion.article
+                key={project.title}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.35 }}
+                className={`group relative rounded-2xl border transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md ${
+                  project.isFreelancePaid
+                    ? 'border-emerald-500/40 bg-gradient-to-b from-emerald-950/20 via-black/60 to-black/80 ring-1 ring-emerald-500/20 shadow-xl shadow-emerald-950/30'
+                    : 'border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 hover:border-white/20'
+                }`}
+              >
+                {/* Top Banner for Freelance Paid Project */}
+                {project.isFreelancePaid && (
+                  <div className="px-5 py-2.5 bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-emerald-500/20 border-b border-emerald-500/30 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="flex h-2 w-2 relative">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                      </span>
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-300">
+                        Contracted Freelance Paid Project
+                      </span>
+                    </div>
+                    <span className="text-xs font-mono text-emerald-400 font-semibold">
+                      Production GCP Deploy
+                    </span>
+                  </div>
+                )}
 
-        {/* Consulting Logic Callout Banner */}
-        <Reveal delay={100}>
-          <div className="mb-12 p-5 rounded-2xl bg-gradient-to-r from-primary/[0.08] via-white/[0.02] to-transparent border border-primary/20 backdrop-blur-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-primary/20 text-primary shrink-0">
-                <CheckCircle size={20} />
-              </div>
-              <div>
-                <h3 className="text-sm md:text-base font-bold text-white">The Consulting & Rapid Prototyping Edge</h3>
-                <p className="text-xs text-slate-300 mt-0.5">
-                  I don't just analyze data—I identify the market problem, architect the pure consulting logic, and deliver working production prototypes within days.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 text-xs font-mono text-primary bg-primary/10 px-3 py-1.5 rounded-lg border border-primary/20 shrink-0">
-              <Sparkles size={13} /> 4 Live Prototyped Solutions
-            </div>
-          </div>
-        </Reveal>
+                <div className="p-6 sm:p-7 flex-1">
+                  {/* Category & Role */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                      {project.category}
+                    </span>
+                    <span className="text-xs font-medium text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                      {project.role}
+                    </span>
+                  </div>
 
-        <div className="grid grid-cols-1 gap-12">
-          {PROJECTS.map((project, idx) => (
-            <Reveal key={idx} delay={idx * 100}>
-              <Card3D>
-                <ProjectCard project={project} index={idx} />
-              </Card3D>
-            </Reveal>
-          ))}
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-emerald-300 transition-colors">
+                    {project.title}
+                  </h3>
+
+                  {/* Interactive Mode Toggle Bar */}
+                  <div className="flex items-center gap-1 p-1 rounded-xl bg-black/60 border border-white/10 mb-5">
+                    <button
+                      onClick={() => setCardMode(project.title, 'problem')}
+                      className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                        mode === 'problem'
+                          ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      <span>The Problem</span>
+                    </button>
+
+                    <button
+                      onClick={() => setCardMode(project.title, 'prototype')}
+                      className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                        mode === 'prototype'
+                          ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-semibold'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      <Cpu className="w-3.5 h-3.5" />
+                      <span>The Prototype</span>
+                    </button>
+
+                    <button
+                      onClick={() => setCardMode(project.title, 'impact')}
+                      className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                        mode === 'impact'
+                          ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      <TrendingUp className="w-3.5 h-3.5" />
+                      <span>Impact &amp; ROI</span>
+                    </button>
+                  </div>
+
+                  {/* Dynamic Content Panel based on active mode */}
+                  <div className="min-h-[170px]">
+                    <AnimatePresence mode="wait">
+                      {mode === 'problem' && (
+                        <motion.div
+                          key="problem"
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -6 }}
+                          transition={{ duration: 0.2 }}
+                          className="rounded-xl bg-amber-950/10 border border-amber-500/20 p-4 text-xs sm:text-sm text-amber-200/90 leading-relaxed"
+                        >
+                          <div className="text-[11px] font-mono uppercase tracking-wider text-amber-400 font-bold mb-1.5 flex items-center gap-1.5">
+                            <AlertCircle className="w-3.5 h-3.5" />
+                            Business Bottleneck Identified
+                          </div>
+                          {project.businessProblem}
+                        </motion.div>
+                      )}
+
+                      {mode === 'prototype' && (
+                        <motion.div
+                          key="prototype"
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -6 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed"
+                        >
+                          {project.solutionPrototype.map((step, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <span className="font-mono text-emerald-400 text-xs shrink-0 mt-0.5">
+                                [0{idx + 1}]
+                              </span>
+                              <span className="text-slate-300">{step}</span>
+                            </div>
+                          ))}
+                        </motion.div>
+                      )}
+
+                      {mode === 'impact' && (
+                        <motion.div
+                          key="impact"
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -6 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2 text-xs sm:text-sm leading-relaxed"
+                        >
+                          {project.impact.map((point, idx) => (
+                            <div
+                              key={idx}
+                              className="flex items-start gap-2 p-2 rounded-lg bg-emerald-500/[0.04] border border-emerald-500/10 text-slate-200"
+                            >
+                              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                              <span>{point}</span>
+                            </div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Tech Stack Pills */}
+                  <div className="mt-6 pt-5 border-t border-white/10 flex flex-wrap gap-1.5">
+                    {project.techStack.map((tech) => {
+                      const link = SKILL_LINKS[tech];
+                      return (
+                        <a
+                          key={tech}
+                          href={link || '#'}
+                          target={link ? '_blank' : undefined}
+                          rel={link ? 'noopener noreferrer' : undefined}
+                          className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/10 text-slate-300 hover:text-emerald-300 hover:border-emerald-500/30 transition-colors"
+                        >
+                          {tech}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Footer Link / Trigger */}
+                {project.link && (
+                  <div className="px-6 py-4 bg-black/40 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-xs text-slate-400">Live External Resource</span>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors group/link"
+                    >
+                      <span>{project.linkText || 'View Project'}</span>
+                      <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                    </a>
+                  </div>
+                )}
+
+                {project.disclaimer && !project.link && (
+                  <div className="px-6 py-3 bg-black/40 border-t border-white/10 text-[11px] font-mono text-slate-400">
+                    ℹ️ {project.disclaimer}
+                  </div>
+                )}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
-

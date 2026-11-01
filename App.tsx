@@ -1,61 +1,37 @@
 import React from 'react';
+import { InteractiveCanvas } from './components/ui/InteractiveCanvas';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Experience } from './components/Experience';
+import { ImpactMetrics } from './components/ImpactMetrics';
+import { ConsultingLogic } from './components/ConsultingLogic';
 import { Projects } from './components/Projects';
+import { Experience } from './components/Experience';
+import { About } from './components/About';
 import { Achievements } from './components/Achievements';
 import { Contact } from './components/Contact';
-import { Background3D } from './components/Background3D';
-import { CursorGlow } from './components/ui/CursorGlow';
-import { SOCIALS } from './constants';
-import { Github, Linkedin, Phone } from 'lucide-react';
 
-const App: React.FC = () => {
-  const getIcon = (name: string) => {
-    switch (name) {
-      case 'GitHub': return <Github size={20} />;
-      case 'LinkedIn': return <Linkedin size={20} />;
-      case 'Phone': return <Phone size={20} />;
-      default: return null;
-    }
-  };
-
+export const App: React.FC = () => {
   return (
-    // Removed overflow-x-hidden from here to ensure sticky positioning works correctly in children.
-    // Overflow is handled by body class in index.html
-    <div className="text-slate-300 min-h-screen font-sans selection:bg-primary/30 relative">
-      <CursorGlow />
-      <Background3D />
+    <div className="min-h-screen bg-[#08090D] text-slate-200 selection:bg-emerald-500 selection:text-black font-sans relative">
+      {/* Interactive Cursor-Reactive Particle Canvas */}
+      <InteractiveCanvas />
+
+      {/* Floating Header Navigation */}
       <Navigation />
 
-      <main className="relative z-10 flex flex-col gap-0">
+      {/* Main Content Flow */}
+      <main className="relative z-10">
         <Hero />
-        <About />
-        <Experience />
+        <ImpactMetrics />
+        <ConsultingLogic />
         <Projects />
+        <Experience />
+        <About />
         <Achievements />
-        <Contact />
       </main>
 
-      {/* Story Markers / Socials */}
-      <div className="hidden md:flex fixed bottom-12 left-12 flex-col items-center gap-6 z-50">
-        <div className="flex flex-col gap-6">
-          {SOCIALS.map(social => (
-            <a
-              key={social.name}
-              href={social.url}
-              className="text-slate-500 hover:text-primary hover:scale-125 transition-all duration-300"
-              target="_blank"
-              rel="noreferrer"
-              aria-label={social.name}
-            >
-              {getIcon(social.name)}
-            </a>
-          ))}
-        </div>
-        <div className="w-px h-12 bg-gradient-to-b from-slate-500 to-transparent"></div>
-      </div>
+      {/* Command Deck Footer */}
+      <Contact />
     </div>
   );
 };

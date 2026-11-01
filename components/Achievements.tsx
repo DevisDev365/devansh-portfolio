@@ -1,57 +1,77 @@
 import React from 'react';
-import { Reveal } from './ui/RevealMotion';
-import { TerminalLabel } from './ui/TerminalLabel';
-import { ACHIEVEMENTS } from '../constants';
-import { Trophy, Building2 } from 'lucide-react';
-
-const AchievementCard = ({ achievement, index }: { achievement: typeof ACHIEVEMENTS[0], index: number }) => {
-    return (
-        <div className="group p-6 rounded-2xl bg-[#0F0F0F] border border-white/5 hover:border-primary/20 transition-all duration-300 hover:bg-white/5 hover:-translate-y-1">
-            <div className="flex items-start justify-between mb-4">
-                <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                    <Trophy size={24} />
-                </div>
-                <span className="text-6xl font-bold text-white/5 font-mono select-none">0{index + 1}</span>
-            </div>
-
-            <h3 className="text-xl font-bold text-white mb-2 leading-tight group-hover:text-primary transition-colors">
-                {achievement.title}
-            </h3>
-
-            <div className="flex items-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase tracking-wider">
-                <Building2 size={12} />
-                <span>{achievement.organization}</span>
-            </div>
-
-            <p className="text-slate-400 text-sm leading-relaxed">
-                {achievement.description}
-            </p>
-        </div>
-    );
-};
+import { motion } from 'framer-motion';
+import { achievements, certifications } from '../content/portfolio-content.mjs';
+import { Trophy, Award, CheckCircle2, Star } from 'lucide-react';
 
 export const Achievements: React.FC = () => {
-    return (
-        <section id="achievements" className="py-24 px-6 relative">
-            <div className="max-w-7xl mx-auto">
-                <Reveal sweep>
-                    <div className="flex items-center gap-4 mb-16">
-                        <span className="text-primary font-mono text-6xl opacity-20 font-bold -ml-4">04</span>
-                        <div>
-                            <TerminalLabel text="Recognition" className="mb-1" />
-                            <h2 className="text-4xl font-bold text-white">Achievements</h2>
-                        </div>
-                    </div>
-                </Reveal>
+  return (
+    <section id="achievements" className="relative z-10 py-20 px-4 sm:px-6 bg-black/40">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
+        <div className="mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-mono uppercase tracking-wider mb-3">
+            <Trophy className="w-3.5 h-3.5 text-emerald-400" />
+            Accreditations &amp; Leadership
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+            Honors, Simulations &amp; Executive Credentials
+          </h2>
+          <p className="mt-2 text-slate-400 text-sm sm:text-base max-w-2xl">
+            Recognized in national B-school business simulations, student leadership, and analytics credentials.
+          </p>
+        </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {ACHIEVEMENTS.map((achievement, idx) => (
-                        <Reveal key={idx} delay={idx * 100}>
-                            <AchievementCard achievement={achievement} index={idx} />
-                        </Reveal>
-                    ))}
+        {/* Achievements Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {achievements.map((item: any, idx: number) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="p-6 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 backdrop-blur-md flex flex-col justify-between hover:border-emerald-500/40 transition-colors group"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                    HONOR 0{idx + 1}
+                  </span>
+                  <Award className="w-5 h-5 text-slate-500 group-hover:text-emerald-400 transition-colors" />
                 </div>
-            </div>
-        </section>
-    );
+                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">
+                  {item.title}
+                </h3>
+                <div className="text-xs font-medium text-slate-400 mb-3">{item.organization}</div>
+                <p className="text-sm text-slate-300 leading-relaxed">{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Certifications Card */}
+        <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-emerald-950/20 via-black/40 to-cyan-950/20 p-6 sm:p-8 backdrop-blur-md">
+          <div className="flex items-center gap-3 mb-4">
+            <Star className="w-5 h-5 text-emerald-400" />
+            <h3 className="text-xl font-bold text-white">Professional Certifications</h3>
+          </div>
+
+          <div className="space-y-4">
+            {certifications.map((cert: any, idx: number) => (
+              <div
+                key={idx}
+                className="p-4 rounded-xl bg-black/60 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+              >
+                <div>
+                  <h4 className="text-base font-bold text-white">{cert.title}</h4>
+                  <p className="text-xs text-emerald-400 mt-0.5">{cert.issuer} • {cert.year}</p>
+                  <p className="text-xs text-slate-400 mt-1">{cert.description}</p>
+                </div>
+                <span className="text-xs font-mono px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 self-start sm:self-auto shrink-0">
+                  Verified Credential
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };

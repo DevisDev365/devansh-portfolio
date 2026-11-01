@@ -1,102 +1,142 @@
-import React from 'react';
-import { Reveal } from './ui/RevealMotion';
-import { SOCIALS, PERSONAL_EMAIL, SECONDARY_EMAIL } from '../constants';
-import { Github, Linkedin, Phone, Mail, ExternalLink, Check, ArrowUpRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { portfolioIdentity, socials } from '../content/portfolio-content.mjs';
+import { RESUME_URL, PERSONAL_EMAIL, SECONDARY_EMAIL } from '../constants';
+import { Mail, Phone, Linkedin, Github, Download, Copy, Check, Send, ArrowUpRight } from 'lucide-react';
 
 export const Contact: React.FC = () => {
-  const getIcon = (name: string) => {
-    switch (name) {
-      case 'GitHub': return <Github size={20} />;
-      case 'LinkedIn': return <Linkedin size={20} />;
-      case 'Phone': return <Phone size={20} />;
-      case 'Email': return <Mail size={20} />;
-      default: return <ExternalLink size={20} />;
-    }
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(PERSONAL_EMAIL);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   return (
-    <section id="contact" className="pt-24 md:pt-32 pb-0 px-0 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto mb-20 px-6">
-        <Reveal>
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Let's Partner & Drive Measurable Value</h3>
-          <div className="flex justify-center">
-            <div className="bg-[#0a0a0a]/90 p-8 rounded-2xl border border-primary/20 w-full max-w-2xl shadow-xl shadow-primary/5 backdrop-blur-xl">
-              <h4 className="text-primary font-mono text-sm font-bold mb-6 flex items-center gap-2">
-                <Check size={18} /> Best aligned for:
-              </h4>
-              <ul className="space-y-4">
-                <li className="flex gap-3 text-slate-300 text-sm">
-                  <span className="text-primary font-bold">✓</span> Enterprise ERP & SAP consulting teams (SAP Business One / SAP B1)
-                </li>
-                <li className="flex gap-3 text-slate-300 text-sm">
-                  <span className="text-primary font-bold">✓</span> Business Development & Sales leaders seeking pipeline expansion
-                </li>
-                <li className="flex gap-3 text-slate-300 text-sm">
-                  <span className="text-primary font-bold">✓</span> RevOps & Operations teams wanting automated AI intelligence pipelines & rapid prototypes
-                </li>
-                <li className="flex gap-3 text-slate-300 text-sm">
-                  <span className="text-primary font-bold">✓</span> Growth-stage B2B enterprises scaling strategic client acquisition
-                </li>
-              </ul>
+    <footer id="contact" className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/10 bg-black/80">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-16">
+          {/* Main Callout */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-mono uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              Get In Touch
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              Let's Solve Systemic Problems &amp;{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+                Expand Revenue.
+              </span>
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl">
+              Available for enterprise SAP consulting, rapid AI prototyping advisory, and commercial
+              revenue expansion mandates.
+            </p>
+
+            {/* Quick 1-Click Copy Email Button */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <button
+                onClick={handleCopyEmail}
+                className="flex items-center gap-2 px-5 py-3 rounded-xl bg-white/[0.05] border border-white/10 hover:border-emerald-500/40 text-slate-200 hover:text-white transition-all text-sm font-medium"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-400" />
+                    <span className="text-emerald-300 font-mono text-xs">Copied to Clipboard!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4 text-slate-400" />
+                    <span className="font-mono text-xs">{PERSONAL_EMAIL}</span>
+                  </>
+                )}
+              </button>
+
+              <a
+                href={`mailto:${PERSONAL_EMAIL}`}
+                className="flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20"
+              >
+                <Mail className="w-4 h-4" />
+                <span>Send Direct Email</span>
+              </a>
             </div>
           </div>
-        </Reveal>
-      </div>
 
-      <div className="max-w-2xl mx-auto text-center flex flex-col items-center px-6 relative z-10">
-        <Reveal delay={200}>
-          <span className="text-primary font-mono text-xs mb-3 block uppercase tracking-widest">05. Get In Touch</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Let's Connect</h2>
-          <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-10">
-            Open to high-impact SAP solution consulting, enterprise business development, and RevOps automation initiatives.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={`mailto:${PERSONAL_EMAIL}`}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary text-black font-bold hover:bg-primary/90 transition-all rounded-xl font-mono text-sm shadow-lg shadow-primary/20"
-            >
-              <Mail size={16} />
-              Email Devansh
+          {/* Quick Channels Card */}
+          <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-white/[0.02] p-6 space-y-4 backdrop-blur-md">
+            <div className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold mb-2">
+              Direct Contact Channels
+            </div>
+
+            <div className="space-y-2.5">
+              <a
+                href={portfolioIdentity.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3 rounded-xl bg-black/40 border border-white/5 hover:border-emerald-500/30 text-slate-300 hover:text-white transition-all group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Linkedin className="w-4 h-4 text-emerald-400" />
+                  <span className="text-sm font-medium">LinkedIn Profile</span>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
+              </a>
+
+              <a
+                href={portfolioIdentity.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3 rounded-xl bg-black/40 border border-white/5 hover:border-emerald-500/30 text-slate-300 hover:text-white transition-all group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Github className="w-4 h-4 text-emerald-400" />
+                  <span className="text-sm font-medium">GitHub Repository</span>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
+              </a>
+
+              <a
+                href={portfolioIdentity.phoneUrl}
+                className="flex items-center justify-between p-3 rounded-xl bg-black/40 border border-white/5 hover:border-emerald-500/30 text-slate-300 hover:text-white transition-all group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-emerald-400" />
+                  <span className="text-sm font-medium">{portfolioIdentity.phone}</span>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
+              </a>
+
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:border-emerald-500/60 text-emerald-300 transition-all group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Download className="w-4 h-4 text-emerald-400" />
+                  <span className="text-sm font-semibold">Download Full Resume (Google Drive)</span>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Sub-bar */}
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+          <div>
+            © {new Date().getFullYear()} {portfolioIdentity.name}. Built with React, TypeScript &amp; Framer Motion.
+          </div>
+          <div className="flex items-center gap-4">
+            <a href="https://portfolio.devanshkhanna.online/llms.txt" className="hover:text-slate-300 underline underline-offset-2">
+              llms.txt
             </a>
-            <a
-              href="https://www.linkedin.com/in/devansh-khanna-618606178/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-white/20 text-slate-200 hover:border-primary hover:text-primary hover:bg-primary/10 transition-all rounded-xl font-mono text-sm"
-            >
-              <Linkedin size={16} />
-              LinkedIn Profile
-              <ArrowUpRight size={14} />
+            <a href="https://portfolio.devanshkhanna.online/portfolio.md" className="hover:text-slate-300 underline underline-offset-2">
+              portfolio.md
             </a>
           </div>
-        </Reveal>
-      </div>
-
-      <footer className="mt-24 text-center text-slate-500 text-xs font-mono relative z-10 pb-8">
-        <div className="flex justify-center gap-6 mb-4 md:hidden">
-          {SOCIALS.map(social => (
-            <a key={social.name} href={social.url} className="hover:text-primary transition-colors">
-              {getIcon(social.name)}
-            </a>
-          ))}
         </div>
-        <p className="hover:text-primary transition-colors cursor-default mb-1">
-          © 2026 Devansh Khanna. All Rights Reserved.
-        </p>
-        <p className="text-slate-600 text-[11px]">
-          Business Development Executive – SAP Consulting · Elevra Tech
-        </p>
-      </footer>
-
-      {/* Waving Footer Graphic */}
-      <div className="w-full mt-[-50px] md:mt-[-100px] opacity-20 pointer-events-none">
-        <img
-          src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer&text=&fontSize=0"
-          className="w-full h-auto object-cover"
-          alt="Footer Wave"
-        />
       </div>
-    </section>
+    </footer>
   );
 };
-
