@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import { useSoundFX } from './hooks/useSoundFX';
+import { useWorldTheme } from './hooks/useWorldTheme';
 import { InteractiveCanvas } from './components/ui/InteractiveCanvas';
-import { Preloader } from './components/anime/Preloader';
 import { EpisodeDock } from './components/anime/EpisodeDock';
 import { Hero } from './components/Hero';
 import { ArcImperialPipeline } from './components/anime/ArcImperialPipeline';
@@ -14,6 +14,7 @@ import { CharacterSheet } from './components/anime/CharacterSheet';
 
 export const App: React.FC = () => {
   const { isMuted, toggleMute, playClick, playValve, playStrike, playPulse } = useSoundFX();
+  const { activeWorld, currentTheme } = useWorldTheme();
 
   // Initialize Lenis smooth inertia scrolling on desktop
   useEffect(() => {
@@ -26,6 +27,7 @@ export const App: React.FC = () => {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+    (window as any).__lenis = lenis;
 
     let rafId: number;
     function raf(time: number) {
@@ -40,21 +42,27 @@ export const App: React.FC = () => {
     };
   }, []);
 
-  // Easter egg: change tab title on window blur
+  // Easter egg: change tab title on window blur, otherwise show active world
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
         document.title = 'Still watching? — Devansh Khanna';
       } else {
-        document.title = 'Devansh Khanna Portfolio';
+        document.title = `Devansh Khanna · ${currentTheme.name}`;
       }
     };
+    handleVisibilityChange();
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, []);
+  }, [currentTheme.name]);
 
   return (
-    <div className="min-h-dvh bg-[#07080C] text-slate-200 selection:bg-emerald-500 selection:text-black font-sans relative overflow-x-hidden">
+    <div
+      className="min-h-dvh bg-[#07080C] text-slate-200 selection:bg-emerald-500 selection:text-black font-sans relative overflow-x-hidden transition-colors duration-500"
+      style={{
+        ['--world-accent' as any]: currentTheme.accentHex,
+      }}
+    >
       {/* Interactive cursor-reactive particle canvas */}
       <InteractiveCanvas />
 
@@ -65,21 +73,21 @@ export const App: React.FC = () => {
         playClick={playClick}
       />
 
-      {/* Main Episodic Narrative Flow */}
+      {/* Main Episodic Four-World Narrative Flow */}
       <main className="relative z-10">
-        {/* Episode 01 Hero */}
+        {/* Episode 01: Manga Ink Opening */}
         <Hero playClick={playClick} />
 
-        {/* Arc 01: Imperial Auto (The Industrial Pipeline) */}
+        {/* Arc 01: Imperial Auto (Fuel Transmission Conduit Architecture) */}
         <ArcImperialPipeline playValve={playValve} playClick={playClick} />
 
         {/* Arc 02: SMAAASH Entertainment (The Outbound Strike) */}
         <ArcSmaaashBowling playStrike={playStrike} playClick={playClick} />
 
-        {/* Arc 03: Elevra Tech (The SAP B1 Orbital Hub) */}
+        {/* Arc 03: Elevra Tech (The Enterprise Problem Solving Engine - White Page Flip) */}
         <ArcElevraSAP playPulse={playPulse} playClick={playClick} />
 
-        {/* Finale Arc: Autonomous AI & Prototyping Engine */}
+        {/* Finale Arc: Autonomous AI & GTM Intelligence Engine */}
         <ArcAutonomousGTM playPulse={playPulse} playClick={playClick} />
 
         {/* Side Quests & Credibility Strip (Brand Sentiment, Red Tape [X], Honors) */}

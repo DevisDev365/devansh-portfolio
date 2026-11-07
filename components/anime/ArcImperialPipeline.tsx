@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gauge, CheckCircle2, Activity, Cpu, RotateCw } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, Zap, RotateCw, Wrench, AlertCircle, ArrowRight } from 'lucide-react';
 
 interface ArcImperialPipelineProps {
   playValve?: () => void;
@@ -8,318 +8,276 @@ interface ArcImperialPipelineProps {
 }
 
 export const ArcImperialPipeline: React.FC<ArcImperialPipelineProps> = ({ playValve, playClick }) => {
-  const [valveRotation, setValveRotation] = useState<number>(0);
-  const [flowSpeed, setFlowSpeed] = useState<number>(1); // 1 = normal, 2 = high, 0.5 = low
-  const [activeClient, setActiveClient] = useState<number>(0);
+  // Connection states for 3 OEM fuel transmission lines
+  const [connectedLines, setConnectedLines] = useState<{ [key: string]: boolean }>({
+    hyzon: true,
+    mitsubishi: true,
+    kohler: true,
+  });
 
-  const clients = [
+  const [bleederTightened, setBleederTightened] = useState<boolean>(true);
+  const [bleederClickCount, setBleederClickCount] = useState<number>(0);
+
+  const lines = [
     {
       id: 'hyzon',
-      name: 'Hyzon Motors US',
-      market: 'Export OEM (Hydrogen Commercial Vehicles)',
-      mandate: 'End-to-end commercial lifecycle ownership from plant audit to VP/GM signoff.',
-      deliverables: 'Custom Incoterm evaluation, production schedules, and automated KPI reporting.',
-      metric: 'Export Account Retention & Zero SLA Breaches',
+      client: 'Hyzon Motors US',
+      application: 'Hydrogen & High-Pressure Fuel Conduit',
+      spec: 'PA12 Multilayer Nylon · Zero Vapor Permeation · SAE J2044 Quick-Connect',
+      impact: 'End-to-end commercial lifecycle ownership from plant audit to VP/GM signoff.',
+      metric: '₹5Cr+ Expansion ARR Managed',
+      color: '#1E5BFF',
     },
     {
       id: 'mitsubishi',
-      name: 'Mitsubishi Logisnext US',
-      market: 'Export OEM (Material Handling Equipment)',
-      mandate: 'High-volume international RFQ modeling and multi-plant SLA coordination.',
-      deliverables: 'Data-driven pricing forecasting margin models with zero delivery churn.',
-      metric: '+12% Pricing Margin Accuracy',
+      client: 'Mitsubishi Logisnext US',
+      application: 'Hydraulic & Fuel Return Assembly',
+      spec: 'Reinforced Braided Synthetic Rubber · Burst Rating > 35 Bar',
+      impact: 'High-volume international RFQ modeling and multi-plant SLA coordination.',
+      metric: '100% SLA Delivery Compliance',
+      color: '#00E47C',
     },
     {
       id: 'kohler',
-      name: 'Kohler Power India',
-      market: 'Domestic Enterprise (Power Systems)',
-      mandate: 'Strategic domestic account expansion and consultative product fit.',
-      deliverables: '87% time reduction in repetitive ERP reporting via custom automated macros.',
-      metric: '87% ERP Reporting Time Cut (4 hrs → 30 mins)',
+      client: 'Kohler Power India',
+      application: 'Precision Diesel Fuel Rail Transmission',
+      spec: 'High-Temperature Heat-Shielded Conduit · Automated Flow Tracking',
+      impact: 'Engineered automated VBA/ERP macros slashing reporting time from 4h to 30m.',
+      metric: '87% ERP Reporting Time Cut',
+      color: '#F59E0B',
     },
   ];
 
-  const rotateValve = () => {
+  const toggleConnection = (id: string) => {
     if (playValve) playValve();
-    setValveRotation((prev) => prev + 90);
-    setFlowSpeed((prev) => (prev >= 2 ? 0.75 : prev + 0.5));
+    if (playClick) playClick();
+    setConnectedLines((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
   };
 
-  const current = clients[activeClient];
+  const handleTorqueBleeder = () => {
+    if (playValve) playValve();
+    setBleederClickCount((prev) => prev + 1);
+    setBleederTightened(true);
+  };
+
+  const allConnected = Object.values(connectedLines).every(Boolean);
 
   return (
-    <section id="arc-pipeline" className="relative py-24 px-4 sm:px-6 bg-[#080B10]">
+    <section id="arc-pipeline" className="relative py-24 px-4 sm:px-6 bg-[#071A3D] text-slate-100 overflow-hidden">
+      {/* Blueprint Drafting Grid Background */}
+      <div
+        className="absolute inset-0 opacity-15 pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, #60A5FA 1px, transparent 1px), linear-gradient(to bottom, #60A5FA 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+        }}
+      />
+
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Arc Chapter Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <div>
-            <div className="text-amber-400 font-semibold text-sm mb-2">
-              Episode Arc 1 · Imperial Auto Industries
+            <div className="flex items-center gap-2 text-blue-400 font-semibold text-xs tracking-wider uppercase mb-2">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
+              <span>Episode Arc 01 · Imperial Auto Industries</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
-              The Industrial Pipeline
+              Fuel Transmission Architecture
             </h2>
-            <p className="mt-2 text-slate-400 text-sm sm:text-base max-w-xl">
-              Key Account Executive managing strategic OEM accounts. Engineering automated data pipelines and commercial forecasting across ₹5+ Cr in expansion ARR.
+            <p className="mt-2 text-slate-300 text-sm sm:text-base max-w-xl leading-relaxed">
+              Key Account Executive managing strategic OEM accounts. Engineering zero-permeation fuel transmission lines, hydraulic conduit assemblies, and commercial forecasting across ₹5+ Cr in expansion ARR.
             </p>
           </div>
 
-          {/* Interactive Handwheel Valve Controller */}
-          <div data-ui className="flex items-center gap-4 bg-[#0E131E] p-3 rounded-2xl border border-white/10 shrink-0">
-            <button
-              onClick={rotateValve}
-              className="flex items-center gap-3 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs transition-transform hover:scale-[1.02] active:scale-[0.98]"
-              title="Click or Drag to Rotate Hydraulic Valve"
-            >
-              {/* Rotating Mechanical Wheel SVG */}
-              <motion.div
-                animate={{ rotate: valveRotation }}
-                transition={{ type: 'spring', stiffness: 220, damping: 14 }}
-                className="w-5 h-5 flex items-center justify-center"
-              >
-                <RotateCw className="w-4 h-4" />
-              </motion.div>
-              <span>Rotate Valve: {flowSpeed > 1.2 ? 'High Flow (100% SLA)' : 'Standard Flow'}</span>
-            </button>
+          {/* Quick-Connect Status Badge */}
+          <div className="flex items-center gap-3 bg-[#0A2558] p-3 rounded-2xl border border-blue-400/30 shrink-0">
+            <div className="text-right">
+              <span className="text-[11px] text-blue-200 block">Conduit Manifold Status</span>
+              <strong className="text-xs text-white">
+                {allConnected ? '3/3 Lines Sealed (10 Bar)' : 'Coupling Disconnected'}
+              </strong>
+            </div>
+            <span
+              className={`w-3.5 h-3.5 rounded-full ${
+                allConnected ? 'bg-emerald-400 shadow-lg shadow-emerald-400/50' : 'bg-amber-400 animate-pulse'
+              }`}
+            />
           </div>
         </div>
 
-        {/* Industrial Pipeline Mechanical Set-Piece */}
-        <div data-ui className="relative mb-16 rounded-2xl bg-[#0A0D15] p-6 sm:p-8 border border-white/10 overflow-hidden">
-          {/* Blueprint Grid Lines & Header */}
-          <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
-            <div className="flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-              <span className="text-sm font-bold text-slate-200">
-                Hydraulic Conduit &amp; OEM Client Distribution Circuit
-              </span>
+        {/* Technical Blueprint Conduit Set-Piece */}
+        <div className="rounded-2xl bg-[#09214D]/90 p-6 sm:p-8 border border-blue-400/30 shadow-2xl mb-12">
+          {/* Blueprint Header Callouts */}
+          <div className="flex flex-wrap items-center justify-between pb-4 mb-6 border-b border-blue-400/20 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-blue-300 font-bold">SCHEMATIC: FLUID-TRANS-2024</span>
+              <span className="text-blue-200/40">•</span>
+              <span className="text-slate-300">Multilayer Nylon Fuel Conduits &amp; Quick Couplers</span>
             </div>
-            <div className="text-xs text-slate-400">
-              Velocity Factor: <strong className="text-amber-400 font-semibold">{flowSpeed.toFixed(1)}x</strong>
+            <div className="flex items-center gap-3 text-slate-300">
+              <span className="font-mono">TOLERANCE: ±0.05mm</span>
+              <button
+                onClick={handleTorqueBleeder}
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-600/50 hover:bg-blue-600 text-blue-200 text-[11px] font-semibold transition-colors"
+                title="Click to calibrate SAE bleeder valve"
+              >
+                <Wrench className="w-3 h-3 text-blue-300" />
+                <span>Torque Inspection Nut</span>
+              </button>
             </div>
           </div>
 
-          {/* SVG Pipeline Canvas with Specular Highlights and Rivets */}
-          <div className="relative py-6">
-            <svg
-              className="w-full h-36 sm:h-44 overflow-visible"
-              viewBox="0 0 960 160"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                {/* Metallic Pipe Gradient */}
-                <linearGradient id="pipeSteel" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#475569" />
-                  <stop offset="25%" stopColor="#94A3B8" />
-                  <stop offset="50%" stopColor="#334155" />
-                  <stop offset="100%" stopColor="#0F172A" />
-                </linearGradient>
+          {/* Interactive Fuel Lines Coupling Manifold */}
+          <div className="space-y-6">
+            <div className="text-xs font-semibold text-blue-200 mb-2">
+              Interactive OEM Quick-Connect Couplers (Click to Connect/Disconnect):
+            </div>
 
-                {/* Copper Fluid Core Gradient */}
-                <linearGradient id="fluidCopper" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#F59E0B" />
-                  <stop offset="50%" stopColor="#D97706" />
-                  <stop offset="100%" stopColor="#78350F" />
-                </linearGradient>
-
-                {/* Flange Collar Gradient */}
-                <linearGradient id="flangeCollar" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#64748B" />
-                  <stop offset="50%" stopColor="#1E293B" />
-                  <stop offset="100%" stopColor="#0F172A" />
-                </linearGradient>
-              </defs>
-
-              {/* Main Conduit Body */}
-              <rect x="40" y="55" width="880" height="30" rx="4" fill="url(#pipeSteel)" />
-
-              {/* Glowing Copper Core Fluid Channel */}
-              <rect x="40" y="65" width="880" height="10" fill="url(#fluidCopper)" opacity="0.9" />
-
-              {/* Fluid Motion Streamer */}
-              <motion.line
-                x1="40"
-                y1="70"
-                x2="920"
-                y2="70"
-                stroke="#FEF3C7"
-                strokeWidth="4"
-                strokeDasharray="20 40"
-                strokeLinecap="round"
-                animate={{
-                  strokeDashoffset: [0, -180],
-                }}
-                transition={{
-                  duration: 2 / flowSpeed,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-              />
-
-              {/* Specular Highlight along top edge */}
-              <line x1="40" y1="56" x2="920" y2="56" stroke="#FFFFFF" strokeWidth="1.5" strokeOpacity="0.4" />
-
-              {/* Bolted Flanges with Rivets at Junctions */}
-              {[120, 360, 600, 840].map((fx) => (
-                <g key={fx}>
-                  <rect x={fx - 6} y="48" width="12" height="44" rx="2" fill="url(#flangeCollar)" stroke="#334155" strokeWidth="1.5" />
-                  <circle cx={fx} cy="52" r="2" fill="#FEF3C7" />
-                  <circle cx={fx} cy="68" r="2" fill="#FEF3C7" />
-                  <circle cx={fx} cy="86" r="2" fill="#FEF3C7" />
-                </g>
-              ))}
-
-              {/* Hydraulic Branch Hoses connecting to Clients */}
-              {/* Terminal 1 Branch: x=240 */}
-              <path d="M 240 85 L 240 140" stroke="url(#pipeSteel)" strokeWidth="14" strokeLinecap="round" />
-              <path d="M 240 85 L 240 140" stroke="#F59E0B" strokeWidth="4" strokeDasharray="8 12" />
-
-              {/* Terminal 2 Branch: x=480 */}
-              <path d="M 480 85 L 480 140" stroke="url(#pipeSteel)" strokeWidth="14" strokeLinecap="round" />
-              <path d="M 480 85 L 480 140" stroke="#F59E0B" strokeWidth="4" strokeDasharray="8 12" />
-
-              {/* Terminal 3 Branch: x=720 */}
-              <path d="M 720 85 L 720 140" stroke="url(#pipeSteel)" strokeWidth="14" strokeLinecap="round" />
-              <path d="M 720 85 L 720 140" stroke="#F59E0B" strokeWidth="4" strokeDasharray="8 12" />
-
-              {/* Steam puff animation at safety valve */}
-              <motion.circle
-                cx="360"
-                cy="44"
-                r="4"
-                fill="#FFFFFF"
-                animate={{
-                  cy: [44, 20],
-                  r: [3, 9],
-                  opacity: [0.6, 0],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: 'easeOut',
-                }}
-              />
-            </svg>
-
-            {/* Interactive Client Terminals Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-              {clients.map((client, idx) => {
-                const isActive = activeClient === idx;
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {lines.map((line) => {
+                const isConnected = connectedLines[line.id];
                 return (
-                  <button
-                    key={client.id}
-                    onClick={() => {
-                      setActiveClient(idx);
-                      if (playClick) playClick();
-                    }}
-                    className={`text-left p-4 rounded-xl transition-colors border ${
-                      isActive
-                        ? 'border-amber-500/60 bg-amber-500/15 text-white'
-                        : 'border-white/10 bg-[#0E131E] text-slate-300 hover:text-white'
+                  <div
+                    key={line.id}
+                    onClick={() => toggleConnection(line.id)}
+                    className={`cursor-pointer p-4 rounded-xl border transition-all ${
+                      isConnected
+                        ? 'bg-[#0E2F6F] border-blue-400/60 shadow-lg'
+                        : 'bg-[#071633] border-white/10 opacity-70 hover:opacity-100'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-semibold text-amber-400">
-                        {client.name.split(' ')[0]} Branch
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-bold text-white">{line.client}</span>
+                      <span
+                        className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${
+                          isConnected
+                            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                            : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                        }`}
+                      >
+                        {isConnected ? 'Coupled · 10 Bar' : 'Disconnected'}
                       </span>
-                      {isActive && <span className="w-2 h-2 rounded-full bg-amber-400" />}
                     </div>
-                    <div className="text-sm font-bold text-white mb-1">{client.name}</div>
-                    <div className="text-xs text-slate-400 mb-2">{client.market}</div>
-                    <div className="text-xs text-slate-200 leading-relaxed pt-2">
-                      {client.mandate}
+
+                    <div className="text-xs text-blue-300 font-semibold mb-1">
+                      {line.application}
                     </div>
-                    <div className="text-xs text-amber-300 font-semibold mt-2">
-                      Key Result: {client.metric}
+
+                    <div className="text-[11px] text-slate-300 font-mono mb-3 leading-tight">
+                      {line.spec}
                     </div>
-                  </button>
+
+                    {/* Animated Fuel Flow Indicator */}
+                    <div className="h-2 rounded-full bg-[#05132B] overflow-hidden relative mb-3">
+                      {isConnected && (
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 rounded-full"
+                          animate={{
+                            x: ['-100%', '100%'],
+                          }}
+                          transition={{
+                            duration: 1.4,
+                            repeat: Infinity,
+                            ease: 'linear',
+                          }}
+                          style={{ width: '60%' }}
+                        />
+                      )}
+                    </div>
+
+                    <div className="text-[11px] text-slate-300">
+                      <strong>Impact:</strong> {line.impact}
+                    </div>
+
+                    <div className="mt-3 pt-2 border-t border-blue-400/20 flex items-center justify-between text-xs">
+                      <span className="text-blue-300 font-mono font-bold">{line.metric}</span>
+                      <span className="text-[10px] text-slate-400">
+                        {isConnected ? 'Click to Decouple' : 'Click to Snap Coupler'}
+                      </span>
+                    </div>
+                  </div>
                 );
               })}
             </div>
           </div>
+
+          {/* Technical Schematic Drawing of Braided Fuel Line & Pressure Distribution */}
+          <div className="mt-8 pt-6 border-t border-blue-400/20">
+            <div className="relative py-2">
+              <svg className="w-full h-24 overflow-visible" viewBox="0 0 800 80" fill="none">
+                <defs>
+                  {/* Braided Hose Pattern */}
+                  <pattern id="braidedPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 0 0 L 10 10 M 10 0 L 0 10" stroke="#3B82F6" strokeWidth="1" opacity="0.3" />
+                  </pattern>
+
+                  {/* High-Pressure Fuel Gradient */}
+                  <linearGradient id="fuelStream" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#1E5BFF" />
+                    <stop offset="50%" stopColor="#00E47C" />
+                    <stop offset="100%" stopColor="#38BDF8" />
+                  </linearGradient>
+                </defs>
+
+                {/* Main Hose Outer Jacket */}
+                <rect x="20" y="24" width="760" height="32" rx="6" fill="#0C2554" stroke="#60A5FA" strokeWidth="1.5" />
+                <rect x="20" y="24" width="760" height="32" rx="6" fill="url(#braidedPattern)" />
+
+                {/* Core Fuel Core */}
+                <rect x="30" y="34" width="740" height="12" rx="3" fill="#05142E" />
+
+                {/* Animated Pulsing Fluid Core if connected */}
+                {allConnected && (
+                  <motion.rect
+                    x="30"
+                    y="36"
+                    width="740"
+                    height="8"
+                    rx="2"
+                    fill="url(#fuelStream)"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                )}
+
+                {/* Quick-Connect Coupler Hardware Flanges */}
+                <rect x="60" y="18" width="16" height="44" rx="2" fill="#93C5FD" stroke="#1E3A8A" strokeWidth="1" />
+                <rect x="280" y="18" width="16" height="44" rx="2" fill="#93C5FD" stroke="#1E3A8A" strokeWidth="1" />
+                <rect x="520" y="18" width="16" height="44" rx="2" fill="#93C5FD" stroke="#1E3A8A" strokeWidth="1" />
+                <rect x="740" y="18" width="16" height="44" rx="2" fill="#93C5FD" stroke="#1E3A8A" strokeWidth="1" />
+
+                {/* Dimension Callouts */}
+                <line x1="68" y1="72" x2="748" y2="72" stroke="#60A5FA" strokeWidth="1" strokeDasharray="3 3" />
+                <text x="408" y="78" fill="#93C5FD" fontSize="10" fontFamily="monospace" textAnchor="middle">
+                  SAE J2044 QUICK-CONNECT CONDUIT SPAN (ZERO PERMEATION BARRIER)
+                </text>
+              </svg>
+            </div>
+          </div>
         </div>
 
-        {/* 3 Physical Dial Pressure Gauges with Spring-Overshoot Needles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Gauge 1: ₹5Cr+ Expansion ARR */}
-          <div data-ui className="p-6 rounded-2xl bg-[#0A0D15] border border-white/10 flex flex-col items-center text-center">
-            <div className="relative w-28 h-28 mb-4">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                {/* Dial Frame */}
-                <circle cx="50" cy="50" r="44" fill="#0B0F17" stroke="#334155" strokeWidth="4" />
-                <path d="M 20 75 A 36 36 0 1 1 80 75" fill="none" stroke="#F59E0B" strokeWidth="5" strokeDasharray="140" strokeDashoffset="20" strokeLinecap="round" />
-                {/* Needle with spring overshoot */}
-                <motion.line
-                  x1="50"
-                  y1="50"
-                  x2="50"
-                  y2="20"
-                  stroke="#FEF3C7"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  animate={{ rotate: [ -45, 65, 55 ] }}
-                  transition={{ type: 'spring', stiffness: 90, damping: 8, delay: 0.2 }}
-                  style={{ originX: '50px', originY: '50px' }}
-                />
-                <circle cx="50" cy="50" r="5" fill="#F59E0B" />
-              </svg>
-            </div>
-            <span className="text-xs font-semibold text-amber-400 mb-1">Commercial Pipeline ARR</span>
-            <div className="text-3xl font-black text-white">₹5 Cr+</div>
-            <p className="mt-1 text-xs text-slate-400">Expansion ARR generated across key OEM accounts</p>
+        {/* 3 Live Verified Pressure Gauges / Impact Instrumentation */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="p-5 rounded-2xl bg-[#09214D] border border-blue-400/30">
+            <span className="text-xs font-semibold text-blue-300 block mb-1">Commercial Velocity</span>
+            <div className="text-3xl font-black text-white">₹5Cr+</div>
+            <p className="text-xs text-slate-300 mt-1">Expansion ARR managed across Tier-1 OEM accounts</p>
           </div>
 
-          {/* Gauge 2: 87% ERP Reporting Time Cut */}
-          <div data-ui className="p-6 rounded-2xl bg-[#0A0D15] border border-white/10 flex flex-col items-center text-center">
-            <div className="relative w-28 h-28 mb-4">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <circle cx="50" cy="50" r="44" fill="#0B0F17" stroke="#334155" strokeWidth="4" />
-                <path d="M 20 75 A 36 36 0 1 1 80 75" fill="none" stroke="#F59E0B" strokeWidth="5" strokeDasharray="140" strokeDashoffset="18" strokeLinecap="round" />
-                <motion.line
-                  x1="50"
-                  y1="50"
-                  x2="50"
-                  y2="20"
-                  stroke="#FEF3C7"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  animate={{ rotate: [ -45, 80, 72 ] }}
-                  transition={{ type: 'spring', stiffness: 90, damping: 8, delay: 0.3 }}
-                  style={{ originX: '50px', originY: '50px' }}
-                />
-                <circle cx="50" cy="50" r="5" fill="#F59E0B" />
-              </svg>
-            </div>
-            <span className="text-xs font-semibold text-amber-400 mb-1">Process Cycle Optimization</span>
+          <div className="p-5 rounded-2xl bg-[#09214D] border border-blue-400/30">
+            <span className="text-xs font-semibold text-blue-300 block mb-1">Process Automation</span>
             <div className="text-3xl font-black text-white">87%</div>
-            <p className="mt-1 text-xs text-slate-400">Reporting time cut from 4 hrs to 30 mins via custom macros</p>
+            <p className="text-xs text-slate-300 mt-1">Time reduction in repetitive ERP reporting (4 hrs → 30 mins)</p>
           </div>
 
-          {/* Gauge 3: 100% SLA Compliance */}
-          <div data-ui className="p-6 rounded-2xl bg-[#0A0D15] border border-white/10 flex flex-col items-center text-center">
-            <div className="relative w-28 h-28 mb-4">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <circle cx="50" cy="50" r="44" fill="#0B0F17" stroke="#334155" strokeWidth="4" />
-                <path d="M 20 75 A 36 36 0 1 1 80 75" fill="none" stroke="#F59E0B" strokeWidth="5" strokeDasharray="140" strokeDashoffset="0" strokeLinecap="round" />
-                <motion.line
-                  x1="50"
-                  y1="50"
-                  x2="50"
-                  y2="20"
-                  stroke="#FEF3C7"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  animate={{ rotate: [ -45, 95, 88 ] }}
-                  transition={{ type: 'spring', stiffness: 90, damping: 8, delay: 0.4 }}
-                  style={{ originX: '50px', originY: '50px' }}
-                />
-                <circle cx="50" cy="50" r="5" fill="#F59E0B" />
-              </svg>
-            </div>
-            <span className="text-xs font-semibold text-amber-400 mb-1">Contract Compliance</span>
-            <div className="text-3xl font-black text-white">100% SLA</div>
-            <p className="mt-1 text-xs text-slate-400">Zero delivery churn across global OEM shipments</p>
+          <div className="p-5 rounded-2xl bg-[#09214D] border border-blue-400/30">
+            <span className="text-xs font-semibold text-blue-300 block mb-1">Delivery Execution</span>
+            <div className="text-3xl font-black text-white">100%</div>
+            <p className="text-xs text-slate-300 mt-1">Strict SLA adherence on international prototype and series shipments</p>
           </div>
         </div>
       </div>

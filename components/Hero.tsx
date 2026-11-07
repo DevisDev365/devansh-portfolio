@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { portfolioIdentity } from '../content/portfolio-content.mjs';
 import { RESUME_URL } from '../constants';
-import { ArrowRight, Download, Sparkles, Building2, Terminal, BarChart3 } from 'lucide-react';
+import { ArrowRight, Download, Sparkles, Building2, Terminal, BarChart3, ChevronRight } from 'lucide-react';
 import { RetroGreenRunner } from './anime/RetroGreenRunner';
 import { useTextScramble } from '../hooks/useTextScramble';
 
@@ -20,9 +19,9 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
       id: 'sap',
       tabLabel: 'Enterprise SAP Consulting',
       icon: Building2,
-      headingHighlight: 'SAP Solution Consulting',
+      headingHighlight: 'Enterprise Solution Architecture',
       description:
-        'Consulting enterprise clients on SAP Business One (SAP B1) implementations, conducting requirement mapping, presenting proprietary add-ons, and driving consultative revenue expansion.',
+        'Consulting enterprise clients on SAP Business One (SAP B1) implementations, resolving operational inventory and invoicing bottlenecks, presenting proprietary add-ons, and driving consultative revenue expansion.',
       metrics: '₹5Cr+ Expansion ARR • Multi-Stakeholder Alignment • SAP Business One',
     },
     {
@@ -47,29 +46,54 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
 
   const current = personas[activePersona];
 
+  const arcPreviews = [
+    {
+      id: 'arc-pipeline',
+      arcNum: 'ARC 01',
+      title: 'Fuel Transmission Lines',
+      company: 'Imperial Auto Industries',
+      stat: '₹5Cr+ ARR • 87% Speedup',
+      color: '#1E5BFF',
+      borderClass: 'hover:border-blue-500/50',
+      badgeClass: 'bg-blue-500/20 text-blue-300',
+    },
+    {
+      id: 'arc-bowling',
+      arcNum: 'ARC 02',
+      title: 'The Outbound Strike',
+      company: 'SMAAASH Entertainment',
+      stat: '₹59K Launch • 1,200+ Leads',
+      color: '#E4002B',
+      borderClass: 'hover:border-red-500/50',
+      badgeClass: 'bg-red-500/20 text-red-300',
+    },
+    {
+      id: 'arc-sap',
+      arcNum: 'ARC 03',
+      title: 'Enterprise Problem Engine',
+      company: 'Elevra Tech Consulting',
+      stat: 'Operational Flow • Add-Ons',
+      color: '#8B5CF6',
+      borderClass: 'hover:border-purple-500/50',
+      badgeClass: 'bg-purple-500/20 text-purple-300',
+    },
+  ];
+
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 z-10 overflow-hidden">
+    <section className="relative min-h-[720px] lg:min-h-[85vh] lg:max-h-[960px] flex items-center justify-center pt-20 sm:pt-24 pb-16 px-4 sm:px-6 z-10 overflow-hidden">
       <div className="max-w-5xl mx-auto w-full text-center relative z-10">
         {/* Availability Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101420] border border-emerald-500/30 mb-5"
-        >
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101420] border border-emerald-500/30 mb-5">
           <span className="relative flex h-2 w-2">
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
           </span>
-          <span className="text-xs font-semibold text-emerald-300">
-            Business Development Executive – SAP Consulting @ Elevra Tech
+          <span className="text-[11px] sm:text-xs font-semibold text-emerald-300">
+            Business Development Executive – Enterprise Solutions @ Elevra Tech
           </span>
-        </motion.div>
+        </div>
 
         {/* Monumental Name with text-scramble on hover and responsive clamp */}
-        <motion.h1
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.08 }}
+        <h1
           className="font-black tracking-tight text-white mb-4 uppercase leading-[0.92] select-none text-[clamp(2.5rem,8.5vw,7.5rem)] cursor-pointer"
           onMouseEnter={() => {
             scrambleFirst();
@@ -77,20 +101,15 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
           }}
           title="Hover to scramble"
         >
-          <span className="inline-block sm:mr-4 text-emerald-400">{scrambledFirst}</span>
-          <span className="inline-block text-white">{scrambledLast}</span>
-        </motion.h1>
+          <span className="block sm:inline-block sm:mr-4 text-emerald-400">{scrambledFirst}</span>
+          <span className="block sm:inline-block text-white">{scrambledLast}</span>
+        </h1>
 
-        {/* Old School Animation: Small Green Figure Running to Goal Post */}
+        {/* Continuous Retro Green Marathon Runner (Endless marathon, zero jarring reset) */}
         <RetroGreenRunner playClick={playClick} />
 
         {/* Persona Mode Switcher */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.15 }}
-          className="inline-flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-[#0e121d] border border-white/10 mb-8 max-w-2xl mx-auto"
-        >
+        <div className="inline-flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-[#0e121d] border border-white/10 mb-8 max-w-2xl mx-auto">
           {personas.map((persona, idx) => {
             const Icon = persona.icon;
             const isActive = activePersona === idx;
@@ -112,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
               </button>
             );
           })}
-        </motion.div>
+        </div>
 
         {/* Dynamic Persona Thesis */}
         <AnimatePresence mode="wait">
@@ -125,11 +144,11 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
             className="max-w-3xl mx-auto mb-10 text-center"
           >
             <p className="text-base sm:text-xl text-slate-200 leading-relaxed font-normal mb-3 px-2">
-              Turning complex business bottlenecks into{' '}
+              Transforming complex business friction into{' '}
               <span className="text-emerald-400 font-semibold">
                 {current.headingHighlight}
               </span>
-              , rapid functional prototypes, and scalable commercial revenue.
+              , rapid functional prototypes, and validated commercial revenue.
             </p>
 
             <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed mb-4 px-4">
@@ -144,16 +163,11 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
         </AnimatePresence>
 
         {/* Primary Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.22 }}
-          className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
-        >
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12">
           <a
             href="#arc-gtm"
             onClick={() => playClick && playClick()}
-            className="flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs sm:text-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            className="flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs sm:text-sm transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-emerald-500/20"
           >
             <span>Test Autonomous Lead Engine</span>
             <ArrowRight className="w-4 h-4" />
@@ -177,7 +191,35 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
             <Download className="w-4 h-4 text-emerald-400" />
             <span>Character Dossier (CV)</span>
           </a>
-        </motion.div>
+        </div>
+
+        {/* Manga Arc Quick-Jump Panels */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-4xl mx-auto text-left">
+          {arcPreviews.map((preview) => (
+            <a
+              key={preview.id}
+              href={`#${preview.id}`}
+              onClick={() => playClick && playClick()}
+              className={`group p-3.5 rounded-xl bg-[#0A0D15] border border-white/10 ${preview.borderClass} transition-all hover:-translate-y-0.5`}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className={`px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase ${preview.badgeClass}`}>
+                  {preview.arcNum}
+                </span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-white transition-colors" />
+              </div>
+              <div className="text-xs font-bold text-white group-hover:text-emerald-300 transition-colors">
+                {preview.title}
+              </div>
+              <div className="text-[11px] text-slate-400 mt-0.5">
+                {preview.company}
+              </div>
+              <div className="text-[10px] text-slate-500 mt-2 font-mono">
+                {preview.stat}
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );

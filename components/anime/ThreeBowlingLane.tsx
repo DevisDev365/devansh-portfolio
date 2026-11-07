@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, RotateCcw } from 'lucide-react';
+import { Play, RotateCcw, Ticket } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface ThreeBowlingLaneProps {
@@ -19,7 +19,7 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
   const scoredStats = [
     { label: '₹59,000', detail: 'Direct Launch Revenue' },
     { label: '1,200+', detail: 'Leads Cleansed & Segmented' },
-    { label: '40%', detail: 'Lead Quality Score Improvement' },
+    { label: '40%', detail: 'Lead Quality Lift Score' },
     { label: '200+', detail: 'Cold Outreach Calls' },
     { label: '61', detail: 'On-Ground Diagnostic Visits' },
   ];
@@ -42,8 +42,8 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
     // 1. Scene
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    scene.background = new THREE.Color(0x07090e);
-    scene.fog = new THREE.Fog(0x07090e, 15, 35);
+    scene.background = new THREE.Color(0x0b0b0c);
+    scene.fog = new THREE.Fog(0x0b0b0c, 15, 36);
 
     // 2. Camera
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
@@ -60,25 +60,25 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
     container.innerHTML = '';
     container.appendChild(renderer.domElement);
 
-    // 4. Lighting
+    // 4. Lighting: Arcade Red Neon & Warm White
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0x06b6d4, 1.2);
-    dirLight.position.set(5, 10, 8);
-    dirLight.castShadow = true;
-    scene.add(dirLight);
+    const redLight = new THREE.DirectionalLight(0xe4002b, 1.4);
+    redLight.position.set(5, 10, 8);
+    redLight.castShadow = true;
+    scene.add(redLight);
 
-    const laneLight = new THREE.PointLight(0xffffff, 0.8, 20);
+    const laneLight = new THREE.PointLight(0xffffff, 0.9, 22);
     laneLight.position.set(0, 4, -4);
     scene.add(laneLight);
 
-    // 5. Glossy Bowling Lane Surface
+    // 5. Glossy Bowling Lane Surface (Arcade Polish)
     const laneGeo = new THREE.PlaneGeometry(4.2, 28);
     const laneMat = new THREE.MeshStandardMaterial({
-      color: 0x1e293b,
-      roughness: 0.15,
-      metalness: 0.3,
+      color: 0x18181b,
+      roughness: 0.12,
+      metalness: 0.35,
     });
     const lane = new THREE.Mesh(laneGeo, laneMat);
     lane.rotation.x = -Math.PI / 2;
@@ -86,9 +86,9 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
     lane.receiveShadow = true;
     scene.add(lane);
 
-    // Neon Gutters
+    // Neon Gutters in SMAAASH Arcade Red
     const gutterLeftGeo = new THREE.BoxGeometry(0.5, 0.2, 28);
-    const gutterMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
+    const gutterMat = new THREE.MeshBasicMaterial({ color: 0xe4002b });
     const gutterLeft = new THREE.Mesh(gutterLeftGeo, gutterMat);
     gutterLeft.position.set(-2.3, 0.05, 0);
     scene.add(gutterLeft);
@@ -97,12 +97,12 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
     gutterRight.position.set(2.3, 0.05, 0);
     scene.add(gutterRight);
 
-    // 6. Bowling Ball with Specular Highlights
+    // 6. Red Bowling Ball with Specular Highlights
     const ballGeo = new THREE.SphereGeometry(0.45, 32, 32);
     const ballMat = new THREE.MeshStandardMaterial({
-      color: 0x0ea5e9,
-      roughness: 0.1,
-      metalness: 0.4,
+      color: 0xe4002b,
+      roughness: 0.08,
+      metalness: 0.5,
     });
     const ball = new THREE.Mesh(ballGeo, ballMat);
     ball.position.set(0, 0.45, 10);
@@ -125,8 +125,8 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
 
     const pinGeo = new THREE.LatheGeometry(pinPoints, 24);
     const pinMat = new THREE.MeshStandardMaterial({
-      color: 0xf8fafc,
-      roughness: 0.2,
+      color: 0xffffff,
+      roughness: 0.15,
       metalness: 0.1,
     });
 
@@ -134,18 +134,14 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
     pinsGroupRef.current = pinsGroup;
     const pinMeshes: THREE.Mesh[] = [];
 
-    // Triangular formation positions (x, z) at pin deck (z = -6 to -9)
+    // Triangular formation positions (x, z) at pin deck (z = -6.5 to -8.9)
     const pinPositions = [
-      // Row 1 (Head pin)
       { x: 0, z: -6.5 },
-      // Row 2
       { x: -0.45, z: -7.3 },
       { x: 0.45, z: -7.3 },
-      // Row 3
       { x: -0.9, z: -8.1 },
       { x: 0, z: -8.1 },
       { x: 0.9, z: -8.1 },
-      // Row 4
       { x: -1.35, z: -8.9 },
       { x: -0.45, z: -8.9 },
       { x: 0.45, z: -8.9 },
@@ -227,10 +223,10 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
           // Confetti explosion
           try {
             confetti({
-              particleCount: 45,
-              spread: 75,
+              particleCount: 50,
+              spread: 80,
               origin: { y: 0.6 },
-              colors: ['#06B6D4', '#FFFFFF', '#F59E0B'],
+              colors: ['#E4002B', '#FFFFFF', '#F59E0B'],
               disableForReducedMotion: true,
             });
           } catch {
@@ -240,7 +236,7 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
           // Animate pins scattering with rotation and velocity
           pins.forEach((pin, i) => {
             const angle = (Math.PI * 2 * i) / pins.length;
-            const distance = 1.2 + Math.random() * 1.5;
+            const distance = 1.3 + Math.random() * 1.6;
             const targetX = pin.position.x + Math.cos(angle) * distance;
             const targetZPos = pin.position.z + Math.sin(angle) * distance;
 
@@ -249,8 +245,8 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
               scatterProgress += 0.08;
               pin.position.x += (targetX - pin.position.x) * 0.15;
               pin.position.z += (targetZPos - pin.position.z) * 0.15;
-              pin.rotation.z += 0.2;
-              pin.rotation.x += 0.15;
+              pin.rotation.z += 0.25;
+              pin.rotation.x += 0.18;
 
               if (scatterProgress >= 1) clearInterval(pinInterval);
             }, 16);
@@ -300,9 +296,9 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
       {/* Action Controller */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-cyan-400" />
-          <span className="text-xs font-semibold text-slate-300">
-            Interactive 3D Bowling Lane (Direct Physics Mode)
+          <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+          <span className="text-xs font-semibold text-slate-200">
+            SMAAASH Arcade 3D Lane (Direct Physics Mode)
           </span>
         </div>
 
@@ -311,10 +307,10 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
             <button
               onClick={rollBall}
               disabled={isRolling}
-              className="flex items-center gap-2 px-5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xs transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="flex items-center gap-2 px-5 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-red-600/30"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>{isRolling ? 'Ball In Motion...' : 'Roll Bowling Ball'}</span>
+              <span>{isRolling ? 'Strike Ball Rolling...' : 'Roll Bowling Ball'}</span>
             </button>
           ) : (
             <button
@@ -330,7 +326,7 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
 
       {/* Three.js 3D Canvas Mount Point */}
       <div
-        className={`relative rounded-2xl bg-[#07090E] border border-white/10 overflow-hidden ${
+        className={`relative rounded-2xl bg-[#0B0B0C] border border-red-500/30 overflow-hidden shadow-2xl ${
           cameraShake ? 'animate-[shake_0.15s_ease-in-out_infinite]' : ''
         }`}
       >
@@ -340,22 +336,45 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
         <AnimatePresence>
           {isStrikeScored && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotate: -4 }}
+              initial={{ opacity: 0, scale: 0.8, rotate: -3 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0 }}
               transition={{ type: 'spring', stiffness: 260, damping: 14 }}
-              className="absolute inset-0 flex items-center justify-center pointer-events-none bg-black/60"
+              className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none bg-black/70 p-4"
             >
-              <div className="p-6 rounded-2xl bg-[#090D17] border-2 border-cyan-400 text-center">
-                <div className="text-xs font-bold text-cyan-400 mb-1">
+              <div className="p-6 rounded-2xl bg-[#121214] border-2 border-red-500 text-center max-w-md shadow-2xl shadow-red-600/40">
+                <div className="text-xs font-bold text-red-400 mb-1 tracking-wider uppercase">
                   Manga Execution Stamp · 即時成約
                 </div>
                 <div className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight">
-                  STRIKE! 10/10 OBJECTIVES CONVERTED
+                  PERFECT STRIKE! 10/10 CONVERTED
                 </div>
                 <div className="text-xs text-slate-300 mt-2 font-medium">
                   Direct revenue unlocked · Lead database segmented · Playbook verified
                 </div>
+
+                {/* Dispensed Arcade Ticket Strip */}
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.25, type: 'spring' }}
+                  className="mt-4 p-3 rounded-lg bg-amber-500 text-black border-2 border-dashed border-amber-800 text-left flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-2">
+                    <Ticket className="w-5 h-5 text-black shrink-0" />
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-widest font-black">
+                        TICKET #059000 · SMAAASH
+                      </div>
+                      <div className="text-xs font-black">
+                        ₹59,000 DIRECT LAUNCH REVENUE
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-[10px] font-mono font-bold uppercase text-right">
+                    VALIDATED<br />OUTBOUND
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           )}
@@ -364,16 +383,16 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({ playStrike, 
 
       {/* Overhead Scoreboard: 5 Verified Metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-6">
-        {scoredStats.map((stat, idx) => (
+        {scoredStats.map((stat) => (
           <div
             key={stat.label}
             className={`p-3.5 rounded-xl border text-center transition-colors ${
               isStrikeScored
-                ? 'border-cyan-500/50 bg-cyan-500/15 text-white'
-                : 'border-white/10 bg-[#090D17] text-slate-400'
+                ? 'border-red-500/50 bg-red-500/15 text-white'
+                : 'border-white/10 bg-[#0E1015] text-slate-400'
             }`}
           >
-            <div className={`text-base sm:text-xl font-black ${isStrikeScored ? 'text-cyan-300' : 'text-slate-300'}`}>
+            <div className={`text-base sm:text-xl font-black ${isStrikeScored ? 'text-red-400' : 'text-slate-200'}`}>
               {stat.label}
             </div>
             <div className="text-[11px] text-slate-400 leading-tight mt-1 truncate">

@@ -1,200 +1,259 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import confetti from 'canvas-confetti';
+import { motion } from 'framer-motion';
+import { Zap, Flag } from 'lucide-react';
 
 interface RetroGreenRunnerProps {
-  onGoal?: () => void;
   playClick?: () => void;
 }
 
-export const RetroGreenRunner: React.FC<RetroGreenRunnerProps> = ({ onGoal, playClick }) => {
-  const [isRunningFast, setIsRunningFast] = useState<boolean>(false);
-  const [hasScored, setHasScored] = useState<boolean>(false);
-  const [scoreCount, setScoreCount] = useState<number>(0);
-  const [positionX, setPositionX] = useState<number>(10);
-  const animationFrameRef = useRef<number | null>(null);
+export const RetroGreenRunner: React.FC<RetroGreenRunnerProps> = ({ playClick }) => {
+  const [isSurgeActive, setIsSurgeActive] = useState<boolean>(false);
+  const [distanceKm, setDistanceKm] = useState<number>(42.195);
+  const [cadence, setCadence] = useState<number>(172);
+  const [activeMilestoneIndex, setActiveMilestoneIndex] = useState<number>(0);
+  
+  // Track offset for continuous scrolling background
+  const [trackOffset, setTrackOffset] = useState<number>(0);
+  const animFrameRef = useRef<number | null>(null);
+
+  const milestones = [
+    { km: 5, label: 'Imperial Auto: Fuel Line Architecture', color: '#1E5BFF' },
+    { km: 15, label: 'SMAAASH: ₹59K Outbound Launch', color: '#E4002B' },
+    { km: 26, label: 'Elevra Tech: Enterprise Solution Delivery', color: '#6D28D9' },
+    { km: 42, label: 'Autonomous AI: GTM Lead Engine', color: '#00E47C' },
+    { km: 50, label: 'Ultra Marathon: Continuous Systems Scaling', color: '#F59E0B' },
+  ];
 
   useEffect(() => {
-    let currentX = 10;
-    const speed = isRunningFast ? 1.4 : 0.45;
+    let lastTime = performance.now();
 
-    const loop = () => {
-      currentX += speed;
-      if (currentX >= 88) {
-        // Goal post reached!
-        currentX = 10;
-        setHasScored(true);
-        setScoreCount((prev) => prev + 1);
-        if (onGoal) onGoal();
-        try {
-          confetti({
-            particleCount: 25,
-            spread: 50,
-            origin: { x: 0.85, y: 0.65 },
-            colors: ['#00E47C', '#FFFFFF', '#F59E0B'],
-            disableForReducedMotion: true,
-          });
-        } catch {
-          // Fallback
-        }
-        setTimeout(() => setHasScored(false), 1800);
-      }
-      setPositionX(currentX);
-      animationFrameRef.current = requestAnimationFrame(loop);
+    const loop = (time: number) => {
+      const dt = (time - lastTime) / 1000;
+      lastTime = time;
+
+      const speedFactor = isSurgeActive ? 2.8 : 1.0;
+      
+      // Update background track offset for smooth continuous motion
+      setTrackOffset((prev) => (prev + dt * 60 * speedFactor) % 400);
+
+      // Increment distance smoothly (represents marathon execution)
+      setDistanceKm((prev) => {
+        const next = prev + dt * 0.08 * speedFactor;
+        // Cycle active milestone smoothly based on distance
+        const mIdx = Math.floor((next % 50) / 10) % milestones.length;
+        setActiveMilestoneIndex(mIdx);
+        return next;
+      });
+
+      animFrameRef.current = requestAnimationFrame(loop);
     };
 
-    animationFrameRef.current = requestAnimationFrame(loop);
+    animFrameRef.current = requestAnimationFrame(loop);
     return () => {
-      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, [isRunningFast, onGoal]);
+  }, [isSurgeActive, milestones.length]);
 
-  const handleSprintBoost = () => {
+  const toggleSurge = () => {
     if (playClick) playClick();
-    setIsRunningFast(true);
-    setTimeout(() => setIsRunningFast(false), 2400);
+    setIsSurgeActive((prev) => !prev);
+    setCadence(isSurgeActive ? 172 : 194);
   };
+
+  const currentMilestone = milestones[activeMilestoneIndex];
 
   return (
     <div className="relative w-full max-w-2xl mx-auto my-6 p-4 rounded-2xl bg-[#090D17] border border-white/10 overflow-hidden select-none">
-      {/* Track HUD Status */}
-      <div className="flex items-center justify-between text-xs mb-3 pb-2 border-b border-white/5">
+      {/* Marathon HUD Status Bar */}
+      <div className="flex flex-wrap items-center justify-between text-xs mb-3 pb-2.5 border-b border-white/10 gap-2">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-semibold text-slate-300">
-            Sprint Execution Stage
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+          <span className="font-semibold text-slate-200">
+            Endurance Engine · Marathon Cadence
           </span>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="text-slate-400">Goals Scored: <strong className="text-emerald-400">{scoreCount}</strong></span>
+
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 text-slate-400">
+          <span className="text-[11px] sm:text-xs">
+            Dist:{' '}
+            <strong className="text-emerald-400 font-mono">
+              {distanceKm.toFixed(2)} km
+            </strong>
+          </span>
+          <span className="text-[11px] sm:text-xs">
+            Cadence:{' '}
+            <strong className="text-white font-mono">{cadence} SPM</strong>
+          </span>
           <button
-            onClick={handleSprintBoost}
-            className="px-2.5 py-1 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-[11px] font-bold tracking-wide uppercase transition-colors"
+            onClick={toggleSurge}
+            className={`px-2.5 sm:px-3 py-1 rounded-lg text-[10px] sm:text-[11px] font-bold tracking-wide uppercase flex items-center gap-1.5 transition-all ${
+              isSurgeActive
+                ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20'
+                : 'bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300'
+            }`}
           >
-            {isRunningFast ? 'Sprint Boost Active!' : 'Click to Boost'}
+            <Zap className="w-3 h-3" />
+            <span>{isSurgeActive ? 'Surge (194 SPM)' : 'Pace Surge'}</span>
           </button>
         </div>
       </div>
 
-      {/* Retro Animation Field */}
-      <div className="relative h-20 sm:h-24 bg-[#05070B] rounded-xl overflow-hidden flex items-end px-4 pb-2 border border-white/5">
-        {/* Track Line */}
-        <div className="absolute bottom-3 left-4 right-4 h-[2px] bg-emerald-500/30" />
+      {/* Retro Animation Marathon Track */}
+      <div className="relative h-24 sm:h-28 bg-[#05070B] rounded-xl overflow-hidden flex items-end px-4 pb-3 border border-white/5">
+        {/* Continuous Grid Lines moving backward */}
+        <div
+          className="absolute inset-0 opacity-15 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, #00E47C 1px, transparent 1px), linear-gradient(to bottom, #00E47C 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+            transform: `translateX(-${trackOffset % 32}px)`,
+          }}
+        />
 
-        {/* Goal Post (Right Side) */}
-        <div className="absolute right-6 bottom-3 flex flex-col items-center">
-          <motion.div
-            animate={{ rotate: hasScored ? [0, -12, 12, 0] : 0 }}
-            transition={{ duration: 0.4 }}
-            className="relative"
-          >
-            {/* Goal Net & Uprights */}
-            <svg width="42" height="52" viewBox="0 0 42 52" fill="none">
-              <path d="M 6 50 L 6 8 L 36 8 L 36 50" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" />
-              <path d="M 6 22 L 36 22" stroke="#F59E0B" strokeWidth="2" strokeDasharray="3 3" />
-              <path d="M 6 36 L 36 36" stroke="#F59E0B" strokeWidth="2" strokeDasharray="3 3" />
-              {/* Goal flag */}
-              <motion.path
-                d="M 36 8 L 48 13 L 36 18 Z"
-                fill={hasScored ? '#00E47C' : '#F59E0B'}
-                animate={{ scaleX: hasScored ? [1, 1.4, 1] : 1 }}
-                transition={{ duration: 0.3 }}
-              />
-            </svg>
-          </motion.div>
+        {/* Milestone Distance Banners in continuous parallax */}
+        <div className="absolute top-2 left-3 right-3 sm:left-4 sm:right-4 flex items-center justify-between pointer-events-none gap-2">
+          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#0C121E] border border-white/10 text-[10px] sm:text-[11px] max-w-full">
+            <Flag className="w-3 h-3 text-emerald-400 shrink-0" />
+            <span className="text-slate-400 shrink-0 hidden xs:inline">Milestone:</span>
+            <span className="font-semibold text-white truncate">
+              {currentMilestone.label}
+            </span>
+          </div>
+          <span className="text-[10px] text-slate-500 hidden md:inline">
+            Long-term execution • Zero plateau
+          </span>
         </div>
 
-        {/* The Retro Green Runner Figure */}
+        {/* Running Track Road with animated dashes */}
+        <div className="absolute bottom-3 left-0 right-0 h-[3px] bg-emerald-500/40 overflow-hidden">
+          <div
+            className="h-full w-[200%] flex"
+            style={{
+              transform: `translateX(-${trackOffset % 80}px)`,
+            }}
+          >
+            {Array.from({ length: 40 }).map((_, idx) => (
+              <span
+                key={idx}
+                className="w-8 h-full bg-emerald-300/80 inline-block mr-6 shrink-0"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* The Retro Green Marathon Runner Figure (Centered & Running Fluidly) */}
         <div
-          className="absolute bottom-3 cursor-pointer group"
-          style={{ left: `${positionX}%` }}
-          onClick={handleSprintBoost}
-          title="Click to Boost Sprint Speed!"
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 cursor-pointer group"
+          onClick={toggleSurge}
+          title="Click to toggle sprint pace"
         >
+          {/* Surge Speed Particle Trail */}
+          {isSurgeActive && (
+            <motion.div
+              className="absolute -left-6 top-3 w-8 h-1 bg-gradient-to-r from-transparent to-amber-400/80 blur-[1px]"
+              animate={{ opacity: [0.4, 0.9, 0.4], x: [-6, 0, -6] }}
+              transition={{ duration: 0.2, repeat: Infinity }}
+            />
+          )}
+
           <motion.div
             animate={{
-              y: [0, -4, 0],
-              skewX: isRunningFast ? [-8, -12, -8] : [-4, -6, -4],
+              y: [0, -3.5, 0],
+              skewX: isSurgeActive ? [-10, -14, -10] : [-5, -7, -5],
             }}
             transition={{
-              duration: isRunningFast ? 0.16 : 0.32,
+              duration: isSurgeActive ? 0.18 : 0.32,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
             className="relative flex flex-col items-center"
           >
             {/* Retro Stylized Green Runner SVG */}
-            <svg width="28" height="38" viewBox="0 0 28 38" fill="none">
+            <svg width="32" height="42" viewBox="0 0 32 42" fill="none">
               {/* Head */}
-              <circle cx="14" cy="7" r="5" fill="#00E47C" />
-              <rect x="15" y="6" width="3" height="2" fill="#05070B" />
+              <circle
+                cx="16"
+                cy="8"
+                r="5.5"
+                fill={isSurgeActive ? '#F59E0B' : '#00E47C'}
+              />
+              <rect x="17" y="7" width="3" height="2" fill="#05070B" />
+
+              {/* Headband / Visor */}
+              <rect
+                x="11"
+                y="6"
+                width="10"
+                height="2"
+                fill="#FFFFFF"
+                opacity="0.8"
+              />
 
               {/* Torso */}
-              <path d="M 14 12 L 14 24" stroke="#00E47C" strokeWidth="3.5" strokeLinecap="round" />
+              <path
+                d="M 16 13 L 16 26"
+                stroke={isSurgeActive ? '#F59E0B' : '#00E47C'}
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
 
-              {/* Arms (Pumping Sprint Cycle) */}
+              {/* Arms (Pumping Marathon Arm Swing) */}
               <motion.path
-                d="M 14 15 L 8 20 M 14 15 L 20 18"
-                stroke="#00E47C"
-                strokeWidth="2.5"
+                d="M 16 16 L 9 22 M 16 16 L 23 20"
+                stroke={isSurgeActive ? '#F59E0B' : '#00E47C'}
+                strokeWidth="2.8"
                 strokeLinecap="round"
                 animate={{
                   d: [
-                    'M 14 15 L 7 19 M 14 15 L 21 16',
-                    'M 14 15 L 21 19 M 14 15 L 7 16',
+                    'M 16 16 L 8 22 M 16 16 L 24 18',
+                    'M 16 16 L 24 22 M 16 16 L 8 18',
                   ],
                 }}
                 transition={{
-                  duration: isRunningFast ? 0.16 : 0.3,
+                  duration: isSurgeActive ? 0.18 : 0.32,
                   repeat: Infinity,
                   repeatType: 'reverse',
+                  ease: 'easeInOut',
                 }}
               />
 
-              {/* Legs (Running Stride) */}
+              {/* Legs (Continuous Running Stride) */}
               <motion.path
-                d="M 14 24 L 9 35 M 14 24 L 19 32"
-                stroke="#00E47C"
-                strokeWidth="3"
+                d="M 16 26 L 10 39 M 16 26 L 22 36"
+                stroke={isSurgeActive ? '#F59E0B' : '#00E47C'}
+                strokeWidth="3.2"
                 strokeLinecap="round"
                 animate={{
                   d: [
-                    'M 14 24 L 6 34 M 14 24 L 22 30',
-                    'M 14 24 L 22 34 M 14 24 L 6 30',
+                    'M 16 26 L 9 39 M 16 26 L 23 35',
+                    'M 16 26 L 23 39 M 16 26 L 9 35',
                   ],
                 }}
                 transition={{
-                  duration: isRunningFast ? 0.16 : 0.3,
+                  duration: isSurgeActive ? 0.18 : 0.32,
                   repeat: Infinity,
                   repeatType: 'reverse',
+                  ease: 'easeInOut',
                 }}
               />
             </svg>
 
-            {/* Dust puffs kicked up behind heels */}
+            {/* Runner Dynamic Ground Shadow */}
             <motion.div
-              animate={{ opacity: [0.6, 0.1, 0.6], scale: [0.8, 1.3, 0.8] }}
-              transition={{ duration: 0.25, repeat: Infinity }}
-              className="absolute -bottom-1 -left-3 w-2 h-2 rounded-full bg-emerald-500/40 blur-[1px]"
+              className="w-6 h-1 bg-emerald-500/30 rounded-full blur-[1px] mt-0.5"
+              animate={{
+                scaleX: [1, 1.3, 1],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{
+                duration: isSurgeActive ? 0.18 : 0.32,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
             />
           </motion.div>
         </div>
-
-        {/* Goal celebration banner overlay */}
-        <AnimatePresence>
-          {hasScored && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: -6 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 flex items-center justify-center bg-emerald-500/10 pointer-events-none"
-            >
-              <div className="px-3.5 py-1.5 rounded-lg bg-[#090D17] border border-emerald-500/50 text-emerald-300 font-extrabold text-xs">
-                Goal Reached · Revenue Target Unlocked
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </div>
   );

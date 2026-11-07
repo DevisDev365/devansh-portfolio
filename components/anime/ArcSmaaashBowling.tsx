@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThreeBowlingLane } from './ThreeBowlingLane';
+import { Flame, Target } from 'lucide-react';
 
 interface ArcSmaaashBowlingProps {
   playStrike?: () => void;
@@ -8,20 +9,29 @@ interface ArcSmaaashBowlingProps {
 
 export const ArcSmaaashBowling: React.FC<ArcSmaaashBowlingProps> = ({ playStrike, playClick }) => {
   return (
-    <section id="arc-bowling" className="relative py-24 px-4 sm:px-6 bg-[#07090E]">
+    <section id="arc-bowling" className="relative py-24 px-4 sm:px-6 bg-[#0B0B0C] text-slate-100 overflow-hidden">
+      {/* Background Neon Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] pointer-events-none" />
+
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Arc Chapter Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <div>
-            <div className="text-cyan-400 font-semibold text-sm mb-2">
-              Episode Arc 2 · SMAAASH Entertainment
+            <div className="flex items-center gap-2 text-red-500 font-semibold text-xs tracking-wider uppercase mb-2">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+              <span>Episode Arc 02 · SMAAASH Entertainment</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
               The Outbound Strike
             </h2>
-            <p className="mt-2 text-slate-400 text-sm sm:text-base max-w-xl">
+            <p className="mt-2 text-slate-300 text-sm sm:text-base max-w-xl leading-relaxed">
               Sales &amp; Marketing Intern launching a new corporate entertainment service line. Unlocking direct revenue, cleansing lead databases, and executing on-ground field diagnostics.
             </p>
+          </div>
+
+          <div className="flex items-center gap-2 bg-[#17171C] px-4 py-2 rounded-xl text-xs font-semibold text-red-300 border border-red-500/20 shrink-0">
+            <Target className="w-4 h-4 text-red-500" />
+            <span>On-Ground Lead Acquisition &amp; Conversion</span>
           </div>
         </div>
 
@@ -30,23 +40,23 @@ export const ArcSmaaashBowling: React.FC<ArcSmaaashBowlingProps> = ({ playStrike
 
         {/* Historical Scorecard Proof Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-          <div className="p-4 rounded-xl bg-[#0A0D15]">
-            <span className="text-xs font-semibold text-cyan-400 block">Direct Launch Revenue</span>
+          <div className="p-4 rounded-xl bg-[#131418] border border-white/5">
+            <span className="text-xs font-semibold text-red-400 block">Direct Launch Revenue</span>
             <div className="text-2xl font-black text-white mt-1">₹59,000</div>
             <p className="text-xs text-slate-400 mt-1">Generated in 2-month launch window</p>
           </div>
-          <div className="p-4 rounded-xl bg-[#0A0D15]">
-            <span className="text-xs font-semibold text-cyan-400 block">Lead Cleansing</span>
+          <div className="p-4 rounded-xl bg-[#131418] border border-white/5">
+            <span className="text-xs font-semibold text-red-400 block">Lead Cleansing</span>
             <div className="text-2xl font-black text-white mt-1">1,200+</div>
             <p className="text-xs text-slate-400 mt-1">Prospects segmented with analytics</p>
           </div>
-          <div className="p-4 rounded-xl bg-[#0A0D15]">
-            <span className="text-xs font-semibold text-cyan-400 block">Quality Lift</span>
+          <div className="p-4 rounded-xl bg-[#131418] border border-white/5">
+            <span className="text-xs font-semibold text-red-400 block">Quality Lift</span>
             <div className="text-2xl font-black text-white mt-1">+40%</div>
             <p className="text-xs text-slate-400 mt-1">Sales lead quality score improvement</p>
           </div>
-          <div className="p-4 rounded-xl bg-[#0A0D15]">
-            <span className="text-xs font-semibold text-cyan-400 block">Direct Outreach</span>
+          <div className="p-4 rounded-xl bg-[#131418] border border-white/5">
+            <span className="text-xs font-semibold text-red-400 block">Direct Outreach</span>
             <div className="text-2xl font-black text-white mt-1">260+ Ops</div>
             <p className="text-xs text-slate-400 mt-1">200+ cold calls &amp; 61 on-ground visits</p>
           </div>
