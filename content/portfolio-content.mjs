@@ -83,7 +83,6 @@ export const experience = [
       'Revenue Expansion & Upselling: Identify expansion opportunities during ongoing client touchpoints, cross-selling specialized SaaS add-ons to expand product footprint and increase account Lifetime Value (LTV).',
     ],
     impact: [
-      '95%+ Client Retention maintained across enterprise account portfolio',
       'Accelerated client Time-to-Value (TTV) via structured requirement mapping',
       'Facilitated executive buy-in across C-suite stakeholders for custom SAP B1 module adoption',
       'Drove recurring revenue expansion through consultative add-on solution mapping',

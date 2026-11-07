@@ -43,7 +43,7 @@ export const ConsultingLogic: React.FC = () => {
         'A prototype only matters if it impacts the P&L. I consult C-suite stakeholders, align product fit with SAP Business One configurations, and drive structured revenue expansion.',
       bullets: [
         'Generated ₹5+ Crore in expansion ARR across global OEM accounts at Imperial Auto.',
-        'Achieved 95%+ client retention across enterprise SaaS accounts at Elevra Tech.',
+        'Managed end-to-end customer lifecycle and consultative account expansion at Elevra Tech.',
         'Unlocked ₹59K in direct launch revenue for SMAAASH within a 2-month launch sprint.',
       ],
       proofPoint: 'Measurable P&L outcomes, SLA compliance, and zero account churn.',
