@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   CheckCircle2,
   AlertTriangle,
   ArrowRight,
   ShieldCheck,
-  PlusCircle,
   TrendingUp,
-  FileText,
-  Truck,
-  DollarSign,
-  PieChart,
 } from 'lucide-react';
 
 interface ArcElevraSAPProps {
@@ -20,11 +15,6 @@ interface ArcElevraSAPProps {
 
 export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick }) => {
   const [activeFrictionIndex, setActiveFrictionIndex] = useState<number>(0);
-  const [selectedAddons, setSelectedAddons] = useState<{ [key: string]: boolean }>({
-    wms: true,
-    gst: false,
-    analytics: true,
-  });
 
   const frictionCases = [
     {
@@ -73,40 +63,7 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
     },
   ];
 
-  const addons = [
-    {
-      id: 'wms',
-      name: 'Mobile Barcode WMS Scanner',
-      desc: 'Replaces paper pick-lists with handheld scanning on the shop floor.',
-      boost: '+35% Picking Velocity',
-    },
-    {
-      id: 'gst',
-      name: 'Automated Tax & E-Way Bill Connector',
-      desc: 'Auto-generates compliant tax invoices & transit bills upon dispatch.',
-      boost: 'Zero Dispatch Penalties',
-    },
-    {
-      id: 'analytics',
-      name: 'Multi-Plant Executive Profitability Deck',
-      desc: 'Live margin analysis across distinct production lines and customer tiers.',
-      boost: 'Real-Time Margin Control',
-    },
-  ];
-
   const currentCase = frictionCases[activeFrictionIndex];
-
-  const toggleAddon = (id: string) => {
-    if (playPulse) playPulse();
-    if (playClick) playClick();
-    setSelectedAddons((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const activeAddonCount = Object.values(selectedAddons).filter(Boolean).length;
-  const velocityScore = 80 + activeAddonCount * 6;
 
   return (
     <section id="arc-sap" className="relative py-24 px-4 sm:px-6 bg-[#FAFAFC] text-slate-900 transition-colors duration-500 overflow-hidden">
@@ -135,7 +92,7 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
             <div className="text-right">
               <span className="text-[11px] text-slate-500 block font-medium">Enterprise Throughput</span>
               <strong className="text-sm text-purple-800 font-mono font-bold">
-                {velocityScore}% Operational Velocity
+                Synchronized Data Lifecycle
               </strong>
             </div>
             <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-700">
@@ -178,7 +135,7 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
         </div>
 
         {/* Problem vs Solution Interactive Architecture Card */}
-        <div className="rounded-2xl bg-white p-6 sm:p-8 border border-purple-200/80 shadow-xl mb-12">
+        <div className="rounded-2xl bg-white p-6 sm:p-8 border border-purple-200/80 shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-8">
             {/* The Symptom (Chaos Before) */}
             <div className="lg:col-span-5 p-5 rounded-xl bg-amber-50/80 border border-amber-200 text-slate-800">
@@ -248,59 +205,6 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* Consultative Add-On & Upsell Sandbox */}
-        <div className="rounded-2xl bg-white p-6 sm:p-8 border border-purple-200 shadow-md">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
-            <div>
-              <h3 className="text-lg font-bold text-slate-900">
-                Consultative Add-On &amp; Upsell Architecture
-              </h3>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Devansh expands client contract lifetime value (LTV) by mapping modular operational add-ons to client growth stages.
-              </p>
-            </div>
-            <div className="text-xs font-mono text-purple-700 font-bold bg-purple-50 px-3 py-1.5 rounded-lg border border-purple-200 shrink-0">
-              {activeAddonCount} of 3 Add-Ons Active
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {addons.map((addon) => {
-              const isActive = selectedAddons[addon.id];
-              return (
-                <div
-                  key={addon.id}
-                  onClick={() => toggleAddon(addon.id)}
-                  className={`cursor-pointer p-4 rounded-xl border transition-all ${
-                    isActive
-                      ? 'bg-purple-50/70 border-purple-600 shadow-sm'
-                      : 'bg-slate-50 border-slate-200 hover:border-slate-300 opacity-70'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-slate-900">{addon.name}</span>
-                    <span
-                      className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded ${
-                        isActive
-                          ? 'bg-purple-600 text-white'
-                          : 'bg-slate-200 text-slate-600'
-                      }`}
-                    >
-                      {isActive ? 'Integrated' : 'Click to Add'}
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-600 mb-3 leading-relaxed">
-                    {addon.desc}
-                  </p>
-                  <div className="text-[11px] font-bold text-purple-700 font-mono">
-                    Impact: {addon.boost}
-                  </div>
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>

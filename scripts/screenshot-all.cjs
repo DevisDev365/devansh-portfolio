@@ -92,15 +92,40 @@ async function run() {
     });
 
     await sendPage('Page.navigate', { url: 'http://localhost:3000/' });
+    await new Promise((resolve) => {
+      const timeout = setTimeout(resolve, 4000);
+      const handler = (event) => {
+        const msg = JSON.parse(event.data);
+        if (msg.method === 'Page.loadEventFired') {
+          clearTimeout(timeout);
+          pageWs.removeEventListener('message', handler);
+          resolve();
+        }
+      };
+      pageWs.addEventListener('message', handler);
+    });
     await new Promise((r) => setTimeout(r, 2000));
 
     // Capture sections
     const sections = [
       { id: 'hero', name: '01_hero', selector: null },
       { id: 'arc-pipeline', name: '02_arc_imperial_fuel', selector: '#arc-pipeline' },
+      {
+        id: 'arc-pipeline-accounts',
+        name: '02b_arc_imperial_accounts',
+        selector: '#arc-pipeline',
+        extraScrollY: 640,
+      },
+      {
+        id: 'arc-pipeline-impact',
+        name: '02c_arc_imperial_impact',
+        selector: '#arc-pipeline',
+        extraScrollY: 1050,
+      },
       { id: 'arc-bowling', name: '03_arc_smaaash_strike', selector: '#arc-bowling' },
       { id: 'arc-sap', name: '04_arc_elevra_solutions_white', selector: '#arc-sap' },
       { id: 'arc-gtm', name: '05_arc_gtm_intelligence', selector: '#arc-gtm' },
+      { id: 'footer', name: '07_footer_contact', selector: 'footer' },
     ];
 
     for (const sec of sections) {
@@ -108,9 +133,12 @@ async function run() {
         await sendPage('Runtime.evaluate', {
           expression: `
             if (window.__lenis) {
-              window.__lenis.scrollTo('${sec.selector}', { immediate: true });
+              window.__lenis.scrollTo('${sec.selector}', { immediate: true, offset: ${sec.extraScrollY || 0} });
             } else {
-              document.querySelector('${sec.selector}')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+              const el = document.querySelector('${sec.selector}');
+              if (el) {
+                window.scrollTo({ top: el.offsetTop + ${sec.extraScrollY || 0}, behavior: 'instant' });
+              }
             }
           `,
         });
@@ -129,12 +157,32 @@ async function run() {
       deviceScaleFactor: 2,
       mobile: true,
     });
-    await sendPage('Runtime.evaluate', { expression: `window.scrollTo(0, 0);` });
+    await sendPage('Runtime.evaluate', {
+      expression: `
+        if (window.__lenis) {
+          window.__lenis.scrollTo(0, { immediate: true });
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      `,
+    });
     await new Promise((r) => setTimeout(r, 1000));
 
     const { data: mobileData } = await sendPage('Page.captureScreenshot', { format: 'png' });
     fs.writeFileSync(path.join(ARTIFACT_DIR, `06_mobile_390.png`), Buffer.from(mobileData, 'base64'));
     console.log(`Captured 06_mobile_390.png (${Math.round(mobileData.length * 0.75 / 1024)} KB)`);
+
+    // Capture mobile Imperial Auto section
+    await sendPage('Runtime.evaluate', {
+      expression: `
+        document.querySelector('#arc-pipeline')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+      `,
+    });
+    await new Promise((r) => setTimeout(r, 1000));
+    const { data: mobileImperialData } = await sendPage('Page.captureScreenshot', { format: 'png' });
+    fs.writeFileSync(path.join(ARTIFACT_DIR, `08_mobile_arc_imperial.png`), Buffer.from(mobileImperialData, 'base64'));
+    console.log(`Captured 08_mobile_arc_imperial.png (${Math.round(mobileImperialData.length * 0.75 / 1024)} KB)`);
 
     pageWs.close();
     ws.close();

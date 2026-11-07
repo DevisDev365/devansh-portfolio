@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RESUME_URL } from '../constants';
-import { ArrowRight, Download, Sparkles, Building2, Terminal, BarChart3, ChevronRight } from 'lucide-react';
+import { ArrowRight, Download, Sparkles, Building2, Terminal, BarChart3 } from 'lucide-react';
 import { RetroGreenRunner } from './anime/RetroGreenRunner';
 import { useTextScramble } from '../hooks/useTextScramble';
 
@@ -46,45 +46,13 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
 
   const current = personas[activePersona];
 
-  const arcPreviews = [
-    {
-      id: 'arc-pipeline',
-      arcNum: 'ARC 01',
-      title: 'Fuel Transmission Lines',
-      company: 'Imperial Auto Industries',
-      stat: '₹5Cr+ ARR • 87% Speedup',
-      color: '#1E5BFF',
-      borderClass: 'hover:border-blue-500/50',
-      badgeClass: 'bg-blue-500/20 text-blue-300',
-    },
-    {
-      id: 'arc-bowling',
-      arcNum: 'ARC 02',
-      title: 'The Outbound Strike',
-      company: 'SMAAASH Entertainment',
-      stat: '₹59K Launch • 1,200+ Leads',
-      color: '#E4002B',
-      borderClass: 'hover:border-red-500/50',
-      badgeClass: 'bg-red-500/20 text-red-300',
-    },
-    {
-      id: 'arc-sap',
-      arcNum: 'ARC 03',
-      title: 'Enterprise Problem Engine',
-      company: 'Elevra Tech Consulting',
-      stat: 'Operational Flow • Add-Ons',
-      color: '#8B5CF6',
-      borderClass: 'hover:border-purple-500/50',
-      badgeClass: 'bg-purple-500/20 text-purple-300',
-    },
-  ];
-
   return (
-    <section className="relative min-h-[720px] lg:min-h-[85vh] lg:max-h-[960px] flex items-center justify-center pt-20 sm:pt-24 pb-16 px-4 sm:px-6 z-10 overflow-hidden">
+    <section className="relative min-h-[90vh] flex flex-col items-center justify-start pt-28 sm:pt-36 pb-20 px-4 sm:px-6 z-10 overflow-hidden">
       <div className="max-w-5xl mx-auto w-full text-center relative z-10">
         {/* Availability Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101420] border border-emerald-500/30 mb-5">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#101420] border border-emerald-500/30 mb-6">
           <span className="relative flex h-2 w-2">
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 animate-ping" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
           </span>
           <span className="text-[11px] sm:text-xs font-semibold text-emerald-300">
@@ -94,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
 
         {/* Monumental Name with text-scramble on hover and responsive clamp */}
         <h1
-          className="font-black tracking-tight text-white mb-4 uppercase leading-[0.92] select-none text-[clamp(2.5rem,8.5vw,7.5rem)] cursor-pointer"
+          className="font-black tracking-tight text-white mb-6 uppercase leading-[0.92] select-none text-[clamp(2.5rem,8.5vw,7.5rem)] cursor-pointer"
           onMouseEnter={() => {
             scrambleFirst();
             scrambleLast();
@@ -105,7 +73,7 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
           <span className="block sm:inline-block text-white">{scrambledLast}</span>
         </h1>
 
-        {/* Continuous Retro Green Marathon Runner (Endless marathon, zero jarring reset) */}
+        {/* Continuous Retro Green Marathon Runner */}
         <RetroGreenRunner playClick={playClick} />
 
         {/* Persona Mode Switcher */}
@@ -122,7 +90,7 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
                 }}
                 className={`relative flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors ${
                   isActive
-                    ? 'text-white bg-white/10 border border-emerald-500/40'
+                    ? 'text-white bg-white/10 border border-emerald-500/40 shadow-sm'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.04] border border-transparent'
                 }`}
               >
@@ -163,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
         </AnimatePresence>
 
         {/* Primary Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <a
             href="#arc-gtm"
             onClick={() => playClick && playClick()}
@@ -191,34 +159,6 @@ export const Hero: React.FC<HeroProps> = ({ playClick }) => {
             <Download className="w-4 h-4 text-emerald-400" />
             <span>Character Dossier (CV)</span>
           </a>
-        </div>
-
-        {/* Manga Arc Quick-Jump Panels */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-4xl mx-auto text-left">
-          {arcPreviews.map((preview) => (
-            <a
-              key={preview.id}
-              href={`#${preview.id}`}
-              onClick={() => playClick && playClick()}
-              className={`group p-3.5 rounded-xl bg-[#0A0D15] border border-white/10 ${preview.borderClass} transition-all hover:-translate-y-0.5`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className={`px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase ${preview.badgeClass}`}>
-                  {preview.arcNum}
-                </span>
-                <ChevronRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-white transition-colors" />
-              </div>
-              <div className="text-xs font-bold text-white group-hover:text-emerald-300 transition-colors">
-                {preview.title}
-              </div>
-              <div className="text-[11px] text-slate-400 mt-0.5">
-                {preview.company}
-              </div>
-              <div className="text-[10px] text-slate-500 mt-2 font-mono">
-                {preview.stat}
-              </div>
-            </a>
-          ))}
         </div>
       </div>
     </section>

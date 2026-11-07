@@ -14,7 +14,7 @@ export const EpisodeDock: React.FC<EpisodeDockProps> = ({ isMuted, onToggleSound
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   const arcs = [
-    { id: 'arc-pipeline', label: 'Fuel Conduit', title: 'Imperial Auto OEM' },
+    { id: 'arc-pipeline', label: 'Fluid Systems', title: 'Imperial Auto Fluid Transmission' },
     { id: 'arc-bowling', label: 'Strike', title: 'SMAAASH Outbound' },
     { id: 'arc-sap', label: 'Solutions', title: 'Elevra Enterprise Problem Solver' },
     { id: 'arc-gtm', label: 'GTM Engine', title: 'Autonomous AI' },

@@ -26,12 +26,12 @@ export const WORLD_THEMES: Record<WorldThemeKey, WorldTheme> = {
   },
   imperial: {
     id: 'imperial',
-    name: 'Arc 1: Hydraulic Blueprint',
-    bgClass: 'bg-[#071A3D]',
-    accentHex: '#1E5BFF',
-    accentTextClass: 'text-blue-400',
-    accentBgClass: 'bg-blue-600',
-    accentBorderClass: 'border-blue-500/30',
+    name: 'Arc 1: Fluid Transmission Architecture',
+    bgClass: 'bg-[#041521]',
+    accentHex: '#269AE2',
+    accentTextClass: 'text-[#269AE2]',
+    accentBgClass: 'bg-[#269AE2]',
+    accentBorderClass: 'border-[#269AE2]/30',
     badgeLabel: 'Arc 1 · Imperial Auto',
   },
   smaaash: {

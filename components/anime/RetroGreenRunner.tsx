@@ -17,7 +17,7 @@ export const RetroGreenRunner: React.FC<RetroGreenRunnerProps> = ({ playClick })
   const animFrameRef = useRef<number | null>(null);
 
   const milestones = [
-    { km: 5, label: 'Imperial Auto: Fuel Line Architecture', color: '#1E5BFF' },
+    { km: 5, label: 'Imperial Auto: Fluid Transmission Architecture', color: '#269AE2' },
     { km: 15, label: 'SMAAASH: ₹59K Outbound Launch', color: '#E4002B' },
     { km: 26, label: 'Elevra Tech: Enterprise Solution Delivery', color: '#6D28D9' },
     { km: 42, label: 'Autonomous AI: GTM Lead Engine', color: '#00E47C' },
