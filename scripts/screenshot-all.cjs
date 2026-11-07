@@ -124,6 +124,12 @@ async function run() {
       },
       { id: 'arc-bowling', name: '03_arc_smaaash_strike', selector: '#arc-bowling' },
       { id: 'arc-sap', name: '04_arc_elevra_solutions_white', selector: '#arc-sap' },
+      {
+        id: 'arc-sap-mindmap',
+        name: '04b_arc_elevra_mindmap',
+        selector: '#arc-sap',
+        extraScrollY: 420,
+      },
       { id: 'arc-gtm', name: '05_arc_gtm_intelligence', selector: '#arc-gtm' },
       { id: 'footer', name: '07_footer_contact', selector: 'footer' },
     ];

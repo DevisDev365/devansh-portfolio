@@ -51,18 +51,16 @@ export const ArcImperialPipeline: React.FC<ArcImperialPipelineProps> = ({
       client: 'Hyzon Motors US',
       market: 'Export Key Account',
       sector: 'Hydrogen Mobility',
-      application: 'High-Pressure Fuel & Hydrogen Conduit Assemblies',
-      spec: 'PA12 Multilayer Nylon & Stainless Rigid Tube Hybrid · SAE J2044 Quick Coupler · Zero Vapor Permeation Barrier',
+      application: 'Fuel Pipeline Architecture',
       lifecycle:
-        'Managed complete commercial lifecycle from initial Faridabad plant audit representation and technical drawing validations to Incoterms modeling and US VP/GM commercial sign-off.',
+        'Collaborated with Hyzon engineering team to design & develop the structure of fuel pipelines and shipped to them.',
     },
     {
       id: 'mitsubishi',
       client: 'Mitsubishi Logisnext US',
       market: 'Export Key Account',
-      sector: 'Industrial Material Handling',
-      application: 'High-Pressure Hydraulic Transmission & Return Assemblies',
-      spec: 'Reinforced Braided Synthetic Elastomer Hose over Mandrel-Bent Steel Tube · Burst Rating > 35 Bar',
+      sector: 'Material Handling',
+      application: 'Hydraulic & Return Line Assemblies',
       lifecycle:
         'Structured multi-tier international RFQ cost-volume modeling, coordinating cross-border plant production schedules, Incoterms compliance, and overseas client communication.',
     },
@@ -70,9 +68,8 @@ export const ArcImperialPipeline: React.FC<ArcImperialPipelineProps> = ({
       id: 'kohler',
       client: 'Kohler Power India',
       market: 'Domestic Key Account',
-      sector: 'Mission-Critical Energy Systems',
-      application: 'Precision Diesel Fuel Rail Transmission Lines',
-      spec: 'High-Temperature Heat-Shielded Bent Steel Rail Conduits · Flow Rate Telemetry Calibration',
+      sector: 'Energy & Power Systems',
+      application: 'Fuel Transmission Lines',
       lifecycle:
         'Directed strategic client relationship management, scheduled delivery synchronization, technical drawing reviews, and series production handover.',
     },
@@ -698,33 +695,26 @@ export const ArcImperialPipeline: React.FC<ArcImperialPipelineProps> = ({
                 className="p-6 rounded-2xl bg-[#07192A] border border-[#269AE2]/30 shadow-xl flex flex-col justify-between transition-all hover:border-[#269AE2]/60 hover:shadow-2xl hover:shadow-[#269AE2]/10"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded bg-[#269AE2]/20 text-[#7DD3FC] border border-[#269AE2]/40">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded bg-[#269AE2]/20 text-[#7DD3FC] border border-[#269AE2]/40 shrink-0">
                       {account.market}
                     </span>
-                    <span className="text-[10px] font-mono text-slate-400">
+                    <span className="text-[11px] font-mono text-slate-400">
                       {account.sector}
                     </span>
                   </div>
 
-                  <h4 className="text-lg font-black text-white mb-1.5">
+                  <h4 className="text-lg font-black text-white mb-2">
                     {account.client}
                   </h4>
 
-                  <div className="text-xs font-bold text-[#269AE2] mb-3 leading-snug">
+                  <div className="text-xs font-bold text-[#269AE2] mb-4 leading-snug">
                     {account.application}
-                  </div>
-
-                  <div className="text-xs text-slate-300 font-mono mb-4 leading-relaxed bg-[#04111D] p-3 rounded-xl border border-white/5">
-                    <span className="text-slate-400 block text-[10px] uppercase font-sans font-bold mb-1">
-                      Engineered Assembly Specification:
-                    </span>
-                    {account.spec}
                   </div>
                 </div>
 
                 <div className="pt-3 border-t border-[#269AE2]/15 text-xs text-slate-300 leading-relaxed">
-                  <strong className="text-white block mb-0.5">Account Lifecycle Ownership:</strong>
+                  <strong className="text-white block mb-1">Collaboration &amp; Execution:</strong>
                   {account.lifecycle}
                 </div>
               </div>
