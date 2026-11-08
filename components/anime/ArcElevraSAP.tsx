@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Database,
@@ -8,8 +8,10 @@ import {
   Factory,
   Landmark,
   BarChart3,
-  ArrowRight,
+  ChevronDown,
+  ChevronUp,
   Layers,
+  ArrowRight,
   Sparkles,
   Zap,
   CheckCircle2,
@@ -22,329 +24,309 @@ interface ArcElevraSAPProps {
   playClick?: () => void;
 }
 
-type ManagementNodeId = 'sales' | 'inventory' | 'purchasing' | 'production' | 'finance' | 'executive';
+type NodeKey = 'sales' | 'inventory' | 'purchasing' | 'production' | 'finance' | 'executive';
 
-interface ManagementNode {
-  id: ManagementNodeId;
+interface EnterpriseNode {
+  id: NodeKey;
   name: string;
+  shortName: string;
   category: string;
   icon: React.ComponentType<{ className?: string }>;
-  x: number; // SVG center coordinate
+  x: number;
   y: number;
-  dataInputs: string;
-  siloProblem: string;
-  connectedSync: string;
-  connectedTo: ManagementNodeId[];
+  dataPayload: string;
+  beforeProblem: string;
+  afterSolution: string;
 }
 
 export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick }) => {
-  const [selectedNode, setSelectedNode] = useState<ManagementNodeId>('sales');
+  const [detailsOpen, setDetailsOpen] = useState<boolean>(false);
   const [activeCycle, setActiveCycle] = useState<number>(0);
+  const [selectedNode, setSelectedNode] = useState<NodeKey>('sales');
 
-  const managementNodes: Record<ManagementNodeId, ManagementNode> = {
-    sales: {
-      id: 'sales',
-      name: 'Sales & Demand Ingestion',
-      category: 'Commercial Front',
-      icon: ShoppingCart,
-      x: 210,
-      y: 130,
-      dataInputs: 'Customer Inquiries · Digital Quotes · Sales Orders · Pricing Matrices',
-      siloProblem: 'Sales teams sell out-of-stock items using outdated offline spreadsheets.',
-      connectedSync: 'Every confirmed order instantly checks real-time warehouse stock, locks allocation, and triggers purchase requisitions if thresholds are low.',
-      connectedTo: ['inventory', 'finance'],
-    },
-    inventory: {
-      id: 'inventory',
-      name: 'Inventory & Warehouse',
-      category: 'Fulfillment',
-      icon: Boxes,
-      x: 130,
-      y: 330,
-      dataInputs: 'Multi-Bin Locations · Barcode Scans · Batch/Serial Numbers · Stock Levels',
-      siloProblem: 'Warehouse operates on paper clipboards; goods go missing or sit unsold.',
-      connectedSync: 'Every inbound receipt or dispatch scan instantly updates the central inventory ledger, adjusts valuation, and alerts production.',
-      connectedTo: ['sales', 'production', 'purchasing'],
-    },
-    purchasing: {
-      id: 'purchasing',
-      name: 'Procurement & Sourcing',
-      category: 'Supply Chain',
-      icon: Truck,
-      x: 790,
-      y: 130,
-      dataInputs: 'Vendor Master · Purchase Orders · Landed Costs · Inbound Shipments',
-      siloProblem: 'Purchasing guesses raw material needs, causing stockouts or cash traps.',
-      connectedSync: 'Automated MRP triggers purchase orders based on live sales demand and lead-time analytics, locking vendor pricing.',
-      connectedTo: ['inventory', 'finance'],
-    },
-    production: {
-      id: 'production',
-      name: 'Production & MRP',
-      category: 'Operations',
-      icon: Factory,
-      x: 270,
-      y: 490,
-      dataInputs: 'Bill of Materials (BOM) · Work Centers · Capacity Rules · Scrap Rates',
-      siloProblem: 'Shop floor schedules runs blindly without knowing raw material arrival dates.',
-      connectedSync: 'Production orders automatically deduct required materials from warehouse inventory and sync work-center load in real time.',
-      connectedTo: ['inventory', 'finance'],
-    },
-    finance: {
-      id: 'finance',
-      name: 'Finance & General Ledger',
-      category: 'Financial Core',
-      icon: Landmark,
-      x: 870,
-      y: 330,
-      dataInputs: 'Double-Entry Ledger · Bank Feeds · Tax Invoices · Accounts Receivable/Payable',
-      siloProblem: 'Finance waits 3 weeks for manual reconciliations and chases missing invoices.',
-      connectedSync: 'Every single operational event (dispatch, receipt, order) automatically posts balanced journal entries to the general ledger with zero manual data entry.',
-      connectedTo: ['sales', 'purchasing', 'executive'],
-    },
-    executive: {
-      id: 'executive',
-      name: 'Executive BI & Control',
-      category: 'Decision Hub',
-      icon: BarChart3,
-      x: 730,
-      y: 490,
-      dataInputs: 'Real-Time P&L · Gross Margin by SKU · Cash Runway · Operational Velocity',
-      siloProblem: 'Leadership makes critical business decisions looking at 2-week-old historical Excel reports.',
-      connectedSync: 'Live executive dashboards pull continuous margin, order velocity, and cost analytics from the living core database 24/7.',
-      connectedTo: ['finance', 'sales'],
-    },
-  };
-
+  // 3 Enterprise Cycles
   const cycles = [
     {
       id: 0,
-      title: 'Customer Demand Ingestion Cycle',
-      description:
-        'Customer orders arrive ➔ Core checks live inventory ➔ Locks stock allocation ➔ Triggers auto-replenishment PO in Procurement ➔ Posts to General Ledger.',
-      activePath: ['sales', 'inventory', 'purchasing', 'finance'],
+      name: 'Order-to-Cash',
+      subtitle: 'Commercial Ingestion → Stock Allocation → GL Recognition',
+      flow: ['sales', 'inventory', 'finance'] as NodeKey[],
+      desc: 'Sales order locks inventory allocation and posts revenue to general ledger instantly.',
+      payloadTag: 'SO #4892 · Locked',
     },
     {
       id: 1,
-      title: 'Inbound Receipt & Real-Time Valuation',
-      description:
-        'Vendor delivery scanned at dock ➔ Core updates bin inventory ➔ Landed cost calculated ➔ General Ledger asset balance adjusted automatically.',
-      activePath: ['purchasing', 'inventory', 'finance'],
+      name: 'Procure-to-Pay',
+      subtitle: 'Automated MRP → Dock Receipt → AP Reconciliation',
+      flow: ['purchasing', 'inventory', 'finance'] as NodeKey[],
+      desc: 'Automated MRP triggers POs, dock scan updates bin stock, and AP invoice balances.',
+      payloadTag: 'PO #1042 · Balanced',
     },
     {
       id: 2,
-      title: 'Production & Shop-Floor Synchronization',
-      description:
-        'Manufacturing job released ➔ Core deducts raw material stock ➔ Work center capacity locked ➔ Scrap and labor variance synced with Finance.',
-      activePath: ['production', 'inventory', 'finance', 'executive'],
+      name: 'Plan-to-Produce',
+      subtitle: 'BOM Routing → Material Issue → Work-Center Costing',
+      flow: ['inventory', 'production', 'finance'] as NodeKey[],
+      desc: 'BOM requirements deduct raw stock, track scrap rate, and sync work-center costing.',
+      payloadTag: 'WO #8821 · Scrap 0.2%',
     },
   ];
 
+  // 6 Enterprise Modular Nodes
+  const nodes: Record<NodeKey, EnterpriseNode> = {
+    sales: {
+      id: 'sales',
+      name: 'Sales & Demand Ingestion',
+      shortName: 'Sales CRM',
+      category: 'Commercial Front',
+      icon: ShoppingCart,
+      x: 180,
+      y: 110,
+      dataPayload: 'Quotes · Orders · Customer Master',
+      beforeProblem: 'Sales rep commits delivery dates based on outdated offline Excel sheets; stockouts occur constantly.',
+      afterSolution: 'Every confirmed sales order instantly verifies live bin allocations, reserves inventory, and alerts fulfillment.',
+    },
+    inventory: {
+      id: 'inventory',
+      name: 'Inventory & Multi-Bin Warehouse',
+      shortName: 'Warehouse',
+      category: 'Fulfillment',
+      icon: Boxes,
+      x: 130,
+      y: 290,
+      dataPayload: 'Multi-Bin · Barcode Scans · Stock Valuation',
+      beforeProblem: 'Warehouse operates on paper clipboards; inventory discrepancies take weeks of manual audits to discover.',
+      afterSolution: 'Inbound receipts and dispatch barcode scans immediately recalculate landed costs and update stock books.',
+    },
+    purchasing: {
+      id: 'purchasing',
+      name: 'Procurement & Automated MRP',
+      shortName: 'Procurement',
+      category: 'Supply Chain',
+      icon: Truck,
+      x: 820,
+      y: 110,
+      dataPayload: 'Vendor Master · Auto-PO · Landed Cost',
+      beforeProblem: 'Procurement team relies on gut-feel ordering, creating cash traps and emergency freight surcharges.',
+      afterSolution: 'Automated MRP scans live order backlog and lead times to generate purchase orders at optimal tiered pricing.',
+    },
+    production: {
+      id: 'production',
+      name: 'Production & BOM Routing',
+      shortName: 'Manufacturing',
+      category: 'Operations',
+      icon: Factory,
+      x: 230,
+      y: 440,
+      dataPayload: 'Bill of Materials · Routing · Capacity',
+      beforeProblem: 'Assembly line starts without knowing whether critical fasteners or raw materials have cleared customs.',
+      afterSolution: 'Production orders automatically pull from warehouse stock and synchronize machine load in real time.',
+    },
+    finance: {
+      id: 'finance',
+      name: 'Finance & Real-Time General Ledger',
+      shortName: 'Finance GL',
+      category: 'Financial Core',
+      icon: Landmark,
+      x: 870,
+      y: 290,
+      dataPayload: 'Double-Entry GL · AR/AP · Auto-Reconciliation',
+      beforeProblem: 'Finance endures a grueling 20-day month-end close chasing paper delivery challans and misplaced bills.',
+      afterSolution: 'Every dispatch, purchase, and payment triggers automated double-entry journal entries instantaneously.',
+    },
+    executive: {
+      id: 'executive',
+      name: 'Executive BI & Control Analytics',
+      shortName: 'Executive BI',
+      category: 'Decision Hub',
+      icon: BarChart3,
+      x: 770,
+      y: 440,
+      dataPayload: 'Real-Time P&L · SKU Margin · Operational Velocity',
+      beforeProblem: 'C-suite reviews 2-week-old historical Excel spreadsheets, steering strategy with lagging metrics.',
+      afterSolution: 'Live dashboards broadcast gross margin by customer, inventory turn velocity, and real-time cash runway 24/7.',
+    },
+  };
+
+  const selectCycle = (idx: number) => {
+    setActiveCycle(idx);
+    if (playPulse) playPulse();
+    if (playClick) playClick();
+  };
+
+  const selectNode = (id: NodeKey) => {
+    setSelectedNode(id);
+    if (playClick) playClick();
+  };
+
   const currentCycle = cycles[activeCycle];
-  const currentNode = managementNodes[selectedNode];
+  const currentNode = nodes[selectedNode];
 
-  const handleSelectNode = (nodeId: ManagementNodeId) => {
-    if (playClick) playClick();
-    if (playPulse) playPulse();
-    setSelectedNode(nodeId);
-  };
-
-  const handleSelectCycle = (cycleIdx: number) => {
-    if (playClick) playClick();
-    if (playPulse) playPulse();
-    setActiveCycle(cycleIdx);
-    setSelectedNode(cycles[cycleIdx].activePath[0] as ManagementNodeId);
-  };
-
-  // Center coordinate of the Mind Map Hub
   const coreCenterX = 500;
-  const coreCenterY = 300;
+  const coreCenterY = 275;
 
   return (
     <section
       id="arc-sap"
-      className="relative py-24 px-4 sm:px-6 bg-[#FAFAFC] text-slate-900 transition-colors duration-500 overflow-hidden"
+      className="relative bg-[#EDE7FF] text-[#11110F] transition-colors duration-400 ease-out"
     >
-      {/* Subtle lavender and indigo mesh ambient highlights */}
-      <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-purple-100/70 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[550px] h-[550px] bg-indigo-100/60 rounded-full blur-[120px] pointer-events-none" />
+      {/* Blueprint Grid Texture */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle, #5B21B6 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* World Transition Banner (White Page Flip) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-          <div>
-            <div className="flex items-center gap-2 text-purple-700 font-bold text-xs tracking-wider uppercase mb-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-purple-600 animate-pulse" />
-              <span>Episode Arc 03 · Elevra Tech Consulting</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight uppercase">
-              The Connected Enterprise
-            </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base max-w-2xl leading-relaxed">
-              How I solve enterprise friction: transforming disconnected department silos and chaotic spreadsheets into a unified, living data core where every management function syncs in real time.
-            </p>
-          </div>
-
-          {/* Core Architecture Badge */}
-          <div className="flex items-center gap-3.5 bg-white p-3.5 rounded-2xl border border-purple-200 shadow-sm shrink-0">
-            <div className="text-right">
-              <span className="text-[11px] text-purple-700 block font-mono font-bold">
-                SYSTEM ARCHITECTURE
-              </span>
-              <strong className="text-xs text-slate-800">
-                Central Single Source of Truth
-              </strong>
-            </div>
-            <div className="w-9 h-9 rounded-xl bg-purple-100 flex items-center justify-center text-purple-700">
-              <Database className="w-5 h-5" />
-            </div>
-          </div>
+      {/* Main Section Header */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-8 relative z-10">
+        {/* 1. Eyebrow: company · dates in arc accent */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className="w-2 h-2 rounded-full bg-[#5B21B6]" />
+          <span className="text-xs sm:text-sm font-bold tracking-widest text-[#5B21B6] uppercase font-sans">
+            Elevra Tech · July 2026 – present
+          </span>
         </div>
 
-        {/* Executive Friction vs Solution Mindset Strip */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-          <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex items-start gap-3">
-            <div className="w-7 h-7 rounded-lg bg-amber-200/60 flex items-center justify-center text-amber-800 shrink-0 mt-0.5">
-              <AlertCircle className="w-4 h-4" />
-            </div>
-            <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800 block">
-                The Problem I Solve in Growing Businesses:
-              </span>
-              <p className="text-xs text-slate-700 mt-0.5 leading-relaxed">
-                Departments operate as isolated islands: Sales sells stock the warehouse doesn&apos;t have, Purchasing orders on guesswork, and Finance spends 20 days manually reconciling offline Excel sheets.
-              </p>
-            </div>
-          </div>
+        {/* 2. H2: REAL JOB TITLE */}
+        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight text-[#11110F] leading-[0.95]">
+          Business Development Executive, Enterprise Solutions
+        </h2>
 
-          <div className="p-4 rounded-2xl bg-purple-50/80 border border-purple-200/80 flex items-start gap-3">
-            <div className="w-7 h-7 rounded-lg bg-purple-200/60 flex items-center justify-center text-purple-800 shrink-0 mt-0.5">
-              <CheckCircle2 className="w-4 h-4" />
-            </div>
-            <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-purple-800 block">
-                The Architecture I Deploy:
-              </span>
-              <p className="text-xs text-slate-700 mt-0.5 leading-relaxed">
-                An interconnected enterprise core where data enters once and automatically broadcasts real-time adjustments to sales, inventory, procurement, and financials without human friction.
+        {/* 3. One-line summary */}
+        <p className="text-base sm:text-xl text-[#534D66] font-normal max-w-3xl leading-relaxed mt-4 mb-8">
+          SAP Business One prospecting and outreach automation, built around one idea: data enters once and every department stays in sync.
+        </p>
+
+        {/* 4. Stats: Show the Three Cycle Names (No invented numbers) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-8 border-b border-[#5B21B6]/20">
+          {cycles.map((c, i) => (
+            <button
+              key={c.id}
+              onClick={() => selectCycle(i)}
+              className={`text-left p-4 rounded-2xl transition-all cursor-pointer border ${
+                activeCycle === i
+                  ? 'bg-white border-[#5B21B6] shadow-md shadow-[#5B21B6]/10 scale-[1.02]'
+                  : 'bg-white/60 border-[#5B21B6]/15 hover:bg-white hover:border-[#5B21B6]/40'
+              }`}
+            >
+              <div className="flex items-center justify-between text-xs font-mono font-bold text-[#5B21B6] uppercase">
+                <span>Enterprise Cycle 0{i + 1}</span>
+                <span className="w-2 h-2 rounded-full bg-[#5B21B6]" />
+              </div>
+              <div className="text-lg sm:text-xl font-heading font-black text-[#11110F] mt-1.5">
+                {c.name}
+              </div>
+              <p className="text-xs text-[#534D66] mt-1 leading-relaxed">
+                {c.desc}
               </p>
-            </div>
-          </div>
+            </button>
+          ))}
         </div>
+      </div>
 
-        {/* Interactive Mind Map Controls: Real-Time Cycles */}
-        <div className="mb-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-purple-600" />
-              <span>Trace Real-Time Data Cycles Through The Core:</span>
-            </span>
-            <span className="text-xs font-mono text-purple-700 font-bold hidden sm:inline">
-              Click cycle or click any node on the map
-            </span>
-          </div>
+      {/* 5. Signature Visual: Connected Enterprise Architecture Interactive Set Piece */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-8 relative z-10">
+        <div className="relative w-full rounded-3xl bg-white border border-[#5B21B6]/20 p-4 sm:p-7 shadow-2xl overflow-hidden flex flex-col justify-between">
+          {/* Header Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#5B21B6]/15 text-xs">
+            <div className="flex items-center gap-2">
+              <Database className="w-4 h-4 text-[#5B21B6]" />
+              <span className="font-heading font-bold text-[#11110F] text-sm">
+                Connected Enterprise Architecture Map
+              </span>
+              <span className="text-[#5B21B6]/30 hidden sm:inline">|</span>
+              <span className="text-[#534D66] hidden sm:inline font-mono">
+                Active Cycle: <strong className="text-[#5B21B6]">{currentCycle.name}</strong>
+              </span>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {cycles.map((cycle, idx) => {
-              const isActive = activeCycle === idx;
-              return (
+            {/* Cycle Selector Pills */}
+            <div className="flex items-center gap-1.5">
+              {cycles.map((cycle, idx) => (
                 <button
                   key={cycle.id}
-                  onClick={() => handleSelectCycle(idx)}
-                  className={`p-3.5 rounded-2xl text-left border transition-all cursor-pointer ${
-                    isActive
-                      ? 'bg-purple-700 border-purple-800 text-white shadow-lg shadow-purple-600/20'
-                      : 'bg-white border-slate-200 text-slate-700 hover:border-purple-300'
+                  onClick={() => selectCycle(idx)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                    activeCycle === idx
+                      ? 'bg-[#5B21B6] text-white shadow-sm'
+                      : 'bg-[#EDE7FF] text-[#5B21B6] hover:bg-[#EDE7FF]/80'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-1">
-                    <span
-                      className={`text-[10px] font-mono font-bold uppercase ${
-                        isActive ? 'text-purple-200' : 'text-purple-700'
-                      }`}
-                    >
-                      Cycle 0{idx + 1}
-                    </span>
-                    <RefreshCw className={`w-3.5 h-3.5 ${isActive ? 'animate-spin' : 'opacity-40'}`} />
-                  </div>
-                  <div className="text-xs font-black truncate">{cycle.title}</div>
+                  {cycle.name}
                 </button>
-              );
-            })}
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* PRIMARY SET PIECE: The Interconnected Enterprise Mind Map */}
-        <div className="rounded-3xl bg-white border border-purple-200/80 p-4 sm:p-8 shadow-xl mb-8 relative overflow-hidden">
-          {/* Subtle Grid Accent in Canvas */}
-          <div
-            className="absolute inset-0 opacity-20 pointer-events-none"
-            style={{
-              backgroundImage:
-                'radial-gradient(circle, #8B5CF6 1px, transparent 1px)',
-              backgroundSize: '24px 24px',
-            }}
-          />
-
-          {/* SVG Mind Map Visual Canvas */}
-          <div className="relative w-full overflow-x-auto py-2">
+          {/* SVG Interactive Architecture Map */}
+          <div className="relative w-full py-2 flex items-center justify-center overflow-x-auto">
             <svg
-              viewBox="0 0 1000 620"
-              className="w-full h-auto min-w-[760px] select-none"
-              style={{ filter: 'drop-shadow(0 4px 12px rgba(109, 40, 217, 0.05))' }}
+              viewBox="0 0 1000 550"
+              className="w-full max-w-4xl h-auto min-w-[760px] select-none"
+              style={{ filter: 'drop-shadow(0 8px 20px rgba(91, 33, 182, 0.08))' }}
             >
               <defs>
-                {/* Central Core Glowing Radial Gradient */}
-                <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.25" />
-                  <stop offset="60%" stopColor="#6D28D9" stopOpacity="0.1" />
-                  <stop offset="100%" stopColor="#6D28D9" stopOpacity="0" />
+                {/* Central Radial Pulse Gradient */}
+                <radialGradient id="sapCoreGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#5B21B6" stopOpacity="0.25" />
+                  <stop offset="60%" stopColor="#7C3AED" stopOpacity="0.08" />
+                  <stop offset="100%" stopColor="#7C3AED" stopOpacity="0" />
                 </radialGradient>
 
-                {/* Node Active Glow */}
-                <radialGradient id="activeNodeGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#A855F7" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#A855F7" stopOpacity="0" />
-                </radialGradient>
+                {/* Packet Glow */}
+                <linearGradient id="sapPacketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#A78BFA" />
+                  <stop offset="100%" stopColor="#5B21B6" />
+                </linearGradient>
 
-                {/* Data Packet Particle Gradient */}
-                <linearGradient id="packetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#C084FC" />
-                  <stop offset="100%" stopColor="#6D28D9" />
+                {/* Central Core Metallic Badge */}
+                <linearGradient id="sapHubGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#6D28D9" />
+                  <stop offset="50%" stopColor="#5B21B6" />
+                  <stop offset="100%" stopColor="#4C1D95" />
                 </linearGradient>
               </defs>
 
-              {/* ---------------------------------------------------- */}
-              {/* CONNECTING CONDUIT PATHS: Hub to Nodes & Node to Node */}
-              {/* ---------------------------------------------------- */}
-              <g id="conduit-links" strokeWidth="2">
-                {Object.values(managementNodes).map((node) => {
-                  const isNodeInActiveCycle = currentCycle.activePath.includes(node.id);
+              {/* Ambient Radial Core Field */}
+              <circle cx={coreCenterX} cy={coreCenterY} r="160" fill="url(#sapCoreGlow)" />
+
+              {/* Connecting Conduits from Central Core to each Department Node */}
+              <g id="conduit-links">
+                {Object.values(nodes).map((node) => {
+                  const isInCycle = currentCycle.flow.includes(node.id);
                   const isSelected = selectedNode === node.id;
 
-                  // Curved link from central core to each node
+                  // Curved bezier pathway from center to node
+                  const midX = (coreCenterX + node.x) / 2;
+                  const midY = (coreCenterY + node.y) / 2;
+                  const pathD = `M ${coreCenterX} ${coreCenterY} Q ${midX} ${midY} ${node.x} ${node.y}`;
+
                   return (
-                    <g key={`hub-to-${node.id}`}>
-                      {/* Base link conduit */}
+                    <g key={`conduit-${node.id}`}>
+                      {/* Conduit Line */}
                       <path
-                        d={`M ${coreCenterX} ${coreCenterY} Q ${(coreCenterX + node.x) / 2} ${
-                          (coreCenterY + node.y) / 2
-                        } ${node.x} ${node.y}`}
+                        d={pathD}
                         fill="none"
-                        stroke={isSelected ? '#6D28D9' : isNodeInActiveCycle ? '#8B5CF6' : '#E2E8F0'}
-                        strokeWidth={isSelected ? 3.5 : isNodeInActiveCycle ? 2.5 : 1.5}
-                        strokeDasharray={isSelected || isNodeInActiveCycle ? 'none' : '4 4'}
+                        stroke={isInCycle ? '#7C3AED' : isSelected ? '#5B21B6' : '#DDD6FE'}
+                        strokeWidth={isInCycle ? 3.5 : isSelected ? 3 : 1.5}
+                        strokeDasharray={isInCycle ? 'none' : '4 4'}
+                        opacity={isInCycle || isSelected ? 0.9 : 0.4}
                         className="transition-colors duration-300"
                       />
 
-                      {/* Animated data packet traveling between hub and active nodes */}
-                      {(isSelected || isNodeInActiveCycle) && (
+                      {/* Traveling Data Packet for Active Cycle Nodes */}
+                      {isInCycle && (
                         <motion.circle
-                          r="4.5"
-                          fill="url(#packetGrad)"
+                          r="5.5"
+                          fill="url(#sapPacketGrad)"
+                          stroke="#FFFFFF"
+                          strokeWidth="1.5"
                           animate={{
-                            cx: [coreCenterX, (coreCenterX + node.x) / 2, node.x, (coreCenterX + node.x) / 2, coreCenterX],
-                            cy: [coreCenterY, (coreCenterY + node.y) / 2, node.y, (coreCenterY + node.y) / 2, coreCenterY],
+                            cx: [coreCenterX, midX, node.x, midX, coreCenterX],
+                            cy: [coreCenterY, midY, node.y, midY, coreCenterY],
                           }}
                           transition={{
                             duration: 2.8,
@@ -357,291 +339,303 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
                   );
                 })}
 
-                {/* Cross-Department Peripheral Conduits (connecting adjacent nodes) */}
+                {/* Inter-Department Peripheral Rings (Connecting adjacent departments) */}
                 <path
-                  d="M 210 130 C 130 180, 100 260, 130 330"
+                  d="M 180 110 Q 130 200 130 290 Q 180 370 230 440"
                   fill="none"
-                  stroke="#E2E8F0"
+                  stroke="#DDD6FE"
                   strokeWidth="1.5"
-                  strokeDasharray="3 3"
+                  strokeDasharray="4 4"
+                  opacity="0.3"
                 />
                 <path
-                  d="M 130 330 C 160 410, 200 460, 270 490"
+                  d="M 820 110 Q 870 200 870 290 Q 820 370 770 440"
                   fill="none"
-                  stroke="#E2E8F0"
+                  stroke="#DDD6FE"
                   strokeWidth="1.5"
-                  strokeDasharray="3 3"
-                />
-                <path
-                  d="M 790 130 C 850 180, 880 250, 870 330"
-                  fill="none"
-                  stroke="#E2E8F0"
-                  strokeWidth="1.5"
-                  strokeDasharray="3 3"
-                />
-                <path
-                  d="M 870 330 C 850 410, 800 460, 730 490"
-                  fill="none"
-                  stroke="#E2E8F0"
-                  strokeWidth="1.5"
-                  strokeDasharray="3 3"
+                  strokeDasharray="4 4"
+                  opacity="0.3"
                 />
               </g>
 
-              {/* ---------------------------------------------------- */}
-              {/* CENTRAL ENTERPRISE CORE (Single Source of Truth)     */}
-              {/* ---------------------------------------------------- */}
-              <g id="central-core-hub">
-                {/* Large Background Pulsing Aura */}
-                <circle cx={coreCenterX} cy={coreCenterY} r="140" fill="url(#coreGlow)" />
-
-                {/* Outer Concentric Animated Ring */}
+              {/* Central Core: SAP Business One Living Single-Source-of-Truth Hub */}
+              <g id="central-hub">
+                {/* Pulsing Ripple Rings */}
                 <motion.circle
                   cx={coreCenterX}
                   cy={coreCenterY}
-                  r="78"
+                  r="74"
                   fill="none"
-                  stroke="#8B5CF6"
+                  stroke="#7C3AED"
                   strokeWidth="1.5"
-                  strokeDasharray="6 6"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                  style={{ originX: `${coreCenterX}px`, originY: `${coreCenterY}px` }}
+                  animate={{ r: [65, 82, 65], opacity: [0.6, 0.1, 0.6] }}
+                  transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
                 />
 
-                {/* Inner Core Disc */}
+                {/* Solid Hub Disc */}
                 <circle
                   cx={coreCenterX}
                   cy={coreCenterY}
                   r="62"
-                  fill="#6D28D9"
-                  stroke="#EDE9FE"
-                  strokeWidth="3.5"
-                  className="shadow-2xl"
+                  fill="url(#sapHubGrad)"
+                  stroke="#FFFFFF"
+                  strokeWidth="3"
+                  filter="drop-shadow(0 6px 16px rgba(91, 33, 182, 0.35))"
                 />
 
-                {/* Core Icons and Typography */}
+                {/* Central Inner Disc */}
+                <circle
+                  cx={coreCenterX}
+                  cy={coreCenterY}
+                  r="48"
+                  fill="#EDE7FF"
+                />
+
+                {/* Central Hub Typography */}
                 <text
                   x={coreCenterX}
-                  y={coreCenterY - 14}
-                  fill="#E9D5FF"
-                  fontSize="9"
-                  fontFamily="monospace"
-                  fontWeight="bold"
+                  y={coreCenterY - 10}
                   textAnchor="middle"
+                  fill="#5B21B6"
+                  fontSize="10"
+                  fontWeight="800"
+                  fontFamily="sans-serif"
                   letterSpacing="1.2"
-                >
-                  LIVING DATABASE
-                </text>
-                <text
-                  x={coreCenterX}
-                  y={coreCenterY + 4}
-                  fill="#FFFFFF"
-                  fontSize="13"
-                  fontWeight="900"
-                  textAnchor="middle"
-                  letterSpacing="0.5"
                 >
                   ENTERPRISE CORE
                 </text>
                 <text
                   x={coreCenterX}
-                  y={coreCenterY + 18}
-                  fill="#C4B5FD"
-                  fontSize="9"
-                  fontFamily="sans-serif"
-                  fontWeight="bold"
+                  y={coreCenterY + 8}
                   textAnchor="middle"
+                  fill="#11110F"
+                  fontSize="14"
+                  fontWeight="900"
+                  fontFamily="sans-serif"
                 >
-                  Single Source of Truth
+                  SAP B1
                 </text>
-
-                {/* Status Indicator */}
-                <circle cx={coreCenterX - 34} cy={coreCenterY + 34} r="3" fill="#10B981" />
                 <text
-                  x={coreCenterX - 26}
-                  y={coreCenterY + 37}
-                  fill="#D1FAE5"
+                  x={coreCenterX}
+                  y={coreCenterY + 22}
+                  textAnchor="middle"
+                  fill="#5B21B6"
                   fontSize="8"
+                  fontWeight="700"
                   fontFamily="monospace"
                 >
-                  REAL-TIME SYNC
+                  SINGLE SOURCE
                 </text>
               </g>
 
-              {/* ---------------------------------------------------- */}
-              {/* ORBITING MANAGEMENT FUNCTION NODES                   */}
-              {/* ---------------------------------------------------- */}
-              {Object.values(managementNodes).map((node) => {
+              {/* 6 Outer Department Nodes */}
+              {Object.values(nodes).map((node) => {
                 const isSelected = selectedNode === node.id;
-                const isNodeInActiveCycle = currentCycle.activePath.includes(node.id);
-                const IconComponent = node.icon;
+                const isInCycle = currentCycle.flow.includes(node.id);
 
                 return (
                   <g
                     key={node.id}
+                    onClick={() => selectNode(node.id)}
                     className="cursor-pointer"
-                    onClick={() => handleSelectNode(node.id)}
                   >
-                    {/* Active Halo when selected */}
-                    {isSelected && (
+                    {/* Active Halo */}
+                    {(isSelected || isInCycle) && (
                       <circle
                         cx={node.x}
                         cy={node.y}
-                        r="64"
-                        fill="url(#activeNodeGlow)"
-                        className="animate-pulse"
+                        r="52"
+                        fill="none"
+                        stroke={isSelected ? '#5B21B6' : '#7C3AED'}
+                        strokeWidth="2"
+                        opacity={isSelected ? 0.8 : 0.4}
                       />
                     )}
 
-                    {/* Node Card Container */}
-                    <rect
-                      x={node.x - 95}
-                      y={node.y - 45}
-                      width="190"
-                      height="90"
-                      rx="16"
-                      fill={isSelected ? '#6D28D9' : isNodeInActiveCycle ? '#FAF5FF' : '#FFFFFF'}
-                      stroke={isSelected ? '#4C1D95' : isNodeInActiveCycle ? '#A855F7' : '#E2E8F0'}
-                      strokeWidth={isSelected ? 2.5 : isNodeInActiveCycle ? 2 : 1.5}
+                    {/* Node Base Disc */}
+                    <circle
+                      cx={node.x}
+                      cy={node.y}
+                      r="42"
+                      fill={isSelected ? '#5B21B6' : isInCycle ? '#F5F3FF' : '#FFFFFF'}
+                      stroke={isSelected ? '#4C1D95' : isInCycle ? '#7C3AED' : '#C4B5FD'}
+                      strokeWidth={isSelected ? '3' : '2'}
                       filter="drop-shadow(0 4px 8px rgba(0,0,0,0.06))"
-                      className="transition-colors duration-200"
                     />
 
-                    {/* Node Category Pill */}
-                    <rect
-                      x={node.x - 85}
-                      y={node.y - 37}
-                      width="96"
-                      height="16"
-                      rx="4"
-                      fill={isSelected ? '#5B21B6' : '#F3E8FF'}
-                    />
+                    {/* Node Text Label */}
                     <text
-                      x={node.x - 79}
-                      y={node.y - 25}
-                      fill={isSelected ? '#DDD6FE' : '#7E22CE'}
-                      fontSize="8"
-                      fontFamily="monospace"
-                      fontWeight="bold"
-                    >
-                      {node.category.toUpperCase()}
-                    </text>
-
-                    {/* Node Title */}
-                    <text
-                      x={node.x - 85}
+                      x={node.x}
                       y={node.y - 4}
-                      fill={isSelected ? '#FFFFFF' : '#0F172A'}
+                      textAnchor="middle"
+                      fill={isSelected ? '#FFFFFF' : '#11110F'}
                       fontSize="11"
-                      fontWeight="bold"
-                    >
-                      {node.name}
-                    </text>
-
-                    {/* Short Data Subtext */}
-                    <text
-                      x={node.x - 85}
-                      y={node.y + 14}
-                      fill={isSelected ? '#E9D5FF' : '#64748B'}
-                      fontSize="8.5"
+                      fontWeight="800"
                       fontFamily="sans-serif"
                     >
-                      Data in: {node.dataInputs.split('·')[0]}
+                      {node.shortName}
                     </text>
 
-                    {/* Live Sync Status indicator */}
-                    <circle
-                      cx={node.x - 74}
-                      cy={node.y + 30}
-                      r="3.5"
-                      fill={isSelected ? '#34D399' : '#10B981'}
-                    />
+                    {/* Department Category Mini Label */}
                     <text
-                      x={node.x - 64}
-                      y={node.y + 33}
-                      fill={isSelected ? '#D1FAE5' : '#059669'}
-                      fontSize="8"
-                      fontFamily="monospace"
-                      fontWeight="bold"
+                      x={node.x}
+                      y={node.y + 12}
+                      textAnchor="middle"
+                      fill={isSelected ? '#E9D5FF' : '#5B21B6'}
+                      fontSize="8.5"
+                      fontWeight="700"
+                      fontFamily="sans-serif"
+                      letterSpacing="0.4"
                     >
-                      CONNECTED · LIVE
+                      {node.category}
                     </text>
+
+                    {/* Status Dot */}
+                    <circle
+                      cx={node.x + 28}
+                      cy={node.y - 28}
+                      r="5"
+                      fill={isInCycle ? '#10B981' : '#94A3B8'}
+                      stroke="#FFFFFF"
+                      strokeWidth="1.5"
+                    />
                   </g>
                 );
               })}
             </svg>
           </div>
 
-          {/* Active Cycle Explanation Banner */}
-          <div className="mt-4 p-4 rounded-2xl bg-purple-50 border border-purple-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-purple-600 animate-ping" />
-              <div className="text-xs font-mono font-bold text-purple-900">
-                ACTIVE DATA CYCLE: {currentCycle.title.toUpperCase()}
+          {/* Department Inspection Panel: Before vs After Transformation */}
+          <div className="mt-2 p-4 rounded-2xl bg-[#EDE7FF]/60 border border-[#5B21B6]/20">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-[#5B21B6]/15 text-xs">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#5B21B6]" />
+                <span className="font-heading font-black text-[#11110F] text-sm">
+                  {currentNode.name}
+                </span>
+                <span className="text-[#5B21B6] font-mono text-[11px] font-bold">
+                  ({currentNode.category})
+                </span>
+              </div>
+              <div className="text-[#534D66] font-mono text-xs">
+                Payload: <strong className="text-[#5B21B6]">{currentNode.dataPayload}</strong>
               </div>
             </div>
-            <p className="text-xs text-slate-700 max-w-xl font-medium leading-relaxed">
-              {currentCycle.description}
-            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs leading-relaxed">
+              <div className="p-3 rounded-xl bg-white/80 border border-amber-300/60">
+                <span className="font-bold uppercase tracking-wider text-amber-800 text-[10px] block mb-1">
+                  Before: Disconnected Silos
+                </span>
+                <p className="text-[#334155]">{currentNode.beforeProblem}</p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-white/90 border border-emerald-400/60 shadow-sm">
+                <span className="font-bold uppercase tracking-wider text-emerald-800 text-[10px] block mb-1">
+                  After: SAP B1 Automated Core
+                </span>
+                <p className="text-[#11110F] font-medium">{currentNode.afterSolution}</p>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Selected Management Node Detail Panel */}
-        <div className="rounded-3xl bg-white border border-purple-200 p-6 sm:p-8 shadow-lg">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-6 border-b border-slate-100">
+      {/* 6. "The Problem I Solve vs Architecture I Deploy" Boxes (Shortened to 2 lines each) */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 rounded-2xl bg-white/70 border border-[#5B21B6]/20 flex items-start gap-3 shadow-sm">
+            <div className="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center text-amber-800 shrink-0 mt-0.5">
+              <AlertCircle className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-900 block font-heading">
+                The Problem I Solve
+              </span>
+              <p className="text-xs sm:text-sm text-[#475569] mt-0.5 leading-snug">
+                Siloed departments sell out-of-stock items, purchase on guesswork, and waste weeks manually reconciling offline spreadsheets.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-white/70 border border-[#5B21B6]/20 flex items-start gap-3 shadow-sm">
+            <div className="w-7 h-7 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-800 shrink-0 mt-0.5">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-900 block font-heading">
+                The Architecture I Deploy
+              </span>
+              <p className="text-xs sm:text-sm text-[#475569] mt-0.5 leading-snug">
+                An interconnected ERP core where data enters once and automatically broadcasts real-time adjustments across all company operations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 7. "Details" Accordion (Collapsed by Default, zero empty space gap) */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-20 relative z-10">
+        <div className="rounded-2xl bg-white border border-[#5B21B6]/25 overflow-hidden shadow-lg">
+          <button
+            onClick={() => {
+              setDetailsOpen(!detailsOpen);
+              if (playClick) playClick();
+            }}
+            className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#EDE7FF]/40 transition-colors cursor-pointer"
+          >
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-700 shrink-0">
-                <currentNode.icon className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[11px] font-mono font-bold uppercase text-purple-700 block">
-                  {currentNode.category} · Interconnected Node
-                </span>
-                <h3 className="text-xl font-black text-slate-900">
-                  {currentNode.name}
-                </h3>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold font-mono">
-                ✓ Synced With Core
+              <Layers className="w-5 h-5 text-[#5B21B6]" />
+              <span className="font-heading font-bold text-base sm:text-lg text-[#11110F]">
+                Enterprise Prospecting &amp; SAP Solution Engineering Deep Dive
               </span>
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Column 1: How Data Enters This Function */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-              <span className="text-[11px] font-mono font-bold text-slate-500 uppercase block mb-1.5">
-                How Data Enters the System:
-              </span>
-              <p className="text-xs text-slate-800 font-semibold leading-relaxed">
-                {currentNode.dataInputs}
-              </p>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#5B21B6]">
+              <span>{detailsOpen ? 'Hide Details' : 'View Details'}</span>
+              {detailsOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </div>
+          </button>
 
-            {/* Column 2: The Business Silo Problem Before */}
-            <div className="p-4 rounded-2xl bg-rose-50/70 border border-rose-200 text-slate-800">
-              <span className="text-[11px] font-mono font-bold text-rose-700 uppercase block mb-1.5">
-                Disconnected Silo Problem:
-              </span>
-              <p className="text-xs text-slate-700 font-medium leading-relaxed">
-                {currentNode.siloProblem}
-              </p>
-            </div>
+          <AnimatePresence>
+            {detailsOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden border-t border-[#5B21B6]/15 px-6 py-6"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm text-[#475569]">
+                  <div className="space-y-2">
+                    <h4 className="font-heading font-bold text-[#11110F] text-base">
+                      Enterprise Pipeline Prospecting
+                    </h4>
+                    <p className="leading-relaxed">
+                      Identified mid-market manufacturing and wholesale enterprises struggling with legacy software fragmentation. Tailored business value cases around inventory shrinkage and reporting bottlenecks.
+                    </p>
+                  </div>
 
-            {/* Column 3: How the Interconnected Core Solves It */}
-            <div className="p-4 rounded-2xl bg-purple-50/70 border border-purple-200 text-slate-800">
-              <span className="text-[11px] font-mono font-bold text-purple-700 uppercase block mb-1.5">
-                How Data Syncs Across All Functions:
-              </span>
-              <p className="text-xs text-slate-800 font-semibold leading-relaxed">
-                {currentNode.connectedSync}
-              </p>
-            </div>
-          </div>
+                  <div className="space-y-2">
+                    <h4 className="font-heading font-bold text-[#11110F] text-base">
+                      Solution Architecture Mapping
+                    </h4>
+                    <p className="leading-relaxed">
+                      Mapped customer operational workflows against standard SAP Business One modules (Finance, Purchasing, Sales, Production, and MRP) to scope turnkey enterprise rollouts.
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h4 className="font-heading font-bold text-[#11110F] text-base">
+                      Outreach Automation Tech Stack
+                    </h4>
+                    <p className="leading-relaxed">
+                      Leveraged modern automation workflows and tailored pitch decks to scale executive outbound touchpoints while maintaining high-touch personalization for C-level buyers.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

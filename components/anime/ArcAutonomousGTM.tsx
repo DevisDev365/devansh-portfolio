@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ExternalLink,
-  Radio,
-  CheckCircle2,
   Play,
   RotateCcw,
   Sparkles,
-  ShieldCheck,
-  Mail,
-  Search,
   FileCheck,
+  ChevronDown,
+  ChevronUp,
+  Cpu,
+  Radio,
+  Layers,
+  ArrowRight,
 } from 'lucide-react';
 import { projects } from '../../content/portfolio-content.mjs';
 
@@ -20,7 +21,9 @@ interface ArcAutonomousGTMProps {
 }
 
 export const ArcAutonomousGTM: React.FC<ArcAutonomousGTMProps> = ({ playPulse, playClick }) => {
+  const stepperRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState<number>(0);
+  const [detailsOpen, setDetailsOpen] = useState<boolean>(false);
   const [activeVoiceAccent, setActiveVoiceAccent] = useState<'british' | 'indian'>('indian');
 
   // Simulation demo states
@@ -40,7 +43,7 @@ export const ArcAutonomousGTM: React.FC<ArcAutonomousGTMProps> = ({ playPulse, p
     },
     {
       name: 'Gemini Flash Lite',
-      tool: 'googlePalmApi',
+      tool: 'Gemini Flash Lite API',
       detail: 'Synthesizes Boolean SERP queries, diagnoses industry pain points, and validates structured JSON.',
     },
     {
@@ -51,14 +54,42 @@ export const ArcAutonomousGTM: React.FC<ArcAutonomousGTMProps> = ({ playPulse, p
     {
       name: 'Waterfall Enrichment',
       tool: 'Hunter.io API',
-      detail: 'Credit-protected cascade deriving corporate email patterns, verified work emails, phone numbers, and confidence scores.',
+      detail: 'Credit-protected cascade deriving corporate email patterns, verified work emails, and confidence scores.',
     },
     {
       name: 'Executive Delivery',
       tool: 'Custom SMTP',
-      detail: 'Generates responsive HTML executive dossier delivered to prospective clients in under 30 seconds.',
+      detail: 'Generates responsive HTML executive dossier delivered directly to prospective clients in under 30 seconds.',
     },
   ];
+
+  // Auto-play stepper as it enters the viewport
+  useEffect(() => {
+    const el = stepperRef.current;
+    if (!el) return;
+
+    let timer: NodeJS.Timeout;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isSimulating) {
+            timer = setInterval(() => {
+              setActiveStep((prev) => (prev + 1) % pipelineSteps.length);
+            }, 3000);
+          } else {
+            clearInterval(timer);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      clearInterval(timer);
+    };
+  }, [isSimulating, pipelineSteps.length]);
 
   const handleStepClick = (idx: number) => {
     setActiveStep(idx);
@@ -95,362 +126,336 @@ export const ArcAutonomousGTM: React.FC<ArcAutonomousGTMProps> = ({ playPulse, p
   };
 
   return (
-    <section id="arc-gtm" className="relative py-24 px-4 sm:px-6 bg-[#07080C] text-slate-100 overflow-hidden">
-      {/* Tri-color convergence glow in background */}
-      <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-red-600/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/3 left-1/2 w-80 h-80 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
-
+    <section
+      id="arc-gtm"
+      className="relative bg-[#11110F] text-[#F3EEE4] transition-colors duration-400 ease-out py-24 px-4 sm:px-6"
+    >
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <div className="flex items-center gap-2 text-emerald-400 font-semibold text-xs tracking-wider uppercase mb-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>Finale Arc · Autonomous AI &amp; Prototyping</span>
+            {/* 1. Eyebrow */}
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#19C37D]" />
+              <span className="text-xs sm:text-sm font-bold tracking-widest text-[#19C37D] uppercase font-sans">
+                Projects
+              </span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
-              GTM Intelligence Engine
+
+            {/* 2. H2 = AI & Automation Projects */}
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight text-[#F3EEE4] leading-[0.95]">
+              AI &amp; Automation Projects
             </h2>
-            <p className="mt-2 text-slate-300 text-sm sm:text-base max-w-xl leading-relaxed">
-              Rapid 0-to-1 prototype engineering. Autonomous n8n workflows, low-latency multimodal voice agents on GCP, and automated RevOps aggregators.
+
+            {/* 3. One-line summary */}
+            <p className="mt-4 text-[#8E8B82] text-base sm:text-lg max-w-2xl leading-relaxed">
+              B2B outbound intelligence, real-time voice agents, and automated market monitoring pipelines.
             </p>
           </div>
 
-          {/* Prominent Live Demo Trigger */}
+          {/* Test Live Interactive Engine CTA */}
           {starProject.link && (
             <a
               href={starProject.link}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => playClick && playClick()}
-              className="flex items-center gap-2.5 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-sm transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-emerald-500/20 shrink-0"
+              className="flex items-center gap-2 px-5 py-3 rounded bg-[#19C37D] hover:bg-[#15A869] text-[#11110F] font-bold text-xs sm:text-sm transition-transform hover:scale-[1.02] active:scale-[0.98] shrink-0 cursor-pointer"
             >
-              <span>{starProject.linkText || 'Test Live Interactive Engine'}</span>
+              <span>Test Live Interactive Engine</span>
               <ExternalLink className="w-4 h-4" />
             </a>
           )}
         </div>
 
-        {/* Featured Star Project Card */}
-        <div className="rounded-2xl bg-[#090D15] p-6 sm:p-8 mb-12 border border-emerald-500/30 shadow-2xl">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
+        {/* SIGNATURE VISUAL: Horizontal 5-Phase Stepper with Active Phase State */}
+        <div
+          ref={stepperRef}
+          className="rounded-2xl bg-[#1C1C19] p-6 sm:p-8 mb-16 border border-[#F3EEE4]/15 shadow-xl"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-[#F3EEE4]/10">
             <div>
-              <div className="flex items-center gap-2 mb-1.5 text-xs sm:text-sm">
-                <span className="font-semibold text-emerald-400">Featured Star Project</span>
-                <span className="text-slate-500">•</span>
-                <span className="text-slate-300">Self-Hosted n8n · Oracle Cloud VPS · Cloudflare Zero Trust</span>
-              </div>
-              <h3 className="text-xl sm:text-3xl font-bold text-white leading-tight">
-                Autonomous B2B GTM Lead Engine
+              <span className="text-xs font-mono font-bold text-[#19C37D] uppercase tracking-wider block">
+                PROJECT 01: SIGNATURE VISUAL
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-heading font-black text-white mt-1">
+                GTM Lead Engine — 5-Phase Pipeline
               </h3>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1.5 rounded-lg bg-[#111724] text-xs font-semibold text-slate-300">
-                Turnaround: &lt; 30 Seconds
-              </span>
-              <span className="px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
-                Zero Cost Per Seat
-              </span>
-            </div>
-          </div>
-
-          {/* Problem / Solution Contrast */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-sm">
-            <div className="p-5 rounded-xl bg-[#07090F] border border-white/5">
-              <span className="text-xs font-semibold text-slate-400 block mb-1">
-                Systemic Friction:
-              </span>
-              <p className="text-slate-300 leading-relaxed">
-                {starProject.businessProblem}
-              </p>
-            </div>
-            <div className="p-5 rounded-xl bg-[#07090F] border border-white/5">
-              <span className="text-xs font-semibold text-emerald-400 block mb-1">
-                Autonomous Architecture:
-              </span>
-              <p className="text-slate-200 leading-relaxed">
-                Eliminates reliance on $10k+/yr enterprise data platforms by orchestrating Google SERP X-Ray, Hunter.io enrichment, and Gemini Flash Lite targeting behind Cloudflare Zero Trust.
-              </p>
-            </div>
-          </div>
-
-          {/* Interactive Pipeline Node Graph with Simulation Runner */}
-          <div className="rounded-xl bg-[#07090F] p-5 sm:p-6 mb-8 border border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-              <div className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                <span>Autonomous 5-Step Pipeline Flow</span>
-                <span className="text-emerald-400 text-xs font-mono">
-                  {isSimulating ? `Executing Phase ${simStep + 1}...` : `Phase ${activeStep + 1} of 5`}
-                </span>
-              </div>
-
-              {/* Simulation Action Buttons */}
-              <div className="flex items-center gap-2">
-                {!simulationComplete ? (
-                  <button
-                    onClick={runSimulation}
-                    disabled={isSimulating}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs transition-colors"
-                  >
-                    <Play className="w-3.5 h-3.5 fill-current" />
-                    <span>{isSimulating ? 'Simulating Pipeline...' : 'Run In-Page Simulation'}</span>
-                  </button>
-                ) : (
-                  <button
-                    onClick={resetSimulation}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors"
-                  >
-                    <RotateCcw className="w-3.5 h-3.5" />
-                    <span>Reset Simulation</span>
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {/* Stepper Buttons */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-6">
-              {pipelineSteps.map((s, idx) => {
-                const isActive = isSimulating ? simStep === idx : activeStep === idx;
-                const isPast = isSimulating ? simStep > idx : false;
-                return (
-                  <button
-                    key={s.name}
-                    onClick={() => handleStepClick(idx)}
-                    className={`p-3 rounded-lg text-left transition-all ${
-                      isActive
-                        ? 'bg-emerald-500/20 border border-emerald-500/50 text-white shadow-lg shadow-emerald-500/10'
-                        : isPast
-                        ? 'bg-emerald-950/40 border border-emerald-500/20 text-emerald-300'
-                        : 'bg-[#0A0E17] border border-white/5 text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <div className="text-[11px] font-mono font-bold text-emerald-400 mb-0.5">
-                      Phase {idx + 1}
-                    </div>
-                    <div className="text-xs font-bold leading-tight truncate">{s.name}</div>
-                    <div className="text-[10px] text-slate-400 truncate mt-0.5 font-mono">
-                      {s.tool}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Step Detail Card */}
-            <div className="p-4 rounded-lg bg-[#0A0E17] border border-white/5 text-xs sm:text-sm">
-              <div className="font-bold text-white mb-1">
-                {pipelineSteps[isSimulating ? simStep : activeStep].name} —{' '}
-                <span className="text-emerald-400 font-mono text-xs">
-                  {pipelineSteps[isSimulating ? simStep : activeStep].tool}
-                </span>
-              </div>
-              <p className="text-slate-300 leading-relaxed">
-                {pipelineSteps[isSimulating ? simStep : activeStep].detail}
-              </p>
-            </div>
-
-            {/* Simulated Live Output Preview Card */}
-            <AnimatePresence>
-              {simulationComplete && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mt-4 p-4 rounded-xl bg-[#0D1526] border border-emerald-500/40 text-xs"
+            {/* Simulation Trigger */}
+            <div>
+              {!simulationComplete ? (
+                <button
+                  onClick={runSimulation}
+                  disabled={isSimulating}
+                  className="flex items-center gap-2 px-4 py-2 rounded bg-[#19C37D] hover:bg-[#15A869] text-[#11110F] font-bold text-xs transition-colors cursor-pointer"
                 >
-                  <div className="flex items-center justify-between pb-2 mb-3 border-b border-emerald-500/20">
-                    <div className="flex items-center gap-2 text-emerald-400 font-bold">
-                      <FileCheck className="w-4 h-4" />
-                      <span>Simulated Executive Dossier Generated (&lt; 28s)</span>
-                    </div>
-                    <span className="text-[11px] text-slate-400 font-mono">STATUS: DELIVERED VIA SMTP</span>
-                  </div>
-
-                  <div className="space-y-2 text-slate-300">
-                    <p>
-                      <strong>Target Profile:</strong> VP of Supply Chain @ Tier-1 Robotics OEM (₹50 Cr+ ARR Tier)
-                    </p>
-                    <p>
-                      <strong>Boolean Query:</strong>{' '}
-                      <code className="text-emerald-300 bg-black/40 px-1.5 py-0.5 rounded font-mono text-[11px]">
-                        ("VP Supply Chain" OR "Head of SCM") AND ("Robotics" OR "Industrial") site:linkedin.com/in
-                      </code>
-                    </p>
-                    <p>
-                      <strong>Enriched Verification:</strong> Work Email Verified (96% Confidence) • Direct HQ Phone Located
-                    </p>
-                    <p className="text-slate-400 text-[11px] pt-1">
-                      Ready to test on your own ICP? Click the primary button above to trigger the live production engine.
-                    </p>
-                  </div>
-                </motion.div>
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>{isSimulating ? 'Simulating Pipeline...' : 'Run Simulation'}</span>
+                </button>
+              ) : (
+                <button
+                  onClick={resetSimulation}
+                  className="flex items-center gap-2 px-4 py-2 rounded bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors cursor-pointer"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>Reset Simulation</span>
+                </button>
               )}
-            </AnimatePresence>
+            </div>
           </div>
 
-          {/* Hardened Infrastructure Badges */}
-          <div className="flex flex-wrap items-center gap-2 pt-2">
-            <span className="text-xs text-slate-400 font-semibold mr-2">Infrastructure:</span>
-            {starProject.techStack.map((tech: string) => (
-              <span key={tech} className="text-xs px-2.5 py-1 rounded bg-[#07090F] border border-white/5 text-slate-300">
+          {/* Stepper Bar (5 Phases) */}
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-6">
+            {pipelineSteps.map((s, idx) => {
+              const currentStepIndex = isSimulating ? simStep : activeStep;
+              const isActive = currentStepIndex === idx;
+              const isPast = isSimulating ? simStep > idx : false;
+
+              return (
+                <button
+                  key={s.name}
+                  onClick={() => handleStepClick(idx)}
+                  className={`p-3.5 rounded text-left transition-all cursor-pointer border ${
+                    isActive
+                      ? 'bg-[#11110F] border-[#19C37D] text-white shadow-sm'
+                      : isPast
+                      ? 'bg-[#11110F]/60 border-[#19C37D]/30 text-[#19C37D]'
+                      : 'bg-[#11110F]/30 border-white/5 text-[#8E8B82] hover:text-white'
+                  }`}
+                >
+                  <div className="text-[11px] font-mono font-bold text-[#19C37D] mb-1">
+                    Phase 0{idx + 1}
+                  </div>
+                  <div className="text-xs font-bold leading-tight">{s.name}</div>
+                  <div className="text-[10px] text-[#8E8B82] font-mono mt-1 truncate">
+                    {s.tool}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Phase Description Line */}
+          <div className="p-4 rounded bg-[#11110F] border border-white/5 text-xs sm:text-sm">
+            <div className="font-bold text-white mb-1">
+              Phase 0{(isSimulating ? simStep : activeStep) + 1}:{' '}
+              {pipelineSteps[isSimulating ? simStep : activeStep].name} —{' '}
+              <span className="text-[#19C37D] font-mono text-xs">
+                {pipelineSteps[isSimulating ? simStep : activeStep].tool}
+              </span>
+            </div>
+            <p className="text-[#8E8B82] leading-relaxed">
+              {pipelineSteps[isSimulating ? simStep : activeStep].detail}
+            </p>
+          </div>
+
+          {/* Simulation Output Preview */}
+          <AnimatePresence>
+            {simulationComplete && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="mt-4 p-4 rounded bg-[#11110F] border border-[#19C37D]/40 text-xs"
+              >
+                <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#19C37D]/20">
+                  <div className="flex items-center gap-2 text-[#19C37D] font-bold">
+                    <FileCheck className="w-4 h-4" />
+                    <span>Executive Lead Dossier Delivered in 28 seconds</span>
+                  </div>
+                  <span className="text-[11px] text-[#8E8B82] font-mono">STATUS: 200 OK VIA SMTP</span>
+                </div>
+                <p className="text-slate-300">
+                  Verified decision-maker contact details extracted and formatted into responsive executive dossier.
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Infrastructure Chips */}
+          <div className="flex flex-wrap items-center gap-2 pt-6 mt-4 border-t border-[#F3EEE4]/10">
+            <span className="text-xs text-[#8E8B82] font-bold uppercase font-mono mr-2">
+              Infrastructure:
+            </span>
+            {['n8n', 'Gemini Flash Lite', 'Serper.dev', 'Hunter.io', 'Custom SMTP', 'Oracle Cloud VPS', 'Docker', 'Cloudflare Zero Trust'].map((tech) => (
+              <span
+                key={tech}
+                className="text-xs px-2.5 py-1 rounded bg-[#11110F] text-[#F3EEE4]/90 border border-white/10 font-mono"
+              >
                 {tech}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Secondary Prototypes Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Dual-Accent Voice AI Platform */}
-          <div className="rounded-2xl bg-[#090D15] p-6 sm:p-8 flex flex-col justify-between border border-white/10">
+        {/* THREE PROJECT CARDS */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {/* Card 1: GTM Lead Engine */}
+          <div className="rounded-2xl bg-[#1C1C19] p-6 border border-[#F3EEE4]/10 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between mb-3 text-xs">
-                <span className="font-semibold text-cyan-400">
-                  Freelance Paid Project · 48h Turnaround
-                </span>
-                <span className="text-slate-300 bg-white/[0.04] px-2.5 py-1 rounded">
-                  GCP Cloud Run (0–5 Auto-scale)
-                </span>
-              </div>
-
-              <h4 className="text-xl sm:text-2xl font-bold text-white mb-3">
-                {voiceProject.title}
-              </h4>
-
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                Commissioned by an academic researcher to architect a low-latency conversational AI agent testing accent perception across ~250+ participants. Powered by Gemini Multimodal Live API and Antigravity workflow logic.
+              <span className="text-xs font-mono font-bold text-[#19C37D] uppercase block mb-2">
+                Project 01
+              </span>
+              <h3 className="text-xl font-heading font-black text-white mb-2">
+                GTM Lead Engine
+              </h3>
+              <p className="text-xs sm:text-sm text-[#8E8B82] leading-relaxed mb-6">
+                Automated B2B prospecting pipeline running on self-hosted n8n. Takes target ICP inputs, queries Google SERP X-Ray, enriches emails via Hunter.io cascade, and delivers executive dossiers in under 30 seconds.
               </p>
-
-              {/* Accent Waveform Visualizer */}
-              <div className="p-4 rounded-xl bg-[#07090F] mb-6 border border-white/10">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold text-slate-200 flex items-center gap-2">
-                    <Radio className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Dual-Accent Voice Stream</span>
-                  </span>
-                  <div className="flex gap-1.5">
-                    <button
-                      onClick={() => {
-                        setActiveVoiceAccent('indian');
-                        if (playClick) playClick();
-                      }}
-                      className={`text-xs px-2.5 py-1 rounded font-semibold transition-colors ${
-                        activeVoiceAccent === 'indian'
-                          ? 'bg-cyan-500 text-black'
-                          : 'bg-white/5 text-slate-400 hover:text-white'
-                      }`}
-                    >
-                      Indian Accent
-                    </button>
-                    <button
-                      onClick={() => {
-                        setActiveVoiceAccent('british');
-                        if (playClick) playClick();
-                      }}
-                      className={`text-xs px-2.5 py-1 rounded font-semibold transition-colors ${
-                        activeVoiceAccent === 'british'
-                          ? 'bg-cyan-500 text-black'
-                          : 'bg-white/5 text-slate-400 hover:text-white'
-                      }`}
-                    >
-                      British Accent
-                    </button>
-                  </div>
-                </div>
-
-                {/* Animated Waveform Bars */}
-                <div className="h-8 flex items-center justify-center gap-1">
-                  {[40, 70, 90, 60, 30, 80, 100, 50, 65, 85, 45, 95, 35, 75, 55, 85].map((height, i) => (
-                    <motion.div
-                      key={i}
-                      animate={{
-                        height: [`${height * 0.3}%`, `${height}%`, `${height * 0.4}%`],
-                      }}
-                      transition={{
-                        duration: 0.8 + (i % 4) * 0.2,
-                        repeat: Infinity,
-                        repeatType: 'reverse',
-                        ease: 'easeInOut',
-                      }}
-                      className="w-1.5 rounded-full bg-cyan-400/80"
-                    />
-                  ))}
-                </div>
-              </div>
             </div>
-
-            <div className="flex flex-wrap items-center gap-2 pt-4 text-xs">
-              <span className="text-slate-400 font-semibold mr-1">Stack:</span>
-              {voiceProject.techStack.map((tech: string) => (
-                <span key={tech} className="px-2.5 py-1 rounded bg-[#07090F] text-slate-300">
-                  {tech}
-                </span>
-              ))}
+            <div className="space-y-4 pt-4 border-t border-white/10">
+              <div className="flex flex-wrap gap-1.5 text-[11px] font-mono text-[#19C37D]">
+                <span>n8n</span> · <span>Gemini Flash Lite</span> · <span>Serper.dev</span> · <span>Hunter.io</span> · <span>Custom SMTP</span>
+              </div>
+              {starProject.link && (
+                <a
+                  href={starProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => playClick && playClick()}
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#19C37D] hover:underline"
+                >
+                  <span>Test Live Form</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
             </div>
           </div>
 
-          {/* SaaS Market Pulse */}
-          <div className="rounded-2xl bg-[#090D15] p-6 sm:p-8 flex flex-col justify-between border border-white/10">
+          {/* Card 2: Voice AI Platform */}
+          <div className="rounded-2xl bg-[#1C1C19] p-6 border border-[#F3EEE4]/10 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between mb-3 text-xs">
-                <span className="font-semibold text-amber-400">
-                  AI &amp; RevOps Market Intelligence
-                </span>
-                <span className="text-slate-300 bg-white/[0.04] px-2.5 py-1 rounded">
-                  80% Time Reduction
-                </span>
-              </div>
-
-              <h4 className="text-xl sm:text-2xl font-bold text-white mb-3">
-                {saasPulseProject.title}
-              </h4>
-
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                Autonomous market intelligence pipeline using Python, Firecrawl API, and Gemini API to aggregate SaaS industry blogs, trending GitHub repositories, and Google Trends into interactive executive briefs every morning at 6:00 AM.
+              <span className="text-xs font-mono font-bold text-[#19C37D] uppercase block mb-2">
+                Project 02
+              </span>
+              <h3 className="text-xl font-heading font-black text-white mb-2">
+                Voice AI Platform
+              </h3>
+              <p className="text-xs sm:text-sm text-[#8E8B82] leading-relaxed mb-6">
+                Freelance paid engagement delivering a real-time conversational dual-accent voice web application for an academic accent perception study of 250+ participants, deployed on GCP within a strict 48-hour client SLA.
               </p>
-
-              <div className="p-4 rounded-xl bg-[#07090F] space-y-2.5 mb-6 text-xs text-slate-300 border border-white/5">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Eliminated 7+ manual browser tabs with a single automated brief</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Serverless cron via scheduled GitHub Actions with automated diffing</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Integrated with Apple Shortcuts &amp; Resend API for zero-touch delivery</span>
-                </div>
+            </div>
+            <div className="space-y-4 pt-4 border-t border-white/10">
+              <div className="flex flex-wrap gap-1.5 text-[11px] font-mono text-[#19C37D]">
+                <span>Freelance</span> · <span>GCP Cloud Run</span> · <span>Gemini Live API</span> · <span>48h Turnaround</span>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => {
+                    setActiveVoiceAccent('indian');
+                    if (playClick) playClick();
+                  }}
+                  className={`text-xs px-2.5 py-1 rounded font-semibold transition-colors ${
+                    activeVoiceAccent === 'indian'
+                      ? 'bg-[#19C37D] text-[#11110F]'
+                      : 'bg-white/5 text-[#8E8B82]'
+                  }`}
+                >
+                  Indian Accent
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveVoiceAccent('british');
+                    if (playClick) playClick();
+                  }}
+                  className={`text-xs px-2.5 py-1 rounded font-semibold transition-colors ${
+                    activeVoiceAccent === 'british'
+                      ? 'bg-[#19C37D] text-[#11110F]'
+                      : 'bg-white/5 text-[#8E8B82]'
+                  }`}
+                >
+                  British Accent
+                </button>
               </div>
             </div>
+          </div>
 
-            <div className="space-y-4 pt-4">
+          {/* Card 3: SaaS Market Pulse */}
+          <div className="rounded-2xl bg-[#1C1C19] p-6 border border-[#F3EEE4]/10 flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-mono font-bold text-[#19C37D] uppercase block mb-2">
+                Project 03
+              </span>
+              <h3 className="text-xl font-heading font-black text-white mb-2">
+                SaaS Market Pulse
+              </h3>
+              <p className="text-xs sm:text-sm text-[#8E8B82] leading-relaxed mb-6">
+                Autonomous AI market intelligence aggregator for CS and RevOps teams. Scrapes blogs, trending GitHub repos, and news daily using Firecrawl and Python, generating executive briefings with Gemini.
+              </p>
+            </div>
+            <div className="space-y-4 pt-4 border-t border-white/10">
+              <div className="flex flex-wrap gap-1.5 text-[11px] font-mono text-[#19C37D]">
+                <span>Python</span> · <span>Firecrawl</span> · <span>Gemini</span> · <span>80% Time Reduction</span>
+              </div>
               {saasPulseProject.link && (
                 <a
                   href={saasPulseProject.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => playClick && playClick()}
-                  className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#19C37D] hover:underline"
                 >
-                  <span>{saasPulseProject.linkText || 'Watch LinkedIn Demo Video'}</span>
+                  <span>Watch Demo Video</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               )}
-
-              <div className="flex flex-wrap items-center gap-2 text-xs">
-                <span className="text-slate-400 font-semibold mr-1">Stack:</span>
-                {saasPulseProject.techStack.slice(0, 5).map((tech: string) => (
-                  <span key={tech} className="px-2.5 py-1 rounded bg-[#07090F] text-slate-300">
-                    {tech}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
+        </div>
+
+        {/* Details Accordion (Collapsed) */}
+        <div className="border border-[#F3EEE4]/15 rounded-2xl bg-[#1C1C19] overflow-hidden">
+          <button
+            onClick={() => {
+              setDetailsOpen(!detailsOpen);
+              if (playClick) playClick();
+            }}
+            className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-white/[0.04] transition-colors cursor-pointer"
+          >
+            <div className="flex items-center gap-3">
+              <Cpu className="w-5 h-5 text-[#19C37D]" />
+              <span className="font-heading font-bold text-base sm:text-lg text-white">
+                Technical Architecture &amp; Production Deployments
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#19C37D]">
+              <span>{detailsOpen ? 'Hide Details' : 'View Details'}</span>
+              {detailsOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </div>
+          </button>
+
+          <AnimatePresence>
+            {detailsOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden border-t border-[#F3EEE4]/10 px-6 py-6"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                  <div className="space-y-2">
+                    <span className="text-xs font-bold font-mono text-[#19C37D] uppercase block">
+                      Autonomous Lead Engine Architecture
+                    </span>
+                    <p className="text-xs sm:text-sm text-[#8E8B82] leading-relaxed">
+                      Hosted on an Oracle Cloud Ubuntu VPS behind Docker and Cloudflare Zero Trust. The workflow executes Boolean queries via Serper.dev, enriches verified emails with Hunter.io, and sends responsive HTML dossiers via custom domain SMTP.
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <span className="text-xs font-bold font-mono text-[#19C37D] uppercase block">
+                      Conversational Voice Architecture
+                    </span>
+                    <p className="text-xs sm:text-sm text-[#8E8B82] leading-relaxed">
+                      Built with Gemini Multimodal Live API and Antigravity workflow logic. Deployed on Google Cloud Run with 0-to-5 auto-scaling instances to ensure continuous low-latency WebSocket communication across academic participant cohorts.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

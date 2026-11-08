@@ -18,15 +18,18 @@ export const CharacterSheet: React.FC<CharacterSheetProps> = ({ playClick }) => 
   };
 
   return (
-    <footer className="relative py-20 px-4 sm:px-6 bg-[#05060A] border-t border-white/10">
+    <footer id="contact" className="relative py-20 px-4 sm:px-6 bg-[#11110F] text-[#F3EEE4] border-t border-[#F3EEE4]/10">
       <div className="max-w-6xl mx-auto">
         {/* Command Deck Contact Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
           <div className="lg:col-span-6 space-y-4">
-            <h4 className="text-2xl sm:text-4xl font-black text-white uppercase tracking-tight">
+            <span className="text-xs font-bold text-[#19C37D] uppercase tracking-wider block">
+              Contact &amp; Engagement
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-heading font-black text-[#F3EEE4] uppercase tracking-tight">
               Ready to Architect Scalable Systems?
-            </h4>
-            <p className="text-sm text-slate-400 leading-relaxed max-w-md">
+            </h2>
+            <p className="text-sm sm:text-base text-[#8E8B82] leading-relaxed max-w-md">
               Available for enterprise SAP Business One consulting discussions, consultative business development mandates, and custom AI workflow automation projects.
             </p>
 

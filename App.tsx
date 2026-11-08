@@ -2,15 +2,14 @@ import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import { useSoundFX } from './hooks/useSoundFX';
 import { useWorldTheme } from './hooks/useWorldTheme';
-import { InteractiveCanvas } from './components/ui/InteractiveCanvas';
 import { EpisodeDock } from './components/anime/EpisodeDock';
 import { Hero } from './components/Hero';
 import { ArcImperialPipeline } from './components/anime/ArcImperialPipeline';
 import { ArcSmaaashBowling } from './components/anime/ArcSmaaashBowling';
 import { ArcElevraSAP } from './components/anime/ArcElevraSAP';
 import { ArcAutonomousGTM } from './components/anime/ArcAutonomousGTM';
-import { SideQuests } from './components/anime/SideQuests';
 import { CharacterSheet } from './components/anime/CharacterSheet';
+import { CustomCursor } from './components/ui/CustomCursor';
 
 export const App: React.FC = () => {
   const { isMuted, toggleMute, playClick, playValve, playStrike, playPulse } = useSoundFX();
@@ -46,7 +45,7 @@ export const App: React.FC = () => {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        document.title = 'Still watching? — Devansh Khanna';
+        document.title = 'Devansh Khanna · Portfolio';
       } else {
         document.title = `Devansh Khanna · ${currentTheme.name}`;
       }
@@ -58,43 +57,45 @@ export const App: React.FC = () => {
 
   return (
     <div
-      className="min-h-dvh bg-[#07080C] text-slate-200 selection:bg-emerald-500 selection:text-black font-sans relative overflow-x-hidden transition-colors duration-500"
+      className="min-h-dvh font-sans relative overflow-x-hidden selection:bg-[var(--accent)] selection:text-black"
       style={{
-        ['--world-accent' as any]: currentTheme.accentHex,
+        backgroundColor: 'var(--bg)',
+        color: 'var(--fg)',
+        transition: 'background-color 400ms cubic-bezier(0.16, 1, 0.3, 1), color 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       }}
     >
-      {/* Interactive cursor-reactive particle canvas */}
-      <InteractiveCanvas />
+      {/* 4–6% Grain overlay across the whole site */}
+      <div className="grain-overlay" aria-hidden="true" />
 
-      {/* Sticky anime episode timeline bar */}
+      {/* Adaptive custom cursor per chapter */}
+      <CustomCursor activeWorld={activeWorld} />
+
+      {/* Persistent adaptive navigation */}
       <EpisodeDock
         isMuted={isMuted}
         onToggleSound={toggleMute}
         playClick={playClick}
       />
 
-      {/* Main Episodic Four-World Narrative Flow */}
+      {/* Main Episodic Narrative Flow */}
       <main className="relative z-10">
-        {/* Episode 01: Manga Ink Opening */}
+        {/* Hero Chapter: Warm Paper Cream #F3EEE4, Ink Linework, Green Accent */}
         <Hero playClick={playClick} />
 
-        {/* Arc 01: Imperial Auto (Fuel Transmission Conduit Architecture) */}
+        {/* Arc 1: Imperial Auto Industries (Blueprint Cobalt #1747E0, White Linework, Yellow Sealed) */}
         <ArcImperialPipeline playValve={playValve} playClick={playClick} />
 
-        {/* Arc 02: SMAAASH Entertainment (The Outbound Strike) */}
+        {/* Arc 2: SMAAASH Entertainment (Loud Red #E5222B, Black Lane, Cream Text) */}
         <ArcSmaaashBowling playStrike={playStrike} playClick={playClick} />
 
-        {/* Arc 03: Elevra Tech (The Enterprise Problem Solving Engine - White Page Flip) */}
+        {/* Arc 3: Elevra Tech (Soft Lavender #EDE7FF, Deep Purple #5B21B6, Ink Text) */}
         <ArcElevraSAP playPulse={playPulse} playClick={playClick} />
 
-        {/* Finale Arc: Autonomous AI & GTM Intelligence Engine */}
+        {/* Arc 4: Projects (Ink #11110F Field, Green #19C37D - Single Dark Chapter) */}
         <ArcAutonomousGTM playPulse={playPulse} playClick={playClick} />
-
-        {/* Side Quests & Credibility Strip (Brand Sentiment, Red Tape [X], Honors) */}
-        <SideQuests playClick={playClick} />
       </main>
 
-      {/* RPG Character Sheet & Command Deck Footer */}
+      {/* Contact & Closing */}
       <CharacterSheet playClick={playClick} />
     </div>
   );

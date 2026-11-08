@@ -20,6 +20,7 @@ export const NAV_ITEMS: NavItem[] = [
 export const PERSONAL_EMAIL = "devansh.khanna24@dsb.edu.in";
 export const SECONDARY_EMAIL = "devanshkhanna75@gmail.com";
 export const RESUME_URL = "https://drive.google.com/file/d/1tFAvx2Up5kJqWHUxsLuNGSrZeC6-op9l/view?usp=sharing";
+export const SHOW_CLIENT_NAMES = false;
 
 export const BIO = bio;
 
