@@ -143,7 +143,7 @@ export const ArcAutonomousGTM: React.FC<ArcAutonomousGTMProps> = ({ playPulse, p
             </div>
 
             {/* 2. H2 = AI & Automation Projects */}
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight text-[#F3EEE4] leading-[0.95]">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold tracking-tight text-[#F3EEE4] leading-snug">
               AI &amp; Automation Projects
             </h2>
 

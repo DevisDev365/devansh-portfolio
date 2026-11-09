@@ -37,7 +37,7 @@ export const ArcSmaaashBowling: React.FC<ArcSmaaashBowlingProps> = ({
         </div>
 
         {/* 2. H2: REAL JOB TITLE */}
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight text-[#FFF8F0] leading-[0.95]">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold tracking-tight text-[#FFF8F0] leading-snug">
           Sales &amp; Marketing Intern
         </h2>
 

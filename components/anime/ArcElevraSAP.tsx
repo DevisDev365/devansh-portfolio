@@ -288,53 +288,14 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
         </div>
 
         {/* 2. H2: REAL JOB TITLE */}
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight text-[#11110F] leading-[0.95]">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold tracking-tight text-[#11110F] leading-snug">
           Business Development Executive, Enterprise Solutions
         </h2>
 
         {/* 3. One-line summary */}
-        <p className="text-base sm:text-xl text-[#534D66] font-normal max-w-3xl leading-relaxed mt-4 mb-8">
+        <p className="text-base sm:text-lg text-[#534D66] font-normal max-w-3xl leading-relaxed mt-3 mb-6">
           SAP Business One prospecting and outreach automation, built around one idea: data enters once and every department stays in sync.
         </p>
-
-        {/* 4. Three High-Level Enterprise Cycles */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-8 border-b border-[#5B21B6]/20">
-          <div className="p-4 rounded-2xl bg-white border border-[#5B21B6]/20 shadow-sm">
-            <span className="text-[10px] font-mono font-bold text-[#5B21B6] uppercase block">
-              Core Enterprise Loop 01
-            </span>
-            <div className="text-lg font-heading font-black text-[#11110F] mt-1">
-              Order-to-Cash (O2C)
-            </div>
-            <p className="text-xs text-[#534D66] mt-1 leading-relaxed">
-              Sales order intake locks finished stock, triggers automated dispatch, and recognizes revenue instantly.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white border border-[#5B21B6]/20 shadow-sm">
-            <span className="text-[10px] font-mono font-bold text-[#5B21B6] uppercase block">
-              Core Enterprise Loop 02
-            </span>
-            <div className="text-lg font-heading font-black text-[#11110F] mt-1">
-              Procure-to-Pay (P2P)
-            </div>
-            <p className="text-xs text-[#534D66] mt-1 leading-relaxed">
-              Automated MRP calculates component deficit, issues vendor PO, and reconciles dock gate entries.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white border border-[#5B21B6]/20 shadow-sm">
-            <span className="text-[10px] font-mono font-bold text-[#5B21B6] uppercase block">
-              Core Enterprise Loop 03
-            </span>
-            <div className="text-lg font-heading font-black text-[#11110F] mt-1">
-              Plan-to-Produce (P2P)
-            </div>
-            <p className="text-xs text-[#534D66] mt-1 leading-relaxed">
-              BOM component deductions, assembly routing, hydrostatic pressure testing, and work-center costing.
-            </p>
-          </div>
-        </div>
       </div>
 
       {/* 5. SIGNATURE VISUAL: n8n-Style Interconnected ERP Lifecycle Canvas */}
@@ -559,7 +520,7 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
         </div>
       </div>
 
-      {/* 6. "The Problem I Solve vs Architecture I Deploy" Boxes (2 lines each) */}
+      {/* 6. "The Operational Silos vs The Solution I Position" */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-2xl bg-white border border-[#5B21B6]/20 flex items-start gap-3 shadow-sm">
@@ -568,10 +529,10 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
             </div>
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-amber-900 block font-heading">
-                The Problem I Solve
+                The Client Problem I Identify
               </span>
               <p className="text-xs sm:text-sm text-[#475569] mt-0.5 leading-snug">
-                Siloed departments sell out-of-stock items, purchase on guesswork, and waste weeks manually reconciling offline spreadsheets.
+                Growing mid-market enterprises lose margin to isolated teams: sales sells out-of-stock items, purchasing orders on guesswork, and finance spends weeks reconciling offline sheets.
               </p>
             </div>
           </div>
@@ -582,10 +543,10 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
             </div>
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-emerald-900 block font-heading">
-                The Architecture I Deploy
+                The Enterprise Solution I Position
               </span>
               <p className="text-xs sm:text-sm text-[#475569] mt-0.5 leading-snug">
-                An interconnected ERP core where data enters once and automatically broadcasts real-time adjustments across all company operations.
+                Demonstrating how SAP Business One connects CRM, multi-bin warehousing, automated procurement, and financials into one single source of truth that scales with business growth.
               </p>
             </div>
           </div>

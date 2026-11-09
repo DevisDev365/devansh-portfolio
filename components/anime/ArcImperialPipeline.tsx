@@ -88,7 +88,7 @@ export const ArcImperialPipeline: React.FC<ArcImperialPipelineProps> = ({
         </div>
 
         {/* 2. H2: REAL JOB TITLE */}
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight text-[#F4F7FF] leading-[0.95]">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold tracking-tight text-[#F4F7FF] leading-snug">
           Key Account Executive
         </h2>
         <p className="text-xs sm:text-sm text-[#F4F7FF]/70 mt-1 mb-4 uppercase tracking-wider font-mono">
