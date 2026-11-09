@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp, Target, PhoneCall, Users, CheckCircle2 } from 'lucide-react';
-import { ThreeBowlingLane } from './ThreeBowlingLane';
+
+const ThreeBowlingLane = lazy(() =>
+  import('./ThreeBowlingLane').then((mod) => ({ default: mod.ThreeBowlingLane }))
+);
 
 interface ArcSmaaashBowlingProps {
   playStrike?: () => void;
@@ -74,11 +77,22 @@ export const ArcSmaaashBowling: React.FC<ArcSmaaashBowlingProps> = ({
 
       {/* 5. Signature Visual (3D Bowling Lane with Direct Tap/Click to Strike) */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-8 relative z-10">
-        <ThreeBowlingLane
-          playStrike={playStrike}
-          playClick={playClick}
-          onStrikeTriggered={() => setStrikeScored(true)}
-        />
+        <Suspense
+          fallback={
+            <div className="w-full min-h-[380px] sm:min-h-[440px] rounded-2xl bg-[#11110F] border border-[#FFF8F0]/20 flex flex-col items-center justify-center gap-3">
+              <div className="w-8 h-8 rounded-full border-2 border-[#E5222B] border-t-transparent animate-spin" />
+              <span className="text-xs font-mono tracking-widest text-[#FFF8F0]/60 uppercase">
+                Loading 3D Bowling Arena...
+              </span>
+            </div>
+          }
+        >
+          <ThreeBowlingLane
+            playStrike={playStrike}
+            playClick={playClick}
+            onStrikeTriggered={() => setStrikeScored(true)}
+          />
+        </Suspense>
       </div>
 
       {/* 6. "Details" Accordion (Collapsed by Default, zero dead space) */}

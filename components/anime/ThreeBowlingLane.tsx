@@ -338,10 +338,12 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({
               e.stopPropagation();
               triggerRoll();
             }}
-            className="pointer-events-auto px-6 py-3.5 rounded-full bg-[#E5222B] hover:bg-[#c91820] text-white font-heading font-black text-sm sm:text-base tracking-wide flex items-center gap-2.5 shadow-2xl border-2 border-white/80 transition-all hover:scale-105 active:scale-95 animate-pulse cursor-pointer"
+            className="pointer-events-auto px-6 py-3.5 rounded-full bg-[#E5222B] hover:bg-[#c91820] text-white font-heading font-black text-sm sm:text-base tracking-wide flex items-center gap-2.5 shadow-2xl border-2 border-white/80 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
           >
-            <span className="text-xl">🎳</span>
-            <span>CLICK TO BOWL &amp; STRIKE!</span>
+            <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center text-[#E5222B] font-black text-xs shrink-0">
+              ●
+            </div>
+            <span>CLICK TO BOWL &amp; STRIKE</span>
           </button>
         </div>
       )}
@@ -381,7 +383,7 @@ export const ThreeBowlingLane: React.FC<ThreeBowlingLaneProps> = ({
         </span>
         <span className="font-bold text-[#FFF8F0]">
           {isStrikeScored
-            ? '★ STRIKE RECORDED! ₹59,000 REVENUE'
+            ? 'STRIKE RECORDED · ₹59,000 REVENUE'
             : isRolling
             ? 'ROLLING IN PROGRESS...'
             : 'TAP LANE OR BUTTON TO BOWL'}
