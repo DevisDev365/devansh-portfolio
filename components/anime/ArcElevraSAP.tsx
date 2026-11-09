@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Database,
   ShoppingCart,
   Boxes,
   Truck,
   Factory,
-  Landmark,
-  BarChart3,
-  ChevronDown,
-  ChevronUp,
-  Layers,
-  ArrowRight,
-  Sparkles,
-  Zap,
+  FileCheck2,
   CheckCircle2,
   AlertCircle,
-  RefreshCw,
+  Play,
+  RotateCcw,
+  Layers,
+  ArrowRight,
+  ShieldCheck,
+  ChevronDown,
+  ChevronUp,
+  Landmark,
+  Barcode,
 } from 'lucide-react';
 
 interface ArcElevraSAPProps {
@@ -24,165 +24,262 @@ interface ArcElevraSAPProps {
   playClick?: () => void;
 }
 
-type NodeKey = 'sales' | 'inventory' | 'purchasing' | 'production' | 'finance' | 'executive';
-
-interface EnterpriseNode {
-  id: NodeKey;
-  name: string;
-  shortName: string;
-  category: string;
+interface WorkflowStage {
+  id: number;
+  stageCode: string;
+  moduleName: string;
+  department: string;
+  actionTitle: string;
+  statusBadge: string;
+  statusType: 'success' | 'warning' | 'info' | 'primary';
   icon: React.ComponentType<{ className?: string }>;
-  x: number;
-  y: number;
-  dataPayload: string;
-  beforeProblem: string;
-  afterSolution: string;
+  keyMetrics: { label: string; value: string; highlight?: boolean }[];
+  sapDocument: {
+    docType: string;
+    docNumber: string;
+    party: string;
+    financials: string;
+    timestamp: string;
+    details: string;
+  };
+  beforeSiloFriction: string;
+  afterConnectedImpact: string;
 }
 
 export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick }) => {
   const [detailsOpen, setDetailsOpen] = useState<boolean>(false);
-  const [activeCycle, setActiveCycle] = useState<number>(0);
-  const [selectedNode, setSelectedNode] = useState<NodeKey>('sales');
+  const [activeStep, setActiveStep] = useState<number>(0);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // 3 Enterprise Cycles
-  const cycles = [
+  // 6 Lifecycle Stages of an Authentic Manufacturing ERP Pipeline
+  const lifecycleStages: WorkflowStage[] = [
     {
       id: 0,
-      name: 'Order-to-Cash',
-      subtitle: 'Commercial Ingestion → Stock Allocation → GL Recognition',
-      flow: ['sales', 'inventory', 'finance'] as NodeKey[],
-      desc: 'Sales order locks inventory allocation and posts revenue to general ledger instantly.',
-      payloadTag: 'SO #4892 · Locked',
+      stageCode: 'STEP 01',
+      moduleName: 'Sales & Demand Intake',
+      department: 'Commercial CRM',
+      actionTitle: 'Customer Order Confirmation',
+      statusBadge: 'ORDER CONFIRMED',
+      statusType: 'info',
+      icon: ShoppingCart,
+      keyMetrics: [
+        { label: 'Order ID', value: 'SO-4092' },
+        { label: 'Customer', value: 'Precision Auto OEM' },
+        { label: 'Requirement', value: '100 Units', highlight: true },
+        { label: 'Contract Value', value: '₹4,50,000' },
+      ],
+      sapDocument: {
+        docType: 'Sales Order (ORDR)',
+        docNumber: 'SO-2026-4092',
+        party: 'Precision Auto Components Ltd (GSTIN: 07AAACP1234M1Z5)',
+        financials: 'Total: ₹4,50,000 (+18% GST) · Net: ₹5,31,000',
+        timestamp: '09:15:22 IST · Automated EDI Ingestion',
+        details: '100 Units of High-Pressure Hydraulic Fuel Line Assemblies (Part #HT-LINE-01). Payment Terms: Net 30.',
+      },
+      beforeSiloFriction:
+        'Sales rep promises delivery date on a paper quote without knowing factory inventory. Out-of-stock items sold routinely.',
+      afterConnectedImpact:
+        'Confirmed digital sales order instantly locks pricing matrix, checks inventory allocation, and triggers downstream supply chain in 14ms.',
     },
     {
       id: 1,
-      name: 'Procure-to-Pay',
-      subtitle: 'Automated MRP → Dock Receipt → AP Reconciliation',
-      flow: ['purchasing', 'inventory', 'finance'] as NodeKey[],
-      desc: 'Automated MRP triggers POs, dock scan updates bin stock, and AP invoice balances.',
-      payloadTag: 'PO #1042 · Balanced',
+      stageCode: 'STEP 02',
+      moduleName: 'Inventory & Allocation',
+      department: 'Warehouse Logistics',
+      actionTitle: 'Multi-Bin Stock Evaluation',
+      statusBadge: 'SHORTFALL FLAGGED: -60',
+      statusType: 'warning',
+      icon: Boxes,
+      keyMetrics: [
+        { label: 'Bin Location', value: 'WH-A/Rack-04' },
+        { label: 'Stock On-Hand', value: '40 Units' },
+        { label: 'Allocated', value: '40 Units' },
+        { label: 'Net Shortfall', value: '-60 Units', highlight: true },
+      ],
+      sapDocument: {
+        docType: 'Inventory Allocation Ledger (OITW)',
+        docNumber: 'ALLOC-8841',
+        party: 'Main Assembly Warehouse (Faridabad Facility)',
+        financials: '40 Units Reserved (Valuation: ₹1,20,000) · 60 Units Unmet',
+        timestamp: '09:15:24 IST · Live Bin Balance Checked',
+        details: 'Stock query confirms only 40 finished units in bin WH-A/R04. System automatically routes 60-unit shortfall to MRP engine.',
+      },
+      beforeSiloFriction:
+        'Warehouse uses physical clipboards. Discrepancies between physical stock and Excel files take weeks of manual counting to uncover.',
+      afterConnectedImpact:
+        'Live bin tracking reserves 40 units immediately and pushes exact component shortfall into automated MRP without human delay.',
     },
     {
       id: 2,
-      name: 'Plan-to-Produce',
-      subtitle: 'BOM Routing → Material Issue → Work-Center Costing',
-      flow: ['inventory', 'production', 'finance'] as NodeKey[],
-      desc: 'BOM requirements deduct raw stock, track scrap rate, and sync work-center costing.',
-      payloadTag: 'WO #8821 · Scrap 0.2%',
+      stageCode: 'STEP 03',
+      moduleName: 'Automated MRP & Sourcing',
+      department: 'Procurement',
+      actionTitle: 'Auto Purchase Order Issuance',
+      statusBadge: 'AUTO-PO ISSUED',
+      statusType: 'primary',
+      icon: Truck,
+      keyMetrics: [
+        { label: 'PO Number', value: 'PO-8821' },
+        { label: 'Supplier', value: 'Jindal Steel & Zenith' },
+        { label: 'Raw Materials', value: 'Steel + EPDM Hose', highlight: true },
+        { label: 'PO Value', value: '₹1,85,000' },
+      ],
+      sapDocument: {
+        docType: 'Purchase Order (OPOR)',
+        docNumber: 'PO-2026-8821',
+        party: 'Zenith Rubber & Jindal Seamless Tubes',
+        financials: 'Total PO Value: ₹1,85,000 · Tier-1 Contract Pricing',
+        timestamp: '09:15:30 IST · MRP Engine Auto-Generated',
+        details: 'BOM explosion orders 120m seamless steel tubing + 100m vulcanized EPDM elastomer hose + 200 torque worm-clamps.',
+      },
+      beforeSiloFriction:
+        'Procurement officer guesses raw material quantities every Monday, risking severe factory stockouts or tying up cash in dead stock.',
+      afterConnectedImpact:
+        'Material Requirement Planning auto-explodes the Bill of Materials (BOM), locking contracted vendor volume discounts in seconds.',
+    },
+    {
+      id: 3,
+      stageCode: 'STEP 04',
+      moduleName: 'Gate Entry & QC Receiving',
+      department: 'Inward Quality & Receiving',
+      actionTitle: 'Barcode Scan & Lab Clearance',
+      statusBadge: 'QC CLEARED · 100% PASS',
+      statusType: 'success',
+      icon: FileCheck2,
+      keyMetrics: [
+        { label: 'Gate Entry ID', value: 'GE-4019' },
+        { label: 'Dock Number', value: 'Inbound Dock 02' },
+        { label: 'QC Test', value: 'Tensile & Burst: PASS', highlight: true },
+        { label: 'Status', value: 'Ready for Assembly' },
+      ],
+      sapDocument: {
+        docType: 'Goods Receipt PO (OPDN)',
+        docNumber: 'GRPO-5510',
+        party: 'Security Gate 01 & QA Metallurgy Lab',
+        financials: 'Inward Stock Value: ₹1,85,000 Verified Against PO',
+        timestamp: 'Next Day 08:30 IST · Inbound Scan Complete',
+        details: 'Truck arrives; security scans delivery barcode. QA performs hydrostatic proof pressure & wall-thickness test. GRPO posted.',
+      },
+      beforeSiloFriction:
+        'Inbound materials sit unchecked at security gate. Shop floor has no idea components arrived and halts scheduled production runs.',
+      afterConnectedImpact:
+        'Barcode scan at factory gate generates instant GRPO, updates raw inventory valuation, and triggers immediate green-light to assembly.',
+    },
+    {
+      id: 4,
+      stageCode: 'STEP 05',
+      moduleName: 'Production & Assembly',
+      department: 'Shop Floor Manufacturing',
+      actionTitle: 'Work Order Execution & Testing',
+      statusBadge: '100 UNITS READY',
+      statusType: 'success',
+      icon: Factory,
+      keyMetrics: [
+        { label: 'Work Order', value: 'WO-7712' },
+        { label: 'Routing', value: 'Bending → Crimping' },
+        { label: 'Pressure Test', value: '10.0 Bar Hermetic', highlight: true },
+        { label: 'Total Ready', value: '100 / 100 Units' },
+      ],
+      sapDocument: {
+        docType: 'Production Order (OWOR)',
+        docNumber: 'WO-2026-7712',
+        party: 'Assembly Cell 03 & Hydrostatic Test Bench',
+        financials: 'Assembly Cost Absorbed: ₹32,000 · Scrap: 0.2% (Nominal)',
+        timestamp: 'Day 2 14:45 IST · Final Inspection Handover',
+        details: '60 additional assemblies completed, joined with 40 reserved units. 100 finished assemblies staged at outbound bay.',
+      },
+      beforeSiloFriction:
+        'Shop floor runs jobs blindly without real-time costing, scrap tracking, or synchronization with customer delivery deadlines.',
+      afterConnectedImpact:
+        'BOM deductions happen in real time; completed work order auto-replenishes finished goods inventory and notifies dispatch.',
+    },
+    {
+      id: 5,
+      stageCode: 'STEP 06',
+      moduleName: 'Dispatch & General Ledger',
+      department: 'Finance & Logistics',
+      actionTitle: 'E-Way Bill & GL Posting',
+      statusBadge: 'DISPATCHED & GL BALANCED',
+      statusType: 'success',
+      icon: CheckCircle2,
+      keyMetrics: [
+        { label: 'Invoice No.', value: 'INV-9024' },
+        { label: 'E-Way Bill', value: 'EWB-88102941' },
+        { label: 'GL Recognition', value: '₹5,31,000 Balanced', highlight: true },
+        { label: 'Execution Time', value: 'Zero Manual Entry' },
+      ],
+      sapDocument: {
+        docType: 'A/R Tax Invoice (OINV)',
+        docNumber: 'INV-2026-9024',
+        party: 'Precision Auto OEM · Vehicle #HR-55-AJ-1092',
+        financials: 'Dr Accounts Receivable: ₹5,31,000 | Cr Revenue: ₹4,50,000 | Cr GST: ₹81,000',
+        timestamp: 'Day 2 16:30 IST · Delivery Outbound',
+        details: 'E-Way bill generated via NIC portal API. Double-entry journal entry posted automatically to General Ledger. Cycle closed.',
+      },
+      beforeSiloFriction:
+        'Finance waits 20 days for manual delivery challans, reconciles invoices on spreadsheets, and delays revenue recognition.',
+      afterConnectedImpact:
+        'Dispatch automatically triggers statutory e-Way bill and posts balanced journal entries to the financial ledger simultaneously.',
     },
   ];
 
-  // 6 Enterprise Modular Nodes
-  const nodes: Record<NodeKey, EnterpriseNode> = {
-    sales: {
-      id: 'sales',
-      name: 'Sales & Demand Ingestion',
-      shortName: 'Sales CRM',
-      category: 'Commercial Front',
-      icon: ShoppingCart,
-      x: 180,
-      y: 110,
-      dataPayload: 'Quotes · Orders · Customer Master',
-      beforeProblem: 'Sales rep commits delivery dates based on outdated offline Excel sheets; stockouts occur constantly.',
-      afterSolution: 'Every confirmed sales order instantly verifies live bin allocations, reserves inventory, and alerts fulfillment.',
-    },
-    inventory: {
-      id: 'inventory',
-      name: 'Inventory & Multi-Bin Warehouse',
-      shortName: 'Warehouse',
-      category: 'Fulfillment',
-      icon: Boxes,
-      x: 130,
-      y: 290,
-      dataPayload: 'Multi-Bin · Barcode Scans · Stock Valuation',
-      beforeProblem: 'Warehouse operates on paper clipboards; inventory discrepancies take weeks of manual audits to discover.',
-      afterSolution: 'Inbound receipts and dispatch barcode scans immediately recalculate landed costs and update stock books.',
-    },
-    purchasing: {
-      id: 'purchasing',
-      name: 'Procurement & Automated MRP',
-      shortName: 'Procurement',
-      category: 'Supply Chain',
-      icon: Truck,
-      x: 820,
-      y: 110,
-      dataPayload: 'Vendor Master · Auto-PO · Landed Cost',
-      beforeProblem: 'Procurement team relies on gut-feel ordering, creating cash traps and emergency freight surcharges.',
-      afterSolution: 'Automated MRP scans live order backlog and lead times to generate purchase orders at optimal tiered pricing.',
-    },
-    production: {
-      id: 'production',
-      name: 'Production & BOM Routing',
-      shortName: 'Manufacturing',
-      category: 'Operations',
-      icon: Factory,
-      x: 230,
-      y: 440,
-      dataPayload: 'Bill of Materials · Routing · Capacity',
-      beforeProblem: 'Assembly line starts without knowing whether critical fasteners or raw materials have cleared customs.',
-      afterSolution: 'Production orders automatically pull from warehouse stock and synchronize machine load in real time.',
-    },
-    finance: {
-      id: 'finance',
-      name: 'Finance & Real-Time General Ledger',
-      shortName: 'Finance GL',
-      category: 'Financial Core',
-      icon: Landmark,
-      x: 870,
-      y: 290,
-      dataPayload: 'Double-Entry GL · AR/AP · Auto-Reconciliation',
-      beforeProblem: 'Finance endures a grueling 20-day month-end close chasing paper delivery challans and misplaced bills.',
-      afterSolution: 'Every dispatch, purchase, and payment triggers automated double-entry journal entries instantaneously.',
-    },
-    executive: {
-      id: 'executive',
-      name: 'Executive BI & Control Analytics',
-      shortName: 'Executive BI',
-      category: 'Decision Hub',
-      icon: BarChart3,
-      x: 770,
-      y: 440,
-      dataPayload: 'Real-Time P&L · SKU Margin · Operational Velocity',
-      beforeProblem: 'C-suite reviews 2-week-old historical Excel spreadsheets, steering strategy with lagging metrics.',
-      afterSolution: 'Live dashboards broadcast gross margin by customer, inventory turn velocity, and real-time cash runway 24/7.',
-    },
-  };
+  // Auto-play simulation loop
+  useEffect(() => {
+    if (isPlaying) {
+      timerRef.current = setInterval(() => {
+        setActiveStep((prev) => {
+          if (prev >= lifecycleStages.length - 1) {
+            setIsPlaying(false);
+            return prev;
+          }
+          return prev + 1;
+        });
+      }, 2200);
+    } else {
+      if (timerRef.current) clearInterval(timerRef.current);
+    }
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [isPlaying, lifecycleStages.length]);
 
-  const selectCycle = (idx: number) => {
-    setActiveCycle(idx);
+  const toggleSimulation = () => {
     if (playPulse) playPulse();
     if (playClick) playClick();
+    if (activeStep >= lifecycleStages.length - 1) {
+      setActiveStep(0);
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(!isPlaying);
+    }
   };
 
-  const selectNode = (id: NodeKey) => {
-    setSelectedNode(id);
+  const jumpToStep = (index: number) => {
     if (playClick) playClick();
+    setIsPlaying(false);
+    setActiveStep(index);
   };
 
-  const currentCycle = cycles[activeCycle];
-  const currentNode = nodes[selectedNode];
-
-  const coreCenterX = 500;
-  const coreCenterY = 275;
+  const currentStage = lifecycleStages[activeStep];
 
   return (
     <section
       id="arc-sap"
       className="relative bg-[#EDE7FF] text-[#11110F] transition-colors duration-400 ease-out"
     >
-      {/* Blueprint Grid Texture */}
+      {/* Subtle blueprint dot grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20"
         style={{
-          backgroundImage:
-            'radial-gradient(circle, #5B21B6 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
+          backgroundImage: 'radial-gradient(circle, #5B21B6 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
         }}
       />
 
       {/* Main Section Header */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-8 relative z-10">
-        {/* 1. Eyebrow: company · dates in arc accent */}
+        {/* 1. Eyebrow */}
         <div className="flex items-center gap-2 mb-3">
           <span className="w-2 h-2 rounded-full bg-[#5B21B6]" />
           <span className="text-xs sm:text-sm font-bold tracking-widest text-[#5B21B6] uppercase font-sans">
@@ -200,351 +297,272 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
           SAP Business One prospecting and outreach automation, built around one idea: data enters once and every department stays in sync.
         </p>
 
-        {/* 4. Stats: Show the Three Cycle Names (No invented numbers) */}
+        {/* 4. Three High-Level Enterprise Cycles */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-8 border-b border-[#5B21B6]/20">
-          {cycles.map((c, i) => (
-            <button
-              key={c.id}
-              onClick={() => selectCycle(i)}
-              className={`text-left p-4 rounded-2xl transition-all cursor-pointer border ${
-                activeCycle === i
-                  ? 'bg-white border-[#5B21B6] shadow-md shadow-[#5B21B6]/10 scale-[1.02]'
-                  : 'bg-white/60 border-[#5B21B6]/15 hover:bg-white hover:border-[#5B21B6]/40'
-              }`}
-            >
-              <div className="flex items-center justify-between text-xs font-mono font-bold text-[#5B21B6] uppercase">
-                <span>Enterprise Cycle 0{i + 1}</span>
-                <span className="w-2 h-2 rounded-full bg-[#5B21B6]" />
-              </div>
-              <div className="text-lg sm:text-xl font-heading font-black text-[#11110F] mt-1.5">
-                {c.name}
-              </div>
-              <p className="text-xs text-[#534D66] mt-1 leading-relaxed">
-                {c.desc}
-              </p>
-            </button>
-          ))}
+          <div className="p-4 rounded-2xl bg-white border border-[#5B21B6]/20 shadow-sm">
+            <span className="text-[10px] font-mono font-bold text-[#5B21B6] uppercase block">
+              Core Enterprise Loop 01
+            </span>
+            <div className="text-lg font-heading font-black text-[#11110F] mt-1">
+              Order-to-Cash (O2C)
+            </div>
+            <p className="text-xs text-[#534D66] mt-1 leading-relaxed">
+              Sales order intake locks finished stock, triggers automated dispatch, and recognizes revenue instantly.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-white border border-[#5B21B6]/20 shadow-sm">
+            <span className="text-[10px] font-mono font-bold text-[#5B21B6] uppercase block">
+              Core Enterprise Loop 02
+            </span>
+            <div className="text-lg font-heading font-black text-[#11110F] mt-1">
+              Procure-to-Pay (P2P)
+            </div>
+            <p className="text-xs text-[#534D66] mt-1 leading-relaxed">
+              Automated MRP calculates component deficit, issues vendor PO, and reconciles dock gate entries.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-white border border-[#5B21B6]/20 shadow-sm">
+            <span className="text-[10px] font-mono font-bold text-[#5B21B6] uppercase block">
+              Core Enterprise Loop 03
+            </span>
+            <div className="text-lg font-heading font-black text-[#11110F] mt-1">
+              Plan-to-Produce (P2P)
+            </div>
+            <p className="text-xs text-[#534D66] mt-1 leading-relaxed">
+              BOM component deductions, assembly routing, hydrostatic pressure testing, and work-center costing.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* 5. Signature Visual: Connected Enterprise Architecture Interactive Set Piece */}
+      {/* 5. SIGNATURE VISUAL: n8n-Style Interconnected ERP Lifecycle Canvas */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-8 relative z-10">
-        <div className="relative w-full rounded-3xl bg-white border border-[#5B21B6]/20 p-4 sm:p-7 shadow-2xl overflow-hidden flex flex-col justify-between">
-          {/* Header Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#5B21B6]/15 text-xs">
-            <div className="flex items-center gap-2">
-              <Database className="w-4 h-4 text-[#5B21B6]" />
-              <span className="font-heading font-bold text-[#11110F] text-sm">
-                Connected Enterprise Architecture Map
+        <div className="relative w-full rounded-3xl bg-[#0F0E17] border border-[#5B21B6]/40 p-4 sm:p-7 shadow-2xl overflow-hidden text-white">
+          {/* Canvas Header Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-white/10 text-xs">
+            <div className="flex items-center gap-2.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
+              <span className="font-heading font-bold text-white text-sm">
+                SAP Business One · Live Lifecycle Simulation
               </span>
-              <span className="text-[#5B21B6]/30 hidden sm:inline">|</span>
-              <span className="text-[#534D66] hidden sm:inline font-mono">
-                Active Cycle: <strong className="text-[#5B21B6]">{currentCycle.name}</strong>
+              <span className="text-white/30 hidden sm:inline">|</span>
+              <span className="text-white/70 hidden sm:inline font-mono">
+                Order SO-4092 Execution Pipeline
               </span>
             </div>
 
-            {/* Cycle Selector Pills */}
-            <div className="flex items-center gap-1.5">
-              {cycles.map((cycle, idx) => (
-                <button
-                  key={cycle.id}
-                  onClick={() => selectCycle(idx)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                    activeCycle === idx
-                      ? 'bg-[#5B21B6] text-white shadow-sm'
-                      : 'bg-[#EDE7FF] text-[#5B21B6] hover:bg-[#EDE7FF]/80'
-                  }`}
-                >
-                  {cycle.name}
-                </button>
-              ))}
+            {/* Simulation Controls */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={toggleSimulation}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#5B21B6] hover:bg-[#6D28D9] text-white text-xs font-bold transition-transform active:scale-95 cursor-pointer shadow-md"
+              >
+                <Play className={`w-3.5 h-3.5 ${isPlaying ? 'fill-white' : ''}`} />
+                <span>{isPlaying ? 'Pause Simulation' : activeStep >= 5 ? 'Replay Pipeline' : 'Run Live Simulation'}</span>
+              </button>
+
+              <button
+                onClick={() => jumpToStep(0)}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-white/80 text-xs font-medium transition-colors cursor-pointer"
+                title="Reset to Step 1"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Reset</span>
+              </button>
             </div>
           </div>
 
-          {/* SVG Interactive Architecture Map */}
-          <div className="relative w-full py-2 flex items-center justify-center overflow-x-auto">
-            <svg
-              viewBox="0 0 1000 550"
-              className="w-full max-w-4xl h-auto min-w-[760px] select-none"
-              style={{ filter: 'drop-shadow(0 8px 20px rgba(91, 33, 182, 0.08))' }}
-            >
-              <defs>
-                {/* Central Radial Pulse Gradient */}
-                <radialGradient id="sapCoreGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#5B21B6" stopOpacity="0.25" />
-                  <stop offset="60%" stopColor="#7C3AED" stopOpacity="0.08" />
-                  <stop offset="100%" stopColor="#7C3AED" stopOpacity="0" />
-                </radialGradient>
-
-                {/* Packet Glow */}
-                <linearGradient id="sapPacketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#A78BFA" />
-                  <stop offset="100%" stopColor="#5B21B6" />
-                </linearGradient>
-
-                {/* Central Core Metallic Badge */}
-                <linearGradient id="sapHubGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#6D28D9" />
-                  <stop offset="50%" stopColor="#5B21B6" />
-                  <stop offset="100%" stopColor="#4C1D95" />
-                </linearGradient>
-              </defs>
-
-              {/* Ambient Radial Core Field */}
-              <circle cx={coreCenterX} cy={coreCenterY} r="160" fill="url(#sapCoreGlow)" />
-
-              {/* Connecting Conduits from Central Core to each Department Node */}
-              <g id="conduit-links">
-                {Object.values(nodes).map((node) => {
-                  const isInCycle = currentCycle.flow.includes(node.id);
-                  const isSelected = selectedNode === node.id;
-
-                  // Curved bezier pathway from center to node
-                  const midX = (coreCenterX + node.x) / 2;
-                  const midY = (coreCenterY + node.y) / 2;
-                  const pathD = `M ${coreCenterX} ${coreCenterY} Q ${midX} ${midY} ${node.x} ${node.y}`;
-
-                  return (
-                    <g key={`conduit-${node.id}`}>
-                      {/* Conduit Line */}
-                      <path
-                        d={pathD}
-                        fill="none"
-                        stroke={isInCycle ? '#7C3AED' : isSelected ? '#5B21B6' : '#DDD6FE'}
-                        strokeWidth={isInCycle ? 3.5 : isSelected ? 3 : 1.5}
-                        strokeDasharray={isInCycle ? 'none' : '4 4'}
-                        opacity={isInCycle || isSelected ? 0.9 : 0.4}
-                        className="transition-colors duration-300"
-                      />
-
-                      {/* Traveling Data Packet for Active Cycle Nodes */}
-                      {isInCycle && (
-                        <motion.circle
-                          r="5.5"
-                          fill="url(#sapPacketGrad)"
-                          stroke="#FFFFFF"
-                          strokeWidth="1.5"
-                          animate={{
-                            cx: [coreCenterX, midX, node.x, midX, coreCenterX],
-                            cy: [coreCenterY, midY, node.y, midY, coreCenterY],
-                          }}
-                          transition={{
-                            duration: 2.8,
-                            repeat: Infinity,
-                            ease: 'easeInOut',
-                          }}
-                        />
-                      )}
-                    </g>
-                  );
-                })}
-
-                {/* Inter-Department Peripheral Rings (Connecting adjacent departments) */}
-                <path
-                  d="M 180 110 Q 130 200 130 290 Q 180 370 230 440"
-                  fill="none"
-                  stroke="#DDD6FE"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 4"
-                  opacity="0.3"
-                />
-                <path
-                  d="M 820 110 Q 870 200 870 290 Q 820 370 770 440"
-                  fill="none"
-                  stroke="#DDD6FE"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 4"
-                  opacity="0.3"
-                />
-              </g>
-
-              {/* Central Core: SAP Business One Living Single-Source-of-Truth Hub */}
-              <g id="central-hub">
-                {/* Pulsing Ripple Rings */}
-                <motion.circle
-                  cx={coreCenterX}
-                  cy={coreCenterY}
-                  r="74"
-                  fill="none"
-                  stroke="#7C3AED"
-                  strokeWidth="1.5"
-                  animate={{ r: [65, 82, 65], opacity: [0.6, 0.1, 0.6] }}
-                  transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
-                />
-
-                {/* Solid Hub Disc */}
-                <circle
-                  cx={coreCenterX}
-                  cy={coreCenterY}
-                  r="62"
-                  fill="url(#sapHubGrad)"
-                  stroke="#FFFFFF"
-                  strokeWidth="3"
-                  filter="drop-shadow(0 6px 16px rgba(91, 33, 182, 0.35))"
-                />
-
-                {/* Central Inner Disc */}
-                <circle
-                  cx={coreCenterX}
-                  cy={coreCenterY}
-                  r="48"
-                  fill="#EDE7FF"
-                />
-
-                {/* Central Hub Typography */}
-                <text
-                  x={coreCenterX}
-                  y={coreCenterY - 10}
-                  textAnchor="middle"
-                  fill="#5B21B6"
-                  fontSize="10"
-                  fontWeight="800"
-                  fontFamily="sans-serif"
-                  letterSpacing="1.2"
-                >
-                  ENTERPRISE CORE
-                </text>
-                <text
-                  x={coreCenterX}
-                  y={coreCenterY + 8}
-                  textAnchor="middle"
-                  fill="#11110F"
-                  fontSize="14"
-                  fontWeight="900"
-                  fontFamily="sans-serif"
-                >
-                  SAP B1
-                </text>
-                <text
-                  x={coreCenterX}
-                  y={coreCenterY + 22}
-                  textAnchor="middle"
-                  fill="#5B21B6"
-                  fontSize="8"
-                  fontWeight="700"
-                  fontFamily="monospace"
-                >
-                  SINGLE SOURCE
-                </text>
-              </g>
-
-              {/* 6 Outer Department Nodes */}
-              {Object.values(nodes).map((node) => {
-                const isSelected = selectedNode === node.id;
-                const isInCycle = currentCycle.flow.includes(node.id);
+          {/* Stepper Node Chain (Horizontal n8n-style Node Flow) */}
+          <div className="py-6 overflow-x-auto">
+            <div className="flex items-stretch gap-3 min-w-[880px] pb-2">
+              {lifecycleStages.map((stage, idx) => {
+                const isActive = activeStep === idx;
+                const isCompleted = activeStep > idx;
+                const IconComponent = stage.icon;
 
                 return (
-                  <g
-                    key={node.id}
-                    onClick={() => selectNode(node.id)}
-                    className="cursor-pointer"
+                  <div
+                    key={stage.id}
+                    onClick={() => jumpToStep(idx)}
+                    className={`flex-1 min-w-[140px] rounded-2xl p-3.5 transition-all duration-200 cursor-pointer border flex flex-col justify-between relative select-none ${
+                      isActive
+                        ? 'bg-[#1C1A2E] border-[#A78BFA] shadow-lg shadow-[#5B21B6]/30 scale-[1.03]'
+                        : isCompleted
+                        ? 'bg-[#141320] border-[#10B981]/50 hover:border-[#10B981]'
+                        : 'bg-[#13121E]/70 border-white/10 opacity-60 hover:opacity-100 hover:border-white/20'
+                    }`}
                   >
-                    {/* Active Halo */}
-                    {(isSelected || isInCycle) && (
-                      <circle
-                        cx={node.x}
-                        cy={node.y}
-                        r="52"
-                        fill="none"
-                        stroke={isSelected ? '#5B21B6' : '#7C3AED'}
-                        strokeWidth="2"
-                        opacity={isSelected ? 0.8 : 0.4}
-                      />
+                    {/* Connecting Chevron Arrow for n8n Flow */}
+                    {idx < lifecycleStages.length - 1 && (
+                      <div className="absolute -right-2.5 top-1/2 -translate-y-1/2 z-20 w-5 h-5 rounded-full bg-[#0F0E17] border border-white/20 flex items-center justify-center text-[10px] text-white/50">
+                        →
+                      </div>
                     )}
 
-                    {/* Node Base Disc */}
-                    <circle
-                      cx={node.x}
-                      cy={node.y}
-                      r="42"
-                      fill={isSelected ? '#5B21B6' : isInCycle ? '#F5F3FF' : '#FFFFFF'}
-                      stroke={isSelected ? '#4C1D95' : isInCycle ? '#7C3AED' : '#C4B5FD'}
-                      strokeWidth={isSelected ? '3' : '2'}
-                      filter="drop-shadow(0 4px 8px rgba(0,0,0,0.06))"
-                    />
+                    <div>
+                      {/* Step Header */}
+                      <div className="flex items-center justify-between gap-1 mb-2">
+                        <span className="text-[10px] font-mono font-bold text-white/60">
+                          {stage.stageCode}
+                        </span>
+                        <div
+                          className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${
+                            isActive
+                              ? 'bg-[#5B21B6] text-white'
+                              : isCompleted
+                              ? 'bg-[#10B981]/20 text-[#10B981]'
+                              : 'bg-white/10 text-white/60'
+                          }`}
+                        >
+                          <IconComponent className="w-3.5 h-3.5" />
+                        </div>
+                      </div>
 
-                    {/* Node Text Label */}
-                    <text
-                      x={node.x}
-                      y={node.y - 4}
-                      textAnchor="middle"
-                      fill={isSelected ? '#FFFFFF' : '#11110F'}
-                      fontSize="11"
-                      fontWeight="800"
-                      fontFamily="sans-serif"
-                    >
-                      {node.shortName}
-                    </text>
+                      {/* Stage Name */}
+                      <h4 className="text-xs font-black font-heading text-white leading-snug">
+                        {stage.moduleName}
+                      </h4>
+                      <p className="text-[10.5px] text-white/60 leading-tight mt-0.5">
+                        {stage.department}
+                      </p>
+                    </div>
 
-                    {/* Department Category Mini Label */}
-                    <text
-                      x={node.x}
-                      y={node.y + 12}
-                      textAnchor="middle"
-                      fill={isSelected ? '#E9D5FF' : '#5B21B6'}
-                      fontSize="8.5"
-                      fontWeight="700"
-                      fontFamily="sans-serif"
-                      letterSpacing="0.4"
-                    >
-                      {node.category}
-                    </text>
-
-                    {/* Status Dot */}
-                    <circle
-                      cx={node.x + 28}
-                      cy={node.y - 28}
-                      r="5"
-                      fill={isInCycle ? '#10B981' : '#94A3B8'}
-                      stroke="#FFFFFF"
-                      strokeWidth="1.5"
-                    />
-                  </g>
+                    {/* Status Pill */}
+                    <div className="mt-3 pt-2 border-t border-white/10">
+                      <span
+                        className={`text-[9.5px] font-bold font-mono px-2 py-0.5 rounded-full block text-center truncate ${
+                          stage.statusType === 'warning'
+                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                            : stage.statusType === 'success' || isCompleted
+                            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                            : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
+                        }`}
+                      >
+                        {isCompleted ? '✓ EXECUTED' : stage.statusBadge}
+                      </span>
+                    </div>
+                  </div>
                 );
               })}
-            </svg>
+            </div>
           </div>
 
-          {/* Department Inspection Panel: Before vs After Transformation */}
-          <div className="mt-2 p-4 rounded-2xl bg-[#EDE7FF]/60 border border-[#5B21B6]/20">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-[#5B21B6]/15 text-xs">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#5B21B6]" />
-                <span className="font-heading font-black text-[#11110F] text-sm">
-                  {currentNode.name}
-                </span>
-                <span className="text-[#5B21B6] font-mono text-[11px] font-bold">
-                  ({currentNode.category})
-                </span>
+          {/* Detailed Active Stage Execution Panel */}
+          <div className="bg-[#171526] rounded-2xl border border-white/15 p-4 sm:p-6 mt-2">
+            {/* Header of Active Step */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-white/10">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#5B21B6] flex items-center justify-center text-white shrink-0 shadow-md">
+                  {React.createElement(currentStage.icon, { className: 'w-5 h-5' })}
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono font-bold text-[#A78BFA] uppercase">
+                      {currentStage.stageCode} · {currentStage.department}
+                    </span>
+                    <span
+                      className={`text-[10px] font-mono px-2 py-0.5 rounded font-bold ${
+                        currentStage.statusType === 'warning'
+                          ? 'bg-amber-500/20 text-amber-300'
+                          : 'bg-emerald-500/20 text-emerald-300'
+                      }`}
+                    >
+                      {currentStage.statusBadge}
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-heading font-black text-white mt-0.5">
+                    {currentStage.actionTitle}
+                  </h3>
+                </div>
               </div>
-              <div className="text-[#534D66] font-mono text-xs">
-                Payload: <strong className="text-[#5B21B6]">{currentNode.dataPayload}</strong>
+
+              {/* Execution Speed */}
+              <div className="text-right sm:border-l sm:border-white/10 sm:pl-4">
+                <span className="text-[10px] font-mono text-white/50 uppercase block">
+                  SAP Execution Telemetry
+                </span>
+                <span className="text-xs font-mono font-bold text-emerald-400">
+                  ⚡ Single Source Synchronized (18ms)
+                </span>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs leading-relaxed">
-              <div className="p-3 rounded-xl bg-white/80 border border-amber-300/60">
-                <span className="font-bold uppercase tracking-wider text-amber-800 text-[10px] block mb-1">
-                  Before: Disconnected Silos
+            {/* Key Metrics Strip (Real Numbers for this stage) */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+              {currentStage.keyMetrics.map((metric, i) => (
+                <div
+                  key={i}
+                  className={`p-3 rounded-xl border ${
+                    metric.highlight
+                      ? 'bg-[#5B21B6]/20 border-[#A78BFA]/40 shadow-sm'
+                      : 'bg-white/[0.04] border-white/10'
+                  }`}
+                >
+                  <span className="text-[10px] font-mono text-white/60 block uppercase">
+                    {metric.label}
+                  </span>
+                  <div
+                    className={`text-sm sm:text-base font-black font-heading mt-0.5 ${
+                      metric.highlight ? 'text-amber-300' : 'text-white'
+                    }`}
+                  >
+                    {metric.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Real SAP Document Voucher Strip */}
+            <div className="bg-[#0D0C14] rounded-xl p-3.5 border border-white/10 font-mono text-xs mb-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] pb-2 border-b border-white/10 text-[#A78BFA]">
+                <div className="flex items-center gap-2">
+                  <Barcode className="w-3.5 h-3.5" />
+                  <span className="font-bold">{currentStage.sapDocument.docType}</span>
+                  <span className="text-white/40">·</span>
+                  <span className="text-white">{currentStage.sapDocument.docNumber}</span>
+                </div>
+                <div className="text-white/60 text-[10px]">
+                  {currentStage.sapDocument.timestamp}
+                </div>
+              </div>
+              <div className="pt-2 text-white/80 text-[11px] leading-relaxed">
+                <strong className="text-white">Payload Detail: </strong>
+                {currentStage.sapDocument.details}
+              </div>
+            </div>
+
+            {/* Operational Transformation Comparison (Before vs After) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div className="p-3.5 rounded-xl bg-amber-950/25 border border-amber-500/30">
+                <span className="font-bold uppercase tracking-wider text-amber-400 text-[10px] flex items-center gap-1.5 mb-1">
+                  <AlertCircle className="w-3.5 h-3.5" />
+                  <span>Before: Manual Spreadsheet Friction</span>
                 </span>
-                <p className="text-[#334155]">{currentNode.beforeProblem}</p>
+                <p className="text-amber-100/90 leading-relaxed">
+                  {currentStage.beforeSiloFriction}
+                </p>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/90 border border-emerald-400/60 shadow-sm">
-                <span className="font-bold uppercase tracking-wider text-emerald-800 text-[10px] block mb-1">
-                  After: SAP B1 Automated Core
+              <div className="p-3.5 rounded-xl bg-emerald-950/25 border border-emerald-500/30">
+                <span className="font-bold uppercase tracking-wider text-emerald-400 text-[10px] flex items-center gap-1.5 mb-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>After: SAP Business One Automation</span>
                 </span>
-                <p className="text-[#11110F] font-medium">{currentNode.afterSolution}</p>
+                <p className="text-emerald-100/90 leading-relaxed font-medium">
+                  {currentStage.afterConnectedImpact}
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 6. "The Problem I Solve vs Architecture I Deploy" Boxes (Shortened to 2 lines each) */}
+      {/* 6. "The Problem I Solve vs Architecture I Deploy" Boxes (2 lines each) */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded-2xl bg-white/70 border border-[#5B21B6]/20 flex items-start gap-3 shadow-sm">
+          <div className="p-4 rounded-2xl bg-white border border-[#5B21B6]/20 flex items-start gap-3 shadow-sm">
             <div className="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center text-amber-800 shrink-0 mt-0.5">
               <AlertCircle className="w-4 h-4" />
             </div>
@@ -558,7 +576,7 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white/70 border border-[#5B21B6]/20 flex items-start gap-3 shadow-sm">
+          <div className="p-4 rounded-2xl bg-white border border-[#5B21B6]/20 flex items-start gap-3 shadow-sm">
             <div className="w-7 h-7 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-800 shrink-0 mt-0.5">
               <CheckCircle2 className="w-4 h-4" />
             </div>
@@ -574,7 +592,7 @@ export const ArcElevraSAP: React.FC<ArcElevraSAPProps> = ({ playPulse, playClick
         </div>
       </div>
 
-      {/* 7. "Details" Accordion (Collapsed by Default, zero empty space gap) */}
+      {/* 7. "Details" Accordion (Collapsed by Default) */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-20 relative z-10">
         <div className="rounded-2xl bg-white border border-[#5B21B6]/25 overflow-hidden shadow-lg">
           <button
